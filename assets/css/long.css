@@ -138,7 +138,7 @@ body {
 
 @media only screen and (max-width: 576px) {
   .glass-card {
-    padding: 30px;
+    padding: 20px;
   }
   .content h1 {
     font-size: 1.8em;
