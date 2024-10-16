@@ -59,7 +59,6 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #ffd700, #ff8c00);
   border: none;
   color: #2c144a;
   font-weight: 600;
@@ -71,7 +70,6 @@ body {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(45deg, #ff8c00, #ffd700);
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
