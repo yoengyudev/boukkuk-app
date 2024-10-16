@@ -18,6 +18,18 @@ $theme-colors: (
   @return map-get($theme-colors, $color-name);
 }
 
+
+.form-control {
+  border-radius: 4px;
+  border-color: get-theme-color("primary");
+
+  &:focus {
+    border-color: get-theme-color("primary");
+    box-shadow: 0 0 0 0.2rem rgba(map-get($theme-colors, "primary"), 0.25);
+  }
+}
+
+
 // Button styles
 .btn {
   padding: 10px 20px;
