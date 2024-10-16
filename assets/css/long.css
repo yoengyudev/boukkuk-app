@@ -58,7 +58,7 @@ body {
   font-weight: 300;
 }
 
-.btn-primary {
+/* .btn-primary {
   border: none;
   color: #2c144a;
   font-weight: 600;
@@ -72,7 +72,7 @@ body {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .form-floating .form-control {
   background-color: rgba(255, 255, 255, 0.1);
