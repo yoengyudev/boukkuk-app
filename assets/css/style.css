@@ -1,4 +1,70 @@
-.btn-hover:hover{
-    background-color:#0D6EFD;
+@font-face {
+    font-family: Poppins;
+    src: url('../font/Poppins/Poppins-Regular.ttf');
+}
+
+* {
+    font-family: "Poppins";
+    font-size: 18px;
+}
+
+.fs-20 {
+    font-size: 20px !important;
+}
+
+.fs-18 {
+    font-size: 18px !important;
+}
+
+.gap-35 {
+    gap: 35px;
+}
+
+.btn-hover:hover {
+    background-color: #0D6EFD;
     color: #fff;
+}
+
+
+/* navigation bar */
+
+.bottom-shadow {
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.dropdown-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: visibility 0s, opacity 0.3s, transform 0.3s;
+}
+
+.dropdown-menu.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown {
+    position: relative;
+    z-index: 1001;
 }
