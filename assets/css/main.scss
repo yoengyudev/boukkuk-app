@@ -1,0 +1,7 @@
+// Import Bootstrap's core functions and variables before anything else
+@import "../../node_modules/bootstrap/scss/functions"; 
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Import custom styles
+@import "custom"; // This includes the custom button styles
+

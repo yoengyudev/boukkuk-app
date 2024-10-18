@@ -1,0 +1,199 @@
+// Define theme colors
+$theme-colors: (
+  "primary": #F28B82,
+  "secondary": #FFCDD2,
+  "success": #66BB6A,
+  "info": #64B5F6,
+  "warning": #FFB74D,
+  "danger": #E57373,
+  "light": #FCE4EC,
+  "dark": #424242
+);
+
+// Import Bootstrap SCSS files
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Function to get theme color from the map
+@function get-theme-color($color-name) {
+  @return map-get($theme-colors, $color-name);
+}
+
+// Button styles
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  // Regular button styles
+  &.btn-primary {
+    background-color: get-theme-color("primary");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("primary"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: get-theme-color("secondary");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("secondary"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-success {
+    background-color: get-theme-color("success");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("success"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-info {
+    background-color: get-theme-color("info");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("info"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-warning {
+    background-color: get-theme-color("warning");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("warning"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-danger {
+    background-color: get-theme-color("danger");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("danger"), 10%);
+      color: white;
+    }
+  }
+
+  &.btn-light {
+    background-color: get-theme-color("light");
+    color: black;
+
+    &:hover, &:focus, &:active {
+      background-color: darken(get-theme-color("light"), 10%);
+      color: black;
+    }
+  }
+
+  &.btn-dark {
+    background-color: get-theme-color("dark");
+    color: white;
+
+    &:hover, &:focus, &:active {
+      background-color: lighten(get-theme-color("dark"), 10%);
+      color: white;
+    }
+  }
+
+  // Outline button styles
+  &.btn-outline-primary {
+    background-color: transparent;
+    border: 2px solid get-theme-color("primary");
+    color: get-theme-color("primary");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("primary");
+      color: white;
+    }
+  }
+
+  &.btn-outline-secondary {
+    background-color: transparent;
+    border: 2px solid get-theme-color("secondary");
+    color: get-theme-color("secondary");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("secondary");
+      color: white;
+    }
+  }
+
+  &.btn-outline-success {
+    background-color: transparent;
+    border: 2px solid get-theme-color("success");
+    color: get-theme-color("success");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("success");
+      color: white;
+    }
+  }
+
+  &.btn-outline-info {
+    background-color: transparent;
+    border: 2px solid get-theme-color("info");
+    color: get-theme-color("info");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("info");
+      color: white;
+    }
+  }
+
+  &.btn-outline-warning {
+    background-color: transparent;
+    border: 2px solid get-theme-color("warning");
+    color: get-theme-color("warning");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("warning");
+      color: white;
+    }
+  }
+
+  &.btn-outline-danger {
+    background-color: transparent;
+    border: 2px solid get-theme-color("danger");
+    color: get-theme-color("danger");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("danger");
+      color: white;
+    }
+  }
+
+  &.btn-outline-light {
+    background-color: transparent;
+    border: 2px solid get-theme-color("light");
+    color: get-theme-color("light");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("light");
+      color: black;
+    }
+  }
+
+  &.btn-outline-dark {
+    background-color: transparent;
+    border: 2px solid get-theme-color("dark");
+    color: get-theme-color("dark");
+
+    &:hover, &:focus, &:active {
+      background-color: get-theme-color("dark");
+      color: white;
+    }
+  }
+}
