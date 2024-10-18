@@ -10,595 +10,481 @@
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
       :root {
-        --primary: #f28b82;
-        --secondary: #ffcdd2;
-        --success: #66bb6a;
-        --info: #64b5f6;
-        --warning: #ffb74d;
-        --danger: #e57373;
-        --light: #fce4ec;
-        --dark: #424242;
-        --background: #fff5f5;
-        --text: #424242;
+        --primary: #f28b82; /* Updated to primary color from your code */
+        --primary-light: #e67681; /* Updated to secondary color from your code */
+        --secondary: #66bb6a; /* Updated to success color from your code */
+        --background: #fce4ec; /* Updated to light color from your code */
+        --card-bg: #ffffff; /* Keeping this unchanged as it's for card backgrounds */
+        --text: #424242; /* Updated to dark color from your code */
+        --text-light: #e57373; /* Updated to danger color from your code */
+        --border: #ffb74d;
       }
 
-      body {
-        font-family: "Poppins", sans-serif;
+      .profile_body {
+        font-family: "Inter", sans-serif;
         background-color: var(--background);
         color: var(--text);
       }
 
-      .container {
-        max-width: 1200px;
-      }
-
-      .card {
+      .profile .card {
+        background-color: var(--card-bg);
         border: none;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(242, 139, 130, 0.1);
-        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
         transition: all 0.3s ease;
       }
 
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(242, 139, 130, 0.2);
+      .profile .card:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
       }
 
-      .nav-pills .nav-link {
-        color: var(--text);
-        border-radius: 30px;
-        padding: 10px 20px;
-        margin: 5px;
+      .profile .sidebar {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+
+      .profile .sidebar-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 0.5rem;
         transition: all 0.3s ease;
+        cursor: pointer;
+        color: var(--text-light);
       }
 
-      .nav-pills .nav-link.active {
-        background-color: var(--primary);
-        color: white;
-        box-shadow: 0 5px 15px rgba(242, 139, 130, 0.4);
+      .profile .sidebar-item:hover,
+      .sidebar-item.active {
+        background-color: var(--primary-light);
+        color: var(--card-bg);
       }
 
-      /* .btn-custom {
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 30px;
-        padding: 10px 25px;
-        transition: all 0.3s ease;
+      .profile .sidebar-item i {
+        margin-right: 1rem;
+        font-size: 1.2rem;
       }
 
-      .btn-custom:hover {
-        background-color: #e57373;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(242, 139, 130, 0.4);
-      } */
-
-      .form-control,
-      .form-select {
-        border-radius: 15px;
-        border: 2px solid var(--secondary);
-        padding: 12px 20px;
-        transition: all 0.3s ease;
+      .profile .main-content {
+        padding: 2rem;
       }
 
-      .form-control:focus,
-      .form-select:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(242, 139, 130, 0.1);
-      }
-
-      .avatar {
+      .profile .avatar-container {
+        position: relative;
         width: 120px;
         height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid white;
-        box-shadow: 0 5px 15px rgba(242, 139, 130, 0.2);
+        margin: 0 auto 2rem;
       }
 
-      .order-item,
-      .notification-item {
-        background-color: #f3f3f3;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 15px;
+      .profile .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary-light);
+      }
+
+      .profile .avatar-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .profile .avatar-container:hover .avatar-overlay {
+        opacity: 1;
+      }
+
+      .profile .avatar-overlay i {
+        color: var(--card-bg);
+        font-size: 1.5rem;
+      }
+
+      .profile .btn-save {
+        border: none;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
         transition: all 0.3s ease;
       }
 
-      .order-item:hover,
-      .notification-item:hover {
-        transform: translateX(5px);
-        box-shadow: 0 5px 15px rgba(242, 139, 130, 0.1);
+      .profile .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
       }
 
-      .badge-custom {
-        padding: 8px 15px;
-        border-radius: 20px;
-        font-weight: 600;
-      }
-
-      .section-title {
-        color: var(--primary);
+      .profile .section-title {
         font-weight: 600;
         margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
       }
 
-      .gradient-text {
-        background: linear-gradient(45deg, var(--primary), var(--danger));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        display: inline-block;
+      .profile .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50%;
+        height: 3px;
+        background-color: rgb(248, 114, 136);
+        transition: width 0.3s ease;
+      }
+
+      .profile .section-title:hover::after {
+        width: 100%;
+      }
+
+      .profile .table {
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .profile .table thead th {
+        background-color: var(--primary-light);
+        color: var(--card-bg);
+        font-weight: 600;
+      }
+
+      .profile .badge {
+        padding: 0.5em 1em;
+        border-radius: 9999px;
+        font-weight: 500;
+      }
+
+      .profile .form-check-input:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
       }
     </style>
   </head>
-  <body>
-    <div class="container py-5">
-      <h1 class="text-center mb-5 fw-bold gradient-text">Profile Settings</h1>
+  <body class="profile_body">
+    <main>
+      <section class="profile">
+        <div class="container my-5">
+          <h1 class="section-title text-primary">Profile Settings</h1>
 
-      <ul
-        class="nav nav-pills mb-4 justify-content-center"
-        id="profileTabs"
-        role="tablist"
-      >
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link active"
-            id="personal-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#personal"
-            type="button"
-            role="tab"
-            aria-controls="personal"
-            aria-selected="true"
-          >
-            <i class="bi bi-person-fill me-2"></i>Personal
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="orders-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#orders"
-            type="button"
-            role="tab"
-            aria-controls="orders"
-            aria-selected="false"
-          >
-            <i class="bi bi-clock-history me-2"></i>Orders
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="notifications-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#notifications"
-            type="button"
-            role="tab"
-            aria-controls="notifications"
-            aria-selected="false"
-          >
-            <i class="bi bi-bell-fill me-2"></i>Notifications
-          </button>
-        </li>
-        
-      </ul>
-
-      <div class="tab-content" id="profileTabsContent">
-        <div
-          class="tab-pane fade show active"
-          id="personal"
-          role="tabpanel"
-          aria-labelledby="personal-tab"
-        >
-          <div class="card mb-4">
-            <div class="card-body">
-              <h2 class="section-title">Personal Information</h2>
-              <div class="text-center mb-4">
-                <img
-                  src="assets/img/AboutUs-review2.avif"
-                  alt="Profile Picture"
-                  class="avatar mb-3"
-                  id="profileImage"
-                />
-                <input
-                  type="file"
-                  id="imageUpload"
-                  accept="image/*"
-                  class="d-none"
-                />
-                <button
-                  class="btn btn-custom btn-primary"
-                  id="changePictureBtn"
-                >
-                  Change Picture
-                </button>
-              </div>
-              <form>
-                <div class="row g-4 mb-3">
-                  <div class="col-md-6">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fullName"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phone"
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="address" class="form-label">Address</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="address"
-                      placeholder="123 Main St, Anytown, ST 12345"
-                    />
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-custom btn-primary">
-                  Save Changes
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body">
-              <h2 class="section-title">Payment Methods</h2>
-              <div class="payment-list" id="paymentList">
-                <!-- Added container for payment methods -->
-                <!-- Existing payment items will be dynamically inserted here -->
-              </div>
-              <form id="addPaymentForm" class="mb-3">
-                <!-- Added form for adding new payment -->
-                <div class="mb-3">
-                  <label for="cardHolder" class="form-label"
-                    >Cardholder Name</label
-                  >
-                  <input
-                    type="text"
-                    id="cardHolder"
-                    class="form-control"
-                    placeholder="John Doe"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="cardNumber" class="form-label">Card Number</label>
-                  <input
-                    type="text"
-                    id="cardNumber"
-                    class="form-control"
-                    placeholder="1234 5678 9012 3456"
-                    required
-                    maxlength="19"
-                  />
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <label for="expiryDate" class="form-label"
-                      >Expiration Date</label
-                    >
-                    <input
-                      type="text"
-                      id="expiryDate"
-                      class="form-control"
-                      placeholder="MM/YY"
-                      required
-                      maxlength="5"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="cvv" class="form-label">CVV</label>
-                    <input
-                      type="text"
-                      id="cvv"
-                      class="form-control"
-                      placeholder="123"
-                      required
-                      maxlength="3"
-                    />
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-custom btn-primary w-100 mt-2"
-                >
-                  Add New Payment Method
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body">
-              <h2 class="section-title">Security</h2>
-              <button
-                class="btn btn-custom btn-primary w-100 mb-3"
-                id="changePasswordBtn"
-              >
-                <i class="bi bi-lock-fill me-2"></i>Change Password
-              </button>
-              <div class="form-check form-switch mb-4">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="twoFactorAuth"
-                />
-                <label class="form-check-label" for="twoFactorAuth"
-                  >Enable Two-Factor Authentication</label
-                >
-              </div>
-              <div id="twoFactorSetup" class="d-none">
-                <div class="alert alert-info mb-3" role="alert">
-                  <strong>Setup Instructions:</strong> Scan the QR code below
-                  with your authenticator app (e.g., Google Authenticator).
-                </div>
-                <div class="text-center mb-3">
+          <div class="row g-4">
+            <div class="col-md-4 col-lg-3">
+              <div class="sidebar card">
+                <div class="avatar-container mb-4">
                   <img
-                    id="qrCode"
-                    src=""
-                    alt="QR Code"
-                    class="img-fluid mb-3"
-                    style="max-width: 200px"
+                    src="assets/img/AboutUs-review3avif.avif"
+                    alt="User Avatar"
+                    class="avatar"
                   />
+                  <div class="avatar-overlay">
+                    <i class="fas fa-camera"></i>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="secretCode" class="form-label"
-                    >Or enter the code:</label
-                  >
-                  <input
-                    type="text"
-                    id="secretCode"
-                    class="form-control"
-                    placeholder="Enter your code"
-                  />
+                <div class="sidebar-item active" data-section="personal-info">
+                  <i class="fas fa-user"></i>
+                  <span>Personal Info</span>
                 </div>
-                <button class="btn btn-custom w-100 btn-primary" id="verify2faBtn">
-                  Verify 2FA
-                </button>
+                <div class="sidebar-item" data-section="laundry-preferences">
+                  <i class="fas fa-tshirt"></i>
+                  <span>Laundry Preferences</span>
+                </div>
+                <div class="sidebar-item" data-section="order-history">
+                  <i class="fas fa-history"></i>
+                  <span>Order History</span>
+                </div>
+                <div class="sidebar-item" data-section="payment-methods">
+                  <i class="fas fa-credit-card"></i>
+                  <span>Payment Methods</span>
+                </div>
+                <div class="sidebar-item" data-section="notifications">
+                  <i class="fas fa-bell"></i>
+                  <span>Notifications</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-lg-9">
+              <div class="main-content card">
+                <div id="personal-info" class="content-section">
+                  <h2 class="section-title">Personal Information</h2>
+                  <p class="text-muted mb-4">
+                    Update your personal details here.
+                  </p>
+                  <form>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="firstName" class="form-label"
+                          >First Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="firstName"
+                          value="John"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="lastName" class="form-label"
+                          >Last Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="lastName"
+                          value="Doe"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        value="john.doe@example.com"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        value="+1 (555) 000-0000"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="address" class="form-label">Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        placeholder="Enter your address"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-save btn-primary">
+                      Save Changes
+                    </button>
+                  </form>
+                </div>
+                <div id="laundry-preferences" class="content-section d-none">
+                  <h2 class="section-title">Laundry Preferences</h2>
+                  <p class="text-muted mb-4">
+                    Customize your laundry service experience.
+                  </p>
+                  <form>
+                    <div class="mb-3">
+                      <label for="detergent" class="form-label"
+                        >Preferred Detergent</label
+                      >
+                      <select class="form-select" id="detergent">
+                        <option selected>
+                          Choose your preferred detergent
+                        </option>
+                        <option value="regular">Regular</option>
+                        <option value="sensitive">Sensitive Skin</option>
+                        <option value="eco-friendly">Eco-Friendly</option>
+                        <option value="fragrance-free">Fragrance-Free</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="fabric-softener" class="form-label"
+                        >Fabric Softener</label
+                      >
+                      <select class="form-select" id="fabric-softener">
+                        <option selected>
+                          Choose fabric softener preference
+                        </option>
+                        <option value="yes">Yes, use fabric softener</option>
+                        <option value="no">No fabric softener</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="starch" class="form-label"
+                        >Starch Preference</label
+                      >
+                      <select class="form-select" id="starch">
+                        <option selected>Choose starch preference</option>
+                        <option value="none">No starch</option>
+                        <option value="light">Light starch</option>
+                        <option value="medium">Medium starch</option>
+                        <option value="heavy">Heavy starch</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="special-instructions" class="form-label"
+                        >Special Care Instructions</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="special-instructions"
+                        rows="3"
+                        placeholder="Enter any special care instructions for your clothes"
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-save btn-primary">
+                      Save Preferences
+                    </button>
+                  </form>
+                </div>
+                <div id="order-history" class="content-section d-none">
+                  <h2 class="section-title">Order History</h2>
+                  <p class="text-muted mb-4">View your past laundry orders.</p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Order ID</th>
+                          <th>Date</th>
+                          <th>Service</th>
+                          <th>Status</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>#12345</td>
+                          <td>2023-05-15</td>
+                          <td>Wash & Fold</td>
+                          <td>
+                            <span class="badge bg-success">Completed</span>
+                          </td>
+                          <td>$25.00</td>
+                        </tr>
+                        <tr>
+                          <td>#12346</td>
+                          <td>2023-05-10</td>
+                          <td>Dry Cleaning</td>
+                          <td>
+                            <span class="badge bg-warning">In Progress</span>
+                          </td>
+                          <td>$40.00</td>
+                        </tr>
+                        <!-- Add more order history rows as needed -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="payment-methods" class="content-section d-none">
+                  <h2 class="section-title">Payment Methods</h2>
+                  <p class="text-muted mb-4">Manage your payment options.</p>
+                  <div class="mb-4">
+                    <h3 class="h5">Saved Payment Methods</h3>
+                    <div class="card mb-2">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <i class="fab fa-cc-visa me-2"></i>
+                          <span>Visa ending in 1234</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger">
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card mb-2">
+                      <div
+                        class="card-body d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <i class="fab fa-cc-mastercard me-2"></i>
+                          <span>Mastercard ending in 5678</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger">
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-save btn-primary">
+                    Add New Payment Method
+                  </button>
+                </div>
+                <div id="notifications" class="content-section d-none">
+                  <h2 class="section-title">Notifications</h2>
+                  <p class="text-muted mb-4">
+                    Manage your notification preferences.
+                  </p>
+                  <form>
+                    <div class="mb-3 form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="emailNotifications"
+                        checked
+                      />
+                      <label class="form-check-label" for="emailNotifications"
+                        >Email Notifications</label
+                      >
+                    </div>
+                    <div class="mb-3 form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="smsNotifications"
+                      />
+                      <label class="form-check-label" for="smsNotifications"
+                        >SMS Notifications</label
+                      >
+                    </div>
+                    <div class="mb-3 form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="pushNotifications"
+                        checked
+                      />
+                      <label class="form-check-label" for="pushNotifications"
+                        >Push Notifications</label
+                      >
+                    </div>
+                    <button type="submit" class="btn btn-save btn-primary">
+                      Save Notification Preferences
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div
-          class="tab-pane fade"
-          id="orders"
-          role="tabpanel"
-          aria-labelledby="orders-tab"
-        >
-          <div class="card">
-            <div class="card-body">
-              <h2 class="section-title">Order History</h2>
-              <div
-                class="order-list"
-                style="max-height: 500px; padding-right: 12px; overflow-y: auto"
-              >
-                <!-- Order items will be dynamically inserted here -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="tab-pane fade"
-          id="notifications"
-          role="tabpanel"
-          aria-labelledby="notifications-tab"
-        >
-          <div class="card">
-            <div class="card-body">
-              <h2 class="section-title">Notification Preferences</h2>
-              <div class="form-check form-switch mb-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="pushNotifications"
-                  checked
-                />
-                <label class="form-check-label" for="pushNotifications"
-                  >Push Notifications</label
-                >
-              </div>
-              <div class="form-check form-switch mb-4">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="emailNotifications"
-                />
-                <label class="form-check-label" for="emailNotifications"
-                  >Email Notifications</label
-                >
-              </div>
-              <h3 class="mb-3">Recent Notifications</h3>
-              <div
-                class="notification-list"
-                style="max-height: 400px; padding-right: 12px; overflow-y: auto"
-              >
-                <!-- Notification items will be dynamically inserted here -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-     
-      </div>
-    </div>
+      </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Generate mock order history
-        const orderList = document.querySelector(".order-list");
-        for (let i = 0; i < 10; i++) {
-          const orderItem = document.createElement("div");
-          orderItem.className = "order-item";
-          orderItem.innerHTML = `
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <strong>Order #${1000 + i}</strong>
-                        <span class="badge badge-custom ${
-                          i % 2 === 0 ? "bg-success" : "bg-warning"
-                        }">${i % 2 === 0 ? "Completed" : "In Progress"}</span>
-                    </div>
-                    <p class="mb-1">Date: ${new Date().toLocaleDateString()}</p>
-                    <p class="mb-1">Total: $${(Math.random() * 50 + 10).toFixed(
-                      2
-                    )}</p>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-box me-2"></i>
-                        <span>${Math.floor(Math.random() * 5 + 1)} items</span>
-                    </div>
-                `;
-          orderList.appendChild(orderItem);
-        }
+        const sidebarItems = document.querySelectorAll(".sidebar-item");
+        const contentSections = document.querySelectorAll(".content-section");
 
-        // Generate mock notifications
-        const notificationList = document.querySelector(".notification-list");
-        for (let i = 0; i < 5; i++) {
-          const notificationItem = document.createElement("div");
+        sidebarItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const sectionId = this.getAttribute("data-section");
 
-          notificationItem.className = "notification-item";
-          notificationItem.innerHTML = `
-                    <p class="mb-1"><strong>Your laundry is ready for pickup!</strong></p>
-                    <p class="text-muted mb-0">${new Date().toLocaleString()}</p>
-                `;
-          notificationList.appendChild(notificationItem);
-        }
+            sidebarItems.forEach((si) => si.classList.remove("active"));
+            this.classList.add("active");
 
-        // Handle image upload
-        const imageUpload = document.getElementById("imageUpload");
-        const profileImage = document.getElementById("profileImage");
-        const changePictureBtn = document.getElementById("changePictureBtn");
-
-        changePictureBtn.addEventListener("click", function () {
-          imageUpload.click(); // Trigger file input click
-        });
-
-        imageUpload.addEventListener("change", function () {
-          const file = this.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              profileImage.src = e.target.result; // Update image source
-            };
-            reader.readAsDataURL(file); // Read the file as a data URL
-          }
-        });
-
-        // Format card number input
-        const cardNumberInput = document.getElementById("cardNumber");
-        cardNumberInput.addEventListener("input", function () {
-          // Remove all non-digit characters
-          let value = this.value.replace(/\D/g, "");
-          // Format the card number with spaces
-          this.value = value.replace(/(.{4})/g, "$1 ").trim();
-        });
-
-        // Format expiration date input
-        const expiryDateInput = document.getElementById("expiryDate");
-        expiryDateInput.addEventListener("input", function () {
-          // Remove all non-digit characters
-          let value = this.value.replace(/\D/g, "");
-          // Format the expiration date with a slash
-          if (value.length > 2) {
-            this.value = value.slice(0, 2) + "/" + value.slice(2, 4);
-          } else {
-            this.value = value;
-          }
-        });
-
-        // Handle adding new payment method
-        const addPaymentForm = document.getElementById("addPaymentForm");
-        const paymentList = document.getElementById("paymentList");
-
-        addPaymentForm.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form submission
-
-          // Get card details
-          const cardHolder = document.getElementById("cardHolder").value;
-          const cardNumber = document.getElementById("cardNumber").value;
-          const expiryDate = document.getElementById("expiryDate").value;
-          const cvv = document.getElementById("cvv").value;
-
-          if (cardHolder && cardNumber && expiryDate && cvv) {
-            const paymentItem = document.createElement("div");
-            paymentItem.className =
-              "d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded";
-            paymentItem.innerHTML = `
-              <div>
-                <i class="bi bi-credit-card me-2"></i>
-                <span>${cardHolder} - ${cardNumber} (Exp: ${expiryDate})</span>
-              </div>
-              <button class="btn btn-outline-danger btn-sm rounded-pill remove-card">Remove</button>
-            `;
-            paymentList.appendChild(paymentItem); // Add new payment method to the list
-            addPaymentForm.reset(); // Clear input fields
-          }
-        });
-
-        // Handle removing payment method
-        paymentList.addEventListener("click", function (event) {
-          if (event.target.classList.contains("remove-card")) {
-            const paymentItem = event.target.closest("div"); // Get the payment item
-            paymentList.removeChild(paymentItem); // Remove the payment item
-          }
-        });
-
-        // Handle Two-Factor Authentication toggle
-        const twoFactorAuthCheckbox = document.getElementById("twoFactorAuth");
-        const twoFactorSetup = document.getElementById("twoFactorSetup");
-        const qrCode = document.getElementById("qrCode");
-        const secretCodeInput = document.getElementById("secretCode");
-
-        twoFactorAuthCheckbox.addEventListener("change", function () {
-          if (this.checked) {
-            // Simulate generating a secret code and QR code
-            const generatedSecret = "JBSWY3DPEHPK3PXP"; // Example secret code
-            secretCodeInput.value = generatedSecret; // Display the secret code
-            qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?data=otpauth://totp/MyApp:${encodeURIComponent(
-              "user@example.com"
-            )}?secret=${generatedSecret}&issuer=MyApp`; // Generate QR code
-            twoFactorSetup.classList.remove("d-none"); // Show setup instructions
-          } else {
-            twoFactorSetup.classList.add("d-none"); // Hide setup instructions
-            secretCodeInput.value = ""; // Clear the secret code input
-            qrCode.src = ""; // Clear the QR code
-          }
-        });
-
-        // Handle 2FA verification (this is a placeholder for actual verification logic)
-        const verify2faBtn = document.getElementById("verify2faBtn");
-        verify2faBtn.addEventListener("click", function () {
-          alert("2FA verification logic goes here."); // Placeholder for verification logic
+            contentSections.forEach((section) => {
+              if (section.id === sectionId) {
+                section.classList.remove("d-none");
+              } else {
+                section.classList.add("d-none");
+              }
+            });
+          });
         });
       });
     </script>
