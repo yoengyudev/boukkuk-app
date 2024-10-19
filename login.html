@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="vender/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="vender/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background-color: #3b5998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            background-color: #3b5998;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-floating .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+        }
+        .form-floating .form-control:focus {
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .form-floating .form-control::placeholder {
+            color: transparent;
+        }
+        .form-floating label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .btn-primary {
+            background-color: #4267B2;
+            border: none;
+        }
+        .btn-outline-light {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .form-control::placeholder{
+            color: white;
+        }
+        .hover-text{
+            text-decoration: none;
+        }
+        .hover-text:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="login-form text-white">
+        <h2 class="text-center mb-4">
+            👋 Welcome Back
+        </h2>
+        <form>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control bg-transparent text-white" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control bg-transparent text-white" id="password" placeholder="Password" required>
+            </div>
+            <div class="text-end mb-3">
+                <a href="#" class="text-white hover-text">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+            <div class="text-center mb-3">Or continue with</div>
+            <button type="button" class="btn btn-outline-light w-100 mb-2">
+                <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google icon" class="me-2">
+                Sign in with Google
+            </button>
+            <button type="button" class="btn btn-outline-light w-100 mb-3">
+                <img src="https://img.icons8.com/color/16/000000/facebook-new.png" alt="Facebook icon" class="me-2">
+                Sign in with Facebook
+            </button>
+            <div class="text-center">
+                Don't Have an account? <a href="#" class="text-white hover-text">Create Account!</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
