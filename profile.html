@@ -9,171 +9,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/long.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-
-      :root {
-        --primary: #f28b82; /* Updated to primary color from your code */
-        --primary-light: #e67681; /* Updated to secondary color from your code */
-        --secondary: #66bb6a; /* Updated to success color from your code */
-        --background: #fce4ec; /* Updated to light color from your code */
-        --card-bg: #ffffff; /* Keeping this unchanged as it's for card backgrounds */
-        --text: #424242; /* Updated to dark color from your code */
-        --text-light: #e57373; /* Updated to danger color from your code */
-        --border: #ffb74d;
-      }
-
-      .profile_body {
-        font-family: "Inter", sans-serif;
-        background-color: var(--background);
-        color: var(--text);
-      }
-
-      .profile .card {
-        background-color: var(--card-bg);
-        border: none;
-        border-radius: 1rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transition: all 0.3s ease;
-      }
-
-      .profile .card:hover {
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      }
-
-      .profile .sidebar {
-        background-color: var(--card-bg);
-        border-radius: 1rem;
-        padding: 1.5rem;
-      }
-
-      .profile .sidebar-item {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        margin-bottom: 0.5rem;
-        border-radius: 0.5rem;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        color: var(--text-light);
-      }
-
-      .profile .sidebar-item:hover,
-      .sidebar-item.active {
-        background-color: var(--primary-light);
-        color: var(--card-bg);
-      }
-
-      .profile .sidebar-item i {
-        margin-right: 1rem;
-        font-size: 1.2rem;
-      }
-
-      .profile .main-content {
-        padding: 2rem;
-      }
-
-      .profile .avatar-container {
-        position: relative;
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 2rem;
-      }
-
-      .profile .avatar {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--primary-light);
-      }
-
-      .profile .avatar-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .profile .avatar-container:hover .avatar-overlay {
-        opacity: 1;
-      }
-
-      .profile .avatar-overlay i {
-        color: var(--card-bg);
-        font-size: 1.5rem;
-      }
-
-      .profile .btn-save {
-        border: none;
-        padding: 0.75rem 2rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-
-      .profile .btn-save:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
-      }
-
-      .profile .section-title {
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        position: relative;
-        display: inline-block;
-      }
-
-      .profile .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 50%;
-        height: 3px;
-        background-color: rgb(248, 114, 136);
-        transition: width 0.3s ease;
-      }
-
-      .profile .section-title:hover::after {
-        width: 100%;
-      }
-
-      .profile .table {
-        border-radius: 0.5rem;
-        overflow: hidden;
-      }
-
-      .profile .table thead th {
-        background-color: var(--primary-light);
-        color: var(--card-bg);
-        font-weight: 600;
-      }
-
-      .profile .badge {
-        padding: 0.5em 1em;
-        border-radius: 9999px;
-        font-weight: 500;
-      }
-
-      .profile .form-check-input:checked {
-        background-color: var(--primary);
-        border-color: var(--primary);
-      }
-    </style>
   </head>
   <body class="profile_body">
     <main>
@@ -224,58 +64,71 @@
                     Update your personal details here.
                   </p>
                   <form>
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="firstName" class="form-label"
-                          >First Name</label
-                        >
+                    <div class="mb-4">
+                      <div class="form-floating">
                         <input
                           type="text"
                           class="form-control"
                           id="firstName"
-                          value="John"
+                          placeholder="First Name"
                         />
-                      </div>
-                      <div class="col-md-6">
-                        <label for="lastName" class="form-label"
-                          >Last Name</label
+                        <label class="ps-0 ms-0" for="firstName"
+                          >First Name</label
                         >
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <div class="form-floating">
                         <input
                           type="text"
                           class="form-control"
                           id="lastName"
-                          value="Doe"
+                          placeholder="Last Name"
                         />
+                        <label class="ps-0 ms-0" for="lastName"
+                          >Last Name</label
+                        >
                       </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        value="john.doe@example.com"
-                      />
+                    <div class="mb-4">
+                      <div class="form-floating">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="Email"
+                        />
+                        <label class="ps-0 ms-0" for="email">Email</label>
+                      </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="phone" class="form-label">Phone Number</label>
-                      <input
-                        type="tel"
-                        class="form-control"
-                        id="phone"
-                        value="+1 (555) 000-0000"
-                      />
+                    <div class="mb-4">
+                      <div class="form-floating">
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          placeholder="Phone Number"
+                        />
+                        <label class="ps-0 ms-0" for="phone"
+                          >Phone Number</label
+                        >
+                      </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="address" class="form-label">Address</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="address"
-                        placeholder="Enter your address"
-                      />
+                    <div class="mb-4">
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="address"
+                          placeholder="Address"
+                        />
+                        <label class="ps-0 ms-0" for="address">Address</label>
+                      </div>
                     </div>
-                    <button type="submit" class="btn btn-save btn-primary">
+                    <button
+                      type="submit"
+                      class="btn btn-save w-100 btn-primary"
+                    >
                       Save Changes
                     </button>
                   </form>
@@ -286,11 +139,11 @@
                     Customize your laundry service experience.
                   </p>
                   <form>
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label for="detergent" class="form-label"
                         >Preferred Detergent</label
                       >
-                      <select class="form-select" id="detergent">
+                      <select class="form-select form-control" id="detergent">
                         <option selected>
                           Choose your preferred detergent
                         </option>
@@ -300,11 +153,14 @@
                         <option value="fragrance-free">Fragrance-Free</option>
                       </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label for="fabric-softener" class="form-label"
                         >Fabric Softener</label
                       >
-                      <select class="form-select" id="fabric-softener">
+                      <select
+                        class="form-select form-control"
+                        id="fabric-softener"
+                      >
                         <option selected>
                           Choose fabric softener preference
                         </option>
@@ -312,11 +168,11 @@
                         <option value="no">No fabric softener</option>
                       </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label for="starch" class="form-label"
                         >Starch Preference</label
                       >
-                      <select class="form-select" id="starch">
+                      <select class="form-select form-control" id="starch">
                         <option selected>Choose starch preference</option>
                         <option value="none">No starch</option>
                         <option value="light">Light starch</option>
@@ -324,18 +180,21 @@
                         <option value="heavy">Heavy starch</option>
                       </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label for="special-instructions" class="form-label"
                         >Special Care Instructions</label
                       >
                       <textarea
                         class="form-control"
                         id="special-instructions"
-                        rows="3"
+                        rows="2"
                         placeholder="Enter any special care instructions for your clothes"
                       ></textarea>
                     </div>
-                    <button type="submit" class="btn btn-save btn-primary">
+                    <button
+                      type="submit"
+                      class="btn w-100 btn-save btn-primary"
+                    >
                       Save Preferences
                     </button>
                   </form>
@@ -383,36 +242,139 @@
                   <p class="text-muted mb-4">Manage your payment options.</p>
                   <div class="mb-4">
                     <h3 class="h5">Saved Payment Methods</h3>
-                    <div class="card mb-2">
-                      <div
-                        class="card-body d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <i class="fab fa-cc-visa me-2"></i>
-                          <span>Visa ending in 1234</span>
+                    <div id="payment-methods-list">
+                      <div class="card mb-2">
+                        <div
+                          class="card-body d-flex justify-content-between align-items-center"
+                        >
+                          <div>
+                            <i class="fab fa-cc-visa me-2"></i>
+                            <span>Visa ending in 1234</span>
+                          </div>
+                          <button
+                            class="btn btn-sm btn-outline-danger remove-payment"
+                          >
+                            Remove
+                          </button>
                         </div>
-                        <button class="btn btn-sm btn-outline-danger">
-                          Remove
-                        </button>
                       </div>
-                    </div>
-                    <div class="card mb-2">
-                      <div
-                        class="card-body d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <i class="fab fa-cc-mastercard me-2"></i>
-                          <span>Mastercard ending in 5678</span>
+                      <div class="card mb-2">
+                        <div
+                          class="card-body d-flex justify-content-between align-items-center"
+                        >
+                          <div>
+                            <i class="fab fa-cc-mastercard me-2"></i>
+                            <span>Mastercard ending in 5678</span>
+                          </div>
+                          <button
+                            class="btn btn-sm btn-outline-danger remove-payment"
+                          >
+                            Remove
+                          </button>
                         </div>
-                        <button class="btn btn-sm btn-outline-danger">
-                          Remove
-                        </button>
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-save btn-primary">
+                  <button
+                    class="btn w-100 btn-save btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addPaymentModal"
+                  >
                     Add New Payment Method
                   </button>
+                </div>
+
+                <!-- Modal for Adding Payment Method -->
+                <div
+                  class="modal fade"
+                  id="addPaymentModal"
+                  tabindex="-1"
+                  aria-labelledby="addPaymentModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addPaymentModalLabel">
+                          Add New Payment Method
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="add-payment-form">
+                          <div class="mb-3 form-floating">
+                            <select
+                              class="form-select ps-0 form-control"
+                              id="paymentType"
+                              required
+                            >
+                              <option value="" disabled selected>
+                                Select payment type
+                              </option>
+                              <option value="visa">Visa</option>
+                              <option value="mastercard">Mastercard</option>
+                              <option value="amex">American Express</option>
+                              <option value="discover">Discover</option>
+                            </select>
+                            <label class="ps-0" for="paymentType"
+                              >Payment Type</label
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cardNumber"
+                              placeholder="Card Number"
+                              required
+                              maxlength="19"
+                            />
+                            <label class="ps-0 ms-0" for="cardNumber"
+                              >Card Number</label
+                            >
+                            <small class="form-text text-muted"
+                              >Format: 1234 5678 9012 3456</small
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="expiryDate"
+                              placeholder="MM/YY"
+                              required
+                              maxlength="5"
+                            />
+                            <label class="ps-0 ms-0" for="expiryDate"
+                              >Expiry Date</label
+                            >
+                            <small class="form-text text-muted"
+                              >Format: MM/YY</small
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cvv"
+                              placeholder="CVV"
+                              required
+                              maxlength="3"
+                            />
+                            <label class="ps-0 ms-0" for="cvv">CVV</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary">
+                            Add Payment Method
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div id="notifications" class="content-section d-none">
                   <h2 class="section-title">Notifications</h2>
@@ -452,7 +414,10 @@
                         >Push Notifications</label
                       >
                     </div>
-                    <button type="submit" class="btn btn-save btn-primary">
+                    <button
+                      type="submit"
+                      class="btn w-100 btn-save btn-primary"
+                    >
                       Save Notification Preferences
                     </button>
                   </form>
@@ -487,6 +452,92 @@
           });
         });
       });
+
+      // Format card number input
+      document
+        .getElementById("cardNumber")
+        .addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "").substring(0, 16); // Remove non-digits and limit to 16 digits
+          let formattedValue = "";
+          for (let i = 0; i < value.length; i += 4) {
+            formattedValue += value.substring(i, i + 4) + " ";
+          }
+          e.target.value = formattedValue.trim(); // Trim trailing space
+        });
+
+      // Format expiry date input
+      document
+        .getElementById("expiryDate")
+        .addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "").substring(0, 4); // Remove non-digits and limit to 4 digits
+          let formattedValue = "";
+          if (value.length > 2) {
+            formattedValue =
+              value.substring(0, 2) + "/" + value.substring(2, 4); // Add '/' after MM
+          } else {
+            formattedValue = value; // Just show MM
+          }
+          e.target.value = formattedValue; // Update input value
+        });
+
+      // Limit CVV input to 3 digits
+      document.getElementById("cvv").addEventListener("input", function (e) {
+        this.value = this.value.replace(/\D/g, "").substring(0, 3); // Allow only 3 digits
+      });
+
+      // Add payment method
+      document
+        .getElementById("add-payment-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const paymentType = document.getElementById("paymentType").value;
+          const cardNumber = document
+            .getElementById("cardNumber")
+            .value.replace(/\s/g, ""); // Remove spaces for display
+          const lastFourDigits = cardNumber.slice(-4); // Get last 4 digits
+          const paymentMethodsList = document.getElementById(
+            "payment-methods-list"
+          );
+
+          const newCard = document.createElement("div");
+          newCard.className = "card mb-2";
+          newCard.innerHTML = `
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <i class="fab fa-cc-${paymentType} me-2"></i>
+              <span>${
+                paymentType.charAt(0).toUpperCase() + paymentType.slice(1)
+              } ending in ${lastFourDigits}</span>
+            </div>
+            <button class="btn btn-sm btn-outline-danger remove-payment">Remove</button>
+          </div>
+        `;
+          paymentMethodsList.appendChild(newCard);
+
+          // Hide the modal and reset the form
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById("addPaymentModal")
+          );
+          modal.hide(); // Close the modal
+          document.getElementById("add-payment-form").reset(); // Reset the form inputs
+
+          // Add event listener for the new remove button
+          newCard
+            .querySelector(".remove-payment")
+            .addEventListener("click", function () {
+              paymentMethodsList.removeChild(newCard);
+            });
+        });
+
+      // Event delegation for removing payment methods
+      document
+        .getElementById("payment-methods-list")
+        .addEventListener("click", function (e) {
+          if (e.target.classList.contains("remove-payment")) {
+            const card = e.target.closest(".card");
+            paymentMethodsList.removeChild(card);
+          }
+        });
     </script>
   </body>
 </html>
