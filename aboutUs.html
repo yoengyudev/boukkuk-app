@@ -9,216 +9,18 @@
       rel="stylesheet"
     />
     <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
-
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap");
-      body {
-        font-family: "Kantumruy Pro", sans-serif;
-      }
-      .hero-section {
-        overflow: hidden;
-      }
-      .value-icon {
-        border-radius: 50% !important;
-        width: 80px;
-        height: 80px;
-        line-height: 80px;
-      }
-
-      .hero-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          circle,
-          rgba(59, 130, 246, 0.1) 0%,
-          rgba(255, 255, 255, 0) 70%
-        );
-        z-index: -1;
-      }
-
-      .bg-overlay {
-        background: linear-gradient(
-          to right,
-          rgba(37, 99, 235, 0.7),
-          rgba(124, 58, 237, 0.7)
-        );
-      }
-
-      .bg-overlay-bottom {
-        background: linear-gradient(
-          to top,
-          rgba(37, 99, 235, 0.7),
-          rgba(124, 58, 237, 0)
-        );
-      }
-
-      .hover-shadow:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        transform: translateY(-0.25rem);
-        transition: all 0.3s ease;
-      }
-
-      .timeline {
-        position: relative;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 0;
-      }
-
-      .timeline::after {
-        content: "";
-        position: absolute;
-        width: 6px;
-        background-color: #3b82f6;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -3px;
-      }
-
-      .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        background-color: inherit;
-        width: 50%;
-      }
-
-      .timeline-item::after {
-        content: "";
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        right: -17px;
-        background-color: white;
-        border: 4px solid #3b82f6;
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
-      }
-
-      .left {
-        left: 0;
-      }
-
-      .right {
-        left: 50%;
-      }
-
-      .left::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        right: 30px;
-        border: medium solid #3b82f6;
-        border-width: 10px 0 10px 10px;
-        border-color: transparent transparent transparent #3b82f6;
-      }
-
-      .right::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        left: 30px;
-        border: medium solid #3b82f6;
-        border-width: 10px 10px 10px 0;
-        border-color: transparent #3b82f6 transparent transparent;
-      }
-
-      .right::after {
-        left: -16px;
-      }
-
-      .timeline-content {
-        padding: 20px 30px;
-        background-color: white;
-        position: relative;
-        border-radius: 6px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .cta-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0) 70%
-        );
-        animation: pulse 5s infinite alternate;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.3;
-        }
-        100% {
-          transform: scale(1.1);
-          opacity: 0.5;
-        }
-      }
-
-      #scrollToTop {
-        display: none;
-        z-index: 1000;
-      }
-      .team img {
-        object-fit: cover;
-        object-position: center;
-      }
-      .about-story p {
-        font-size: 17px;
-      }
-      @media (max-width: 768px) {
-        .timeline::after {
-          left: 31px;
-        }
-
-        .timeline-item {
-          width: 100%;
-          padding-left: 70px;
-          padding-right: 25px;
-        }
-
-        .timeline-item::before {
-          left: 60px;
-          border: medium solid var(--primary);
-          border-width: 10px 10px 10px 0;
-          border-color: transparent var(--primary) transparent transparent;
-        }
-
-        .left::after,
-        .right::after {
-          left: 15px;
-        }
-
-        .right {
-          left: 0%;
-        }
-        .about-hero img {
-          width: 100% !important;
-        }
-      }
-      /*  */
-    </style>
+    <link rel="stylesheet" href="assets/css/long.css" />
   </head>
-  <body class="bg-body-tertiary">
+  <body class="bg-body-tertiary about_us">
     <main class="container py-5">
       <section
         class="about-hero text-center mb-5 position-relative hero-section"
@@ -377,7 +179,7 @@
                 <div class="bg-light value-icon d-inline-block mb-3">
                   <i class="bi bi-shield-shaded fs-1 text-primary"></i>
                 </div>
-                <h3 class="card-title h4 fw-bold">មិនប៉ះពាល់បរិស្ថាន</h3>
+                <h3 class="card-title h4 fw-bold">មិប៉ះពាល់បរិស្ថាន</h3>
                 <p class="card-text text-muted">
                   យើងប្រើប្រាស់វិធីសាស្ត្រប្រកបដោយចីរភាពដើម្បីកាត់បន្ថយផលប៉ះពាល់បរិស្ថាន។
                 </p>
@@ -401,10 +203,10 @@
         </div>
       </section>
 
-      <section class="mb-5" id="timeline">
+      <section class="mb-5 about_line" id="timeline">
         <h2 class="text-center fw-bold text-primary mb-4">ដំណើររបស់យើង</h2>
         <div class="timeline">
-          <div class="timeline-item left">
+          <div class="timeline-item left-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០១៩</h4>
               <p>
@@ -412,7 +214,7 @@
               </p>
             </div>
           </div>
-          <div class="timeline-item right">
+          <div class="timeline-item right-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០២០</h4>
               <p>
@@ -420,7 +222,7 @@
               </p>
             </div>
           </div>
-          <div class="timeline-item left">
+          <div class="timeline-item left-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០២១</h4>
               <p>
@@ -428,7 +230,7 @@
               </p>
             </div>
           </div>
-          <div class="timeline-item right">
+          <div class="timeline-item right-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០២២</h4>
               <p>
@@ -436,7 +238,7 @@
               </p>
             </div>
           </div>
-          <div class="timeline-item left">
+          <div class="timeline-item left-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០២៣</h4>
               <p>
@@ -444,7 +246,7 @@
               </p>
             </div>
           </div>
-          <div class="timeline-item right">
+          <div class="timeline-item right-line">
             <div class="timeline-content">
               <h4 class="fw-bold text-primary">២០២៤</h4>
               <p>
@@ -459,9 +261,9 @@
         <h2 class="text-center fw-bold text-primary mb-4">
           Our Leadership Team
         </h2>
-        <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
+        <div class="swiper teamSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -481,7 +283,47 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="swiper-slide">
+              <div class="card text-center hover-shadow">
+                <div class="card-body">
+                  <img
+                    src="assets/img/AboutUs-review1.avif"
+                    alt="John Smith"
+                    class="rounded-circle mb-3"
+                    width="128"
+                    height="128"
+                  />
+                  <h4 class="fw-bold">John Smith</h4>
+                  <p class="text-primary mb-2">CEO & Founder</p>
+                  <p class="text-muted">
+                    John founded AmeriClean with a vision to revolutionize the
+                    laundry industry. His leadership has driven our growth
+                    across the nation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card text-center hover-shadow">
+                <div class="card-body">
+                  <img
+                    src="assets/img/AboutUs-review1.avif"
+                    alt="John Smith"
+                    class="rounded-circle mb-3"
+                    width="128"
+                    height="128"
+                  />
+                  <h4 class="fw-bold">John Smith</h4>
+                  <p class="text-primary mb-2">CEO & Founder</p>
+                  <p class="text-muted">
+                    John founded AmeriClean with a vision to revolutionize the
+                    laundry industry. His leadership has driven our growth
+                    across the nation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -501,7 +343,7 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -521,24 +363,7 @@
               </div>
             </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#teamCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#teamCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <div class="swiper-pagination"></div>
         </div>
       </section>
 
@@ -625,7 +450,7 @@
                 </ul>
               </div>
               <div class="col-md-6">
-                <h4 class="fw-bold mb-3">ការចូលរួមក្នុងសហគមន៍</h4>
+                <h4 class="fw-bold mb-3">ការចូលរួមកសាងសហគមន៍</h4>
                 <ul class="list-unstyled">
                   <li class="mb-2">
                     <i class="bi bi-heart text-danger me-2"></i>
@@ -733,10 +558,41 @@
     >
       <i class="bi bi-arrow-up"></i>
     </button>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        //swipper
+        var swiper = new Swiper(".teamSwiper", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          parallax: true,
+          speed: 600,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+        });
         // Scroll to top button
         const scrollToTopBtn = document.getElementById("scrollToTop");
 
