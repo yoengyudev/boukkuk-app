@@ -19,18 +19,9 @@ $theme-colors: (
 }
 
 
-.form-control {
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #4762E6;
-  border-radius: 0;
-  padding: 12.5px 0;
-  transition: border-color 0.3s ease;
-}
 
 .form-control:focus {
-  background-color: transparent;
-  border-bottom-color: #86C9FF;
+  border-bottom-color: #4762E6;
   box-shadow: none;
 }
 
