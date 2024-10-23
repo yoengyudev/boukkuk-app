@@ -56,9 +56,21 @@
     height: 40px;
 }
 
+.w-30{
+    height: 30px;
+}
+
+.h-30{
+    height: 30px;
+}
+
 .btn-hover:hover {
     background-color: #0D6EFD;
     color: #fff;
+}
+
+.line{
+    color:#ddd;
 }
 
 /* box-shdow */
@@ -69,6 +81,10 @@
 .dropdown-shdow {
     /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.shadow-card{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* navigation bar */
@@ -100,6 +116,43 @@
     background-color: #F7F7F7;
 }
 
+/* login */
+
+.bg-login{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.bg-icon{
+    width: 50px;
+    background-color:#F8FAFC;
+}
+
+.form-control{
+    padding:0px 10px;
+    height:45px;
+    border-radius:4px;
+}
+
+.form-input{
+    border-radius: 4px;
+}
+
+
+.form-control:focus{
+    border: none !important;
+    box-shadow: none!important;
+}
+
+.login-img{
+    width:100%;
+    height: 100%;
+}
+
+.login-img > img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
 /* 
     main hero-banner
  */
@@ -110,7 +163,7 @@
 
 .poster-dis{
     height:300px;
-    background-image:linear-gradient(-90deg, rgba(255,255,255,0) 13%, rgba(242,139,130,1) 41%),url('../image/discount/1.png');
+    background: linear-gradient(-90deg, rgba(255,255,255,0) 13%, rgba(135,206,235,1) 41%),url('../image/discount/1.png');
     margin-top:30px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
@@ -149,8 +202,65 @@
 }
 
 .text-store:hover{
-    color:#F28B82;
+    color:#4762e6;
 }
+
+/* viewstore */
+.bg-store{
+    width: 100%;
+    height: 300px;
+    background-image: url('../image/store/5.jpg');
+    background-size:cover;
+    background-position: center center;
+}
+
+.detail-store{
+    padding: 50px;
+    background-color:#f5f7fa;
+    border-radius: 50px 50px 0px 0px;
+    position: relative;
+    top: -20px;
+}
+
+.about-store{
+    background-color:#ffffff;
+    padding:40px 0;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    position: relative;
+    top:-100px;
+    border-radius:50px;
+}
+
+.our-service{
+    position: relative;
+    margin-top: -50px;
+}
+
+.store-service-icon{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* detail service page */
+
+.bg-service{
+    background-color:skyblue;
+    height: 400px;
+}
+
+.service-in{
+    position: relative;
+    margin-bottom: 100px;
+    background-color:#ffffff;
+    border-radius: 50px 50px 0px 0px;
+    top: -30px;
+}
+
+
 
 
 /* footer */
@@ -184,6 +294,7 @@
     color: #007bff;
 }
 
+
 .social-icons a {
     display: inline-block;
     width: 40px;
@@ -192,8 +303,6 @@
     text-align: center;
     border-radius: 50%;
     color: #fff;
-    margin-right: 10px;
-    margin-top: 20px;
     transition: all 0.3s ease;
 }
 
