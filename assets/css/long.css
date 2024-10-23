@@ -89,7 +89,9 @@ body {
   color: #402f2f;
   text-shadow: 0 0 5px rgba(246, 120, 101, 0.5);
 }
-
+.form-floating > label {
+  background: transparent !important;
+}
 @media only screen and (max-width: 991px) {
   .glass-card {
     padding: 40px;
@@ -126,12 +128,12 @@ body {
 
 /* ===================Profile========================== */
 :root {
-  --primary: #f28b82; /* Updated to primary color from your code */
-  --primary-light: #e67681; /* Updated to secondary color from your code */
-  --secondary: #66bb6a; /* Updated to success color from your code */
-  --background: #fce4ec; /* Updated to light color from your code */
-  --card-bg: #ffffff; /* Keeping this unchanged as it's for card backgrounds */
-  --text: #424242; /* Updated to dark color from your code */
+  --primary: #4762e6;
+  --primary-light: #4762e6;
+  --secondary: #86c9ff;
+  --background: #fce4ec;
+  --card-bg: #ffffff;
+  --text: #424242;
 }
 
 .profile_body {
@@ -159,6 +161,9 @@ option {
   background-color: var(--card-bg);
   padding: 1.5rem;
 }
+.avatar-container {
+  cursor: pointer; /* Add this line */
+}
 
 .profile .sidebar-item {
   display: flex;
@@ -166,7 +171,6 @@ option {
   padding: 0.75rem 1rem;
   margin-bottom: 0.5rem;
   scale: 1;
-  border-radius: 0.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -244,6 +248,9 @@ option {
   position: relative;
   display: inline-block;
 }
+.label {
+  background-color: #0080ff;
+}
 
 .profile .section-title::after {
   content: "";
@@ -252,7 +259,7 @@ option {
   left: 0;
   width: 50%;
   height: 3px;
-  background-color: rgb(248, 114, 136);
+  background-color: rgb(128, 114, 248);
   transition: width 0.3s ease;
 }
 

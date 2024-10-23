@@ -11847,7 +11847,7 @@ textarea.form-control-lg {
 .form-control {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #4762E6;
+  border-bottom: 1px solid #4762E6;
   border-radius: 0;
   padding: 12.5px 0;
   transition: border-color 0.3s ease;
