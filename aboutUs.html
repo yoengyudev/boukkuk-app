@@ -9,13 +9,16 @@
       rel="stylesheet"
     />
     <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/long.css" />
-
-   
   </head>
   <body class="bg-body-tertiary about_us">
     <main class="container py-5">
@@ -258,9 +261,9 @@
         <h2 class="text-center fw-bold text-primary mb-4">
           Our Leadership Team
         </h2>
-        <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
+        <div class="swiper teamSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -280,7 +283,47 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="swiper-slide">
+              <div class="card text-center hover-shadow">
+                <div class="card-body">
+                  <img
+                    src="assets/img/AboutUs-review1.avif"
+                    alt="John Smith"
+                    class="rounded-circle mb-3"
+                    width="128"
+                    height="128"
+                  />
+                  <h4 class="fw-bold">John Smith</h4>
+                  <p class="text-primary mb-2">CEO & Founder</p>
+                  <p class="text-muted">
+                    John founded AmeriClean with a vision to revolutionize the
+                    laundry industry. His leadership has driven our growth
+                    across the nation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card text-center hover-shadow">
+                <div class="card-body">
+                  <img
+                    src="assets/img/AboutUs-review1.avif"
+                    alt="John Smith"
+                    class="rounded-circle mb-3"
+                    width="128"
+                    height="128"
+                  />
+                  <h4 class="fw-bold">John Smith</h4>
+                  <p class="text-primary mb-2">CEO & Founder</p>
+                  <p class="text-muted">
+                    John founded AmeriClean with a vision to revolutionize the
+                    laundry industry. His leadership has driven our growth
+                    across the nation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -300,7 +343,7 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="swiper-slide">
               <div class="card text-center hover-shadow">
                 <div class="card-body">
                   <img
@@ -320,24 +363,7 @@
               </div>
             </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#teamCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#teamCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <div class="swiper-pagination"></div>
         </div>
       </section>
 
@@ -532,10 +558,41 @@
     >
       <i class="bi bi-arrow-up"></i>
     </button>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        //swipper
+        var swiper = new Swiper(".teamSwiper", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          parallax: true,
+          speed: 600,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+        });
         // Scroll to top button
         const scrollToTopBtn = document.getElementById("scrollToTop");
 

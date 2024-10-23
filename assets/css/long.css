@@ -188,7 +188,7 @@ body {
 .profile .sidebar-item:hover,
 .sidebar-item.active {
   scale: 1.05;
-  background-color: var(--primary-light);
+  background-color: #4762e6;
   color: var(--card-bg);
 }
 
@@ -304,7 +304,22 @@ body {
 .profile .text-muted {
   color: #999;
 }
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 400px;
+}
+
+.swiper-slide .card {
+  height: 100%;
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
   .profile .form-select,
@@ -316,6 +331,8 @@ body {
     width: 100%; /* Full width button on mobile */
   }
 }
+
+/*============ End of profile ===========*/
 /* ==============about Us================ */
 .about_us .hero-section {
   overflow: hidden;
@@ -543,3 +560,4 @@ body {
 #message {
   height: 90px;
 }
+/*============ End of About us ===========*/
