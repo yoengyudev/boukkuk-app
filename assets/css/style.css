@@ -127,21 +127,10 @@
     background-color:#F8FAFC;
 }
 
-.form-control{
-    padding:0px 10px;
-    height:45px;
-    border-radius:4px;
-}
-
 .form-input{
     border-radius: 4px;
 }
 
-
-.form-control:focus{
-    border: none !important;
-    box-shadow: none!important;
-}
 
 .login-img{
     width:100%;
