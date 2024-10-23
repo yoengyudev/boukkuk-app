@@ -4,20 +4,7 @@
 body {
   font-family: "Kantumruy Pro", sans-serif !important;
 }
-.form-control {
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #00bcd4;
-  border-radius: 0;
-  padding: 12.5px 0;
-  transition: border-color 0.3s ease;
-}
 
-.form-control:focus {
-  background-color: transparent;
-  border-bottom-color: #00796b;
-  box-shadow: none;
-}
 /* ==========Re-password============ */
 .re-pass-body {
   background-size: 200% 200%;
@@ -30,7 +17,9 @@ body {
   margin: 0;
   padding: 20px;
 }
-
+.form-floating label {
+  background: transparent; /* Ensure the background is transparent */
+}
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -143,8 +132,6 @@ body {
   --background: #fce4ec; /* Updated to light color from your code */
   --card-bg: #ffffff; /* Keeping this unchanged as it's for card backgrounds */
   --text: #424242; /* Updated to dark color from your code */
-  --text-light: #e57373; /* Updated to danger color from your code */
-  --border: #ffb74d;
 }
 
 .profile_body {
@@ -152,11 +139,12 @@ body {
   background-color: var(--background);
   color: var(--text);
 }
-
+option {
+  margin-top: 20px;
+}
 .profile .card {
   background-color: var(--card-bg);
   border: none;
-  border-radius: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
@@ -169,7 +157,6 @@ body {
 
 .profile .sidebar {
   background-color: var(--card-bg);
-  border-radius: 1rem;
   padding: 1.5rem;
 }
 
@@ -182,7 +169,6 @@ body {
   border-radius: 0.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  color: var(--text-light);
 }
 
 .profile .sidebar-item:hover,
@@ -561,3 +547,8 @@ body {
   height: 90px;
 }
 /*============ End of About us ===========*/
+
+/* Add margin to the select element */
+.profile .form-select {
+  margin-top: 10px; /* Adjust the value as needed */
+}
