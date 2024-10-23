@@ -35,7 +35,6 @@ body {
 .glass-card {
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px;
   transition: all 0.3s ease;
@@ -84,7 +83,9 @@ body {
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
+.re-btn {
+  padding: 12px 35px !important;
+}
 .re-pass-link a:hover {
   color: #402f2f;
   text-shadow: 0 0 5px rgba(246, 120, 101, 0.5);
