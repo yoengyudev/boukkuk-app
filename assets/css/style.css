@@ -135,13 +135,10 @@
 .login-img{
     width:100%;
     height: 100%;
+    padding: 50px;
 }
 
-.login-img > img{
-    width: 100%;
-    height: 100%;
-    object-fit:cover;
-}
+
 /* 
     main hero-banner
  */

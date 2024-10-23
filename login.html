@@ -13,40 +13,40 @@
 <body>
     <section class="vh-100 d-flex align-items-center" style="background-color:#eeeeee;">
         <div class="container">
-            <div class="row bg-white bg-login overflow-hidden m-auto" style="width: 1100px; border-radius: 6px;">
+            <div class="row bg-white bg-login overflow-hidden m-auto" style="width: 1100px; border-radius: 8px;">
                 <div class="col-6 p-0">
                     <div class="login-img">
-                        <img src="assets/image/autenication/login.svg" class="card-img" alt="">
+                        <img src="assets/image/autenication/Forgot password-bro.png" class="card-img" alt="">
                     </div>
                 </div>
                 <div class="col-6 py-5 px-5">
-                    <h3 class="text-primary fw-bold text-center">Boukuk</h3>
-                    <hr style="color:#aaa;">
-                    <form action="" class="mt-5">
-                        <div class="mb-3">
-                            <label for="email" class="form-label d-flex align-items-center gap-2">
-                                <span class="fs-18 text-dark-emphasis fw-bold">អុីម៉ែល ឬ លេខទូរស័ព្ទ</span>
-                            </label>
-                            <input type="email" class="form-control" id="email" placeholder="អុីម៉ែល ឬ លេខទូរស័ព្ទ*">
+                    <h3 class="text-primary fw-bold">សូមស្វាគមន៏!</h3>
+                    <form action="" class="mt-4">
+                        <div class="form-floating mb-4 position-relative">
+                            <input type="email" class="form-control" id="email"
+                                placeholder="New Password" />
+                            <label for="email">អុីម៉ែល</label>
                         </div>
-                        <div class="mb-5">
-                            <label for="pass" class="form-label d-flex align-items-center gap-2">
-                                <span class="fs-18 text-dark-emphasis fw-bold">ពាក្យសម្ងាត់</span>
-                            </label>
-                            <input type="password" class="form-control" id="pass" placeholder="បញ្ចូលពាក្យសម្ងាត់*">
+                        <div class="form-floating mb-4 position-relative">
+                            <input type="password" class="form-control" id="pass"
+                                placeholder="New Password" />
+                            <label for="pass">ពាក្យសម្ងាត់</label>
+                            <span class="password-toggle" onclick="togglePassword('floatingPassword', 'toggleIcon1')">
+                                <i id="toggleIcon1" data-lucide="eye"></i>
+                            </span>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <button type="button" class="btn btn-primary w-100 fs-18">ចូលប្រើប្រាស់គណនី</button>
                         </div>
                         <div class="d-flex justify-content-end mb-4">
                             <a href="forgot_pass_email.html" class="fs-18 text-decoration-none">ភ្លេចពាក្យសម្ងាត់?</a>
                         </div>
                         <hr style="color:#aaa;">
-                        <div class="text-center">
+                        <div class="text-center mt-4">
                             <span>តើអ្នកជាសមាជិកថ្មី?</span>
                             <a href="signup.html">បង្កើតគណនី</a>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
