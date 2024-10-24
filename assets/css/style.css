@@ -56,12 +56,12 @@
   height: 40px;
 }
 
-.w-30{
-    height: 30px;
+.w-30 {
+  height: 30px;
 }
 
-.h-30{
-    height: 30px;
+.h-30 {
+  height: 30px;
 }
 
 .btn-hover:hover {
@@ -69,8 +69,8 @@
   color: #fff;
 }
 
-.line{
-    color:#ddd;
+.line {
+  color: #ddd;
 }
 
 /* box-shdow */
@@ -83,8 +83,8 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.shadow-card{
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.shadow-card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* navigation bar */
@@ -118,26 +118,37 @@
 
 /* login */
 
-.bg-login{
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.bg-login {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.bg-icon{
-    width: 50px;
-    background-color:#F8FAFC;
+.bg-icon {
+  width: 50px;
+  background-color: #f8fafc;
 }
 
-.form-input{
-    border-radius: 4px;
+.form-input {
+  border-radius: 4px;
 }
 
-
-.login-img{
-    width:100%;
-    height: 100%;
-    padding: 50px;
+.login-img {
+  width: 100%;
+  height: 100%;
+}
+.sign-text-head {
+  font-size: 35px;
 }
 
+@media (max-width: 768px) {
+  .con-sign {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 576px) {
+  .con-sign {
+    padding: 0 10px;
+  }
+}
 
 /* 
     main hero-banner
@@ -226,7 +237,6 @@
 .footer ul li a:hover {
   color: #007bff;
 }
-
 
 .social-icons a {
   display: inline-block;
