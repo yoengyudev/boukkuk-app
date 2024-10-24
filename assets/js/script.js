@@ -2,7 +2,7 @@ let g9_host = "https://mps10.chandalen.dev";
 
 
 
-// login
+// ============================ login ============================
 let login = document.getElementById("login");
 
 login.addEventListener("submit", (even) => {
@@ -31,4 +31,10 @@ login.addEventListener("submit", (even) => {
         });
 });
 
-// end of login
+//============================================== end of login ========================
+
+// ============================ logout ============================
+
+
+
+// ============================ end of logout ============================
