@@ -24,9 +24,9 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap");
       :root {
-        --primary-color: #f28b82; /* Updated primary color */
-        --secondary-color: #ffcdd2; /* Updated secondary color */
-        --accent-color: #e57373; /* Updated accent color */
+        --primary-color: #4762e6; /* Updated primary color */
+        --secondary-color: #86c9ff; /* Updated secondary color */
+        --accent-color: #4762e6; /* Updated accent color */
         --bg-color: #fce4ec; /* Updated background color */
         --text-color: #424242; /* Updated text color */
       }
@@ -253,7 +253,7 @@
       <div class="row g-4">
         <div class="col-lg-6">
           <div class="card shadow h-100">
-            <div class="card-header bg-danger text-white py-4">
+            <div class="card-header bg-primary text-white py-4">
               <h2 class="card-title h4 mb-0">Contact Us</h2>
             </div>
             <div class="card-body p-4">
@@ -268,7 +268,7 @@
                         placeholder="First Name"
                         required
                       />
-                      <label class="ps-0" for="firstName">First Name</label>
+                      <label for="firstName">First Name</label>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -280,7 +280,7 @@
                         placeholder="Last Name"
                         required
                       />
-                      <label class="ps-0" for="lastName">Last Name</label>
+                      <label for="lastName">Last Name</label>
                     </div>
                   </div>
                 </div>
@@ -292,7 +292,7 @@
                     placeholder="Email"
                     required
                   />
-                  <label class="ps-0" for="email">Email</label>
+                  <label for="email">Email</label>
                 </div>
                 <div class="mb-2 form-floating">
                   <input
@@ -302,21 +302,21 @@
                     placeholder="Subject"
                     required
                   />
-                  <label class="ps-0" for="subject">Subject</label>
+                  <label for="subject">Subject</label>
                 </div>
                 <div class="mb-2 form-floating">
                   <textarea
                     class="form-control"
                     id="message"
-                    rows="10"
+                    rows="15"
                     placeholder="Your Message"
                     required
                   ></textarea>
-                  <label class="ps-0" for="message">Your Message</label>
+                  <label for="message">Your Message</label>
                 </div>
                 <button
                   type="submit"
-                  class="btn btn-danger w-100 py-3 mt-3"
+                  class="btn btn-primary w-100 py-3 mt-3"
                   id="submitBtn"
                 >
                   Send Message
