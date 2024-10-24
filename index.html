@@ -50,8 +50,10 @@
                                 <ul class="dropdown-menu mt-2 p-3 border-0 dropdown-shdow" style="width:300px;">
                                     <li><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
                                                 class="bi bi-person-circle me-2 text-primary"></i>បង្កើតគណនី</a></li>
-                                    <li><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
+                                    <li id="login-list"><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
                                                 class="bi bi-person-circle me-2 text-primary"></i>ចូលប្រើប្រាស់</a></li>
+                                    <li id="logout-list"><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
+                                                class="bi bi-person-circle me-2 text-primary"></i>ចាកចេញ</a></li>
                                     <hr class="d-block d-lg-none">
                                     <a href=""
                                         class="d-block d-lg-none text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2">
@@ -389,9 +391,9 @@
         </div>
     </footer>
     <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
     <script>
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
     </script>
 </body>
 
