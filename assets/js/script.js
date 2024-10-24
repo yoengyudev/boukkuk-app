@@ -3,11 +3,7 @@ let g9_host = "https://mps10.chandalen.dev";
 
 
 // login
-
-
 let login = document.getElementById("login");
-
-
 
 login.addEventListener("submit", (even) => {
     even.preventDefault();
