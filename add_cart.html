@@ -16,26 +16,21 @@
     />
     <style>
       :root {
-        --primary-color: #00bcd4;
-        --secondary-color: #009688;
+        --primary: #4762e6;
+        --primary-light: #4762e6;
+        --secondary: #86c9ff;
+        --background: #fce4ec;
+        --card-bg: #ffffff;
+        --text: #424242;
         --accent-color: #ffc107;
-        --background-color: #f5f5f5;
-        --card-background: #ffffff;
         --muted-color: #757575;
       }
-
-      body {
+      .cart-body {
         min-height: 100vh;
-        background-color: var(--background-color);
         overflow-x: hidden;
       }
 
-      .container {
-        max-width: 1200px;
-        padding: 0 1rem; /* Add some padding to the container */
-      }
-
-      .card {
+      .cart-body .card {
         border: none;
         border-radius: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -47,17 +42,17 @@
 
       /* Media query for mobile devices */
       @media (max-width: 768px) {
-        .card {
+        .cart-body .card {
           margin-top: 0.5rem; /* Reduce top margin for mobile */
         }
       }
 
-      .card:hover {
+      .cart-body .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
       }
 
-      .card-header {
+      .cart-body .card-header {
         color: white;
         border-bottom: none;
         padding: 2rem;
@@ -65,7 +60,7 @@
         overflow: hidden;
       }
 
-      .shop-info {
+      .cart-body .shop-info {
         background-color: rgba(255, 255, 255, 0.1);
         border-radius: 1rem;
         padding: 1.5rem;
@@ -73,7 +68,7 @@
         backdrop-filter: blur(10px);
       }
 
-      .shop-image {
+      .cart-body .shop-image {
         width: 100px;
         height: 100px;
         border-radius: 50%;
@@ -83,11 +78,11 @@
         transition: transform 0.3s ease;
       }
 
-      .shop-image:hover {
+      .cart-body .shop-image:hover {
         transform: scale(1.1) rotate(5deg);
       }
 
-      .service-item {
+      .cart-body .service-item {
         border: none;
         transition: all 0.3s ease;
         padding: 1.5rem;
@@ -97,37 +92,33 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       }
 
-      .service-item:hover {
+      .cart-body .service-item:hover {
         background-color: #f8fafc;
         transform: translateX(5px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
-      .btn-quantity {
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
+      .cart-body .btn-quantity {
+        width: 40px; /* Ensure consistent width */
+        height: 40px; /* Ensure consistent height */
+        font-size: 1.5rem; /* Ensure consistent font size */
+        display: inline-flex; /* Use inline-flex for alignment */
+        align-items: center; /* Center items vertically */
+        justify-content: center; /* Center items horizontally */
+        border-radius: 50%; /* Keep rounded corners */
+        transition: all 0.3s ease; /* Smooth transition */
+        background-color: var(--primary); /* Primary background color */
+        color: white; /* Text color */
+        border: none; /* Remove border */
       }
 
-      .btn-quantity:hover {
-        background-color: var(--secondary-color);
+      .cart-body .btn-quantity:hover {
+        background-color: var(--secondary);
         transform: scale(1.1);
       }
 
-      .checkout-btn {
-        background: linear-gradient(
-          135deg,
-          var(--primary-color),
-          var(--secondary-color)
-        );
+      .cart-body .checkout-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         border: none;
         transition: all 0.3s ease;
         border-radius: 2rem;
@@ -137,20 +128,20 @@
         letter-spacing: 1px;
       }
 
-      .checkout-btn:hover {
+      .cart-body .checkout-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
 
-      .section-title {
-        color: var(--primary-color);
+      .cart-body .section-title {
+        color: var(--primary);
         font-weight: bold;
         margin-bottom: 1.5rem;
         position: relative;
         display: inline-block;
       }
 
-      .section-title::after {
+      .cart-body .section-title::after {
         content: "";
         position: absolute;
         bottom: -5px;
@@ -161,11 +152,11 @@
         transition: width 0.3s ease;
       }
 
-      .section-title:hover::after {
+      .cart-body .section-title:hover::after {
         width: 100%;
       }
 
-      .schedule-item {
+      .cart-body .schedule-item {
         background-color: #f8fafc;
         border-radius: 0.5rem;
         padding: 1rem;
@@ -173,27 +164,27 @@
         transition: all 0.3s ease;
       }
 
-      .schedule-item:hover {
+      .cart-body .schedule-item:hover {
         background-color: #e9ecef;
         transform: scale(1.02);
       }
 
-      .time-slot {
+      .cart-body .time-slot {
         cursor: pointer;
         transition: all 0.3s ease;
         border-radius: 0.5rem;
         padding: 0.5rem 1rem;
-        border: 1px solid var(--primary-color);
+        border: 1px solid var(--primary);
         margin: 0.25rem;
       }
 
-      .time-slot:hover {
-        background-color: var(--primary-color);
+      .cart-body .time-slot:hover {
+        background-color: var(--primary);
         color: white;
       }
 
-      .time-slot.selected {
-        background-color: var(--secondary-color);
+      .cart-body .time-slot.selected {
+        background-color: var(--secondary);
         color: white;
       }
 
@@ -207,7 +198,7 @@
 
       .progress-bar {
         height: 100%;
-        background-color: var(--secondary-color);
+        background-color: var(--secondary);
         width: 0;
         transition: width 0.5s ease;
       }
@@ -224,11 +215,11 @@
         }
       }
 
-      .pulse {
+      .cart-body .pulse {
         animation: pulse 2s infinite;
       }
 
-      .success-popup {
+      .cart-body .success-popup {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -244,17 +235,17 @@
         width: 400px;
       }
 
-      .success-popup h2 {
-        color: var(--primary-color);
+      .cart-body .success-popup h2 {
+        color: var(--primary);
         margin-bottom: 1rem;
       }
 
-      .success-popup p {
+      .cart-body .success-popup p {
         margin-bottom: 1.5rem;
       }
 
-      .success-popup button {
-        background-color: var(--primary-color);
+      .cart-body .success-popup button {
+        background-color: var(--primary);
         color: white;
         border: none;
         padding: 0.75rem 1.5rem;
@@ -264,12 +255,12 @@
         font-weight: bold;
       }
 
-      .success-popup button:hover {
-        background-color: var(--secondary-color);
+      .cart-body .success-popup button:hover {
+        background-color: var(--secondary);
         transform: translateY(-2px);
       }
 
-      .overlay {
+      .cart-body .overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -281,18 +272,14 @@
         backdrop-filter: blur(5px);
       }
 
-      .modal-content {
+      .cart-body .modal-content {
         border: none;
         border-radius: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
-      .modal-header {
-        background: linear-gradient(
-          135deg,
-          var(--primary-color),
-          var(--secondary-color)
-        );
+      .cart-body .modal-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
         border-bottom: none;
         border-top-left-radius: 1rem;
@@ -300,33 +287,33 @@
         padding: 1.5rem;
       }
 
-      .modal-title {
+      .cart-body .modal-title {
         font-weight: bold;
       }
 
-      .modal-body {
+      .cart-body .modal-body {
         padding: 2rem;
       }
 
-      .modal-footer {
+      .cart-body .modal-footer {
         border-top: none;
         padding: 1.5rem;
       }
 
-      .modal-footer button {
+      .cart-body .modal-footer button {
         border-radius: 2rem;
         padding: 0.75rem 1.5rem;
         font-weight: bold;
       }
 
-      #dateSelect {
+      .cart-body #dateSelect {
         border-radius: 0.5rem;
         padding: 0.75rem;
-        border: 1px solid var(--primary-color);
+        border: 1px solid var(--primary);
         margin-bottom: 1rem;
       }
 
-      #timeSlots {
+      .cart-body #timeSlots {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 0.5rem;
@@ -353,7 +340,7 @@
           margin-bottom: 0.5rem; /* Space between icon and title */
         }
 
-        .card-footer {
+        .cart-body .card-footer {
           flex-direction: column; /* Stack buttons vertically */
           align-items: stretch; /* Make buttons full width */
           padding: 1rem; /* Add padding for better touch targets */
@@ -376,7 +363,7 @@
           background-color: #0056b3; /* Darker shade on hover */
         }
 
-        .card-footer .btn {
+        .cart-body .card-footer .btn {
           width: 100%; /* Make buttons full width */
           margin-bottom: 0.5rem; /* Space between buttons */
           padding: 1rem; /* Increase padding for better touch targets */
@@ -388,214 +375,342 @@
           transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
 
-        .card-footer .btn:hover {
+        .cart-body .card-footer .btn:hover {
           background-color: #e0e0e0; /* Light background on hover */
           color: #0056b3; /* Darker text color on hover */
         }
 
-        .schedule-item {
+        .cart-body .schedule-item {
           background-color: #f0f8ff; /* Light background for schedule items */
           border-radius: 0.5rem; /* Rounded corners */
           padding: 1rem; /* Padding for better touch targets */
           margin-bottom: 1rem; /* Space between items */
         }
+
+        .service-item {
+          flex-direction: row; /* Keep items in a row */
+          justify-content: space-between; /* Space items evenly */
+          padding: 0.5rem; /* Reduce padding for better fit */
+        }
+
+        .service-name {
+          font-size: 1.2rem; /* Adjust font size for service name */
+        }
+
+        .quantity-display {
+          font-size: 1.2rem; /* Adjust font size for quantity */
+        }
+
+        .price-display {
+          font-size: 1.2rem; /* Adjust font size for price display */
+        }
+
+        .service-item button {
+          width: 30%; /* Set a fixed width for buttons */
+          margin-left: 0.5rem; /* Space between buttons */
+        }
+
+        .checkout-btn {
+          width: 100%; /* Make the checkout button full width */
+          font-size: 1.2rem; /* Increase font size for better readability */
+          padding: 1rem; /* Increase padding for better touch targets */
+        }
+
+        .service-item {
+          padding: 0.5rem; /* Reduce padding for a more compact look */
+          font-size: 0.9rem; /* Decrease font size for smaller items */
+        }
+
+        .service-name {
+          font-size: 1rem; /* Adjust font size for service name */
+        }
+
+        .quantity-display {
+          font-size: 1rem; /* Adjust font size for quantity */
+        }
+
+        .price-display {
+          font-size: 1rem; /* Adjust font size for price display */
+        }
+
+        .service-item button {
+          width: 25px; /* Set a smaller width for buttons */
+          height: 25px; /* Set a smaller height for buttons */
+          font-size: 1rem; /* Adjust font size for buttons */
+        }
+
+        .checkout-btn {
+          width: 100%; /* Keep the checkout button full width */
+          font-size: 1rem; /* Adjust font size for better readability */
+          padding: 0.75rem; /* Reduce padding for a more compact button */
+        }
+      }
+
+      .spinner-border {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.2em;
+        display: none; /* Initially hidden */
+      }
+
+      #servicesList {
+        margin-top: 1rem;
+      }
+
+      .services-header {
+        font-weight: bold;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 1rem;
+        background-color: #f8f9fa;
+      }
+
+      .services-content {
+        margin-top: 15px;
+        padding: 0;
+      }
+
+      .service-item {
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between; /* Distribute space evenly */
+        align-items: center;
+        border-bottom: 1px solid #e0e0e0;
+        transition: background-color 0.3s;
+      }
+
+      .service-item:hover {
+        background-color: #f1f1f1;
+      }
+
+      .btn-quantity {
+        width: 40px; /* Increase button size */
+        height: 40px; /* Increase button size */
+        font-size: 1.5rem; /* Increase font size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .service-name {
+        font-size: 1.2rem; /* Increase font size for service name */
+        font-weight: bold;
+      }
+
+      .quantity-display {
+        font-size: 1.5rem; /* Increase font size for quantity */
+        width: 40px; /* Fixed width for consistency */
+        text-align: center;
+      }
+
+      .price-display {
+        width: 80px; /* Fixed width for price display */
+        text-align: right;
       }
     </style>
   </head>
   <body>
-    <canvas id="confetti-canvas " style="display: none"></canvas>
-    <div class="container">
-      <div class="card animate-fade-in">
-        <div class="card-header bg-primary text-center position-relative rounded-3 shadow-lg p-4">
-          <div class="d-flex flex-column align-items-center">
-            <h1 class="card-title mb-0 position-relative" style="z-index: 2; font-size: 2rem; font-weight: bold;">
-              <i class="bi bi-water me-2"></i>
-              សេវាកម្មបោកគក់ Bubble & Shine
-            </h1>
-            <p class="text-light mb-3" style="font-size: 1.2rem; opacity: 0.8;">សូមជ្រើសរើសសេវាកម្មរបស់យើង</p>
-            <button class="btn btn-light mt-3 rounded-pill shadow" style="transition: background-color 0.3s, transform 0.3s;" 
-                    onclick="viewStoreDetails()" 
-                    onmouseover="this.style.backgroundColor='#f8f9fa'; this.style.transform='scale(1.05)';" 
-                    onmouseout="this.style.backgroundColor=''; this.style.transform='scale(1)';">
-              មើលព័ត៌មានហាង
-            </button>
-          </div>
-        </div>
-        <div class="card-body p-4">
-          <h3 class="section-title">សេវាកម្មដែលមាន</h3>
-          <div id="servicesList">
-            <!-- Services will be dynamically added here -->
-          </div>
-
-          <h3 class="section-title mt-4">សង្ខេបការបញ្ជាទិញ</h3>
-          <div class="card mb-4">
-            <div class="card-body">
-              <div id="orderSummary">
-                <!-- Order summary will be dynamically added here -->
-              </div>
-              <hr />
-              <div class="d-flex justify-content-between">
-                <span class="fw-semibold">សរុបរង</span>
-                <span id="subtotal">$0.00</span>
-              </div>
-              <div class="d-flex justify-content-between">
-                <span>ពន្ធ (8%)</span>
-                <span id="tax">$0.00</span>
-              </div>
-              <hr />
-              <div class="d-flex justify-content-between">
-                <span class="fw-bold">សរុប</span>
-                <span
-                  id="total"
-                  class="fw-bold"
-                  style="color: var(--primary-color)"
-                  >$0.00</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <h3 class="section-title">កាលវិភាគប៉ានស្មាន</h3>
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="schedule-item d-flex align-items-center">
-                <i class="bi bi-calendar text-primary me-3 fs-4"></i>
-                <div>
-                  <h6 class="mb-0">ការទទួលយក</h6>
-                  <p id="pickupSchedule" class="mb-0 text-muted">
-                    មិនទាន់កំណត់ពេល
-                  </p>
-                </div>
-                <button
-                  class="btn btn-outline-primary ms-auto"
-                  onclick="openScheduleModal('pickup')"
-                >
-                  កំត់ពេលទទួយក
-                </button>
-              </div>
-              <div class="schedule-item d-flex align-items-center">
-                <i class="bi bi-clock text-primary me-3 fs-4"></i>
-                <div>
-                  <h6 class="mb-0">ការដឹកជញ្ជូន</h6>
-                  <p id="deliverySchedule" class="mb-0 text-muted">
-                    មិនទាន់កំណត់ពេល
-                  </p>
-                </div>
-                <button
-                  class="btn btn-outline-primary ms-auto"
-                  onclick="openScheduleModal('delivery')"
-                >
-                  កំណត់ពេលដឹកជញ្ជូន
-                </button>
-              </div>
-
-              <div class="schedule-item d-flex align-items-center">
-                <i class="bi bi-geo-alt text-primary me-3 fs-4"></i>
-                <div>
-                  <h6 class="mb-0">ទីតាំង</h6>
-                  <p class="mb-0 text-muted">
-                    ហាងបោកគក់ Bubble & Shine, ផ្លូវស្អាត លេខ 123, ក្រុងស្អាត
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer bg-light p-4">
-          <button
-            id="checkoutBtn"
-            class="btn btn-primary btn-lg w-100 mb-3 checkout-btn"
-            disabled
-          >
-            បន្តទៅការទូទាត់
-            <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-          <div class="progress-bar-container">
-            <div id="checkoutProgress" class="progress-bar"></div>
-          </div>
+    <section class="cart-body">
+      <canvas id="confetti-canvas " style="display: none"></canvas>
+      <div class="container">
+        <div class="card animate-fade-in">
           <div
-            class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between mt-3"
+            class="card-header bg-primary text-center position-relative rounded-3 shadow-lg p-4"
           >
-            <a href="#" class="btn btn-outline-secondary flex-grow-1 me-2">
-              <i class="bi bi-cart me-2"></i>
-              មើលកន្ត្រក
-            </a>
-            <a
-              href="wishlist.html"
-              class="btn btn-outline-secondary flex-grow-1 ms-md-2"
+            <div class="d-flex flex-column align-items-center">
+              <h1
+                class="card-title mb-0 position-relative"
+                style="z-index: 2; font-size: 2rem; font-weight: bold"
+              >
+                <i class="bi bi-water me-2"></i>
+                ហាងដែលបានដាក់ចូលកន្ត្រក
+              </h1>
+              <p
+                class="text-light mb-3"
+                style="font-size: 1.2rem; opacity: 0.8"
+              >
+                សូមជ្រើសរើសសេវាកម្មរបស់ហាង
+              </p>
+              <a
+                href="view-store.html"
+                class="btn btn-light mt-3 rounded-pill shadow"
+                style="transition: background-color 0.3s, transform 0.3s"
+                onclick="viewStoreDetails()"
+                onmouseover="this.style.backgroundColor='#f8f9fa'; this.style.transform='scale(1.05)';"
+                onmouseout="this.style.backgroundColor=''; this.style.transform='scale(1)';"
+              >
+                មើលព័ត៌មានហាង
+              </a>
+            </div>
+          </div>
+          <div class="card-body p-4">
+            <h3 class="section-title">សេវាកម្មដែលមាន</h3>
+            <div id="servicesList">
+              <div
+                class="services-header d-flex justify-content-between align-items-center"
+              >
+                <span>សេវាកម្ម</span>
+                <span>ចំនួន</span>
+                <span>តម្លៃ</span>
+              </div>
+              <div class="services-content">
+                <!-- Services will be dynamically added here -->
+              </div>
+            </div>
+
+            <h3 class="section-title mt-4">សង្ខេបការបញ្ជាទិញ</h3>
+            <div class="card mb-4">
+              <div class="card-body">
+                <div id="orderSummary">
+                  <!-- Order summary will be dynamically added here -->
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">សរុបរង</span>
+                  <span id="subtotal">$0.00</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>ពន្ធ (8%)</span>
+                  <span id="tax">$0.00</span>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between">
+                  <span class="fw-bold">សរុប</span>
+                  <span
+                    id="total"
+                    class="fw-bold"
+                    style="color: var(--primary-color)"
+                    >$0.00</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <h3 class="section-title">កាលវិភាគប៉ានស្មាន</h3>
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="schedule-item d-flex align-items-center">
+                  <i class="bi bi-calendar text-primary me-3 fs-4"></i>
+                  <div>
+                    <h6 class="mb-0">ការទទួលយក</h6>
+                    <p id="pickupSchedule" class="mb-0 text-muted">
+                      មិនទាន់កំណត់ពេល
+                    </p>
+                  </div>
+                  <button
+                    class="btn btn-outline-primary ms-auto"
+                    onclick="openScheduleModal('pickup')"
+                  >
+                    កំត់ពេលទទួយក
+                  </button>
+                </div>
+                <div class="schedule-item d-flex align-items-center">
+                  <i class="bi bi-clock text-primary me-3 fs-4"></i>
+                  <div>
+                    <h6 class="mb-0">ការដឹកជញ្ជូន</h6>
+                    <p id="deliverySchedule" class="mb-0 text-muted">
+                      មិនទាន់កំណត់ពេល
+                    </p>
+                  </div>
+                  <button
+                    class="btn btn-outline-primary ms-auto"
+                    onclick="openScheduleModal('delivery')"
+                  >
+                    កំណត់ពេលដឹកជញ្ជូន
+                  </button>
+                </div>
+
+                <div class="schedule-item d-flex align-items-center">
+                  <i class="bi bi-geo-alt text-primary me-3 fs-4"></i>
+                  <div>
+                    <h6 class="mb-0">ទីតាំង</h6>
+                    <p class="mb-0 text-muted">
+                      ហាងបោកគក់, ផ្លូវស្អាត លេខ 123, ក្រុងស្អាត
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-light p-4">
+            <button
+              id="checkoutBtn"
+              class="btn btn-primary btn-lg w-100 mb-3 checkout-btn"
+              disabled
+              onclick="handleCheckout()"
             >
-              <i class="bi bi-arrow-counterclockwise me-2"></i>
-              ត្រឡប់ទៅបញ្ជីចង់បាន
-            </a>
+              <span id="buttonText">បន្តទៅការទូទាត់</span>
+            </button>
+            <div class="progress-bar-container">
+              <div id="checkoutProgress" class="progress-bar"></div>
+            </div>
+            <div
+              class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between mt-3"
+            >
+              <a
+                href="wishlist.html"
+                class="btn btn-outline-secondary flex-grow-1 ms-md-2"
+              >
+                <i class="bi bi-arrow-counterclockwise me-2"></i>
+                ត្រឡប់ទៅបញ្ជីចង់បាន
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Schedule Modal -->
-    <div
-      class="modal fade"
-      id="scheduleModal"
-      tabindex="-1"
-      aria-labelledby="scheduleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="scheduleModalLabel">
-              កំណត់ពលទទួលយក/ដឹកជញ្ជូន
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h6 class="mb-3">ជ្រើសរើសកាលបរិច្ឆេទ៖</h6>
-            <div class="mb-3">
-              <select id="dateSelect" class="form-select">
-                <!-- Options will be dynamically added here -->
-              </select>
+      <!-- Schedule Modal -->
+      <div
+        class="modal fade"
+        id="scheduleModal"
+        tabindex="-1"
+        aria-labelledby="scheduleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="scheduleModalLabel">
+                កំណត់ពលទទួលយក/ដឹកជញ្ជូន
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <h6 class="mb-3">ជ្រើសរើសពេលវេលា៖</h6>
-            <div id="timeSlots" class="d-flex flex-wrap">
-              <!-- Time slots will be dynamically added here -->
+            <div class="modal-body">
+              <h6 class="mb-3">ជ្រើសរើសកាលបរិច្ឆេទ៖</h6>
+              <div class="mb-3">
+                <select id="dateSelect" class="form-select">
+                  <!-- Options will be dynamically added here -->
+                </select>
+              </div>
+              <h6 class="mb-3">ជ្រើសរើសពេលវេលា៖</h6>
+              <div id="timeSlots" class="d-flex flex-wrap">
+                <!-- Time slots will be dynamically added here -->
+              </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              បិទ
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="confirmSchedule()"
-            >
-              បញ្ជាក់
-            </button>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                បិទ
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="confirmSchedule()"
+              >
+                បញ្ជាក់
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Success Popup -->
-    <div class="overlay" id="overlay"></div>
-    <div class="success-popup" id="successPopup">
-      <h2>ការបញ្ជាទិញបានជោគជ័យ!</h2>
-      <p>
-        អរគុណសម្រាប់ករបញជាទិញរបស់អ្នក។
-        សម្លៀកបំពាក់របស់អ្នកនឹងស្រស់ស្អាតក្នុងពេលឆាប់ៗនេះ!
-      </p>
-      <button onclick="closeSuccessPopup()">បិទ</button>
-    </div>
-
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
@@ -640,23 +755,18 @@
       let selectedServices = {};
 
       function renderServices() {
-        const servicesList = document.getElementById("servicesList");
+        const servicesList = document.querySelector(".services-content");
         servicesList.innerHTML = services
           .map(
             (service, index) => `
-                    <div class="service-item d-flex justify-content-between align-items-center animate-slide-in" style="animation-delay: ${
+                    <div class="service-item d-flex justify-content-between align-items-center p-3 border-bottom" style="animation-delay: ${
                       index * 0.1
                     }s;">
                         <div class="d-flex align-items-center">
                             <i class="bi ${
                               service.icon
                             } fs-4 me-3 text-primary"></i>
-                            <div>
-                                <span class="fw-semibold">${service.name}</span>
-                                <p class="text-muted mb-0">$${service.price.toFixed(
-                                  2
-                                )} ${service.unit}</p>
-                            </div>
+                            <span class="fw-semibold">${service.name}</span>
                         </div>
                         <div class="d-flex align-items-center">
                             <button class="btn btn-quantity me-2" onclick="updateQuantity(${
@@ -675,6 +785,12 @@
                                 <i class="bi bi-plus"></i>
                             </button>
                         </div>
+                        <span class="fw-semibold" style="width: 80px; text-align: right;">
+                            $${(
+                              service.price *
+                              (selectedServices[service.id] || 0)
+                            ).toFixed(2)}
+                        </span>
                     </div>
                 `
           )
@@ -829,7 +945,7 @@
           updateCheckoutProgress();
           if (
             document.getElementById("pickupSchedule").textContent !==
-              "មិនទាន់កំ���ត់ពេល" &&
+              "មិនទាន់កំណត់ពេល" &&
             document.getElementById("deliverySchedule").textContent !==
               "មិនទាន់កំណត់ពេល"
           ) {
@@ -844,29 +960,10 @@
         }
       }
 
-      document
-        .getElementById("checkoutBtn")
-        .addEventListener("click", function () {
-          if (!this.disabled) {
-            confetti({
-              particleCount: 200,
-              spread: 90,
-              origin: { y: 0.6 },
-            });
-            showSuccessPopup();
-          }
-        });
-
       function showSuccessPopup() {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("successPopup").style.display = "block";
         document.getElementById("confetti-canvas").style.display = "block"; // Show canvas
-      }
-
-      function closeSuccessPopup() {
-        document.getElementById("overlay").style.display = "none";
-        document.getElementById("successPopup").style.display = "none";
-        resetOrder();
       }
 
       function resetOrder() {
@@ -877,6 +974,24 @@
           "មិនទាន់កំណត់ពេល";
         renderServices();
         updateOrderSummary();
+      }
+
+      function handleCheckout() {
+        // Show loading animation
+        const checkoutBtn = document.getElementById("checkoutBtn");
+        const buttonText = document.getElementById("buttonText");
+        const spinner = document.createElement("div");
+        spinner.className = "spinner-border text-light"; // Add spinner class
+        spinner.role = "status";
+        spinner.style.display = "inline-block"; // Show spinner
+        buttonText.innerHTML = ""; // Clear button text
+        checkoutBtn.appendChild(spinner); // Append spinner to button
+        checkoutBtn.disabled = true; // Disable the button
+
+        // Simulate loading for a few seconds (e.g., 3 seconds)
+        setTimeout(() => {
+          window.location.href = "payment.html"; // Redirect to payment page
+        }, 3000); // Adjust the time as needed
       }
 
       renderServices();
