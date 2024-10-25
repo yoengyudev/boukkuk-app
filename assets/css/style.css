@@ -118,17 +118,6 @@
 
 /* login */
 
-<<<<<<< HEAD
-.bg-login {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.bg-icon {
-  width: 50px;
-  background-color: #f8fafc;
-}
-
-=======
 .box-shadow {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -142,25 +131,15 @@
   background-color: #F8FAFC;
 }
 
->>>>>>> c7a1ea9047094b74be381b0576e60ec1f85c4ad2
 .form-input {
   border-radius: 4px;
 }
 
-<<<<<<< HEAD
-.login-img {
-  width: 100%;
-  height: 100%;
-}
-.sign-text-head {
-  font-size: 35px;
-=======
 
 .login-img {
   width: 100%;
   height: 100%;
   padding: 50px;
->>>>>>> c7a1ea9047094b74be381b0576e60ec1f85c4ad2
 }
 
 @media (max-width: 768px) {

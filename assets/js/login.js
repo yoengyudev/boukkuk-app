@@ -28,3 +28,16 @@ login.addEventListener("submit", (even) => {
 });
 
 //============================================== end of login ========================
+
+function togglePassword(inputId, iconId) {
+    const passwordInput = document.getElementById(inputId);
+    const toggleIcon = document.getElementById(iconId);
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.setAttribute("data-lucide", "eye-off");
+    } else {
+        passwordInput.type = "password";
+        toggleIcon.setAttribute("data-lucide", "eye");
+    }
+}

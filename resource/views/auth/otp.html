@@ -7,13 +7,53 @@
     <title>OTP verification</title>
     <link rel="stylesheet" href="/vender/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="/vender/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/long.css" />
+    <style>
+      .otp-input {
+        font-size: 2rem; /* Adjust font size */
+        width: 50px; /* Set width for input */
+        text-align: center; /* Center text in input */
+      }
+      .btn-custom {
+        font-size: 1.2rem; /* Adjust button font size */
+        padding: 10px; /* Add padding */
+      }
+
+      @media (max-width: 576px) {
+        .otp-input {
+          width: 38px; /* Adjust width for smaller screens */
+          font-size: 24px;
+        }
+        .btn-custom {
+          font-size: 1rem; /* Smaller button font size */
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1024px) {
+        /* iPad size */
+        .otp-input {
+          width: 60px; /* Adjust width for iPad */
+          font-size: 2.5rem; /* Adjust font size */
+        }
+        .btn-custom {
+          font-size: 1.5rem; /* Adjust button font size */
+          padding: 12px; /* Add padding */
+        }
+        .bg-white {
+          padding: 4rem; /* Increase padding for larger screens */
+        }
+      }
+    </style>
   </head>
 
   <body class="bg-primary">
-    <div class="container">
-      <div class="row vh-100 align-items-center">
-        <div class="col-md-5 m-auto">
-          <div class="bg-white p-5 rounded-3 shadow-sm border">
+    <div class="container d-flex align-items-center vh-100">
+      <div class="outer col-12 col-lg-7 col-xl-6 m-auto">
+        <div class="col-12 m-auto">
+          <div
+            class="bg-white p-5 shadow-sm border"
+            style="border-radius: 20px !important"
+          >
             <div>
               <p class="text-center text-success" style="font-size: 5.5rem">
                 <i class="fa-solid fa-envelope-circle-check text-primary"></i>
@@ -24,40 +64,70 @@
               <p class="text-muted text-center">
                 យើងបានផ្ញើកូដទៅកាន់ exaple@gmail.com
               </p>
-              <div class="row my-3">
-                <div class="col-3">
+              <div class="row ms-xl-1 my-3 me-1 me-md-0 ms-md-1 ms-lg-0">
+                <div class="col-2">
                   <input
-                    class="form-control border-primary py-3"
-                    id=""
+                    class="form-control otp-input border-primary"
+                    id="otp1"
                     type="text"
-                    placeholder=""
+                    maxlength="1"
+                    oninput="moveFocus(this, 'otp2')"
+                    onkeydown="moveFocusBack(event, this, 'otp1')"
                     aria-label=""
                   />
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                   <input
-                    class="form-control border-primary py-3"
-                    id=""
+                    class="form-control otp-input border-primary"
+                    id="otp2"
                     type="text"
-                    placeholder=""
+                    maxlength="1"
+                    oninput="moveFocus(this, 'otp3')"
+                    onkeydown="moveFocusBack(event, this, 'otp1')"
                     aria-label=""
                   />
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                   <input
-                    class="form-control border-primary py-3"
-                    id=""
+                    class="form-control otp-input border-primary"
+                    id="otp3"
                     type="text"
-                    placeholder=""
+                    maxlength="1"
+                    oninput="moveFocus(this, 'otp4')"
+                    onkeydown="moveFocusBack(event, this, 'otp2')"
                     aria-label=""
                   />
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                   <input
-                    class="form-control border-primary py-3"
-                    id=""
+                    class="form-control otp-input border-primary"
+                    id="otp4"
                     type="text"
-                    placeholder=""
+                    maxlength="1"
+                    oninput="moveFocus(this, 'otp5')"
+                    onkeydown="moveFocusBack(event, this, 'otp3')"
+                    aria-label=""
+                  />
+                </div>
+                <div class="col-2">
+                  <input
+                    class="form-control otp-input border-primary"
+                    id="otp5"
+                    type="text"
+                    maxlength="1"
+                    oninput="moveFocus(this, 'otp6')"
+                    onkeydown="moveFocusBack(event, this, 'otp4')"
+                    aria-label=""
+                  />
+                </div>
+                <div class="col-2">
+                  <input
+                    class="form-control otp-input border-primary"
+                    id="otp6"
+                    type="text"
+                    maxlength="1"
+                    oninput="moveFocus(this, '')"
+                    onkeydown="moveFocusBack(event, this, 'otp5')"
                     aria-label=""
                   />
                 </div>
@@ -80,5 +150,18 @@
         </div>
       </div>
     </div>
+    <script>
+      function moveFocus(current, nextId) {
+        if (current.value.length >= current.maxLength && nextId) {
+          document.getElementById(nextId).focus();
+        }
+      }
+
+      function moveFocusBack(event, current, prevId) {
+        if (event.key === "Backspace" && current.value.length === 0 && prevId) {
+          document.getElementById(prevId).focus();
+        }
+      }
+    </script>
   </body>
 </html>
