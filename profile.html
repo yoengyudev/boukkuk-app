@@ -1,552 +1,409 @@
 <!DOCTYPE html>
 <html lang="km">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ការកំណត់ទម្រង់ - កម្មវិធីសេវាកម្មបោកគក់</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/long.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="profile_body">
-    <main>
-      <section class="profile">
-        <div class="container my-5">
-          <h1 class="section-title text-primary">ការកំណត់ទម្រង់</h1>
 
-          <div class="row g-4">
-            <div class="col-md-4 col-lg-3">
-              <div class="sidebar card">
-                <div class="avatar-container mb-4" id="avatarContainer">
-                  <img
-                    src="assets/img/AboutUs-review3avif.avif"
-                    alt="រូបភាពអ្នកប្រើប្រាស់"
-                    class="avatar"
-                    id="userAvatar"
-                  />
-                  <div class="avatar-overlay">
-                    <i class="fas fa-camera"></i>
-                  </div>
-                  <input
-                    type="file"
-                    id="avatarUpload"
-                    accept="image/*"
-                    style="display: none"
-                  />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ការកំណត់ទម្រង់ - កម្មវិធីសេវាកម្មបោកគក់</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/long.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body class="profile_body">
+  <main>
+    <section class="profile">
+      <div class="container my-5">
+        <h1 class="section-title text-primary">ការកំណត់ទម្រង់</h1>
+
+        <div class="row g-4">
+          <div class="col-md-4 col-lg-3">
+            <div class="sidebar card">
+              <div class="avatar-container mb-4" id="avatarContainer">
+                <img src="assets/img/AboutUs-review3avif.avif" alt="រូបភាពអ្នកប្រើប្រាស់" class="avatar"
+                  id="userAvatar" />
+                <div class="avatar-overlay">
+                  <i class="fas fa-camera"></i>
                 </div>
-                <div
-                  class="sidebar-item btn active"
-                  data-section="personal-info"
-                >
-                  <i class="fas fa-user"></i>
-                  <span>ព័ត៌មានផ្ទាល់ខ្លួន</span>
-                </div>
-                <div
-                  class="sidebar-item btn"
-                  data-section="laundry-preferences"
-                >
-                  <i class="fas fa-tshirt"></i>
-                  <span>ចំណូលចិត្តការបោកគក់</span>
-                </div>
-                <div class="sidebar-item btn" data-section="order-history">
-                  <i class="fas fa-history"></i>
-                  <span>ប្រវត្តិការបញ្ជាទិញ</span>
-                </div>
-                <div class="sidebar-item btn" data-section="payment-methods">
-                  <i class="fas fa-credit-card"></i>
-                  <span>វិធីទូទាត់ប្រាក់</span>
-                </div>
-                <div class="sidebar-item btn" data-section="notifications">
-                  <i class="fas fa-bell"></i>
-                  <span>ការជូនដំណឹង</span>
-                </div>
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none" />
+              </div>
+              <div class="sidebar-item btn active" data-section="personal-info">
+                <i class="fas fa-user"></i>
+                <span>ព័ត៌មានផ្ទាល់ខ្លួន</span>
+              </div>
+              <div class="sidebar-item btn" data-section="laundry-preferences">
+                <i class="fas fa-tshirt"></i>
+                <span>ចំណូលចិត្តការបោកគក់</span>
+              </div>
+              <div class="sidebar-item btn" data-section="order-history">
+                <i class="fas fa-history"></i>
+                <span>ប្រវត្តិការបញ្ជាទិញ</span>
+              </div>
+              <div class="sidebar-item btn" data-section="payment-methods">
+                <i class="fas fa-credit-card"></i>
+                <span>វិធីទូទាត់ប្រាក់</span>
+              </div>
+              <div class="sidebar-item btn" data-section="notifications">
+                <i class="fas fa-bell"></i>
+                <span>ការជូនដំណឹង</span>
               </div>
             </div>
-            <div class="col-md-8 col-lg-9">
-              <div class="main-content card">
-                <div id="personal-info" class="content-section">
-                  <h2 class="section-title text-primary">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
-                  <p class="text-muted mb-4">
-                    ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
-                  </p>
-                  <form>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="firstName"
-                          placeholder="នាមត្រកូល"
-                        />
-                        <label  for="firstName"
-                          >នាមត្រកូល</label
-                        >
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="lastName"
-                          placeholder="នាមខ្លួន"
-                        />
-                        <label  for="lastName">នាមខ្លួន</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="email"
-                          placeholder="អ៊ីមែល"
-                        />
-                        <label  for="email">អ៊ីមែល</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="tel"
-                          class="form-control"
-                          id="phone"
-                          placeholder="លេខទូរស័ព្ទ"
-                        />
-                        <label  for="phone">លេខទូរស័ព្ទ</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="address"
-                          placeholder="អាសយដ្ឋាន"
-                        />
-                        <label  for="address">អាសយដ្ឋាន</label>
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn btn-save w-100 btn-primary"
-                    >
-                      រក្សាទុកការផ្លាស់ប្តូរ
-                    </button>
-                  </form>
-                </div>
-                <div id="laundry-preferences" class="content-section d-none">
-                  <h2 class="section-title">ចំណូលចិត្តការបោកគក់</h2>
-                  <p class="text-muted mb-4">
-                    កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
-                  </p>
-                  <form>
-                    <div class="mb-4">
-                      <label for="detergent" class="form-label"
-                        >សាប៊ូដែលចូលចិត្ត</label
-                      >
-                      <select class="form-select form-control" id="detergent">
-                        <option selected>ជ្រើសរើសសាប៊ូដែលអ្នកចូលចិត្ត</option>
-                        <option value="regular">ធម្មតា</option>
-                        <option value="sensitive">សម្រាប់ស្បែកស្រទន់</option>
-                        <option value="eco-friendly">មិនប៉ះពាល់បរិស្ថាន</option>
-                        <option value="fragrance-free">គ្មានក្លិន</option>
-                      </select>
-                    </div>
-                    <div class="mb-4">
-                      <label for="fabric-softener" class="form-label"
-                        >ទឹកក្រអូបសម្លៀកបំពាក់</label
-                      >
-                      <select
-                        class="form-select form-control"
-                        id="fabric-softener"
-                      >
-                        <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអូប</option>
-                        <option value="yes">បាទ/ចាស ប្រើទឹកក្រអូប</option>
-                        <option value="no">មិនប្រើទឹកក្រអូប</option>
-                      </select>
-                    </div>
-
-                    <div class="mb-4">
-                      <label for="special-instructions" class="form-label"
-                        >ការណែនាំពិសេស</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="special-instructions"
-                        rows="4"
-                        placeholder="សរសេរការណែនាំពិសេសសម្រាប់សម្លៀកបំពាក់របស់អ្នក"
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
-                    >
-                      រក្សាទុកចំណូលចិត្ត
-                    </button>
-                  </form>
-                </div>
-                <div id="order-history" class="content-section d-none">
-                  <h2 class="section-title">ប្រវត្តិការបញ្ជាទិញ</h2>
-                  <p class="text-muted mb-4">
-                    មើលការបញ្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>លេខបញ្ជាទិញ</th>
-                          <th>កាលបរិច្ឆេទ</th>
-                          <th>សេវាកម្ម</th>
-                          <th>ស្ថានភាព</th>
-                          <th>តម្លៃសរុប</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#12345</td>
-                          <td>2023-05-15</td>
-                          <td>បោកនិងបត់</td>
-                          <td>
-                            <span class="badge bg-success">បានបញ្ចប់</span>
-                          </td>
-                          <td>$25.00</td>
-                        </tr>
-                        <tr>
-                          <td>#12346</td>
-                          <td>2023-05-10</td>
-                          <td>បោកស្ងួត</td>
-                          <td>
-                            <span class="badge bg-warning">កំពុងដំណើរការ</span>
-                          </td>
-                          <td>$40.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div id="payment-methods" class="content-section d-none">
-                  <h2 class="section-title">វិធីទូទាត់ប្រាក់</h2>
-                  <p class="text-muted mb-4">
-                    គ្រប់គ្រងជម្រើសទូទាត់ប្រាក់របស់អ្នក។
-                  </p>
+          </div>
+          <div class="col-md-8 col-lg-9">
+            <div class="main-content card">
+              <div id="personal-info" class="content-section">
+                <h2 class="section-title text-primary">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
+                <p class="text-muted mb-4">
+                  ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
+                </p>
+                <form>
                   <div class="mb-4">
-                    <h3 class="h5">វិធីទូទាត់ប្រាក់ដែលបានរក្សាទុក</h3>
-                    <div id="payment-methods-list">
-                      <div class="card mb-2">
-                        <div
-                          class="card-body d-flex justify-content-between align-items-center"
-                        >
-                          <div>
-                            <i class="fab fa-cc-visa me-2"></i>
-                            <span>Visa បញ្ចប់ដោយលេខ 1234</span>
-                          </div>
-                          <button
-                            class="btn btn-sm btn-outline-danger remove-payment"
-                          >
-                            លុប
-                          </button>
-                        </div>
-                      </div>
-                      <div class="card mb-2">
-                        <div
-                          class="card-body d-flex justify-content-between align-items-center"
-                        >
-                          <div>
-                            <i class="fab fa-cc-mastercard me-2"></i>
-                            <span>Mastercard បញ្ចប់ដោយលេខ 5678</span>
-                          </div>
-                          <button
-                            class="btn btn-sm btn-outline-danger remove-payment"
-                          >
-                            លុប
-                          </button>
-                        </div>
-                      </div>
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="firstName" placeholder="នាមត្រកូល" />
+                      <label for="firstName">នាមត្រកូល</label>
                     </div>
                   </div>
-                  <button
-                    class="btn w-100 btn-save btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addPaymentModal"
-                  >
-                    បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+                  <div class="mb-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="lastName" placeholder="នាមខ្លួន" />
+                      <label for="lastName">នាមខ្លួន</label>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="email" placeholder="អ៊ីមែល" />
+                      <label for="email">អ៊ីមែល</label>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-floating">
+                      <input type="tel" class="form-control" id="phone" placeholder="លេខទូរស័ព្ទ" />
+                      <label for="phone">លេខទូរស័ព្ទ</label>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="address" placeholder="អាសយដ្ឋាន" />
+                      <label for="address">អាសយដ្ឋាន</label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-save w-100 btn-primary">
+                    រក្សាទុកការផ្លាស់ប្តូរ
                   </button>
-                </div>
+                </form>
+              </div>
+              <div id="laundry-preferences" class="content-section d-none">
+                <h2 class="section-title">ចំណូលចិត្តការបោកគក់</h2>
+                <p class="text-muted mb-4">
+                  កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
+                </p>
+                <form>
+                  <div class="mb-4">
+                    <label for="detergent" class="form-label">សាប៊ូដែលចូលចិត្ត</label>
+                    <select class="form-select form-control" id="detergent">
+                      <option selected>ជ្រើសរើសសាប៊ូដែលអ្នកចូលចិត្ត</option>
+                      <option value="regular">ធម្មតា</option>
+                      <option value="sensitive">សម្រាប់ស្បែកស្រទន់</option>
+                      <option value="eco-friendly">មិនប៉ះពាល់បរិស្ថាន</option>
+                      <option value="fragrance-free">គ្មានក្លិន</option>
+                    </select>
+                  </div>
+                  <div class="mb-4">
+                    <label for="fabric-softener" class="form-label">ទឹកក្រអូបសម្លៀកបំពាក់</label>
+                    <select class="form-select form-control" id="fabric-softener">
+                      <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអូប</option>
+                      <option value="yes">បាទ/ចាស ប្រើទឹកក្រអូប</option>
+                      <option value="no">មិនប្រើទឹកក្រអូប</option>
+                    </select>
+                  </div>
 
-                <!-- Modal for Adding Payment Method -->
-                <div
-                  class="modal fade"
-                  id="addPaymentModal"
-                  tabindex="-1"
-                  aria-labelledby="addPaymentModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="addPaymentModalLabel">
-                          បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-                        </h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
+                  <div class="mb-4">
+                    <label for="special-instructions" class="form-label">ការណែនាំពិសេស</label>
+                    <textarea class="form-control" id="special-instructions" rows="4"
+                      placeholder="សរសេរការណែនាំពិសេសសម្រាប់សម្លៀកបំពាក់របស់អ្នក"></textarea>
+                  </div>
+                  <button type="submit" class="btn w-100 btn-save btn-primary">
+                    រក្សាទុកចំណូលចិត្ត
+                  </button>
+                </form>
+              </div>
+              <div id="order-history" class="content-section d-none">
+                <h2 class="section-title">ប្រវត្តិការបញ្ជាទិញ</h2>
+                <p class="text-muted mb-4">
+                  មើលការបញ្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
+                </p>
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>លេខបញ្ជាទិញ</th>
+                        <th>កាលបរិច្ឆេទ</th>
+                        <th>សេវាកម្ម</th>
+                        <th>ស្ថានភាព</th>
+                        <th>តម្លៃសរុប</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#12345</td>
+                        <td>2023-05-15</td>
+                        <td>បោកនិងបត់</td>
+                        <td>
+                          <span class="badge bg-success">បានបញ្ចប់</span>
+                        </td>
+                        <td>$25.00</td>
+                      </tr>
+                      <tr>
+                        <td>#12346</td>
+                        <td>2023-05-10</td>
+                        <td>បោកស្ងួត</td>
+                        <td>
+                          <span class="badge bg-warning">កំពុងដំណើរការ</span>
+                        </td>
+                        <td>$40.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div id="payment-methods" class="content-section d-none">
+                <h2 class="section-title">វិធីទូទាត់ប្រាក់</h2>
+                <p class="text-muted mb-4">
+                  គ្រប់គ្រងជម្រើសទូទាត់ប្រាក់របស់អ្នក។
+                </p>
+                <div class="mb-4">
+                  <h3 class="h5">វិធីទូទាត់ប្រាក់ដែលបានរក្សាទុក</h3>
+                  <div id="payment-methods-list">
+                    <div class="card mb-2">
+                      <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                          <i class="fab fa-cc-visa me-2"></i>
+                          <span>Visa បញ្ចប់ដោយលេខ 1234</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger remove-payment">
+                          លុប
+                        </button>
                       </div>
-                      <div class="modal-body">
-                        <form id="add-payment-form">
-                          <div class="mb-3 form-floating">
-                            <select
-                              class="form-select ps-0 form-control"
-                              id="paymentType"
-                              required
-                            >
-                              <option value="" disabled selected>
-                                ជ្រើសរើសប្រភេទការទូទាត់
-                              </option>
-                              <option value="visa">Visa</option>
-                              <option value="mastercard">Mastercard</option>
-                              <option value="amex">American Express</option>
-                              <option value="discover">Discover</option>
-                            </select>
-                            <label class="ps-0" for="paymentType"
-                              >ប្រភេទការទូទាត់</label
-                            >
-                          </div>
-                          <div class="mb-3 form-floating">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="cardNumber"
-                              placeholder="លេខកាត"
-                              required
-                              maxlength="19"
-                            />
-                            <label class="ps-0 ms-0" for="cardNumber"
-                              >លេខកាត</label
-                            >
-                            <small class="form-text text-muted"
-                              >ទម្រង់: 1234 5678 9012 3456</small
-                            >
-                          </div>
-                          <div class="mb-3 form-floating">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="expiryDate"
-                              placeholder="ខែ/ឆ្នាំ"
-                              required
-                              maxlength="5"
-                            />
-                            <label class="ps-0 ms-0" for="expiryDate"
-                              >កាលបរិច្ឆេទផុតកំណត់</label
-                            >
-                            <small class="form-text text-muted"
-                              >ទម្រង់: ខែ/ឆ្នាំ</small
-                            >
-                          </div>
-                          <div class="mb-3 form-floating">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="cvv"
-                              placeholder="CVV"
-                              required
-                              maxlength="3"
-                            />
-                            <label class="ps-0 ms-0" for="cvv">CVV</label>
-                          </div>
-                          <button type="submit" class="btn btn-primary">
-                            បន្ថែមវិធីទូទាត់
-                          </button>
-                        </form>
+                    </div>
+                    <div class="card mb-2">
+                      <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                          <i class="fab fa-cc-mastercard me-2"></i>
+                          <span>Mastercard បញ្ចប់ដោយលេខ 5678</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger remove-payment">
+                          លុប
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div id="notifications" class="content-section d-none">
-                  <h2 class="section-title">ការជូនដំណឹង</h2>
-                  <p class="text-muted mb-4">
-                    គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
-                  </p>
-                  <form>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="emailNotifications"
-                        checked
-                      />
-                      <label class="form-check-label" for="emailNotifications"
-                        >ការជូនដំណឹងតាមអ៊ីមែល</label
-                      >
+                <button class="btn w-100 btn-save btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
+                  បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+                </button>
+              </div>
+
+              <!-- Modal for Adding Payment Method -->
+              <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-labelledby="addPaymentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addPaymentModalLabel">
+                        បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="smsNotifications"
-                      />
-                      <label class="form-check-label" for="smsNotifications"
-                        >ការជូនដំណឹងតាម SMS</label
-                      >
+                    <div class="modal-body">
+                      <form id="add-payment-form">
+                        <div class="mb-3 form-floating">
+                          <select class="form-select ps-0 form-control" id="paymentType" required>
+                            <option value="" disabled selected>
+                              ជ្រើសរើសប្រភេទការទូទាត់
+                            </option>
+                            <option value="visa">Visa</option>
+                            <option value="mastercard">Mastercard</option>
+                            <option value="amex">American Express</option>
+                            <option value="discover">Discover</option>
+                          </select>
+                          <label class="ps-0" for="paymentType">ប្រភេទការទូទាត់</label>
+                        </div>
+                        <div class="mb-3 form-floating">
+                          <input type="text" class="form-control" id="cardNumber" placeholder="លេខកាត" required
+                            maxlength="19" />
+                          <label class="ps-0 ms-0" for="cardNumber">លេខកាត</label>
+                          <small class="form-text text-muted">ទម្រង់: 1234 5678 9012 3456</small>
+                        </div>
+                        <div class="mb-3 form-floating">
+                          <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required
+                            maxlength="5" />
+                          <label class="ps-0 ms-0" for="expiryDate">កាលបរិច្ឆេទផុតកំណត់</label>
+                          <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្នាំ</small>
+                        </div>
+                        <div class="mb-3 form-floating">
+                          <input type="text" class="form-control" id="cvv" placeholder="CVV" required maxlength="3" />
+                          <label class="ps-0 ms-0" for="cvv">CVV</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          បន្ថែមវិធីទូទាត់
+                        </button>
+                      </form>
                     </div>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="pushNotifications"
-                        checked
-                      />
-                      <label class="form-check-label" for="pushNotifications"
-                        >ការជូនដំណឹងតាមកម្មវិធី</label
-                      >
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
-                    >
-                      រក្សាទុកការកំណត់ការជូនដំណឹង
-                    </button>
-                  </form>
+                  </div>
                 </div>
+              </div>
+              <div id="notifications" class="content-section d-none">
+                <h2 class="section-title">ការជូនដំណឹង</h2>
+                <p class="text-muted mb-4">
+                  គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
+                </p>
+                <form>
+                  <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="emailNotifications" checked />
+                    <label class="form-check-label" for="emailNotifications">ការជូនដំណឹងតាមអ៊ីមែល</label>
+                  </div>
+                  <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="smsNotifications" />
+                    <label class="form-check-label" for="smsNotifications">ការជូនដំណឹងតាម SMS</label>
+                  </div>
+                  <div class="mb-3 form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="pushNotifications" checked />
+                    <label class="form-check-label" for="pushNotifications">ការជូនដំណឹងតាមកម្មវិធី</label>
+                  </div>
+                  <button type="submit" class="btn w-100 btn-save btn-primary">
+                    រក្សាទុកការកំណត់ការជូនដំណឹង
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const sidebarItems = document.querySelectorAll(".sidebar-item");
-        const contentSections = document.querySelectorAll(".content-section");
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebarItems = document.querySelectorAll(".sidebar-item");
+      const contentSections = document.querySelectorAll(".content-section");
 
-        sidebarItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            const sectionId = this.getAttribute("data-section");
+      sidebarItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const sectionId = this.getAttribute("data-section");
 
-            sidebarItems.forEach((si) => si.classList.remove("active"));
-            this.classList.add("active");
+          sidebarItems.forEach((si) => si.classList.remove("active"));
+          this.classList.add("active");
 
-            contentSections.forEach((section) => {
-              if (section.id === sectionId) {
-                section.classList.remove("d-none");
-              } else {
-                section.classList.add("d-none");
-              }
-            });
+          contentSections.forEach((section) => {
+            if (section.id === sectionId) {
+              section.classList.remove("d-none");
+            } else {
+              section.classList.add("d-none");
+            }
           });
         });
       });
+    });
 
-      document
-        .getElementById("cardNumber")
-        .addEventListener("input", function (e) {
-          let value = e.target.value.replace(/\D/g, "").substring(0, 16);
-          let formattedValue = "";
-          for (let i = 0; i < value.length; i += 4) {
-            formattedValue += value.substring(i, i + 4) + " ";
-          }
-          e.target.value = formattedValue.trim();
-        });
-
-      document
-        .getElementById("expiryDate")
-        .addEventListener("input", function (e) {
-          let value = e.target.value.replace(/\D/g, "").substring(0, 4);
-          let formattedValue = "";
-          if (value.length > 2) {
-            formattedValue =
-              value.substring(0, 2) + "/" + value.substring(2, 4);
-          } else {
-            formattedValue = value;
-          }
-          e.target.value = formattedValue;
-        });
-
-      document.getElementById("cvv").addEventListener("input", function (e) {
-        this.value = this.value.replace(/\D/g, "").substring(0, 3);
+    document
+      .getElementById("cardNumber")
+      .addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "").substring(0, 16);
+        let formattedValue = "";
+        for (let i = 0; i < value.length; i += 4) {
+          formattedValue += value.substring(i, i + 4) + " ";
+        }
+        e.target.value = formattedValue.trim();
       });
 
-      document
-        .getElementById("add-payment-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const paymentType = document.getElementById("paymentType").value;
-          const cardNumber = document
-            .getElementById("cardNumber")
-            .value.replace(/\s/g, "");
-          const lastFourDigits = cardNumber.slice(-4);
-          const paymentMethodsList = document.getElementById(
-            "payment-methods-list"
-          );
+    document
+      .getElementById("expiryDate")
+      .addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "").substring(0, 4);
+        let formattedValue = "";
+        if (value.length > 2) {
+          formattedValue =
+            value.substring(0, 2) + "/" + value.substring(2, 4);
+        } else {
+          formattedValue = value;
+        }
+        e.target.value = formattedValue;
+      });
 
-          const newCard = document.createElement("div");
-          newCard.className = "card mb-2";
-          newCard.innerHTML = `
+    document.getElementById("cvv").addEventListener("input", function (e) {
+      this.value = this.value.replace(/\D/g, "").substring(0, 3);
+    });
+
+    document
+      .getElementById("add-payment-form")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        const paymentType = document.getElementById("paymentType").value;
+        const cardNumber = document
+          .getElementById("cardNumber")
+          .value.replace(/\s/g, "");
+        const lastFourDigits = cardNumber.slice(-4);
+        const paymentMethodsList = document.getElementById(
+          "payment-methods-list"
+        );
+
+        const newCard = document.createElement("div");
+        newCard.className = "card mb-2";
+        newCard.innerHTML = `
           <div class="card-body d-flex justify-content-between align-items-center">
             <div>
               <i class="fab fa-cc-${paymentType} me-2"></i>
-              <span>${
-                paymentType.charAt(0).toUpperCase() + paymentType.slice(1)
-              } បញ្ចប់ដោយលេខ ${lastFourDigits}</span>
+              <span>${paymentType.charAt(0).toUpperCase() + paymentType.slice(1)
+          } បញ្ចប់ដោយលេខ ${lastFourDigits}</span>
             </div>
             <button class="btn btn-sm btn-outline-danger remove-payment">លុប</button>
           </div>
         `;
-          paymentMethodsList.appendChild(newCard);
+        paymentMethodsList.appendChild(newCard);
 
-          const modal = bootstrap.Modal.getInstance(
-            document.getElementById("addPaymentModal")
-          );
-          modal.hide();
-          document.getElementById("add-payment-form").reset();
+        const modal = bootstrap.Modal.getInstance(
+          document.getElementById("addPaymentModal")
+        );
+        modal.hide();
+        document.getElementById("add-payment-form").reset();
 
-          newCard
-            .querySelector(".remove-payment")
-            .addEventListener("click", function () {
-              paymentMethodsList.removeChild(newCard);
-            });
-        });
+        newCard
+          .querySelector(".remove-payment")
+          .addEventListener("click", function () {
+            paymentMethodsList.removeChild(newCard);
+          });
+      });
 
-      document
-        .getElementById("payment-methods-list")
-        .addEventListener("click", function (e) {
-          if (e.target.classList.contains("remove-payment")) {
-            const card = e.target.closest(".card");
-            paymentMethodsList.removeChild(card);
-          }
-        });
+    document
+      .getElementById("payment-methods-list")
+      .addEventListener("click", function (e) {
+        if (e.target.classList.contains("remove-payment")) {
+          const card = e.target.closest(".card");
+          paymentMethodsList.removeChild(card);
+        }
+      });
 
-      document
-        .getElementById("avatarContainer")
-        .addEventListener("click", function () {
-          document.getElementById("avatarUpload").click();
-        });
+    document
+      .getElementById("avatarContainer")
+      .addEventListener("click", function () {
+        document.getElementById("avatarUpload").click();
+      });
 
-      document
-        .getElementById("avatarUpload")
-        .addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-              document.getElementById("userAvatar").src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-    </script>
-  </body>
+    document
+      .getElementById("avatarUpload")
+      .addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            document.getElementById("userAvatar").src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+  </script>
+</body>
+
 </html>
