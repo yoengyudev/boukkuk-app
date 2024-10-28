@@ -1,42 +1,16 @@
-@font-face {
-  font-family: Poppins;
-  src: url("../font/Poppins/Poppins-Regular.ttf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
 
 * {
-  font-family: "Poppins";
+  font-family: "Kantumruy Pro", sans-serif;
 }
 
-.bg-input {
-  /* background-color: #F9F9F9; */
+/* write is not merge */
+
+.bg-instead{
   background-color: #f8fafc;
 }
 
-.bg-store {
-  background-color: #f8fafc;
-  background-image: url('../image/store/5.jpg');
-  height:300px;
-  background-size: cover;
-  background-position: center center;
-}
-
-.about-store{
-  background-color:#fff;
-  position: relative;
-  top:-80px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 50px;
-  border-radius: 50px;
-}
-
-.store-service-icon{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:180px;
-  width: 180px;
-  background-color: #eee;
-}
+/* ======================================================================== */
 
 .bg-shop-icon {
   background-color: #f9f9f9;
@@ -101,7 +75,6 @@
 }
 
 .dropdown-shdow {
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -110,6 +83,60 @@
 }
 
 /* navigation bar */
+
+/* not merge */
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.profile{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-location:hover{
+  color: #4762e6 !important;
+}
+
+.hover-nav{
+  transition: 0.5s;
+  color: #212529d9;
+}
+
+.hover-nav:hover{
+  color:#4762e6;
+}
+
+.hover-nav:hover i{
+  animation: beat 0.3s linear alternate;
+}
+
+.hover-nav:hover .profile > i {
+  animation: beat 0.3s linear alternate;
+}
+
+@keyframes beat {
+    to{
+      transform:scale(0.5);
+    }
+    from{
+      transform: scale(1);
+    }
+}
+
+
+
+/* =============== */
 
 .dropdown-menu {
   display: block;
@@ -177,6 +204,102 @@
   padding: 50px;
 }
 
+/* store page : this is not merge */ 
+.btn-serch{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.bg-store {
+  height: 300px;
+  width: 100%;
+  background-image: url('../image/store/5.jpg');
+  background-size: cover;
+  background-position: center center;
+  filter: blur(5px); 
+  position: relative;
+}
+
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:#ffffff4b;
+}
+
+.about-store{
+  position: relative;
+  top:-10px;
+  border-radius:20px 20px 0 0;
+  background-color:#fff;
+  width: 100%;
+}
+
+.logo-store{
+  position: relative;
+  top:-50px;
+  height:230px;
+}
+
+.logo-store img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.store-title{
+  text-shadow:0.5px 0.5px;
+}
+
+.icon-contact{
+  width:40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.service-card {
+  cursor: pointer;
+  border:1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  background:#f8fafc;
+}
+
+.service-card.selected {
+  border-color: #4762e6;
+  background:#bfcaf835;
+  color: #4762e6;
+}
+
+.service-card.selected .service-icon img{
+  animation: push 0.2s linear alternate;
+}
+
+@keyframes push {
+  to{
+    transform: scale(0.8);
+  }
+  from{
+    transform: scale(1);
+  }
+}
+
+/* =================================================== */
+
+
+/* responsive */
+
 @media (max-width: 768px) {
   .con-sign {
     padding: 0 40px;
@@ -184,9 +307,19 @@
 }
 
 @media (max-width: 576px) {
+
+  .container{
+    padding-inline: 20px;
+  }
+
   .con-sign {
     padding: 0 10px;
   }
+
+  .fs-18{
+    font-size:15px !important;;
+  }
+
 }
 
 /* 
@@ -202,7 +335,7 @@
   height: 300px;
   background-image: linear-gradient(-90deg,
       rgba(255, 255, 255, 0) 13%,
-      rgb(45, 176, 252) 41%), url("../image/discount/1.png");
+      rgb(117, 182, 255) 41%), url("../image/discount/1.png");
   margin-top: 30px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   background-position-x: right;
@@ -243,6 +376,37 @@
 
 .text-store:hover {
   color: #f28b82;
+}
+
+.form-select:focus{
+  box-shadow: none!important;
+}
+
+.heart-btn{
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  border-radius: 50%;
+  z-index:100;
+}
+
+.heart-btn > i{
+  transform: translateY(1px);
+}
+
+.heart-btn:hover{
+  background-color:#f8fafc;
+}
+
+.heart-btn:hover i{
+  animation: beat 0.3s linear alternate;
+}
+
+.star{
+  font-size:10px;
 }
 
 
