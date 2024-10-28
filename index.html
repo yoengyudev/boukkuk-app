@@ -11,71 +11,98 @@
 </head>
 
 <body>
-    <header>
-        <nav class="py-3 bottom-shadow">
+    <header class="fixed-header">
+        <nav class="py-3">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <a href="" class="navbar-brand text-primary fs-3 fw-bold">Boukuk</a>
+                <div class="row gy-4 align-items-center">
+                    <div class="col-auto order-0">
+                        <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
                     </div>
-                    <div class="col-5">
-                        <div class="d-flex align-items-center gap-3 w-100">
+                    <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+                        <div class="row d-flex under-logo">
                             <div
-                                class="d-flex align-items-center px-3 w-100 justify-content-between bg-input border rounded-5 py-2">
-                                <input class="border-0 bg-transparent w-75" id="location" type="text"
-                                    placeholder="លេខផ្ទះ និង​លេខផ្លូវ" aria-label="">
-                                <a href="" for="location" class="text-decoration-none d-flex align-items-center gap-2">
-                                    <i class="bi bi-crosshair2 text-primary"></i>
-                                    <span class="fs-16 text-primary">ទីតាំងខ្ញុំ</span>
-                                </a>
+                                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text"
+                                    placeholder="ស្វែងរក" aria-label="">
+                                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                                    <i class="bi bi-search text-white"></i>
+                                </button>
                             </div>
-                            <button
-                                class="btn btn-primary rounded-circle h-40 w-40 d-flex align-content-center justify-content-center">
-                                <i class="bi bi-search"></i>
-                            </button>
+                            <div
+                                class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                                <button
+                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                                    <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                                    ហាងនៅក្បែ
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-auto ms-auto p-0">
-                        <div class="d-flex align-items-center">
-                            <div class="dropdown">
-                                <a class="text-decoration-none fs-18 text-dark rounded-2 bg-hover px-3 py-2 d-flex align-items-center gap-1"
+                    <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+                        <div class="d-flex w-100 align-items-center justify-content-end">
+                            <div class="dropdown rounded-2">
+                                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>
-                                        <i class="bi bi-person-circle text-primary"></i>
-                                        គណនី
-                                    </span>
+                                    <div class="profile bg-instead rounded-circle">
+                                        <i class="bi bi-person-circle"></i>
+                                    </div>
+                                    <span>គណនី</span>
                                     <i class="bi bi-chevron-down fw-bold"></i>
                                 </a>
 
-                                <ul class="dropdown-menu mt-2 p-3 border-0 dropdown-shdow" style="width:300px;">
-                                    <li><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
-                                                class="bi bi-person-circle me-2 text-primary"></i>បង្កើតគណនី</a></li>
-                                    <li id="login-list"><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
-                                                class="bi bi-person-circle me-2 text-primary"></i>ចូលប្រើប្រាស់</a></li>
-                                    <li id="logout-list"><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
-                                                class="bi bi-person-circle me-2 text-primary"></i>ចាកចេញ</a></li>
-                                    <hr class="d-block d-lg-none">
-                                    <a href=""
-                                        class="d-block d-lg-none text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2">
-                                        <i class="bi bi-bell fs-18"></i>
-                                        ការជូនដំណឹង
-                                    </a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                                    style="width:300px;">
+                                    <li class="mb-3" id="signup-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            បង្កើតគណនី
+                                        </a>
+                                    </li>
+                                    <li class="mb-3" id="login-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            ចូលប្រើប្រាស់
+                                        </a>
+                                    </li>
+                                    <li class="mb-3" id="pro-">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="profile.html">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            ប្រវត្តិរូបរបស់ខ្ញុំ
+                                        </a>
+                                    </li>
+                                    <hr style="color: #ddd;">
+                                    <li id="logout-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-power"></i>
+                                            </div>
+                                            ចាកចេញពីគណនី
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
-                            <a href=""
-                                class="d-none d-lg-block text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2">
-                                <i class="bi bi-bell fs-18 text-primary"></i>
-                                ការជូនដំណឹង
-                            </a>
-                            <a href=""
-                                class="wishlist me-3 ms-2 w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2">
-                                <i class="bi bi-heart fs-18"></i>
-                            </a>
 
                             <a href=""
-                                class="cart w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2">
-                                <i class="bi bi-bag fs-18"></i>
+                                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                                <div class="profile bg-instead rounded-circle">
+                                    <i class="bi bi-bell-fill fs-18"></i>
+                                </div>
+                                <span class="d-none d-sm-block">ការជូនដំណឹង</span>
                             </a>
+                            <button type="submit" onclick="wishlist()"
+                                class="hover-nav btn profile d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -85,15 +112,25 @@
 
     <main>
         <section class="hero-banner mb-70">
-            <div class="container">
+            <div class="container p-0">
                 <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner  bg-transparent">
                         <div class="carousel-item active poster-dis rounded-5">
                             <div class="col-7 h-100 d-flex align-items-center px-80">
                                 <div>
                                     <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
                                         សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
-                                    <a href="" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
+                                    <a href="store.html"
+                                        class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item active poster-dis rounded-5">
+                            <div class="col-7 h-100 d-flex align-items-center px-80">
+                                <div>
+                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
+                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
+                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
                                 </div>
                             </div>
                         </div>
@@ -126,13 +163,13 @@
                     <div class="col-6 ">
                         <div class="d-flex align-items-end gap-3">
                             <div class="rounded-3">
-                                <i class="bi bi-shop fs-2 text-primary"></i>
+                                <i class="bi bi-shop fs-2 text-dark-emphasis"></i>
                             </div>
-                            <h4 class="text-dark fw-bold">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
+                            <h4 class="text-dark">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
                         </div>
                     </div>
                     <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
-                        <select class="border-0 filter-shop fs-18 w-100 px-3 rounded-5 w-75 text-dark" name="" id="sort"
+                        <select class="border-0 form-select filter-shop fs-18 w-100 px-3 rounded-5 w-75 text-dark" name="" id="sort"
                             onchange="getLocation(this.value)">
                             <option value="all">ទាំងអស់</option>
                             <option value="mumbai">ហាងនៅជិតបំផុត</option>
@@ -140,195 +177,84 @@
                             <option value="delhi">ហាងមានតម្លៃទាបសម្រាប់ដឹកជញ្ជួន</option>
                             <option value="banglore">ដឹកជញ្ជួលលៀនបំផុត</option>
                         </select>
-                        <label for="sort" class="fw-bold fs-18 rounded-5 p-2 text-dark">តម្រៀប</label>
+                        <label for="sort" class="fs-18 rounded-5 p-2 text-dark-emphasis">តម្រៀប</label>
                     </div>
                 </div>
                 <div class="row align-items-center gy-5">
-                    <div class="col-4 rounded-3">
+                    <div class="col-4">
                         <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
+                            <div class="mb-3 overflow-hidden position-relative">
+                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden">
+                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
+                                </a>
+                            </div>
                             <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
+                                <a href="store.html"
+                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
                                 <span>
                                     <i class="bi bi-star-fill text-warning"></i>
                                     4.5
                                 </span>
                             </div>
                             <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
+                                <span class="metter">1000m</span>
+                                <span> . </span>
+                                <span>20វិនាទី</span>
                             </div>
 
                         </div>
                     </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0 ">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
+                    <div class="col-4">
+                        <div class="card bg-transparent overflow-hidden border-0">
+                            <div class="mb-3 overflow-hidden position-relative">
+                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden">
+                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
+                                </a>
+                            </div>
                             <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
+                                <a href="store.html"
+                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
                                 <span>
                                     <i class="bi bi-star-fill text-warning"></i>
                                     4.5
                                 </span>
                             </div>
                             <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
+                                <span class="metter">1000m</span>
+                                <span> . </span>
+                                <span>20វិនាទី</span>
                             </div>
 
                         </div>
                     </div>
-                    <div class="col-4 rounded-3">
+                    <div class="col-4">
                         <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
+                            <div class="mb-3 overflow-hidden position-relative">
+                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden">
+                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
+                                </a>
+                            </div>
                             <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
+                                <a href="store.html"
+                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
                                 <span>
                                     <i class="bi bi-star-fill text-warning"></i>
                                     4.5
                                 </span>
                             </div>
                             <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4 rounded-3">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <a href="" class="mb-3 overflow-hidden">
-                                <img src="assets/image/store/2.jpg" class="img-store card-img rounded-4" alt="">
-                            </a>
-                            <div class="d-flex justify-content-between">
-                                <a href="" class="text-decoration-none text-store h5 fw-bold">លីហ៊បោកអ៊ុត</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <a href="" class="text-store">
-                                    <i class="bi bi-geo-alt-fill text-primary"></i>
-                                    <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                                </a>
+                                <span class="metter">1000m</span>
+                                <span> . </span>
+                                <span>20វិនាទី</span>
                             </div>
 
                         </div>
@@ -350,19 +276,21 @@
                         និងគុណភាពដល់អ្នកប្រើប្រាស់។
                     </p>
                     <div class="social-icons">
-                        <a href="#" class="bg-info"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="bg-dark"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="bg-primary"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="bg-success"><i class="bi bi-telegram"></i></a>
+                        <a href="#" style="background-color:#4267B2;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" style="background-color:  #0088cc;"><i class="bi bi-telegram"></i></a>
+                        <a href="#"
+                            style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); "><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 ms-auto">
                     <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
                     <ul>
-                        <li><a href="#" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-clock-history me-2"></i>ប្រវត្តិការកម្មង់</a>
+                        <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
+                        <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
+                        <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
+                        <li id="order-history"><a type="button" onclick="profileMe()" class="border-0 p-0 bg-transparent fs-18"> <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
                         </li>
                     </ul>
                 </div>
@@ -382,7 +310,7 @@
             <hr class="my-4">
             <div class="d-flex justify-content-between">
                 <div>
-                    <span><i class="bi bi-c-circle"></i> 2024 Boukuk ANT-GROUP1</span>
+                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
                 </div>
                 <div>
                     <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
@@ -391,10 +319,9 @@
         </div>
     </footer>
     <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/script.js"></script>
-    <script>
-    // console.log(localStorage.getItem('token'));
-    </script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

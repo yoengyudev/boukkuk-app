@@ -26,7 +26,20 @@ console.log(logout);
 if (logout) {
     logout.addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.reload();
+        fetch(`${g9_host}/api/logout`, {
+            method: 'DELETE', 
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: null
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            isAuthenticated = false;
+            console.log("Hello revmoe");
+            window.location.reload();
+        })
     });
 }
 
