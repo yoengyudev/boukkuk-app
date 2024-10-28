@@ -6,7 +6,7 @@
 
 /* write is not merge */
 
-.bg-instead{
+.bg-instead {
   background-color: #f8fafc;
 }
 
@@ -91,12 +91,12 @@
   top: 0;
   width: 100%;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
-.profile{
+.profile {
   width: 40px;
   height: 40px;
   display: flex;
@@ -104,34 +104,35 @@
   align-items: center;
 }
 
-.btn-location:hover{
+.btn-location:hover {
   color: #4762e6 !important;
 }
 
-.hover-nav{
+.hover-nav {
   transition: 0.5s;
   color: #212529d9;
 }
 
-.hover-nav:hover{
-  color:#4762e6;
+.hover-nav:hover {
+  color: #4762e6;
 }
 
-.hover-nav:hover i{
+.hover-nav:hover i {
   animation: beat 0.3s linear alternate;
 }
 
-.hover-nav:hover .profile > i {
+.hover-nav:hover .profile>i {
   animation: beat 0.3s linear alternate;
 }
 
 @keyframes beat {
-    to{
-      transform:scale(0.5);
-    }
-    from{
-      transform: scale(1);
-    }
+  to {
+    transform: scale(0.5);
+  }
+
+  from {
+    transform: scale(1);
+  }
 }
 
 
@@ -204,8 +205,8 @@
   padding: 50px;
 }
 
-/* store page : this is not merge */ 
-.btn-serch{
+/* store page : this is not merge */
+.btn-serch {
   width: 40px;
   height: 40px;
   display: flex;
@@ -220,7 +221,7 @@
   background-image: url('../image/store/5.jpg');
   background-size: cover;
   background-position: center center;
-  filter: blur(5px); 
+  filter: blur(5px);
   position: relative;
 }
 
@@ -230,35 +231,35 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color:#ffffff4b;
+  background-color: #ffffff4b;
 }
 
-.about-store{
+.about-store {
   position: relative;
-  top:-10px;
-  border-radius:20px 20px 0 0;
-  background-color:#fff;
+  top: -10px;
+  border-radius: 20px 20px 0 0;
+  background-color: #fff;
   width: 100%;
 }
 
-.logo-store{
+.logo-store {
   position: relative;
-  top:-50px;
-  height:230px;
+  top: -50px;
+  height: 230px;
 }
 
-.logo-store img{
+.logo-store img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.store-title{
-  text-shadow:0.5px 0.5px;
+.store-title {
+  text-shadow: 0.5px 0.5px;
 }
 
-.icon-contact{
-  width:40px;
+.icon-contact {
+  width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -268,31 +269,37 @@
 
 .service-card {
   cursor: pointer;
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   transition: all 0.3s ease;
 }
 
 .service-card:hover {
-  background:#f8fafc;
+  background: #f8fafc;
 }
 
 .service-card.selected {
   border-color: #4762e6;
-  background:#bfcaf835;
+  background: #bfcaf835;
   color: #4762e6;
 }
 
-.service-card.selected .service-icon img{
+.service-card.selected .service-icon img {
   animation: push 0.2s linear alternate;
 }
 
 @keyframes push {
-  to{
+  to {
     transform: scale(0.8);
   }
-  from{
+
+  from {
     transform: scale(1);
   }
+}
+
+.filter-shop {
+  border: none;
+  font-size: 1rem;
 }
 
 /* =================================================== */
@@ -304,11 +311,18 @@
   .con-sign {
     padding: 0 40px;
   }
+
+  .filter-shop {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+
 }
 
 @media (max-width: 576px) {
 
-  .container{
+  .container {
     padding-inline: 20px;
   }
 
@@ -316,8 +330,13 @@
     padding: 0 10px;
   }
 
-  .fs-18{
-    font-size:15px !important;;
+  .fs-18 {
+    font-size: 15px !important;
+    ;
+  }
+
+  .filter-shop {
+    width: 75%;
   }
 
 }
@@ -378,35 +397,35 @@
   color: #f28b82;
 }
 
-.form-select:focus{
-  box-shadow: none!important;
+.form-select:focus {
+  box-shadow: none !important;
 }
 
-.heart-btn{
+.heart-btn {
   width: 35px;
   height: 35px;
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   border-radius: 50%;
-  z-index:100;
+  z-index: 100;
 }
 
-.heart-btn > i{
+.heart-btn>i {
   transform: translateY(1px);
 }
 
-.heart-btn:hover{
-  background-color:#f8fafc;
+.heart-btn:hover {
+  background-color: #f8fafc;
 }
 
-.heart-btn:hover i{
+.heart-btn:hover i {
   animation: beat 0.3s linear alternate;
 }
 
-.star{
-  font-size:10px;
+.star {
+  font-size: 10px;
 }
 
 

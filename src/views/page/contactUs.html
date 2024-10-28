@@ -19,38 +19,51 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/long.css" />
+    <link rel="stylesheet" href="../../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../../assets/css/long.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap");
+
       :root {
-        --primary-color: #4762e6; /* Updated primary color */
-        --secondary-color: #86c9ff; /* Updated secondary color */
-        --accent-color: #4762e6; /* Updated accent color */
-        --bg-color: #fce4ec; /* Updated background color */
-        --text-color: #424242; /* Updated text color */
+        --primary-color: #4762e6;
+        /* Updated primary color */
+        --secondary-color: #86c9ff;
+        /* Updated secondary color */
+        --accent-color: #4762e6;
+        /* Updated accent color */
+        --bg-color: #fce4ec;
+        /* Updated background color */
+        --text-color: #424242;
+        /* Updated text color */
       }
+
       body {
         color: var(--text-color);
         font-family: "Kantumruy Pro", sans-serif;
         min-height: 100vh;
         overflow-x: hidden;
       }
+
       .container {
         max-width: 1200px;
       }
+
       .card {
         border: none;
         border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        /* Enhanced shadow */
         overflow: hidden;
         transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+        background: rgba(255, 255, 255, 0.9);
+        /* Slightly more opaque */
       }
+
       .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
       }
+
       .card-header {
         background-color: var(--primary-color);
         color: white;
@@ -65,13 +78,16 @@
         margin-bottom: 15px;
         background-color: rgba(255, 255, 255, 0.6);
       }
+
       .contact-item:hover {
         background-color: rgba(52, 152, 219, 0.1);
         transform: translateX(10px);
       }
+
       .nav-tabs {
         border-bottom: none;
       }
+
       .nav-tabs .nav-link {
         border: none;
         color: var(--text-color);
@@ -80,26 +96,33 @@
         border-radius: 20px;
         padding: 0.75rem 1.5rem;
         margin-right: 10px;
-        background-color: rgba(255, 255, 255, 0.8); /* Background for tabs */
+        background-color: rgba(255, 255, 255, 0.8);
+        /* Background for tabs */
       }
+
       .nav-tabs .nav-link.active {
         color: white;
         background-color: var(--primary-color);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for active tab */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        /* Shadow for active tab */
       }
+
       .accordion-button:not(.collapsed) {
         background-color: rgba(52, 152, 219, 0.1);
         color: var(--primary-color);
       }
+
       .accordion-button:focus {
         box-shadow: none;
         border-color: rgba(52, 152, 219, 0.1);
       }
+
       #map {
         height: 300px;
         width: 100%;
         border-radius: 15px;
       }
+
       .floating-bg {
         position: fixed;
         width: 100vw;
@@ -109,6 +132,7 @@
         z-index: -1;
         overflow: hidden;
       }
+
       .floating-bg div {
         position: absolute;
         display: block;
@@ -117,12 +141,14 @@
         background-color: rgba(52, 152, 219, 0.2);
         animation: float 25s infinite linear;
       }
+
       .floating-bg div:nth-child(1) {
         left: 25%;
         width: 80px;
         height: 80px;
         animation-delay: 0s;
       }
+
       .floating-bg div:nth-child(2) {
         left: 10%;
         width: 20px;
@@ -130,12 +156,14 @@
         animation-delay: 2s;
         animation-duration: 12s;
       }
+
       .floating-bg div:nth-child(3) {
         left: 70%;
         width: 20px;
         height: 20px;
         animation-delay: 4s;
       }
+
       .floating-bg div:nth-child(4) {
         left: 40%;
         width: 60px;
@@ -143,24 +171,28 @@
         animation-delay: 0s;
         animation-duration: 18s;
       }
+
       .floating-bg div:nth-child(5) {
         left: 65%;
         width: 20px;
         height: 20px;
         animation-delay: 0s;
       }
+
       .floating-bg div:nth-child(6) {
         left: 75%;
         width: 110px;
         height: 110px;
         animation-delay: 3s;
       }
+
       .floating-bg div:nth-child(7) {
         left: 35%;
         width: 150px;
         height: 150px;
         animation-delay: 7s;
       }
+
       .floating-bg div:nth-child(8) {
         left: 50%;
         width: 25px;
@@ -168,6 +200,7 @@
         animation-delay: 15s;
         animation-duration: 45s;
       }
+
       .floating-bg div:nth-child(9) {
         left: 20%;
         width: 15px;
@@ -175,6 +208,7 @@
         animation-delay: 2s;
         animation-duration: 35s;
       }
+
       .floating-bg div:nth-child(10) {
         left: 85%;
         width: 150px;
@@ -182,24 +216,28 @@
         animation-delay: 0s;
         animation-duration: 11s;
       }
+
       @keyframes float {
         0% {
           transform: translateY(0) rotate(0deg);
           opacity: 1;
           border-radius: 0;
         }
+
         100% {
           transform: translateY(-1000px) rotate(720deg);
           opacity: 0;
           border-radius: 50%;
         }
       }
+
       .section-title {
         position: relative;
         display: inline-block;
         padding-bottom: 10px;
         margin-bottom: 30px;
       }
+
       .section-title::after {
         content: "";
         position: absolute;
@@ -211,28 +249,36 @@
         left: 50%;
         transform: translateX(-50%);
       }
+
       .icon-pulse {
         animation: iconPulse 2s infinite;
       }
+
       @keyframes iconPulse {
         0% {
           transform: scale(1);
         }
+
         50% {
           transform: scale(1.2);
         }
+
         100% {
           transform: scale(1);
         }
       }
+
       @media (max-width: 576px) {
         .nav-tabs .nav-link {
-          padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
-          font-size: 0.9rem; /* Adjust font size for better readability */
+          padding: 0.5rem 1rem;
+          /* Adjust padding for smaller screens */
+          font-size: 0.9rem;
+          /* Adjust font size for better readability */
         }
       }
     </style>
   </head>
+
   <body class="py-5 bg-body-tertiary">
     <div class="floating-bg">
       <div></div>
