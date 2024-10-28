@@ -4,6 +4,50 @@
 body {
   font-family: "Kantumruy Pro", sans-serif !important;
 }
+:root {
+  --primary: #4762e6;
+  --primary-light: #4762e6;
+  --primary-dark: #003366; /* Darker shade for hover effects */
+  --secondary: #86c9ff;
+  --background: #fce4ec;
+  --card-bg: #ffffff;
+  --surface: #ffffff;
+  --text: #424242;
+  --text-light: #666666; /* Lighter text for secondary info */
+  --success: #28a745; /* Green for success */
+}
+
+/* ======== Loading ============*/
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ==========Re-password============ */
 .re-pass-body {
@@ -16,6 +60,11 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
+}
+.outer {
+  border: 2px solid white;
+  padding: 20px;
+  border-radius: 30px;
 }
 .form-floating label {
   background: transparent; /* Ensure the background is transparent */
@@ -41,7 +90,7 @@ body {
 }
 
 .glass-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
@@ -67,7 +116,7 @@ body {
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(19, 19, 19, 0.7);
   z-index: 10;
 }
 
@@ -125,17 +174,13 @@ body {
   .re-btn {
     width: 100%;
   }
+  .outer {
+    border: 2px solid white;
+    padding: 10px;
+  }
 }
 
 /* ===================Profile========================== */
-:root {
-  --primary: #4762e6;
-  --primary-light: #4762e6;
-  --secondary: #86c9ff;
-  --background: #fce4ec;
-  --card-bg: #ffffff;
-  --text: #424242;
-}
 
 .profile_body {
   font-family: "Inter", sans-serif;
@@ -252,7 +297,10 @@ option {
 .label {
   background-color: #0080ff;
 }
-
+.order-card i {
+  font-size: 25px;
+  margin-right: 10px;
+}
 .profile .section-title::after {
   content: "";
   position: absolute;
@@ -560,3 +608,1056 @@ option {
 .profile .form-select {
   margin-top: 10px; /* Adjust the value as needed */
 }
+/* ============ Add Cart ============ */
+
+.cart-body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.cart-body .page-header {
+  padding: 0 50px;
+}
+.cart-body .card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.ser-img-cart {
+  width: 30px;
+  height: 30px;
+}
+/* Media query for mobile devices */
+@media (max-width: 1400px) {
+  .cart-body .page-header {
+    padding: 0 0px;
+  }
+}
+@media (max-width: 1200px) {
+  .cart-body .page-header {
+    padding: 0 0px;
+  }
+}
+@media (max-width: 992px) {
+  .cart-body .page-header {
+    padding: 0 0px;
+  }
+}
+@media (max-width: 768px) {
+  .cart-body .card {
+    margin-top: 0.5rem; /* Reduce top margin for mobile */
+  }
+  .cart-body .page-header {
+    padding: 0 0px;
+  }
+}
+
+.cart-body .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cart-body .card-header {
+  color: white;
+  border-bottom: none;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-body .shop-info {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.cart-body .shop-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.cart-body .shop-image:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.cart-body .service-item {
+  border: none;
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cart-body .service-item:hover {
+  background-color: #f8fafc;
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cart-body .btn-quantity {
+  width: 40px; /* Ensure consistent width */
+  height: 40px; /* Ensure consistent height */
+  font-size: 1.5rem; /* Ensure consistent font size */
+  display: inline-flex; /* Use inline-flex for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  border-radius: 50%; /* Keep rounded corners */
+  transition: all 0.3s ease; /* Smooth transition */
+  background-color: var(--primary); /* Primary background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+}
+
+.cart-body .btn-quantity:hover {
+  background-color: var(--secondary);
+  transform: scale(1.1);
+}
+
+.cart-body .checkout-btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cart-body .checkout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cart-body .section-title {
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.cart-body .section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.cart-body .section-title:hover::after {
+  width: 100%;
+}
+
+.cart-body .schedule-item {
+  background-color: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.cart-body .schedule-item:hover {
+  background-color: #e9ecef;
+  transform: scale(1.02);
+}
+
+.cart-body .time-slot {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary);
+  margin: 0.25rem;
+}
+
+.cart-body .time-slot:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.cart-body .time-slot.selected {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.progress-bar-container {
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 2.5px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--secondary);
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-body .pulse {
+  animation: pulse 2s infinite;
+}
+
+.cart-body .success-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+}
+
+.cart-body .success-popup h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.cart-body .success-popup p {
+  margin-bottom: 1.5rem;
+}
+
+.cart-body .success-popup button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+}
+
+.cart-body .success-popup button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.cart-body .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  backdrop-filter: blur(5px);
+}
+
+.cart-body .modal-content {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cart-body .modal-header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border-bottom: none;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.cart-body .modal-title {
+  font-weight: bold;
+}
+
+.cart-body .modal-body {
+  padding: 2rem;
+}
+
+.cart-body .modal-footer {
+  border-top: none;
+  padding: 1.5rem;
+}
+
+.cart-body .modal-footer button {
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+}
+
+.cart-body #dateSelect {
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--primary);
+  margin-bottom: 1rem;
+}
+
+.cart-body #timeSlots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+/* Add this to your existing CSS */
+@media (max-width: 576px) {
+  .schedule-item {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 1rem; /* Add padding for better touch targets */
+  }
+
+  .schedule-item h6 {
+    margin-bottom: 0.5rem; /* Space between title and text */
+  }
+  .cart-body .page-header {
+    padding: 0 8px;
+  }
+  .schedule-item button {
+    width: 100%; /* Make buttons full width */
+    margin-top: 0.5rem; /* Space between title and button */
+  }
+
+  .schedule-item i {
+    margin-bottom: 0.5rem; /* Space between icon and title */
+  }
+
+  .cart-body .card-footer {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch; /* Make buttons full width */
+    padding: 1rem; /* Add padding for better touch targets */
+    background-color: #f8f9fa; /* Light background for footer */
+    border-top: 1px solid #e0e0e0; /* Subtle border for separation */
+  }
+
+  .checkout-btn {
+    width: 100%; /* Make the checkout button full width */
+    margin-bottom: 1rem; /* Space between the checkout button and other buttons */
+    font-size: 1.2rem; /* Increase font size for better readability */
+    padding: 1rem; /* Increase padding for better touch targets */
+    border-radius: 0.5rem; /* Rounded corners */
+    background-color: #007bff; /* Primary color */
+    color: white; /* Text color */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+  }
+
+  .checkout-btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  .cart-body .card-footer .btn {
+    width: 100%; /* Make buttons full width */
+    margin-bottom: 0.5rem; /* Space between buttons */
+    padding: 1rem; /* Increase padding for better touch targets */
+    font-size: 1rem; /* Adjust font size for better readability */
+    border-radius: 0.5rem; /* Add rounded corners */
+    border: 1px solid #007bff; /* Border color */
+    color: #007bff; /* Text color */
+    background-color: white; /* Button background */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+
+  .cart-body .card-footer .btn:hover {
+    background-color: #e0e0e0; /* Light background on hover */
+    color: #0056b3; /* Darker text color on hover */
+  }
+
+  .cart-body .schedule-item {
+    background-color: #f0f8ff; /* Light background for schedule items */
+    border-radius: 0.5rem; /* Rounded corners */
+    padding: 1rem; /* Padding for better touch targets */
+    margin-bottom: 1rem; /* Space between items */
+  }
+
+  .service-item {
+    flex-direction: row; /* Keep items in a row */
+    justify-content: space-between; /* Space items evenly */
+    padding: 0.5rem; /* Reduce padding for better fit */
+  }
+
+  .service-name {
+    font-size: 1.2rem; /* Adjust font size for service name */
+  }
+
+  .quantity-display {
+    font-size: 1.2rem; /* Adjust font size for quantity */
+  }
+
+  .price-display {
+    font-size: 1.2rem; /* Adjust font size for price display */
+  }
+
+  .service-item button {
+    width: 30%; /* Set a fixed width for buttons */
+    margin-left: 0.5rem; /* Space between buttons */
+  }
+
+  .checkout-btn {
+    width: 100%; /* Make the checkout button full width */
+    font-size: 1.2rem; /* Increase font size for better readability */
+    padding: 1rem; /* Increase padding for better touch targets */
+  }
+
+  .service-item {
+    padding: 0.5rem; /* Reduce padding for a more compact look */
+    font-size: 0.9rem; /* Decrease font size for smaller items */
+  }
+
+  .service-name {
+    font-size: 1rem; /* Adjust font size for service name */
+  }
+
+  .quantity-display {
+    font-size: 1rem; /* Adjust font size for quantity */
+  }
+
+  .price-display {
+    font-size: 1rem; /* Adjust font size for price display */
+  }
+
+  .service-item button {
+    width: 25px; /* Set a smaller width for buttons */
+    height: 25px; /* Set a smaller height for buttons */
+    font-size: 1rem; /* Adjust font size for buttons */
+  }
+
+  .checkout-btn {
+    width: 100%; /* Keep the checkout button full width */
+    font-size: 1rem; /* Adjust font size for better readability */
+    padding: 0.75rem; /* Reduce padding for a more compact button */
+  }
+}
+
+.cart-body .spinner-border {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.2em;
+  display: none; /* Initially hidden */
+}
+
+#servicesList {
+  margin-top: 1rem;
+}
+
+.cart-body .services-header {
+  font-weight: bold;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+.cart-body .services-content {
+  margin-top: 15px;
+  padding: 0;
+}
+
+.cart-body .service-item {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+  padding: 0.5rem; /* Adjust padding for smaller items */
+  border-bottom: 1px solid #e0e0e0; /* Add a bottom border for separation */
+}
+
+.cart-body .service-item > div {
+  flex: 1; /* Allow each section to take equal space */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+}
+
+.cart-body .quantity-display,
+.price-display {
+  width: 60px; /* Set a smaller width for quantity and price */
+  text-align: center; /* Center text */
+  font-size: 1rem; /* Set a consistent font size */
+}
+
+.cart-body .btn-quantity {
+  width: 40px; /* Set button width */
+  height: 40px; /* Set button height */
+  font-size: 1.2rem; /* Set button font size */
+  display: inline-flex; /* Use inline-flex for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  border-radius: 50%; /* Keep rounded corners */
+  transition: all 0.3s ease; /* Smooth transition */
+  background-color: var(--primary); /* Primary background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 576px) {
+  .cart-body .service-item {
+    flex-direction: row; /* Keep items in a row */
+    align-items: center; /* Center items vertically */
+  }
+  .ser-img-cart {
+    width: 22px;
+    height: 22px;
+  }
+  .ser-name {
+    font-size: 1rem;
+  }
+  .cart-body .quantity-display,
+  .price-display {
+    width: 50px; /* Set a smaller width for quantity and price */
+    text-align: center; /* Center text */
+    font-size: 1rem; /* Set a consistent font size */
+  }
+
+  .cart-body .btn-quantity {
+    width: 40px; /* Keep button width */
+    height: 40px; /* Keep button height */
+    margin: 0 0.5rem; /* Add margin for spacing */
+    font-size: 1rem; /* Adjust font size for better readability */
+  }
+}
+/* ============ End of Add Cart ============ */
+/* ============ Payment ============ */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(240px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+body {
+  background: var(--background);
+  font-family: "Noto Sans Khmer", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.5s; /* Smooth background transition */
+}
+
+.payment-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem; /* Increased padding */
+}
+
+.payment .page-header {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.step-badge {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.payment .amount-card {
+  background: #f9f9f9; /* Light background for contrast */
+  border-radius: 16px;
+  padding: 2.5rem; /* Increased padding */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.payment .amount-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.payment .amount-value {
+  font-size: 4rem; /* Increased size for emphasis */
+  font-weight: 800; /* Bolder font weight */
+  color: #1e40af; /* Primary color for emphasis */
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.payment .amount-details {
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.payment .status-chip {
+  background: linear-gradient(
+    135deg,
+    #4caf50,
+    #81c784
+  ); /* Gradient background */
+  padding: 0.6rem 1.2rem; /* Maintain padding */
+  border-radius: 12px; /* Rounded corners */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+  font-weight: 600; /* Bold text for emphasis */
+  color: white; /* White text for contrast */
+  transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.payment .status-chip:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.qr-section {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  /* Added a border and shadow for depth */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.qr-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.qr-container {
+  position: relative;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+}
+
+.qr-frame {
+  position: relative;
+  padding: 1rem;
+  background: white;
+  border-radius: 16px;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: scanline 2s linear infinite;
+}
+
+.khqr-logo {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment .instruction-card {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.payment .step-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+  counter-increment: step;
+}
+
+.payment .step-item::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.payment .step-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 36px;
+  width: 2px;
+  height: calc(100% + 1rem);
+  background: linear-gradient(to bottom, var(--primary-light) 50%, transparent);
+  opacity: 0.2;
+}
+
+.payment .confirm-button {
+  background: linear-gradient(135deg, #4a90e2, #003366); /* Updated gradient */
+  border: none;
+  padding: 1.2rem 2.5rem; /* Increased padding */
+  border-radius: 20px; /* More rounded corners */
+  color: white;
+  font-weight: 600;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease; /* Smooth transition */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.payment .confirm-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.payment .confirm-button:hover::before {
+  left: 100%;
+}
+
+.payment .confirm-button:hover {
+  background: #003366; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.payment .success-modal .modal-content {
+  border-radius: 24px;
+  border: none;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+}
+
+.payment .success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.payment .floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.payment .floating-element {
+  position: absolute;
+  background: linear-gradient(135deg, var(--primary-light), transparent);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s infinite;
+  transition: transform 0.3s; /* Smooth transition for floating elements */
+}
+
+.payment .floating-element:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  left: 10%;
+}
+
+.payment .floating-element:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  top: 30%;
+  right: -75px;
+  animation-delay: -2s;
+}
+
+.payment .floating-element:nth-child(3) {
+  width: 80px;
+  height: 80px;
+  bottom: -40px;
+  left: 30%;
+  animation-delay: -4s;
+}
+
+.payment .step-item p {
+  /* Increased font weight for better emphasis */
+  font-weight: 500;
+}
+
+.payment .upload-container {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.payment .form-control-file {
+  display: none; /* Hide the default file input */
+}
+
+.payment .upload-label {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.payment .upload-label:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.payment .upload-label i {
+  margin-right: 0.5rem;
+}
+
+.payment .additional-services {
+  margin-top: 1rem;
+}
+
+.payment .service-card {
+  background: #e0f7fa; /* Light blue background */
+  border-radius: 12px;
+  /* width: 160px; */
+  padding: 1.4rem; /* Match padding with order card */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Match shadow with order card */
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.payment .service-card:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+.payment .clothes-card {
+  background: #e0f7fa; /* Light blue background */
+  border-radius: 12px;
+  padding: 1.5rem; /* Match padding with order card */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Match shadow with order card */
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.payment .clothes-card:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.payment .service-info {
+  margin-left: 1rem;
+}
+
+.payment .service-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.payment .service-price {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.payment .direct-orders {
+  margin-top: 1rem;
+}
+
+.payment .order-item {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.payment .order-card {
+  background: #e0f7fa; /* Light blue background */
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.payment .order-card:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.payment .order-name {
+  font-weight: 600;
+  color: #00796b; /* Darker shade for emphasis */
+}
+
+.payment .order-price {
+  color: #388e3c; /* Green color for prices */
+  font-weight: 500;
+}
+
+/* Additional styles for animations */
+.payment .floating-element {
+  animation: float 6s infinite;
+  transition: transform 0.3s; /* Smooth transition for floating elements */
+}
+
+.payment .floating-element:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+.payment-summary {
+  background: #f0f8ff; /* Light background */
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.payment .total-amount {
+  font-size: 3rem;
+  color: #2563eb; /* Primary color */
+  text-align: center;
+}
+
+.payment .clothes-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.payment .clothes-card {
+  background: #e0f7fa; /* Light blue */
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem;
+  flex: 1 1 calc(45% - 1rem); /* Responsive card size */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.payment .clothes-card:hover {
+  transform: translateY(-5px);
+}
+
+.payment .confirm-button {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.payment .confirm-button:hover {
+  background: #1e40af; /* Darker shade on hover */
+}
+.payment .time-chip-pay {
+  top: 0;
+  right: 0;
+  position: absolute !important;
+}
+
+/* Adjustments for mobile responsiveness */
+@media only screen and (max-width: 575.98px) {
+  .qr-section {
+    padding: 1rem; /* Reduce padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+  }
+
+  .qr-container {
+    width: 80%; /* Limit width on mobile */
+    margin: 0 auto; /* Center the QR container */
+  }
+
+  .qr-container img {
+    max-width: 100%; /* Ensure the QR code scales down */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .payment-container {
+    padding: 1.5rem; /* Reduced padding on mobile */
+  }
+}
+@media (max-width: 575.98px) {
+  .payment .time-chip-pay {
+    position: relative !important;
+  }
+}
+@media (min-width: 575.98px) and (max-width: 765.98px) {
+  .payment .time-chip-pay {
+    position: relative !important;
+  }
+}
+/* ============ End of Payment ============ */
