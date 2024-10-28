@@ -68,10 +68,6 @@
                   <i class="fas fa-bell"></i>
                   <span>ការជូនដំណឹង</span>
                 </div>
-                <div class="sidebar-item btn" data-section="change-password">
-                  <i class="fas fa-lock"></i>
-                  <span>ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
-                </div>
               </div>
             </div>
             <div class="col-md-8 col-lg-9">
@@ -87,21 +83,10 @@
                         <input
                           type="text"
                           class="form-control"
-                          id="firstName"
-                          placeholder="នាមត្រកូល"
+                          id="fullname"
+                          placeholder="ឈ្មោះ"
                         />
-                        <label for="firstName">នាមត្រកូល</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="lastName"
-                          placeholder="នាមខ្លួន"
-                        />
-                        <label for="lastName">នាមខ្លួន</label>
+                        <label for="fullname">ឈ្មោះ</label>
                       </div>
                     </div>
                     <div class="mb-4">
@@ -146,9 +131,7 @@
                   </form>
                 </div>
                 <div id="laundry-preferences" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ចំណូលចិត្តការបោកគក់
-                  </h2>
+                  <h2 class="section-title">ចំណូលចិត្តការបោកគក់</h2>
                   <p class="text-muted mb-4">
                     កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
                   </p>
@@ -199,9 +182,7 @@
                   </form>
                 </div>
                 <div id="order-history" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ប្រវត្តិការបញ្ជាទិញ
-                  </h2>
+                  <h2 class="section-title">ប្រវត្តិការបញ្ជាទិញ</h2>
                   <p class="text-muted mb-4">
                     មើលការបញ្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                   </p>
@@ -240,7 +221,7 @@
                   </div>
                 </div>
                 <div id="payment-methods" class="content-section d-none">
-                  <h2 class="section-title text-primary">វិធីទូទាត់ប្រាក់</h2>
+                  <h2 class="section-title">វិធីទូទាត់ប្រាក់</h2>
                   <p class="text-muted mb-4">
                     គ្រប់គ្រងជម្រើសទូទាត់ប្រាក់របស់អ្នក។
                   </p>
@@ -287,8 +268,101 @@
                     បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
                   </button>
                 </div>
+
+                <!-- Modal for Adding Payment Method -->
+                <div
+                  class="modal fade"
+                  id="addPaymentModal"
+                  tabindex="-1"
+                  aria-labelledby="addPaymentModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="addPaymentModalLabel">
+                          បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="add-payment-form">
+                          <div class="mb-3 form-floating">
+                            <select
+                              class="form-select ps-0 form-control"
+                              id="paymentType"
+                              required
+                            >
+                              <option value="" disabled selected>
+                                ជ្រើសរើសប្រភេទការទូទាត់
+                              </option>
+                              <option value="visa">Visa</option>
+                              <option value="mastercard">Mastercard</option>
+                              <option value="amex">American Express</option>
+                              <option value="discover">Discover</option>
+                            </select>
+                            <label class="ps-0" for="paymentType"
+                              >ប្រភេទការទូទាត់</label
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cardNumber"
+                              placeholder="លេខកាត"
+                              required
+                              maxlength="19"
+                            />
+                            <label class="ps-0 ms-0" for="cardNumber"
+                              >លេខកាត</label
+                            >
+                            <small class="form-text text-muted"
+                              >ទម្រង់: 1234 5678 9012 3456</small
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="expiryDate"
+                              placeholder="ខែ/ឆ្នាំ"
+                              required
+                              maxlength="5"
+                            />
+                            <label class="ps-0 ms-0" for="expiryDate"
+                              >កាលបរិច្ឆេទផុតកំណត់</label
+                            >
+                            <small class="form-text text-muted"
+                              >ទម្រង់: ខែ/ឆ្នាំ</small
+                            >
+                          </div>
+                          <div class="mb-3 form-floating">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cvv"
+                              placeholder="CVV"
+                              required
+                              maxlength="3"
+                            />
+                            <label class="ps-0 ms-0" for="cvv">CVV</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary">
+                            បន្ថែមវិធីទូទាត់
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div id="notifications" class="content-section d-none">
-                  <h2 class="section-title text-primary">ការជូនដំណឹង</h2>
+                  <h2 class="section-title">ការជូនដំណឹង</h2>
                   <p class="text-muted mb-4">
                     គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
                   </p>
@@ -333,148 +407,15 @@
                     </button>
                   </form>
                 </div>
-                <div id="change-password" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ផ្លាស់ប្តូរពាក្យសម្ងាត់
-                  </h2>
-                  <form>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="currentPassword"
-                          placeholder="ពាក្យសម្ងាត់បច្ចុប្បន្ន"
-                          required
-                        />
-                        <label for="currentPassword"
-                          >ពាក្យសម្ងាត់បច្ចុប្បន្ន</label
-                        >
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="newPassword"
-                          placeholder="ពាក្យសម្ងាត់ថ្មី"
-                          required
-                        />
-                        <label for="newPassword">ពាក្យសម្ងាត់ថ្មី</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="confirmPassword"
-                          placeholder="បញ្ជាក់ពាក្យសម្ងាត់"
-                          required
-                        />
-                        <label for="confirmPassword">បញ្ជាក់ពាក្យសម្ងាត់</label>
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
-                    >
-                      ផ្លាស់ប្តូរពាក្យសម្ងាត់
-                    </button>
-                  </form>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <!-- Modal for Adding Payment Method -->
-    <div
-      class="modal fade"
-      id="addPaymentModal"
-      tabindex="-1"
-      aria-labelledby="addPaymentModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addPaymentModalLabel">
-              បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="add-payment-form">
-              <div class="mb-3 form-floating">
-                <select
-                  class="form-select form-control"
-                  id="paymentType"
-                  required
-                >
-                  <option value="" disabled selected>
-                    ជ្រើសរើសប្រភេទការទូទាត់
-                  </option>
-                  <option value="visa">Visa</option>
-                  <option value="mastercard">Mastercard</option>
-                  <option value="amex">American Express</option>
-                  <option value="discover">Discover</option>
-                </select>
-                <label for="paymentType">ប្រភេទការទូទាត់</label>
-              </div>
-              <div class="mb-3 form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cardNumber"
-                  placeholder="លេខកាត"
-                  required
-                  maxlength="19"
-                />
-                <label for="cardNumber">លេខកាត</label>
-                <small class="form-text text-muted"
-                  >ទម្រង់: 1234 5678 9012 3456</small
-                >
-              </div>
-              <div class="mb-3 form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="expiryDate"
-                  placeholder="ខែ/ឆ្នាំ"
-                  required
-                  maxlength="5"
-                />
-                <label for="expiryDate">កាលបរិច្ឆេទផុតកំណត់</label>
-                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្នាំ</small>
-              </div>
-              <div class="mb-3 form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cvv"
-                  placeholder="CVV"
-                  required
-                  maxlength="3"
-                />
-                <label for="cvv">CVV</label>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                បន្ថែមវិធីទូទាត់
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/profile.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const sidebarItems = document.querySelectorAll(".sidebar-item");
