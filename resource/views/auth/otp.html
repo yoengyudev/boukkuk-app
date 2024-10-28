@@ -1,167 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OTP verification</title>
-    <link rel="stylesheet" href="/vender/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="/vender/fontawesome/css/all.css" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/long.css" />
-    <style>
-      .otp-input {
-        font-size: 2rem; /* Adjust font size */
-        width: 50px; /* Set width for input */
-        text-align: center; /* Center text in input */
-      }
-      .btn-custom {
-        font-size: 1.2rem; /* Adjust button font size */
-        padding: 10px; /* Add padding */
-      }
 
-      @media (max-width: 576px) {
-        .otp-input {
-          width: 38px; /* Adjust width for smaller screens */
-          font-size: 24px;
-        }
-        .btn-custom {
-          font-size: 1rem; /* Smaller button font size */
-        }
-      }
-      @media (min-width: 768px) and (max-width: 1024px) {
-        /* iPad size */
-        .otp-input {
-          width: 60px; /* Adjust width for iPad */
-          font-size: 2.5rem; /* Adjust font size */
-        }
-        .btn-custom {
-          font-size: 1.5rem; /* Adjust button font size */
-          padding: 12px; /* Add padding */
-        }
-        .bg-white {
-          padding: 4rem; /* Increase padding for larger screens */
-        }
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgot Password</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/vender/bootstrap-icon/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
 
-  <body class="bg-primary">
-    <div class="container d-flex align-items-center vh-100">
-      <div class="outer col-12 col-lg-7 col-xl-6 m-auto">
-        <div class="col-12 m-auto">
-          <div
-            class="bg-white p-5 shadow-sm border"
-            style="border-radius: 20px !important"
-          >
-            <div>
-              <p class="text-center text-success" style="font-size: 5.5rem">
-                <i class="fa-solid fa-envelope-circle-check text-primary"></i>
-              </p>
-              <h4 class="text-center text-center">
-                សូមពិនិត្យមើលអុីម៉ែលរបស់អ្នក
-              </h4>
-              <p class="text-muted text-center">
-                យើងបានផ្ញើកូដទៅកាន់ exaple@gmail.com
-              </p>
-              <div class="row ms-xl-1 my-3 me-1 me-md-0 ms-md-1 ms-lg-0">
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp1"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, 'otp2')"
-                    onkeydown="moveFocusBack(event, this, 'otp1')"
-                    aria-label=""
-                  />
+<body class="bg-primary">
+  <section>
+    <div class="container vh-100 d-flex align-items-center" style="width: 1100px;">
+      <div style="border: 2px solid #fff; padding:10px; border-radius: 8px;">
+        <div class="row align-items-center bg-white m-auto" style="border-radius: 8px; height:500px;">
+          <div class="col-12 col-md-6">
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="/assets/image/autenication/forgot-pass.jpg" style="width: 470px;" class="card-img" alt="">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card bg-transparent border-0" style="border-radius: 8px">
+              <div class="card-body p-md-4 p-xl-5">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="mb-4">
+                      <h2 class="h3 mb-4 text-center text-dark-emphasis">
+                        បញ្ខូលកូដ OTP
+                      </h2>
+                      <h3 class="fs-6 fw-normal text-dark-emphasis lh-base text-center m-0">
+                        សូមពិនិត្យមើលក្នុង​ប្រអប់សារអុីម៉ែល កូដផ្ញើទៅកាន់
+                        <span id="getemail">name@gmail.com</span>
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp2"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, 'otp3')"
-                    onkeydown="moveFocusBack(event, this, 'otp1')"
-                    aria-label=""
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp3"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, 'otp4')"
-                    onkeydown="moveFocusBack(event, this, 'otp2')"
-                    aria-label=""
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp4"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, 'otp5')"
-                    onkeydown="moveFocusBack(event, this, 'otp3')"
-                    aria-label=""
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp5"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, 'otp6')"
-                    onkeydown="moveFocusBack(event, this, 'otp4')"
-                    aria-label=""
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    class="form-control otp-input border-primary"
-                    id="otp6"
-                    type="text"
-                    maxlength="1"
-                    oninput="moveFocus(this, '')"
-                    onkeydown="moveFocusBack(event, this, 'otp5')"
-                    aria-label=""
-                  />
-                </div>
-              </div>
-              <p class="text-muted text-center">
-                មិនទាន់ទទួលបានកូដ?
-                <a href="#" class="text-primary">បញ្ជូនម្ងទៀត</a>
-              </p>
-
-              <div class="row pt-5">
-                <div class="col-6">
-                  <button class="btn btn-outline-primary w-100">បោះប​ង់</button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-primary w-100">បញ្ជូន</button>
-                </div>
+                <form action="#">
+                  <div class="row gy-3 overflow-hidden">
+                    <div class="col-12">
+                      <div class="form-floating mb-3 d-flex gap-2">
+                        <input type="text" autocomplete="off" class="form-control" id="num"
+                          placeholder="New Password" />
+                        <input type="text" autocomplete="off" class="form-control" id=""
+                          placeholder="New Password" />
+                        <input type="text" autocomplete="off" class="form-control" id=""
+                          placeholder="New Password" />
+                        <input type="text" autocomplete="off" class="form-control" id=""
+                          placeholder="New Password" />
+                        <input type="text" autocomplete="off" class="form-control" id=""
+                          placeholder="New Password" />
+                        <input type="text" autocomplete="off" class="form-control" id=""
+                          placeholder="New Password" />
+                      </div>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                      <button type="submit" class="btn text-primary">ផ្ញើកូដម្ដងទៀត</button>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">
+                        កំណត់ពាក្យសម្ងាត់
+                      </button>
+                    </div>
+                    
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      function moveFocus(current, nextId) {
-        if (current.value.length >= current.maxLength && nextId) {
-          document.getElementById(nextId).focus();
-        }
-      }
+  </section>
+</body>
 
-      function moveFocusBack(event, current, prevId) {
-        if (event.key === "Backspace" && current.value.length === 0 && prevId) {
-          document.getElementById(prevId).focus();
-        }
-      }
-    </script>
-  </body>
 </html>
