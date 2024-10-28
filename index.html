@@ -111,7 +111,7 @@
     </header>
 
     <main>
-        <section class="hero-banner mb-70">
+        <section class="hero-banner mb-70 d-none d-md-block">
             <div class="container p-0">
                 <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
                     <div class="carousel-inner  bg-transparent">
@@ -159,107 +159,135 @@
 
         <section class="mb-5">
             <div class="container">
-                <div class="row mb-5 title-content px-3">
-                    <div class="col-6 ">
-                        <div class="d-flex align-items-end gap-3">
+                <div class="row py-4 px-3">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <div class="d-flex align-items-center gap-2">
                             <div class="rounded-3">
-                                <i class="bi bi-shop fs-2 text-dark-emphasis"></i>
+                                <i class="bi bi-shop fs-3 fs-md-2 text-dark-emphasis"></i>
                             </div>
-                            <h4 class="text-dark">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
+                            <h4 class="text-dark mb-0 fs-5 fs-md-4">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
                         </div>
                     </div>
-                    <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
-                        <select class="border-0 form-select filter-shop fs-18 w-100 px-3 rounded-5 w-75 text-dark" name="" id="sort"
-                            onchange="getLocation(this.value)">
-                            <option value="all">ទាំងអស់</option>
-                            <option value="mumbai">ហាងនៅជិតបំផុត</option>
-                            <option value="noida">ហានមានការវាយតម្លៃល្អបំផុត</option>
-                            <option value="delhi">ហាងមានតម្លៃទាបសម្រាប់ដឹកជញ្ជួន</option>
-                            <option value="banglore">ដឹកជញ្ជួលលៀនបំផុត</option>
-                        </select>
-                        <label for="sort" class="fs-18 rounded-5 p-2 text-dark-emphasis">តម្រៀប</label>
-                    </div>
-                </div>
-                <div class="row align-items-center gy-5">
-                    <div class="col-4">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <div class="mb-3 overflow-hidden position-relative">
-                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
-                                    <i class="bi bi-heart heart"></i>
-                                </button>
-                                <a href="store.html" class="overflow-hidden">
-                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
-                                </a>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <a href="store.html"
-                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <span class="metter">1000m</span>
-                                <span> . </span>
-                                <span>20វិនាទី</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <div class="mb-3 overflow-hidden position-relative">
-                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
-                                    <i class="bi bi-heart heart"></i>
-                                </button>
-                                <a href="store.html" class="overflow-hidden">
-                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
-                                </a>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <a href="store.html"
-                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <span class="metter">1000m</span>
-                                <span> . </span>
-                                <span>20វិនាទី</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card bg-transparent overflow-hidden border-0">
-                            <div class="mb-3 overflow-hidden position-relative">
-                                <button type="submit" onclick="wishlistCard()" class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2">
-                                    <i class="bi bi-heart heart"></i>
-                                </button>
-                                <a href="store.html" class="overflow-hidden">
-                                    <img src="assets/image/store/2.jpg" class="card-img img-store" alt="">
-                                </a>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <a href="store.html"
-                                    class="text-decoration-none text-store h5 ">លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា</a>
-                                <span>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    4.5
-                                </span>
-                            </div>
-                            <div>
-                                <span class="metter">1000m</span>
-                                <span> . </span>
-                                <span>20វិនាទី</span>
-                            </div>
-
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex  flex-sm-row align-items-start align-items-sm-center gap-2 justify-content-md-end">
+                            <select class="form-select filter-shop rounded-5 px-3 text-dark" 
+                                    style="max-width: 300px;"
+                                    id="sort"
+                                    onchange="getLocation(this.value)">
+                                <option value="all">ទាំងអស់</option>
+                                <option value="mumbai">ហាងនៅជិតបំផុត</option>
+                                <option value="noida">ហានមានការវាយតម្លៃល្អបំផុត</option>
+                                <option value="delhi">ហាងមានតម្លៃទាបសម្រាប់ដឹកជញ្ជួន</option>
+                                <option value="banglore">ដឹកជញ្ជួលលៀនបំផុត</option>
+                            </select>
+                            <label for="sort" class="mb-0 px-3 py-2 text-dark-emphasis">តម្រៀប</label>
                         </div>
                     </div>
                 </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                    <!-- Store Card 1 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit" onclick="wishlistCard()" 
+                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Store Card 2 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit" onclick="wishlistCard()" 
+                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Store Card 3 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit" onclick="wishlistCard()" 
+                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
             </div>
         </section>
     </main>
