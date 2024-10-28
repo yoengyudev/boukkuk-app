@@ -214,6 +214,12 @@
           text-align: left;
         }
       }
+
+      .btn-visit,
+      .btn-remove {
+        padding: 8px 15px; /* Reduced padding */
+        font-size: 0.9rem; /* Reduced font size */
+      }
     </style>
   </head>
   <body>
@@ -306,7 +312,7 @@
                         <button class="btn-remove" onclick="removeItem(${
                           item.id
                         })"><i class="fas fa-trash-alt me-2"></i>Remove</button>
-                        <a href="add_cart.html" class=" btn-visit btn btn-primary mt-lg-2 text-decoration-none "><i class="fas fa-cart-plus me-2"></i>Add to Cart</a>
+                        <a href="view_shop.html" class="btn-visit btn btn-primary mt-2 mt-md-0 text-decoration-none"><i class="fas fa-eye me-2"></i>View Shop</a>
                     </div>
                 `;
           wishlistContainer.appendChild(itemElement);
