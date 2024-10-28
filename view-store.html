@@ -1,273 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="vender/bootstrap-icon/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="vender/bootstrap-icon/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="py-3 bottom-shadow">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <a href="" class="navbar-brand text-primary fs-3 fw-bold">Boukuk</a>
-                    </div>
-                    <div class="col-5">
-                        <div class="d-flex align-items-center gap-3 w-100">
-                            <div
-                                class="d-flex align-items-center px-3 w-100 justify-content-between bg-input border rounded-5 py-2">
-                                <input class="border-0 bg-transparent w-75" id="location" type="text"
-                                    placeholder="លេខផ្ទះ និង​លេខផ្លូវ" aria-label="">
-                                <a href="" for="location" class="text-decoration-none d-flex align-items-center gap-2">
-                                    <i class="bi bi-crosshair2 text-primary"></i>
-                                    <span class="fs-16 text-primary">ទីតាំងខ្ញុំ</span>
-                                </a>
-                            </div>
-                            <button
-                                class="btn btn-primary rounded-circle h-40 w-40 d-flex align-content-center justify-content-center">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-auto ms-auto p-0">
-                        <div class="d-flex align-items-center">
-                            <div class="dropdown">
-                                <a class="text-decoration-none fs-18 text-dark rounded-2 bg-hover px-3 py-2 d-flex align-items-center gap-1"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>
-                                        <i class="bi bi-person-circle text-primary"></i>
-                                        គណនី
-                                    </span>
-                                    <i class="bi bi-chevron-down fw-bold"></i>
-                                </a>
-
-                                <ul class="dropdown-menu mt-2 p-3 border-0 dropdown-shdow" style="width:300px;">
-                                    <li><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
-                                                class="bi bi-person-circle me-2 text-primary"></i>បង្កើតគណនី</a></li>
-                                    <li><a class="dropdown-item py-2 rounded-2 fs-18" href="#"><i
-                                                class="bi bi-person-circle me-2 text-primary"></i>ចូលប្រើប្រាស់</a></li>
-                                    <hr class="d-block d-lg-none">
-                                    <a href=""
-                                        class="d-block d-lg-none text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2">
-                                        <i class="bi bi-bell fs-18"></i>
-                                        ការជូនដំណឹង
-                                    </a>
-                                </ul>
-                            </div>
-                            <a href=""
-                                class="d-none d-lg-block text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2">
-                                <i class="bi bi-bell fs-18 text-primary"></i>
-                                ការជូនដំណឹង
-                            </a>
-                            <a href=""
-                                class="wishlist me-3 ms-2 w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2">
-                                <i class="bi bi-heart fs-18"></i>
-                            </a>
-
-                            <a href=""
-                                class="cart w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2">
-                                <i class="bi bi-bag fs-18"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <nav class="py-3 bottom-shadow">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <a href="" class="navbar-brand text-primary fs-3 fw-bold"
+                >Boukuk</a
+              >
             </div>
-        </nav>
+            <div class="col-5">
+              <div class="d-flex align-items-center gap-3 w-100">
+                <div
+                  class="d-flex align-items-center px-3 w-100 justify-content-between bg-input border rounded-5 py-2"
+                >
+                  <input
+                    class="border-0 bg-transparent w-75"
+                    id="location"
+                    type="text"
+                    placeholder="លេខផ្ទះ និង​លេខផ្លូវ"
+                    aria-label=""
+                  />
+                  <a
+                    href=""
+                    for="location"
+                    class="text-decoration-none d-flex align-items-center gap-2"
+                  >
+                    <i class="bi bi-crosshair2 text-primary"></i>
+                    <span class="fs-16 text-primary">ទីតាំងខ្ញុំ</span>
+                  </a>
+                </div>
+                <button
+                  class="btn btn-primary rounded-circle h-40 w-40 d-flex align-content-center justify-content-center"
+                >
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-auto ms-auto p-0">
+              <div class="d-flex align-items-center">
+                <div class="dropdown">
+                  <a
+                    class="text-decoration-none fs-18 text-dark rounded-2 bg-hover px-3 py-2 d-flex align-items-center gap-1"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <i class="bi bi-person-circle text-primary"></i>
+                      គណនី
+                    </span>
+                    <i class="bi bi-chevron-down fw-bold"></i>
+                  </a>
+
+                  <ul
+                    class="dropdown-menu mt-2 p-3 border-0 dropdown-shdow"
+                    style="width: 300px"
+                  >
+                    <li>
+                      <a class="dropdown-item py-2 rounded-2 fs-18" href="#"
+                        ><i class="bi bi-person-circle me-2 text-primary"></i
+                        >បង្កើតគណនី</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item py-2 rounded-2 fs-18" href="#"
+                        ><i class="bi bi-person-circle me-2 text-primary"></i
+                        >ចូលប្រើប្រាស់</a
+                      >
+                    </li>
+                    <hr class="d-block d-lg-none" />
+                    <a
+                      href=""
+                      class="d-block d-lg-none text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2"
+                    >
+                      <i class="bi bi-bell fs-18"></i>
+                      ការជូនដំណឹង
+                    </a>
+                  </ul>
+                </div>
+                <a
+                  href=""
+                  class="d-none d-lg-block text-dark fs-18 text-decoration-none bg-hover px-3 py-2 rounded-2"
+                >
+                  <i class="bi bi-bell fs-18 text-primary"></i>
+                  ការជូនដំណឹង
+                </a>
+                <a
+                  href=""
+                  class="wishlist me-3 ms-2 w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2"
+                >
+                  <i class="bi bi-heart fs-18"></i>
+                </a>
+
+                <a
+                  href=""
+                  class="cart w-40 h-40 text-white d-flex align-items-center justify-content-center bg-primary rounded-circle text-decoration-none bg-hover rounded-2"
+                >
+                  <i class="bi bi-bag fs-18"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
-        <section class="bg-store">
-        </section>
-        <section class="detail-store">
-            <div class="container">
-                <div class="about-store px-5">
-                    <div class="d-flex align-items-center w-100 mb-2">
-                        <div>
-                            <div class="lh-sm">
-                                <h3 class="fw-bold text-dark">លីហ៊បោកអ៊ុត <span
-                                        class="text-primary">(ផ្សាទឹកថ្លា)</span>
-                                </h3>
-                                <span class="text-dark">
-                                    <span class="text-primary ">អំពីហាង</span> : សូមស្វាគមន៏មកកាន់ហាងរបស់យើងខ្ញុំ
-                                </span><br>
-                            </div>
-                        </div>
-                        <div class="ms-auto">
-                            <button type="button"
-                                class="btn btn-primary rounded-circle h-40 w-40 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <hr class="line">
-                    <div class="contact-store d-flex align-items-center">
-                        <div class="d-flex flex-column">
-                            <a href="" class="text-store mb-2 text-decoration-none text-dark">
-                                <i class="bi bi-geo-alt-fill"></i>
-                                <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
-                            </a>
-                            <a href="tel:+1234567890" class="text-decoration-none"><i class="bi bi-telephone me-2 text-primary"></i>123-456-7890</a>
-                        </div>
-                        <div class="ms-auto d-flex align-items-center gap-3">
-                            <span class="text-dark">ទំនាក់ទំនងជាមួយហាងយើងខ្ញុំ</span>&nbsp;
-                            <div class="social-icons">
-                                <a href="#" class="bg-info ms-2"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="bg-dark ms-2"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="bg-primary me-2 ms-2"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="bg-success"><i class="bi bi-telegram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+      <section class="bg-store"></section>
+      <section class="detail-store">
+        <div class="container">
+          <div class="about-store px-5">
+            <div class="d-flex align-items-center w-100 mb-2">
+              <div>
+                <div class="lh-sm">
+                  <h3 class="fw-bold text-dark">
+                    លីហ៊បោកអ៊ុត <span class="text-primary">(ផ្សាទឹកថ្លា)</span>
+                  </h3>
+                  <span class="text-dark">
+                    <span class="text-primary">អំពីហាង</span> :
+                    សូមស្វាគមន៏មកកាន់ហាងរបស់យើងខ្ញុំ </span
+                  ><br />
                 </div>
-                <div class="our-service">
-                    <h3 class="fw-bold mb-5 text-dark d-flex align-items-end gap-2">
-                        <i class="bi bi-shop position-relative" style="transform: translateY(-5px);"></i>
-                        សេវាកម្មក្នុងហាងរបស់យើងខ្ញុំ
-                    </h3>
-                    <div class="row g-4">
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white">
-                                        <img src="assets/image/store-service/wash-fold.png" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មបោកសំអាត និង​ បត់
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden">
-                                        <img src="assets/image/store-service/ironing.png" style="transform: translateY(-15px);" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មអ៊ុត
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden">
-                                        <img src="assets/image/store-service/dry-clearning.png" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មសម្ងួត
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden">
-                                        <img src="assets/image/store-service/ironing.png" style="transform: translateY(-15px);" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មអ៊ុត
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden">
-                                        <img src="assets/image/store-service/ironing.png" style="transform: translateY(-15px);" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មអ៊ុត
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div
-                                class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4">
-                                <a href="" class="text-decoration-none">
-                                    <div class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden">
-                                        <img src="assets/image/store-service/delivery.png" style="transform: translateY(-5px);" width="100px" alt="">
-                                    </div>
-                                    <h5 class="text-dark text-center fw-bold mb-4">
-                                        សេវាកម្មដឹកជញ្ជូន
-                                    </h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <div class="ms-auto">
+                <button
+                  type="button"
+                  class="btn btn-primary rounded-circle h-40 w-40 d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
             </div>
-        </section>
+            <hr class="line" />
+            <div class="contact-store d-flex align-items-center">
+              <div class="d-flex flex-column">
+                <a
+                  href=""
+                  class="text-store mb-2 text-decoration-none text-dark"
+                >
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <span>80A, 2004, ទឹកថ្លា សែនសុខ ភ្នំពេញ</span>
+                </a>
+                <a href="tel:+1234567890" class="text-decoration-none"
+                  ><i class="bi bi-telephone me-2 text-primary"></i
+                  >123-456-7890</a
+                >
+              </div>
+              <div class="ms-auto d-flex align-items-center gap-3">
+                <span class="text-dark">ទំនាក់ទំនងជាមួយហាងយើងខ្ញុំ</span>&nbsp;
+                <div class="social-icons">
+                  <a href="#" class="bg-info ms-2"
+                    ><i class="bi bi-facebook"></i
+                  ></a>
+                  <a href="#" class="bg-dark ms-2"
+                    ><i class="bi bi-twitter"></i
+                  ></a>
+                  <a href="#" class="bg-primary me-2 ms-2"
+                    ><i class="bi bi-instagram"></i
+                  ></a>
+                  <a href="#" class="bg-success"
+                    ><i class="bi bi-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="our-service">
+            <h3 class="fw-bold mb-5 text-dark d-flex align-items-end gap-2">
+              <i
+                class="bi bi-shop position-relative"
+                style="transform: translateY(-5px)"
+              ></i>
+              សេវាកម្មក្នុងហាងរបស់យើងខ្ញុំ
+            </h3>
+            <div class="row g-4">
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white"
+                    >
+                      <img
+                        src="assets/image/store-service/wash-fold.png"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មបោកសំអាត និង​ បត់
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden"
+                    >
+                      <img
+                        src="assets/image/store-service/ironing.png"
+                        style="transform: translateY(-15px)"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មអ៊ុត
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden"
+                    >
+                      <img
+                        src="assets/image/store-service/dry-clearning.png"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មសម្ងួត
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden"
+                    >
+                      <img
+                        src="assets/image/store-service/ironing.png"
+                        style="transform: translateY(-15px)"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មអ៊ុត
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden"
+                    >
+                      <img
+                        src="assets/image/store-service/ironing.png"
+                        style="transform: translateY(-15px)"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មអ៊ុត
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="card border-0 shadow-card bg-transparent d-flex p-3 align-items-center justify-content-center rounded-4"
+                >
+                  <a href="" class="text-decoration-none">
+                    <div
+                      class="mb-3 store-service-icon rounded-circle m-auto bg-white overflow-hidden"
+                    >
+                      <img
+                        src="assets/image/store-service/delivery.png"
+                        style="transform: translateY(-5px)"
+                        width="100px"
+                        alt=""
+                      />
+                    </div>
+                    <h5 class="text-dark text-center fw-bold mb-4">
+                      សេវាកម្មដឹកជញ្ជូន
+                    </h5>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-
     <footer class="footer mt-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="text-primary">Boukuk</h5>
-                    <p class="fs-18">
-                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
-                        ដោយធានាបាននូវភាពងាយស្រួល​
-                        និងគុណភាពដល់អ្នកប្រើប្រាស់។
-                    </p>
-                    <div class="social-icons">
-                        <a href="#" class="bg-info"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="bg-dark"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="bg-primary"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="bg-success"><i class="bi bi-telegram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 ms-auto">
-                    <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
-                    <ul>
-                        <li><a href="#" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
-                        <li><a href="#" class="fs-18"><i class="bi bi-clock-history me-2"></i>ប្រវត្តិការកម្មង់</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="text-primary">ទំនាក់ទំនង</h5>
-                    <ul>
-                        <li><a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a></li>
-                        <li>
-                            <a href="mailto:boukuk@gmail.com" class="fs-18">
-                                <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <h5 class="text-primary">Boukuk</h5>
+            <p class="fs-18">
+              យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
+              និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+              ដោយធានាបាននូវភាពងាយស្រួល​ និងគុណភាពដល់អ្នកប្រើប្រាស់។
+            </p>
+            <div class="social-icons">
+              <a href="#" class="bg-info"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="bg-dark"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="bg-primary"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="bg-success"><i class="bi bi-telegram"></i></a>
             </div>
-            <hr class="my-4">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <span><i class="bi bi-c-circle"></i> 2024 Boukuk ANT-GROUP1</span>
-                </div>
-                <div>
-                    <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
-                </div>
-            </div>
+          </div>
+          <div class="col-lg-2 ms-auto">
+            <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+            <ul>
+              <li>
+                <a href="#" class="fs-18"
+                  ><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a
+                >
+              </li>
+              <li>
+                <a href="#" class="fs-18"
+                  ><i class="bi bi-gear me-2"></i>សេវាកម្ម</a
+                >
+              </li>
+              <li>
+                <a href="#" class="fs-18"
+                  ><i class="bi bi-info-circle me-2"></i>អំពីយើង</a
+                >
+              </li>
+              <li>
+                <a href="#" class="fs-18"
+                  ><i class="bi bi-clock-history me-2"></i>ប្រវត្តិការកម្មង់</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <h5 class="text-primary">ទំនាក់ទំនង</h5>
+            <ul>
+              <li>
+                <a href="tel:+1234567890"
+                  ><i class="bi bi-telephone me-2"></i>123-456-7890</a
+                >
+              </li>
+              <li>
+                <a href="mailto:boukuk@gmail.com" class="fs-18">
+                  <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <hr class="my-4" />
+        <div class="d-flex justify-content-between">
+          <div>
+            <span><i class="bi bi-c-circle"></i> 2024 Boukuk ANT-GROUP1</span>
+          </div>
+          <div>
+            <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
+          </div>
+        </div>
+      </div>
     </footer>
     <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
-</body>
-
+  </body>
 </html>
