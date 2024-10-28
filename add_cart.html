@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>សេវាកម្មបោកគក់ Bubble & Shine</title>
+    <title>សេវាកម្មបោកគក់</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,508 +11,65 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/long.css" />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-      :root {
-        --primary: #4762e6;
-        --primary-light: #4762e6;
-        --secondary: #86c9ff;
-        --background: #fce4ec;
-        --card-bg: #ffffff;
-        --text: #424242;
-        --accent-color: #ffc107;
-        --muted-color: #757575;
-      }
-      .cart-body {
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-
-      .cart-body .card {
-        border: none;
-        border-radius: 1rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: all 0.3s ease;
-        margin: 4rem auto;
-        max-width: 1200px;
-      }
-
-      /* Media query for mobile devices */
-      @media (max-width: 768px) {
-        .cart-body .card {
-          margin-top: 0.5rem; /* Reduce top margin for mobile */
-        }
-      }
-
-      .cart-body .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .cart-body .card-header {
-        color: white;
-        border-bottom: none;
-        padding: 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .cart-body .shop-info {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        margin-top: 1.5rem;
-        backdrop-filter: blur(10px);
-      }
-
-      .cart-body .shop-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-
-      .cart-body .shop-image:hover {
-        transform: scale(1.1) rotate(5deg);
-      }
-
-      .cart-body .service-item {
-        border: none;
-        transition: all 0.3s ease;
-        padding: 1.5rem;
-        border-radius: 0.5rem;
-        background-color: #ffffff;
-        margin-bottom: 1rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      }
-
-      .cart-body .service-item:hover {
-        background-color: #f8fafc;
-        transform: translateX(5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .cart-body .btn-quantity {
-        width: 40px; /* Ensure consistent width */
-        height: 40px; /* Ensure consistent height */
-        font-size: 1.5rem; /* Ensure consistent font size */
-        display: inline-flex; /* Use inline-flex for alignment */
-        align-items: center; /* Center items vertically */
-        justify-content: center; /* Center items horizontally */
-        border-radius: 50%; /* Keep rounded corners */
-        transition: all 0.3s ease; /* Smooth transition */
-        background-color: var(--primary); /* Primary background color */
-        color: white; /* Text color */
-        border: none; /* Remove border */
-      }
-
-      .cart-body .btn-quantity:hover {
-        background-color: var(--secondary);
-        transform: scale(1.1);
-      }
-
-      .cart-body .checkout-btn {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border: none;
-        transition: all 0.3s ease;
-        border-radius: 2rem;
-        padding: 1rem 2rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .cart-body .checkout-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .cart-body .section-title {
-        color: var(--primary);
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-        position: relative;
-        display: inline-block;
-      }
-
-      .cart-body .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 50%;
-        height: 3px;
-        background-color: var(--accent-color);
-        transition: width 0.3s ease;
-      }
-
-      .cart-body .section-title:hover::after {
-        width: 100%;
-      }
-
-      .cart-body .schedule-item {
-        background-color: #f8fafc;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      .cart-body .schedule-item:hover {
-        background-color: #e9ecef;
-        transform: scale(1.02);
-      }
-
-      .cart-body .time-slot {
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-radius: 0.5rem;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--primary);
-        margin: 0.25rem;
-      }
-
-      .cart-body .time-slot:hover {
-        background-color: var(--primary);
-        color: white;
-      }
-
-      .cart-body .time-slot.selected {
-        background-color: var(--secondary);
-        color: white;
-      }
-
-      .progress-bar-container {
-        height: 5px;
-        background-color: #e0e0e0;
-        border-radius: 2.5px;
-        overflow: hidden;
-        margin-top: 1rem;
-      }
-
-      .progress-bar {
-        height: 100%;
-        background-color: var(--secondary);
-        width: 0;
-        transition: width 0.5s ease;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      .cart-body .pulse {
-        animation: pulse 2s infinite;
-      }
-
-      .cart-body .success-popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        display: none;
-        text-align: center;
-        max-width: 90%;
-        width: 400px;
-      }
-
-      .cart-body .success-popup h2 {
-        color: var(--primary);
-        margin-bottom: 1rem;
-      }
-
-      .cart-body .success-popup p {
-        margin-bottom: 1.5rem;
-      }
-
-      .cart-body .success-popup button {
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 2rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        font-weight: bold;
-      }
-
-      .cart-body .success-popup button:hover {
-        background-color: var(--secondary);
-        transform: translateY(-2px);
-      }
-
-      .cart-body .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
-        backdrop-filter: blur(5px);
-      }
-
-      .cart-body .modal-content {
-        border: none;
-        border-radius: 1rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .cart-body .modal-header {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        border-bottom: none;
-        border-top-left-radius: 1rem;
-        border-top-right-radius: 1rem;
-        padding: 1.5rem;
-      }
-
-      .cart-body .modal-title {
-        font-weight: bold;
-      }
-
-      .cart-body .modal-body {
-        padding: 2rem;
-      }
-
-      .cart-body .modal-footer {
-        border-top: none;
-        padding: 1.5rem;
-      }
-
-      .cart-body .modal-footer button {
-        border-radius: 2rem;
-        padding: 0.75rem 1.5rem;
-        font-weight: bold;
-      }
-
-      .cart-body #dateSelect {
-        border-radius: 0.5rem;
-        padding: 0.75rem;
-        border: 1px solid var(--primary);
-        margin-bottom: 1rem;
-      }
-
-      .cart-body #timeSlots {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.5rem;
-      }
-
-      /* Add this to your existing CSS */
-      @media (max-width: 576px) {
-        .schedule-item {
-          flex-direction: column; /* Stack items vertically */
-          align-items: flex-start; /* Align items to the start */
-          padding: 1rem; /* Add padding for better touch targets */
-        }
-
-        .schedule-item h6 {
-          margin-bottom: 0.5rem; /* Space between title and text */
-        }
-
-        .schedule-item button {
-          width: 100%; /* Make buttons full width */
-          margin-top: 0.5rem; /* Space between title and button */
-        }
-
-        .schedule-item i {
-          margin-bottom: 0.5rem; /* Space between icon and title */
-        }
-
-        .cart-body .card-footer {
-          flex-direction: column; /* Stack buttons vertically */
-          align-items: stretch; /* Make buttons full width */
-          padding: 1rem; /* Add padding for better touch targets */
-          background-color: #f8f9fa; /* Light background for footer */
-          border-top: 1px solid #e0e0e0; /* Subtle border for separation */
-        }
-
-        .checkout-btn {
-          width: 100%; /* Make the checkout button full width */
-          margin-bottom: 1rem; /* Space between the checkout button and other buttons */
-          font-size: 1.2rem; /* Increase font size for better readability */
-          padding: 1rem; /* Increase padding for better touch targets */
-          border-radius: 0.5rem; /* Rounded corners */
-          background-color: #007bff; /* Primary color */
-          color: white; /* Text color */
-          transition: background-color 0.3s ease; /* Smooth background transition */
-        }
-
-        .checkout-btn:hover {
-          background-color: #0056b3; /* Darker shade on hover */
-        }
-
-        .cart-body .card-footer .btn {
-          width: 100%; /* Make buttons full width */
-          margin-bottom: 0.5rem; /* Space between buttons */
-          padding: 1rem; /* Increase padding for better touch targets */
-          font-size: 1rem; /* Adjust font size for better readability */
-          border-radius: 0.5rem; /* Add rounded corners */
-          border: 1px solid #007bff; /* Border color */
-          color: #007bff; /* Text color */
-          background-color: white; /* Button background */
-          transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-        }
-
-        .cart-body .card-footer .btn:hover {
-          background-color: #e0e0e0; /* Light background on hover */
-          color: #0056b3; /* Darker text color on hover */
-        }
-
-        .cart-body .schedule-item {
-          background-color: #f0f8ff; /* Light background for schedule items */
-          border-radius: 0.5rem; /* Rounded corners */
-          padding: 1rem; /* Padding for better touch targets */
-          margin-bottom: 1rem; /* Space between items */
-        }
-
-        .service-item {
-          flex-direction: row; /* Keep items in a row */
-          justify-content: space-between; /* Space items evenly */
-          padding: 0.5rem; /* Reduce padding for better fit */
-        }
-
-        .service-name {
-          font-size: 1.2rem; /* Adjust font size for service name */
-        }
-
-        .quantity-display {
-          font-size: 1.2rem; /* Adjust font size for quantity */
-        }
-
-        .price-display {
-          font-size: 1.2rem; /* Adjust font size for price display */
-        }
-
-        .service-item button {
-          width: 30%; /* Set a fixed width for buttons */
-          margin-left: 0.5rem; /* Space between buttons */
-        }
-
-        .checkout-btn {
-          width: 100%; /* Make the checkout button full width */
-          font-size: 1.2rem; /* Increase font size for better readability */
-          padding: 1rem; /* Increase padding for better touch targets */
-        }
-
-        .service-item {
-          padding: 0.5rem; /* Reduce padding for a more compact look */
-          font-size: 0.9rem; /* Decrease font size for smaller items */
-        }
-
-        .service-name {
-          font-size: 1rem; /* Adjust font size for service name */
-        }
-
-        .quantity-display {
-          font-size: 1rem; /* Adjust font size for quantity */
-        }
-
-        .price-display {
-          font-size: 1rem; /* Adjust font size for price display */
-        }
-
-        .service-item button {
-          width: 25px; /* Set a smaller width for buttons */
-          height: 25px; /* Set a smaller height for buttons */
-          font-size: 1rem; /* Adjust font size for buttons */
-        }
-
-        .checkout-btn {
-          width: 100%; /* Keep the checkout button full width */
-          font-size: 1rem; /* Adjust font size for better readability */
-          padding: 0.75rem; /* Reduce padding for a more compact button */
-        }
-      }
-
-      .spinner-border {
-        width: 1rem;
-        height: 1rem;
-        border-width: 0.2em;
-        display: none; /* Initially hidden */
-      }
-
-      #servicesList {
-        margin-top: 1rem;
-      }
-
-      .services-header {
-        font-weight: bold;
-        border-bottom: 2px solid #e0e0e0;
-        padding: 1rem;
-        background-color: #f8f9fa;
-      }
-
-      .services-content {
-        margin-top: 15px;
-        padding: 0;
-      }
-
-      .service-item {
-        padding: 1rem;
+      .service-icon {
         display: flex;
-        justify-content: space-between; /* Distribute space evenly */
-        align-items: center;
-        border-bottom: 1px solid #e0e0e0;
-        transition: background-color 0.3s;
-      }
-
-      .service-item:hover {
-        background-color: #f1f1f1;
-      }
-
-      .btn-quantity {
-        width: 40px; /* Increase button size */
-        height: 40px; /* Increase button size */
-        font-size: 1.5rem; /* Increase font size */
-        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 1rem;
+        border: 2px solid #e9ecef;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
       }
 
-      .service-name {
-        font-size: 1.2rem; /* Increase font size for service name */
-        font-weight: bold;
+      .service-icon:hover {
+        border-color: #007bff;
       }
 
-      .quantity-display {
-        font-size: 1.5rem; /* Increase font size for quantity */
-        width: 40px; /* Fixed width for consistency */
+      .service-icon.selected {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .service-icon img {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.5rem;
+      }
+
+      .service-icon span {
         text-align: center;
-      }
-
-      .price-display {
-        width: 80px; /* Fixed width for price display */
-        text-align: right;
+        font-size: 0.875rem;
       }
     </style>
   </head>
   <body>
     <section class="cart-body">
       <canvas id="confetti-canvas " style="display: none"></canvas>
-      <div class="container">
-        <div class="card animate-fade-in">
+      <div class="container position-relative">
+        <div
+          class="page-header mt-5 mb-4 d-flex justify-content-between align-items-center"
+        >
+          <h1 class="h2 fw-bold mb-0">ជ្រើសរើសសេវាកម្ម</h1>
+          <div class="step-badge">
+            <i class="fas fa-receipt me-2"></i>
+            ជំហានទី ១ នៃ ២
+          </div>
+        </div>
+        <div class="card mt-150 animate-fade-in">
           <div
             class="card-header bg-primary text-center position-relative rounded-3 shadow-lg p-4"
           >
@@ -543,12 +100,24 @@
             </div>
           </div>
           <div class="card-body p-4">
-            <h3 class="section-title">សេវាកម្មដែលមាន</h3>
             <div id="servicesList">
+              <h3 class="section-title mt-3">សេវាកម្ម</h3>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div
+                    id="serviceIcons"
+                    class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4"
+                  >
+                    <!-- Service icons will be dynamically added here -->
+                  </div>
+                </div>
+              </div>
+              <h3 class="section-title mt-3">ប្រភេទសម្លៀកបំពាក់</h3>
+
               <div
                 class="services-header d-flex justify-content-between align-items-center"
               >
-                <span>សេវាកម្ម</span>
+                <span>ប្រភេទ</span>
                 <span>ចំនួន</span>
                 <span>តម្លៃ</span>
               </div>
@@ -591,7 +160,7 @@
                 <div class="schedule-item d-flex align-items-center">
                   <i class="bi bi-calendar text-primary me-3 fs-4"></i>
                   <div>
-                    <h6 class="mb-0">ការទទួលយក</h6>
+                    <h6 class="mb-0 text-center text-sm-start">ការទទួលយក</h6>
                     <p id="pickupSchedule" class="mb-0 text-muted">
                       មិនទាន់កំណត់ពេល
                     </p>
@@ -606,7 +175,7 @@
                 <div class="schedule-item d-flex align-items-center">
                   <i class="bi bi-clock text-primary me-3 fs-4"></i>
                   <div>
-                    <h6 class="mb-0">ការដឹកជញ្ជូន</h6>
+                    <h6 class="mb-0 text-center text-sm-start">ការដឹកជញ្ជូន</h6>
                     <p id="deliverySchedule" class="mb-0 text-muted">
                       មិនទាន់កំណត់ពេល
                     </p>
@@ -619,12 +188,21 @@
                   </button>
                 </div>
 
-                <div class="schedule-item d-flex align-items-center">
+                <div
+                  class="schedule-item d-flex align-items-center"
+                  style="cursor: pointer"
+                  onclick="openLocationPicker()"
+                >
                   <i class="bi bi-geo-alt text-primary me-3 fs-4"></i>
                   <div>
-                    <h6 class="mb-0">ទីតាំង</h6>
-                    <p class="mb-0 text-muted">
-                      ហាងបោកគក់, ផ្លូវស្អាត លេខ 123, ក្រុងស្អាត
+                    <h6 class="mb-0 text-center text-sm-start">
+                      ទីតាំងអ្នកប្រើ
+                    </h6>
+                    <p
+                      class="mb-0 text-muted text-center text-sm-start"
+                      id="userLocation"
+                    >
+                      សូមជ្រើសរើសទីតាំង....
                     </p>
                   </div>
                 </div>
@@ -710,101 +288,196 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal for Map -->
+      <div
+        class="modal fade"
+        id="mapModal"
+        tabindex="-1"
+        aria-labelledby="mapModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">ជ្រើសរើសទីតាំង</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div id="map" style="height: 400px"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                បិទ
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="confirmLocation()"
+              >
+                បញ្ជាក់ទីតាំង
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
+      // Service types
       const services = [
         {
           id: 1,
-          name: "បោកគក់និងបត់",
-          price: 2.5,
-          unit: "ក្នុងមួយផោន",
-          icon: "bi-water",
+          name: "បោកគក់",
+          icon: "assets/image/service-icon/wash.png",
         },
         {
           id: 2,
-          name: "សម្អាតស្ងួត - អាវ",
-          price: 6.0,
-          unit: "ក្នុងមួយឯកតា",
-          icon: "bi-archive",
+          name: "អ៊ុត",
+          icon: "assets/image/service-icon/iron.png",
         },
         {
           id: 3,
-          name: "បោកគក់និងអ៊ុត",
-          price: 4.0,
-          unit: "ក្នុងមួយឯកតា",
-          icon: "bi-lightning-charge",
+          name: "បោកស្ងួត",
+          icon: "assets/image/service-icon/dryWash.png",
+        },
+        {
+          id: 4,
+          name: "សម្អាតកម្រាល",
+          icon: "assets/image/service-icon/carpetClean.png",
+        },
+      ];
+
+      // Clothing types
+      const clothingItems = [
+        {
+          id: 1,
+          name: "អាវយឺត",
+          icon: "assets/image/service-icon/shirt.png",
+          price: 500,
+        },
+        {
+          id: 2,
+          name: "ខោ",
+          icon: "assets/image/service-icon/pant.png",
+          price: 700,
+        },
+        {
+          id: 3,
+          name: "អាវរងា",
+          icon: "assets/image/service-icon/hoddie.png",
+          price: 1000,
         },
         {
           id: 4,
           name: "កម្រាលនិងកន្សែង",
-          price: 15.0,
-          unit: "កនុងមួយសំណុំ",
-          icon: "bi-house",
+          icon: "assets/image/service-icon/capet.png",
+          price: 6000,
         },
         {
           id: 5,
-          name: "សម្អាតសំលៀកបំពាក់",
-          price: 20.0,
-          unit: "ក្នុងមួយឈុត",
-          icon: "bi-person-square",
+          name: "សម្អាតស្បែកជើង",
+          icon: "assets/image/service-icon/shoes.png",
+          price: 2500,
+        },
+        {
+          id: 6,
+          name: "មួក",
+          icon: "assets/image/service-icon/hat.png",
+          price: 500,
         },
       ];
 
       let selectedServices = {};
+      let selectedClothes = {};
 
-      function renderServices() {
-        const servicesList = document.querySelector(".services-content");
-        servicesList.innerHTML = services
+      function createServiceIcons() {
+        const serviceIconsContainer = document.getElementById("serviceIcons");
+        serviceIconsContainer.innerHTML = "";
+        services.forEach((service) => {
+          const serviceIcon = document.createElement("div");
+          serviceIcon.className = "col";
+          serviceIcon.innerHTML = `
+        <div class="service-icon" data-id="${service.id}">
+          <img src="${service.icon}" alt="${service.name}">
+          <span>${service.name}</span>
+        </div>
+      `;
+          serviceIconsContainer.appendChild(serviceIcon);
+        });
+      }
+
+      function renderClothingList() {
+        const clothingList = document.querySelector(".services-content");
+        clothingList.innerHTML = clothingItems
           .map(
-            (service, index) => `
-                    <div class="service-item d-flex justify-content-between align-items-center p-3 border-bottom" style="animation-delay: ${
-                      index * 0.1
-                    }s;">
-                        <div class="d-flex align-items-center">
-                            <i class="bi ${
-                              service.icon
-                            } fs-4 me-3 text-primary"></i>
-                            <span class="fw-semibold">${service.name}</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-quantity me-2" onclick="updateQuantity(${
-                              service.id
-                            }, -1)" ${
-              selectedServices[service.id] ? "" : "disabled"
-            }>
-                                <i class="bi bi-dash"></i>
-                            </button>
-                            <span class="fw-semibold" style="width: 30px; text-align: center;">
-                                ${selectedServices[service.id] || 0}
-                            </span>
-                            <button class="btn btn-quantity ms-2" onclick="updateQuantity(${
-                              service.id
-                            }, 1)">
-                                <i class="bi bi-plus"></i>
-                            </button>
-                        </div>
-                        <span class="fw-semibold" style="width: 80px; text-align: right;">
-                            $${(
-                              service.price *
-                              (selectedServices[service.id] || 0)
-                            ).toFixed(2)}
-                        </span>
-                    </div>
-                `
+            (item, index) => `
+          <div class="service-item d-flex justify-content-between align-items-center p-3 border-bottom" style="animation-delay: ${
+            index * 0.1
+          }s;">
+            <div class="d-flex align-items-center">
+              <img src="${
+                item.icon
+              }" class="ser-img-cart fs-4 me-3 text-primary" alt="${item.name}">
+              <span class="fw-semibold ser-name">${item.name}</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-quantity me-2" onclick="updateClothingQuantity(${
+                item.id
+              }, -1)" ${selectedClothes[item.id] ? "" : "disabled"}>
+                <i class="bi bi-dash"></i>
+              </button>
+              <span class="fw-semibold" style="width: 30px; text-align: center;">
+                ${selectedClothes[item.id] || 0}
+              </span>
+              <button class="btn btn-quantity ms-2" onclick="updateClothingQuantity(${
+                item.id
+              }, 1)">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+            <span class="fw-semibold" style="width: 80px; text-align: right;">
+              ៛${(item.price * (selectedClothes[item.id] || 0)).toFixed(2)}
+            </span>
+          </div>
+        `
           )
           .join("");
       }
 
-      function updateQuantity(id, change) {
-        const newQuantity = (selectedServices[id] || 0) + change;
-        if (newQuantity <= 0) {
-          delete selectedServices[id];
-        } else {
-          selectedServices[id] = newQuantity;
+      function handleServiceIconClick(event) {
+        const serviceIcon = event.target.closest(".service-icon");
+        if (serviceIcon) {
+          serviceIcon.classList.toggle("selected");
+          const serviceId = parseInt(serviceIcon.dataset.id);
+          selectedServices[serviceId] = serviceIcon.classList.contains(
+            "selected"
+          )
+            ? 1
+            : 0;
+          updateOrderSummary();
         }
-        renderServices();
+      }
+
+      function updateClothingQuantity(id, change) {
+        const newQuantity = (selectedClothes[id] || 0) + change;
+        if (newQuantity <= 0) {
+          delete selectedClothes[id];
+        } else {
+          selectedClothes[id] = newQuantity;
+        }
+        renderClothingList();
         updateOrderSummary();
       }
 
@@ -812,37 +485,59 @@
         const orderSummary = document.getElementById("orderSummary");
         let subtotal = 0;
 
-        orderSummary.innerHTML = Object.entries(selectedServices)
-          .map(([id, quantity]) => {
+        orderSummary.innerHTML = "";
+
+        // Add selected services to the summary
+        Object.entries(selectedServices).forEach(([id, quantity]) => {
+          if (quantity > 0) {
             const service = services.find((s) => s.id === parseInt(id));
-            const itemTotal = service.price * quantity;
-            subtotal += itemTotal;
-            return `
-                        <div class="d-flex justify-content-between mb-2 animate-fade-in">
-                            <span>${service.name} x${quantity}</span>
-                            <span class="fw-semibold">$${itemTotal.toFixed(
-                              2
-                            )}</span>
-                        </div>
-                    `;
-          })
-          .join("");
+            orderSummary.innerHTML += `
+          <div class="d-flex justify-content-between mb-2 animate-fade-in">
+            <span>${service.name}</span>
+            <span class="fw-semibold">ជ្រើសរើស</span>
+          </div>
+        `;
+          }
+        });
+
+        // Add selected clothing items to the summary
+        Object.entries(selectedClothes).forEach(([id, quantity]) => {
+          const item = clothingItems.find((c) => c.id === parseInt(id));
+          const itemTotal = item.price * quantity;
+          subtotal += itemTotal;
+          orderSummary.innerHTML += `
+        <div class="d-flex justify-content-between mb-2 animate-fade-in">
+          <span>${item.name} x${quantity}</span>
+          <span class="fw-semibold">៛${itemTotal.toFixed(2)}</span>
+        </div>
+      `;
+        });
 
         const tax = subtotal * 0.08;
         const total = subtotal + tax;
 
-        document.getElementById("subtotal").textContent = `$${subtotal.toFixed(
+        document.getElementById("subtotal").textContent = `៛${subtotal.toFixed(
           2
         )}`;
-        document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
-        document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+        document.getElementById("tax").textContent = `៛${tax.toFixed(2)}`;
+        document.getElementById("total").textContent = `៛${total.toFixed(2)}`;
 
         const checkoutBtn = document.getElementById("checkoutBtn");
-        checkoutBtn.disabled = Object.keys(selectedServices).length === 0;
+        checkoutBtn.disabled =
+          Object.keys(selectedServices).length === 0 &&
+          Object.keys(selectedClothes).length === 0;
 
         updateCheckoutProgress();
       }
 
+      document.addEventListener("DOMContentLoaded", () => {
+        createServiceIcons();
+        renderClothingList();
+        document
+          .getElementById("serviceIcons")
+          .addEventListener("click", handleServiceIconClick);
+      });
+      // Function to update the checkout progress bar
       function updateCheckoutProgress() {
         const progress = document.getElementById("checkoutProgress");
         const servicesSelected = Object.keys(selectedServices).length > 0;
@@ -854,12 +549,13 @@
           "មិនទាន់កំណត់ពេល";
 
         let progressWidth = 0;
-        if (servicesSelected) progressWidth += 33;
-        if (pickupScheduled) progressWidth += 33;
-        if (deliveryScheduled) progressWidth += 34;
+        if (servicesSelected) progressWidth += 33; // Add progress for selected services
+        if (pickupScheduled) progressWidth += 33; // Add progress for pickup scheduled
+        if (deliveryScheduled) progressWidth += 34; // Add progress for delivery scheduled
 
-        progress.style.width = `${progressWidth}%`;
+        progress.style.width = `${progressWidth}%`; // Update progress bar width
 
+        // Add pulse effect if progress is complete
         if (progressWidth === 100) {
           document.getElementById("checkoutBtn").classList.add("pulse");
         } else {
@@ -992,6 +688,77 @@
         setTimeout(() => {
           window.location.href = "payment.html"; // Redirect to payment page
         }, 3000); // Adjust the time as needed
+      }
+
+      let map;
+      let marker;
+
+      function openLocationPicker() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(initMap, showError);
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      function initMap(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        // Initialize the map
+        if (!map) {
+          map = L.map("map").setView([lat, lon], 13);
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+          }).addTo(map);
+
+          // Add a marker at the user's location
+          marker = L.marker([lat, lon]).addTo(map);
+
+          // Add click event to the map
+          map.on("click", function (e) {
+            const latlng = e.latlng;
+            marker.setLatLng(latlng); // Move marker to clicked location
+          });
+        } else {
+          // Reset the marker and view if the map is already initialized
+          marker.setLatLng([lat, lon]);
+          map.setView([lat, lon], 13);
+        }
+
+        // Show the modal
+        const mapModal = new bootstrap.Modal(
+          document.getElementById("mapModal")
+        );
+        mapModal.show();
+      }
+
+      function confirmLocation() {
+        const latlng = marker.getLatLng();
+        document.getElementById(
+          "userLocation"
+        ).textContent = `Lat: ${latlng.lat}, Lon: ${latlng.lng}`;
+        const mapModal = bootstrap.Modal.getInstance(
+          document.getElementById("mapModal")
+        );
+        mapModal.hide();
+      }
+
+      function showError(error) {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+        }
       }
 
       renderServices();
