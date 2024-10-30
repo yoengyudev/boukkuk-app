@@ -63,21 +63,20 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
         },
         body: formData
     })
-    .then(res => res.json())
-    .then(json => {
-        let token = json.data.token;
-        localStorage.setItem('token', token);
-        if (token) {
-            location.href = '../../../index.html';
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    })
-    .finally(() => {
-        // Re-enable the button and hide the spinner
-        registerButton.disabled = false;
-        spinner.style.display = 'none';
-        buttonText.textContent = 'បង្កើតគណនី';  // "Create Account" in Khmer
-    });
+        .then(res => res.json())
+        .then(json => {
+            let token = json.data.token;
+            localStorage.setItem('token', token);
+            if (token) {
+                location.href = '../../../index.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            registerButton.disabled = false;
+            spinner.style.display = 'none';
+            buttonText.textContent = 'បង្កើតគណនី';  
+        });
 });
