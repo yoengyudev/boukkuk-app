@@ -14,6 +14,59 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
+    <style>
+      .avatar-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+
+      .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #f0f0f0;
+        background-image: url("assets/img/default-avatar.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .camera-icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .camera-icon i {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .dropdown-menu {
+        min-width: 120px;
+      }
+
+      .dropdown-item {
+        cursor: pointer;
+        padding: 8px 16px;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f8f9fa;
+      }
+    </style>
   </head>
 
   <body class="profile_body">
@@ -32,15 +85,38 @@
                     class="avatar"
                     id="userAvatar"
                   />
-                  <div class="avatar-overlay">
-                    <i class="fas fa-camera"></i>
+                  <div class="dropdown">
+                    <button
+                      class="camera-icon"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-camera"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <label class="dropdown-item" for="avatarUpload">
+                          <i class="fas fa-edit me-2"></i>Edit
+                        </label>
+                        <input
+                          type="file"
+                          id="avatarUpload"
+                          accept="image/*"
+                          style="display: none"
+                        />
+                      </li>
+                      <li>
+                        <button
+                          class="dropdown-item"
+                          type="button"
+                          id="deleteImageBtn"
+                        >
+                          <i class="fas fa-trash me-2"></i>Delete
+                        </button>
+                      </li>
+                    </ul>
                   </div>
-                  <input
-                    type="file"
-                    id="avatarUpload"
-                    accept="image/*"
-                    style="display: none"
-                  />
                 </div>
                 <div
                   class="sidebar-item btn active"
@@ -192,7 +268,7 @@
                     ប្រវត្តិការបញ្ជាទិញ
                   </h2>
                   <p class="text-muted mb-4">
-                    មើលការបញ្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
+                    មើលការប��្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                   </p>
                   <div class="table-responsive">
                     <table class="table table-hover">
@@ -327,7 +403,7 @@
                     ផ្លាស់ប្តូរពាក្យសម្ងាត់
                   </h2>
                   <form>
-                    <div class="mb-4">
+                    <div class="mb-4 position-relative">
                       <div class="form-floating">
                         <input
                           type="password"
@@ -339,9 +415,20 @@
                         <label for="currentPassword"
                           >ពាក្យសម្ងាត់បច្ចុប្បន្ន</label
                         >
+                        <i
+                          class="fas fa-eye"
+                          id="toggleCurrentPassword"
+                          style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "
+                        ></i>
                       </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 position-relative">
                       <div class="form-floating">
                         <input
                           type="password"
@@ -351,9 +438,20 @@
                           required
                         />
                         <label for="newPassword">ពាក្យសម្ងាត់ថ្មី</label>
+                        <i
+                          class="fas fa-eye"
+                          id="toggleNewPassword"
+                          style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "
+                        ></i>
                       </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 position-relative">
                       <div class="form-floating">
                         <input
                           type="password"
@@ -363,13 +461,32 @@
                           required
                         />
                         <label for="confirmPassword">បញ្ជាក់ពាក្យសម្ងាត់</label>
+                        <i
+                          class="fas fa-eye"
+                          id="toggleConfirmPassword"
+                          style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "
+                        ></i>
                       </div>
                     </div>
                     <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
+                      type="button"
+                      class="btn-change btn w-100 btn-save btn-primary"
+                      id="changePasswordButton"
                     >
-                      ផ្លាស់ប្តូរពាក្យសម្ងាត់
+                      <span id="buttonText">ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
+                      <span
+                        id="spinner"
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                        style="display: none"
+                      ></span>
                     </button>
                   </form>
                 </div>
@@ -390,7 +507,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="addPaymentModalLabel">
-                បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+                ប្ថែមវិធីទូទាត់ប្រាក់ថ្មី
               </h5>
               <button
                 type="button"
@@ -571,12 +688,6 @@
         });
 
       document
-        .getElementById("avatarContainer")
-        .addEventListener("click", function () {
-          document.getElementById("avatarUpload").click();
-        });
-
-      document
         .getElementById("avatarUpload")
         .addEventListener("change", function (e) {
           const file = e.target.files[0];
@@ -587,6 +698,53 @@
             };
             reader.readAsDataURL(file);
           }
+        });
+
+      document
+        .getElementById("deleteImageBtn")
+        .addEventListener("click", function () {
+          document.getElementById("userAvatar").src =
+            "assets/img/default-avatar.png"; // Replace with your default avatar path
+          document.getElementById("avatarUpload").value = "";
+        });
+
+      document
+        .getElementById("addButton")
+        .addEventListener("click", function () {
+          document.getElementById("avatarUpload").click();
+          document.getElementById("actionButtons").style.display = "none"; // Hide dropdown after selection
+        });
+
+      function togglePasswordVisibility(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === "password") {
+          input.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          input.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      }
+
+      document
+        .getElementById("toggleCurrentPassword")
+        .addEventListener("click", function () {
+          togglePasswordVisibility("currentPassword", "toggleCurrentPassword");
+        });
+
+      document
+        .getElementById("toggleNewPassword")
+        .addEventListener("click", function () {
+          togglePasswordVisibility("newPassword", "toggleNewPassword");
+        });
+
+      document
+        .getElementById("toggleConfirmPassword")
+        .addEventListener("click", function () {
+          togglePasswordVisibility("confirmPassword", "toggleConfirmPassword");
         });
     </script>
   </body>
