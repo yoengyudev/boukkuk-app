@@ -9,106 +9,100 @@
     <link rel="stylesheet" href="/../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
 </head>
-
 <body>
     <header class="fixed-top">
         <nav class="py-3">
-            <div class="container">
-                <div class="row gy-4 align-items-center">
-                    <div class="col-auto order-0">
-                        <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
-                    </div>
-                    <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
-                        <div class="row d-flex under-logo">
-                            <div
-                                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
-                                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text"
-                                    placeholder="ស្វែងរក" aria-label="">
-                                <button type="submit" class="btn btn-serch bg-primary gap-2">
-                                    <i class="bi bi-search text-white"></i>
-                                </button>
-                            </div>
-                            <div
-                                class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
-                                <button
-                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
-                                    <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
-                                    ហាងនៅក្បែ
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto ms-auto p-0 order-1 order-xl-2">
-                        <div class="d-flex w-100 align-items-center justify-content-end">
-                            <div class="dropdown rounded-2">
-                                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="profile bg-instead rounded-circle">
-                                        <i class="bi bi-person-circle"></i>
-                                    </div>
-                                    <span>គណនី</span>
-                                    <i class="bi bi-chevron-down fw-bold"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                                    style="width:300px;">
-                                    <li class="mb-3">
-                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
-                                            <div class="profile bg-instead rounded-circle">
-                                                <i class="bi bi-person-circle"></i>
-                                            </div>
-                                            បង្កើតគណនី
-                                        </a>
-                                    </li>
-                                    <li class="mb-3" id="login-list">
-                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
-                                            <div class="profile bg-instead rounded-circle">
-                                                <i class="bi bi-person-circle"></i>
-                                            </div>
-                                            ចូលប្រើប្រាស់
-                                        </a>
-                                    </li>
-                                    <li class="mb-3">
-                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="profile.html">
-                                            <div class="profile bg-instead rounded-circle">
-                                                <i class="bi bi-person-circle"></i>
-                                            </div>
-                                            ប្រវត្តិរូបរបស់ខ្ញុំ
-                                        </a>
-                                    </li>
-                                    <hr style="color: #ddd;">
-                                    <li id="logout-list">
-                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
-                                            <div class="profile bg-instead rounded-circle">
-                                                <i class="bi bi-power"></i>
-                                            </div>
-                                            ចាកចេញពីគណនី
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <a href=""
-                                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
-                                <div class="profile bg-instead rounded-circle">
-                                    <i class="bi bi-bell-fill fs-18"></i>
-                                </div>
-                                <span class="d-none d-sm-block">ការជូនដំណឹង</span>
-                            </a>
-                            <a href=""
-                                class="hover-nav profile d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
-                            </a>
-                        </div>
-                    </div>
+          <div class="container">
+            <div class="row gy-4 align-items-center">
+              <div class="col-auto order-0">
+                <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+              </div>
+              <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+                <div class="row d-flex under-logo">
+                  <div
+                    class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                    <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
+                      aria-label="">
+                    <button type="submit" class="btn btn-serch bg-primary gap-2">
+                      <i class="bi bi-search text-white"></i>
+                    </button>
+                  </div>
+                  <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                    <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                      <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                      ហាងនៅក្បែ
+                    </button>
+                  </div>
                 </div>
+              </div>
+              <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+                <div class="d-flex w-100 align-items-center justify-content-end">
+                  <div class="dropdown rounded-2">
+                    <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                      href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      <span>គណនី</span>
+                      <i class="bi bi-chevron-down fw-bold"></i>
+                    </a>
+    
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                      style="width:300px;">
+                      <li class="mb-3">
+                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                          <div class="profile_header bg-instead rounded-circle">
+                            <i class="bi bi-person-circle"></i>
+                          </div>
+                          បង្កើតគណនី
+                        </a>
+                      </li>
+                      <li class="mb-3" id="login-list">
+                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                          <div class="profile_header bg-instead rounded-circle">
+                            <i class="bi bi-person-circle"></i>
+                          </div>
+                          ចូលប្រើប្រាស់
+                        </a>
+                      </li>
+                      <li class="mb-3">
+                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                          href="profile_header.html">
+                          <div class="profile_header bg-instead rounded-circle">
+                            <i class="bi bi-person-circle"></i>
+                          </div>
+                          ប្រវត្តិរូបរបស់ខ្ញុំ
+                        </a>
+                      </li>
+                      <hr style="color: #ddd;">
+                      <li id="logout-list">
+                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                          <div class="profile_header bg-instead rounded-circle">
+                            <i class="bi bi-power"></i>
+                          </div>
+                          ចាកចេញពីគណនី
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+    
+                  <a href=""
+                    class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                    <div class="profile_header bg-instead rounded-circle">
+                      <i class="bi bi-bell-fill fs-18"></i>
+                    </div>
+                    <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                  </a>
+                  <a href=""
+                    class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                    <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                  </a>
+                </div>
+              </div>
             </div>
+          </div>
         </nav>
-    </header>
+      </header>
 
     <main>
         <section class="bg-store">
@@ -134,7 +128,7 @@
                             </div>
                             <div class="ms-auto d-flex flex-column justify-content-between">
                                 <button type="submit"
-                                    class="hover-nav btn profile d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                                    class="hover-nav btn profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
                                     <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
                                 </button><span class="fs-5">
                                     4.5 <i class="bi bi-star-fill text-warning"></i>
@@ -150,31 +144,31 @@
                 <div class="d-flex align-items-center gap-4">
                     <a href="tel:+1234567890"
                         class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-                        <div class="profile rounded-circle bg-success">
+                        <div class="profile_header rounded-circle bg-success">
                             <i class="bi bi-telephone-fill text-white"></i>
                         </div>
                     </a>
                     <a href="tel:+1234567890"
                         class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-                        <div class="profile rounded-circle" style="background-color: #4267B2;">
+                        <div class="profile_header rounded-circle" style="background-color: #4267B2;">
                             <i class="bi bi-facebook text-white"></i>
                         </div>
                     </a>
                     <a href="tel:+1234567890"
                         class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-                        <div class="profile rounded-circle" style="background-color: #0088cc;">
+                        <div class="profile_header rounded-circle" style="background-color: #0088cc;">
                             <i class="bi bi-telegram text-white"></i>
                         </div>
                     </a>
                     <a href="tel:+1234567890"
                         class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-                        <div class="profile rounded-circle" style="background-color:#3498db;">
+                        <div class="profile_header rounded-circle" style="background-color:#3498db;">
                             <i class="bi bi-envelope-fill text-white"></i>
                         </div>
                     </a>
                     <a href="tel:+1234567890"
                         class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-                        <div class="profile rounded-circle"
+                        <div class="profile_header rounded-circle"
                             style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);">
                             <i class="bi bi-instagram text-white"></i>
                         </div>
@@ -242,7 +236,7 @@
                 <div class="row mt-4">
                     <div class="col-12 col-md-6">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="profile rounded-circle overflow-hidden">
+                            <div class="profile_header rounded-circle overflow-hidden">
                                 <img src="/../../../assets/image/user_profile/user1.png" width="100%" height="100%"
                                     class="card-img object-fit-cover" alt="">
                             </div>
@@ -279,7 +273,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="profile bg-info rounded-circle overflow-hidden">
+                            <div class="profile_header bg-info rounded-circle overflow-hidden">
                                 <span class="fw-bold text-white">S</span>
                             </div>
                             <div style="line-height:10px;">
