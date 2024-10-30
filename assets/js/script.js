@@ -12,7 +12,10 @@ console.log(isAuthenticated);
 
 
 if(!isAuthenticated) {
-    document.getElementById("logout-list").style.display = "none";
+    let logout_list = document.getElementById("logout-list");
+    if(logout_list){
+        logout_list.style.display = "none";
+    }
 }
 
 
