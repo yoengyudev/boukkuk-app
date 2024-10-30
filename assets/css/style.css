@@ -32,6 +32,10 @@
   padding-left: 80px;
 }
 
+.mt-100{
+  margin-top: 100px;
+}
+
 .mt-70 {
   margin-top: 100px;
 }
@@ -96,7 +100,7 @@
   transition: background-color 0.3s ease;
 }
 
-.profile {
+ .profile_header {
   width: 40px;
   height: 40px;
   display: flex;
@@ -121,7 +125,7 @@
   animation: beat 0.3s linear alternate;
 }
 
-.hover-nav:hover .profile>i {
+.hover-nav:hover .profile_header>i {
   animation: beat 0.3s linear alternate;
 }
 
@@ -477,3 +481,4 @@
   background-color: #0056b3;
   transform: translateY(-3px);
 }
+
