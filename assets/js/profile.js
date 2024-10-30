@@ -1,3 +1,5 @@
+//=============================>> Get User Information Functions <<===============================//
+
 let g9_host = "https://mps10.chandalen.dev";
 
 function getData() {
@@ -17,8 +19,8 @@ function getData() {
       document.getElementById("userAvatar").src = json.data.avatar;
     });
 }
-
 getData();
+
 // =====================change password========================
 document
   .getElementById("changePasswordButton")
