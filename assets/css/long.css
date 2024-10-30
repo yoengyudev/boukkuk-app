@@ -9,7 +9,7 @@ body {
   --primary-light: #4762e6;
   --primary-dark: #003366; /* Darker shade for hover effects */
   --secondary: #86c9ff;
-  --background:#F5F5F5;
+  --background: #f5f5f5;
   --card-bg: #ffffff;
   --surface: #ffffff;
   --text: #424242;
@@ -197,20 +197,22 @@ option {
 }
 .avatar-container {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 150px; /* Fixed width */
+  height: 150px; /* Fixed height */
   margin: 0 auto;
+  background-color: #f0f0f0; /* Fallback background color */
+  background-image: url("assets/img/default-avatar.png"); /* Default avatar */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  border-radius: 50%; /* Make it circular */
 }
 
 .avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #f0f0f0;
-  background-image: url("assets/img/default-avatar.png");
-  background-size: cover;
-  background-position: center;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  border-radius: 50%; /* Circular shape */
+  object-fit: cover; /* Maintain aspect ratio */
+  display: block; /* Ensure it behaves like a block element */
 }
 
 .camera-icon {
@@ -221,6 +223,7 @@ option {
   height: 36px;
   border-radius: 50%;
   background: #fff;
+  z-index: 1 !important;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -468,9 +471,16 @@ option {
   .form-control {
     font-size: 0.9rem; /* Slightly smaller font on mobile */
   }
-
+  .profile {
+    margin-top: 170px !important;
+  }
   .profile .btn-primary {
     width: 100%; /* Full width button on mobile */
+  }
+}
+@media (max-width: 576px) {
+  .profile {
+    margin-top: 180px !important;
   }
 }
 
