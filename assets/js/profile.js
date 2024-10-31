@@ -97,21 +97,18 @@ document
     let updateName = document.getElementById("fullname").value;
     let updateEmail = document.getElementById("email").value;
     let updatePhone = document.getElementById("phone").value;
-    let updateAddress = document.getElementById("address").value;
-    let updateButton = document.getElementById("updateButton");
-    let spinner = document.getElementById("spinner");
-    let buttonText = document.getElementById("buttonText");
+    let saveButton = document.getElementById('update_info');
+    let spinner = document.getElementById('spinner');
+    let buttonText = document.getElementById('buttonText');
 
-    updateButton.disabled = true;
-    spinner.style.display = "inline-block";
-    buttonText.textContent = "កំពុងរក្សាទុក...";
+    saveButton.disabled = true;
+    spinner.style.display = 'inline-block';
+    buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
 
     let token = localStorage.getItem("token");
 
     if (!token) {
-      updateButton.disabled = false;
-      spinner.style.display = "none";
-      buttonText.textContent = "រក្សាទុកការផ្លាស់ប្តូរ";
+      alert("No token found. Please log in first.");
       return;
     }
 
@@ -119,30 +116,28 @@ document
       name: updateName,
       email: updateEmail,
       phone: updatePhone,
-      address: updateAddress,
     };
-    console.log(updatedData.address);
-    fetch(`${g9_host}/api/profile/info`, {
+
+    fetch('https://mps10.chandalen.dev/api/profile/info',{
       method: "PUT",
       headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`, 
       },
-      body: JSON.stringify(updatedData),
+      body: JSON.stringify(updatedData),  
     })
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response.data);
-        console.log(response.data.name);
-        console.log(response.data.email);
-        console.log(response.data.phone);
-        console.log(response.data.address);
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json.data);
       })
       .finally(() => {
-        updateButton.disabled = false;
-        spinner.style.display = "none";
-        buttonText.textContent = "រក្សាទុកការផ្លាស់ប្តូរ";
-      });
+        saveButton.disabled = false;
+        spinner.style.display = 'none';
+        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
+    })
   });
 
 // ======================================ending =================================//
