@@ -147,55 +147,49 @@ document
 
 // ======================================ending =================================//
 
-
 // ============================ change avarta =========================
 
-// document
-//   .getElementById("avatarUpload")
-//   .addEventListener("change", function (e) {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = function (event) {
-//         document.getElementById("userAvatar").src = event.target.result;
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//     console.log(file);
-    
-//   });
-
 let avatarUpload = document.getElementById("avatarUpload");
-console.log(avatarUpload);
-console.log("Hello world");
-
-avatarUpload.addEventListener('change', function() {
-  var file = this.files[0]; // Get the selected file
+avatarUpload.addEventListener("change", function () {
+  let token = localStorage.getItem("token");
+  var avatar = this.files[0];
+  const formData = new FormData();
   
-  if (file) {
-      // Display file name and size
-      console.log(file);
-      
+  formData.append("avatar", avatar);
+
+  if (avatar) {
+    fetch(`${g9_host}/api/profile/avatar`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.data);
+      });
   } else {
-      document.getElementById('fileStatus').textContent = 'No file selected';
+    document.getElementById("fileStatus").textContent = "No file selected";
   }
 });
 
+let delete_Avatar = document.getElementById("deleteImageBtn");
+delete_Avatar.addEventListener("click", function () {
+  let token = localStorage.getItem("token");
+    fetch(`${g9_host}/api/profile/avatar`, {
+      method: "delete",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.data);
+      });
+});
 
-document
-  .getElementById("deleteImageBtn")
-  .addEventListener("click", function () {
-    document.getElementById("userAvatar").src = ""; 
-    document.getElementById("userAvatar").style.backgroundImage =
-      "url('assets/img/default-avatar.png')";
-    document.getElementById("avatarUpload").value = "";
-  });
-
-document
-  .getElementById("addButton")
-  .addEventListener("click", function () {
-    document.getElementById("avatarUpload").click();
-    document.getElementById("actionButtons").style.display = "none";
-  });
 
 // ============================ end of change avarta =========================
