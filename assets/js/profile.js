@@ -20,7 +20,6 @@ function getData() {
     });
 }
 getData();
-
 // =====================change password========================
 document
   .getElementById("changePasswordButton")
@@ -33,18 +32,18 @@ document
 
     // Check if all password fields are filled
     if (!oldPassword || !newPassword || !confirmPassword) {
-      alert("Please fill in all password fields.");
+      showAlert("Please fill in all password fields.");
       return;
     }
 
     if (newPassword.length < 8) {
-      alert("New password must be at least 8 characters long.");
+      showAlert("New password must be at least 8 characters long.");
       return;
     }
 
     // Check if new password and confirm password match
     if (newPassword !== confirmPassword) {
-      alert("New password and confirmation do not match.");
+      showAlert("New password and confirmation do not match.");
       return;
     }
     const buttonText1 = document.getElementById("buttonText1");
@@ -72,7 +71,7 @@ document
         spinner1.style.display = "none";
 
         if (json.success) {
-          alert("Password changed successfully!");
+          showAlert("Password changed successfully!");
         }
         // Clear the input fields
         document.getElementById("currentPassword").value = "";
@@ -83,7 +82,7 @@ document
         buttonText1.style.display = "inline";
         spinner1.style.display = "none";
         console.error("Error:", error);
-        alert("An error occurred while changing the password.");
+        showAlert("An error occurred while changing the password.");
       });
   });
 // =====================end of change password=================
@@ -147,31 +146,3 @@ document
   });
 
 // ======================================ending =================================//
-
-// Add this function to toggle password visibility
-function togglePasswordVisibility(inputId, iconId) {
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(iconId);
-    if (input.type === "password") {
-        input.type = "text"; // Change to text to show password
-        icon.classList.remove("fa-eye"); // Change icon to 'eye' open
-        icon.classList.add("fa-eye-slash"); // Change icon to 'eye' closed
-    } else {
-        input.type = "password"; // Change back to password
-        icon.classList.remove("fa-eye-slash"); // Change icon to 'eye' closed
-        icon.classList.add("fa-eye"); // Change icon to 'eye' open
-    }
-}
-
-// Add event listeners for the eye icons
-document.getElementById("toggleCurrentPassword").addEventListener("click", function() {
-    togglePasswordVisibility("currentPassword", "toggleCurrentPassword");
-});
-
-document.getElementById("toggleNewPassword").addEventListener("click", function() {
-    togglePasswordVisibility("newPassword", "toggleNewPassword");
-});
-
-document.getElementById("toggleConfirmPassword").addEventListener("click", function() {
-    togglePasswordVisibility("confirmPassword", "toggleConfirmPassword");
-});
