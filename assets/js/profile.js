@@ -146,3 +146,56 @@ document
   });
 
 // ======================================ending =================================//
+
+
+// ============================ change avarta =========================
+
+// document
+//   .getElementById("avatarUpload")
+//   .addEventListener("change", function (e) {
+//     const file = e.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = function (event) {
+//         document.getElementById("userAvatar").src = event.target.result;
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//     console.log(file);
+    
+//   });
+
+let avatarUpload = document.getElementById("avatarUpload");
+console.log(avatarUpload);
+console.log("Hello world");
+
+avatarUpload.addEventListener('change', function() {
+  var file = this.files[0]; // Get the selected file
+  
+  if (file) {
+      // Display file name and size
+      console.log(file);
+      
+  } else {
+      document.getElementById('fileStatus').textContent = 'No file selected';
+  }
+});
+
+
+document
+  .getElementById("deleteImageBtn")
+  .addEventListener("click", function () {
+    document.getElementById("userAvatar").src = ""; 
+    document.getElementById("userAvatar").style.backgroundImage =
+      "url('assets/img/default-avatar.png')";
+    document.getElementById("avatarUpload").value = "";
+  });
+
+document
+  .getElementById("addButton")
+  .addEventListener("click", function () {
+    document.getElementById("avatarUpload").click();
+    document.getElementById("actionButtons").style.display = "none";
+  });
+
+// ============================ end of change avarta =========================

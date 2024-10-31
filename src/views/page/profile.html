@@ -169,7 +169,7 @@
                 <p class="text-muted mb-4">
                   ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
                 </p>
-                <form>
+                <form id="updateForm">
                   <div class="mb-4">
                     <div class="form-floating">
                       <input type="text" class="form-control" id="fullname" placeholder="ឈ្មោះ" />
@@ -537,35 +537,6 @@
           const card = e.target.closest(".card");
           paymentMethodsList.removeChild(card);
         }
-      });
-
-    document
-      .getElementById("avatarUpload")
-      .addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (event) {
-            document.getElementById("userAvatar").src = event.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-    document
-      .getElementById("deleteImageBtn")
-      .addEventListener("click", function () {
-        document.getElementById("userAvatar").src = ""; // Clear the image source
-        document.getElementById("userAvatar").style.backgroundImage =
-          "url('assets/img/default-avatar.png')"; // Set default background
-        document.getElementById("avatarUpload").value = ""; // Reset file input
-      });
-
-    document
-      .getElementById("addButton")
-      .addEventListener("click", function () {
-        document.getElementById("avatarUpload").click();
-        document.getElementById("actionButtons").style.display = "none"; // Hide dropdown after selection
       });
 
     // Add this function to toggle password visibility
