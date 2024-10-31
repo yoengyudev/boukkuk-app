@@ -40,6 +40,10 @@
   margin-top: 100px;
 }
 
+.mt-n10{
+  margin-top: -10px;
+}
+
 .mb-70 {
   margin-bottom: 70px;
 }
@@ -63,6 +67,7 @@
 .h-30 {
   height: 30px;
 }
+
 
 .btn-hover:hover {
   background-color: #0d6efd;
