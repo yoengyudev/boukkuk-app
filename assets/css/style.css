@@ -494,14 +494,16 @@
   transform: translateY(-3px);
 }
 
-/* ============== lyhor style service provider ================= */
+
+
+/* ============== admin & provider ================= */
 
 
 :root {
-  --blue: #2a2185;
-  --white: #fff;
+  --blue: #4762E6;
+  --white: #ffffff;
   --gray: #f5f5f5;
-  --black1: #222;
+  --black1: #1B1B1B;
   --black2: #999;
 }
 
@@ -946,3 +948,5 @@
     left: initial;
   }
 }
+
+/* ============== end admin & provider ================= */
