@@ -76,6 +76,7 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
     buttonText.textContent = 'កំណត់ពាក្យសម្ងាត់...';
 
     const otpValue = Array.from(otpInputs).map(input => input.value).join('');
+    
     try {
         const response = await fetch('https://mps10.chandalen.dev/api/forgot/verify-otp', {
             method: 'POST',
@@ -95,6 +96,9 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
             otpMessageBox.style.display = 'block';
             otpMessageBox.style.color = 'green';
             otpMessageBox.textContent = 'OTP ត្រឹមត្រូវ! កំពុងបន្ត...';
+            console.log(otpValue);
+            localStorage.setItem('getOtp',otpValue);
+            
             setTimeout(() => {
                 location.href = 're-password.html';
             }, 1000);

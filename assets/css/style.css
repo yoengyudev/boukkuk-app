@@ -96,7 +96,7 @@
 /* not merge */
 
 .fixed-header {
-  position: fixed;
+  position:sticky;
   top: 0;
   width: 100%;
   background-color: rgb(255, 255, 255);
@@ -115,9 +115,10 @@
 
 .btn-location:hover {
   color: #4762e6 !important;
+  background-color:#f5f5f5;
 }
 
-.hover-nav {
+.hover-nav{
   transition: 0.5s;
   color: #212529d9;
 }
@@ -142,6 +143,12 @@
   from {
     transform: scale(1);
   }
+}
+
+.border-out{
+  border: 2px solid white;
+  padding: 20px;
+  border-radius: 30px;
 }
 
 

@@ -34,7 +34,7 @@ document.getElementById('emailForm').addEventListener('submit', async (e) => {
         if (response.ok) {
             localStorage.setItem('otpEmail', email)
             messageBox.textContent = 'OTP កូដត្រូវបានផ្ញើទៅកាន់ Email របស់អ្នក';
-            // location.href = 'otp.html';
+            location.href = 'otp.html';
         } else {
             messageBox.style.display = 'block';
             messageBox.style.color = 'red';

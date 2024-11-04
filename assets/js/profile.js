@@ -136,7 +136,7 @@ document
       .finally(() => {
         saveButton.disabled = false;
         spinner.style.display = 'none';
-        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
+        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
     })
   });
 
