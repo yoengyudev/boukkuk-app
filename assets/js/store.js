@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectedServices.size > 0) {
             // Handle the continue action here
             console.log('Selected services:', Array.from(selectedServices));
+            location.href = 'cart.html'; 
             // You can redirect to the next page or handle the selection as needed
         }
     });
