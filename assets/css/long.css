@@ -770,6 +770,7 @@ option {
   width: 30px;
   height: 30px;
 }
+ 
 /* Media query for mobile devices */
 @media (max-width: 1400px) {
   .cart-body .page-header {
@@ -1178,6 +1179,15 @@ option {
   .quantity-display {
     font-size: 1rem; /* Adjust font size for quantity */
   }
+  .accordion-button {
+    box-shadow: none !important;
+  }
+  .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-lg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/%3E%3C/svg%3E") !important;
+  }
+  .accordion-button:not(.collapsed)::after {
+    background-image: background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-lg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/%3E%3C/svg%3E") !important;
+  }
 
   .price-display {
     font-size: 1rem; /* Adjust font size for price display */
@@ -1201,10 +1211,6 @@ option {
   height: 1rem;
   border-width: 0.2em;
   display: none; /* Initially hidden */
-}
-
-#servicesList {
-  margin-top: 1rem;
 }
 
 .cart-body .services-header {
