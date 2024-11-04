@@ -43,7 +43,7 @@
                             <div class="dropdown rounded-2">
                                 <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="profile bg-instead rounded-circle">
+                                    <div class="profile_header bg-instead rounded-circle">
                                         <i class="bi bi-person-circle"></i>
                                     </div>
                                     <span>គណនី</span>
@@ -55,7 +55,7 @@
                                     <li class="mb-3" id="signup-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
                                             href="#">
-                                            <div class="profile bg-instead rounded-circle">
+                                            <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             បង្កើតគណនី
@@ -64,7 +64,7 @@
                                     <li class="mb-3" id="login-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
                                             href="#">
-                                            <div class="profile bg-instead rounded-circle">
+                                            <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ចូលប្រើប្រាស់
@@ -72,8 +72,8 @@
                                     </li>
                                     <li class="mb-3" id="pro-">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="profile.html">
-                                            <div class="profile bg-instead rounded-circle">
+                                            href="profile_header.html">
+                                            <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ប្រវត្តិរូបរបស់ខ្ញុំ
@@ -83,7 +83,7 @@
                                     <li id="logout-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
                                             href="#">
-                                            <div class="profile bg-instead rounded-circle">
+                                            <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-power"></i>
                                             </div>
                                             ចាកចេញពីគណនី
@@ -94,13 +94,13 @@
 
                             <a href=""
                                 class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
-                                <div class="profile bg-instead rounded-circle">
+                                <div class="profile_header bg-instead rounded-circle">
                                     <i class="bi bi-bell-fill fs-18"></i>
                                 </div>
                                 <span class="d-none d-sm-block">ការជូនដំណឹង</span>
                             </a>
                             <button type="submit" onclick="wishlist()"
-                                class="hover-nav btn profile d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
                                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
                             </button>
                         </div>
@@ -189,11 +189,11 @@
                     <div class="col">
                         <div class="card bg-transparent overflow-hidden border-0 h-100">
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
-                                <button type="submit" onclick="wishlistCard()" 
-                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
-                                    <i class="bi bi-heart heart"></i>
+                                <button type="submit"  onclick="wishlistCard()" 
+                                        class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart"></i>
                                 </button>
-                                <a href="store.html" class="overflow-hidden d-block">
+                                <a href="src/views/page/store.html" class="overflow-hidden d-block">
                                     <img src="assets/image/store/2.jpg" 
                                          class="card-img img-store w-100" 
                                          alt="Store Image">
@@ -201,7 +201,7 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <a href="store.html" 
+                                    <a href="src/views/page/store.html" 
                                        class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                                         លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
                                     </a>
@@ -218,16 +218,14 @@
                             </div>
                         </div>
                     </div>
-            
-                    <!-- Store Card 2 -->
                     <div class="col">
                         <div class="card bg-transparent overflow-hidden border-0 h-100">
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
-                                <button type="submit" onclick="wishlistCard()" 
-                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
-                                    <i class="bi bi-heart heart"></i>
+                                <button type="submit"  onclick="wishlistCard()" 
+                                        class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart"></i>
                                 </button>
-                                <a href="store.html" class="overflow-hidden d-block">
+                                <a href="src/views/page/store.html" class="overflow-hidden d-block">
                                     <img src="assets/image/store/2.jpg" 
                                          class="card-img img-store w-100" 
                                          alt="Store Image">
@@ -235,7 +233,7 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <a href="store.html" 
+                                    <a href="src/views/page/store.html" 
                                        class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                                         លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
                                     </a>
@@ -252,16 +250,14 @@
                             </div>
                         </div>
                     </div>
-            
-                    <!-- Store Card 3 -->
                     <div class="col">
                         <div class="card bg-transparent overflow-hidden border-0 h-100">
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
-                                <button type="submit" onclick="wishlistCard()" 
-                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
-                                    <i class="bi bi-heart heart"></i>
+                                <button type="submit"  onclick="wishlistCard()" 
+                                        class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart"></i>
                                 </button>
-                                <a href="store.html" class="overflow-hidden d-block">
+                                <a href="src/views/page/store.html" class="overflow-hidden d-block">
                                     <img src="assets/image/store/2.jpg" 
                                          class="card-img img-store w-100" 
                                          alt="Store Image">
@@ -269,7 +265,7 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <a href="store.html" 
+                                    <a href="src/views/page/store.html" 
                                        class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                                         លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
                                     </a>
@@ -318,7 +314,7 @@
                         <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
                         <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
                         <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
-                        <li id="order-history"><a type="button" onclick="profileMe()" class="border-0 p-0 bg-transparent fs-18"> <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+                        <li id="order-history"><a type="button" onclick="profile_headerMe()" class="border-0 p-0 bg-transparent fs-18"> <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
                         </li>
                     </ul>
                 </div>
@@ -349,7 +345,8 @@
     <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/index.js"></script>
     <script src="assets/js/footer.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/logout.js"></script>
 </body>
 
 </html>
