@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ការទូទាត់ប្រាក់</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../assets/css/long.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
+
+    <section class="payment">
+      <div class="payment-container">
+        <!-- Header -->
+        <div
+          class="page-header d-flex justify-content-between align-items-center"
+        >
+          <h1 class="h2 fw-bold mb-0">ការទូទាត់ប្រាក់</h1>
+          <div class="step-badge">
+            <i class="fas fa-receipt me-2"></i>
+            ជំហានទី ២ នៃ ២
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Left Column -->
+          <div class="col-lg-8">
+            <!-- Amount Display -->
+            <div class="amount-card mb-4">
+              <div class="row align-items-center position-relative">
+                <div class="col-md-8">
+                  <div class="amount-details mb-2">ចំនួនទឹកប្រាក់សរុប</div>
+                  <div class="amount-value">75,000៛</div>
+
+                  <!-- Direct Orders Section -->
+                  <div class="direct-orders mt-3">
+                    <h5 class="fw-bold">ប្រភេទសេវាកម្មដែលបានជ្រើសរើស</h5>
+                    <div id="selectedServices" class="row mb-3"></div>
+                    <h5 class="fw-bold">ប្រភេទសម្លៀកបំពាក់</h5>
+                    <!-- Updated title -->
+                    <div id="serviceList" class="row"></div>
+                    <!-- Placeholder for dynamic services -->
+                  </div>
+                </div>
+                <div class="col-md-4 time-chip-pay text-md-end mt-4 mt-md-0">
+                  <div class="status-chip">
+                    <i class="fas fa-clock"></i>
+                    រង់ចាំការទូទាត់
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- QR Section -->
+            <div class="qr-section">
+              <div class="khqr-logo">
+                <img
+                  src="https://bredcambodia.com.kh/wp-content/uploads/2022/12/KHQR-available-here-logo-with-bg-1024x422.png"
+                  alt="KHQR"
+                  style="width: 50px; height: auto"
+                />
+              </div>
+
+              <h5 class="text-center mb-4">
+                <i class="fas fa-qrcode me-2 text-primary"></i>
+                ស្កេន QR ដើម្បីទូទាត់ប្រាក់
+              </h5>
+
+              <div class="qr-container">
+                <div class="scan-line"></div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  alt="Payment QR Code"
+                />
+              </div>
+
+              <div class="text-center mt-4">
+                <p class="text-muted mb-0">
+                  <i class="fas fa-info-circle me-2"></i>
+                  អាចប្រើបានជាមួយគ្រប់កម្មវិធីធនាគារក្នុងប្រទេសកម្ពុជា
+                </p>
+                <div class="upload-container mt-3">
+                  <input
+                    type="file"
+                    id="receiptUpload"
+                    class="form-control-file"
+                    accept="image/*"
+                  />
+                  <label for="receiptUpload" class="upload-label">
+                    <i class="fas fa-upload"></i> បញ្ចូលវិក័យប័ត្រ
+                  </label>
+                  <div
+                    id="uploadStatus"
+                    class="upload-status mt-2"
+                    style="display: none"
+                  >
+                    <i class="fas fa-spinner fa-spin"></i> កំពុងដំណើរការ...
+                  </div>
+                  <div
+                    id="successIcon"
+                    class="success-icon mt-2"
+                    style="display: none"
+                  >
+                    <i
+                      class="fas fa-check-circle"
+                      style="color: var(--success); font-size: 1.5rem"
+                    ></i>
+                    <span class="ms-2" style="font-size: 1.2rem; color: #2c3e50"
+                      >វិក័យប័ត្របានបញ្ចូលដោយជោគជ័យ!</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-4">
+            <div class="instruction-card">
+              <h5 class="card-title mb-4">
+                <i class="fas fa-info-circle me-2 text-primary"></i>
+                របៀបទូទាត់
+              </h5>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">បើកកម្មវិធីធនាគាររបស់អ្នក</p>
+                <small class="text-muted"
+                  >ជ្រើសរើសកម្មវិធីធនាគារដែលអ្នកប្រើប្រាស់</small
+                >
+              </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">ចុចប៊ូតុងស្កេន</p>
+                <small class="text-muted"
+                  >រប៊ូតុងស្កេន QR នៅក្នុងកម្មវិធី</small
+                >
+              </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">ស្កេន KHQR</p>
+                <small class="text-muted">ដាក់ QR code នៅចំកណ្តាលកាមេរ៉ា</small>
+              </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">បញ្ជារការទូទាត់</p>
+                <small class="text-muted">ផ្ទៀងផ្ទាត់និងបញ្ជាក់ការទូទាត់</small>
+              </div>
+
+              <button id="confirmPayment" class="confirm-button mt-4">
+                <i class="fas fa-check-circle me-2"></i>
+                បញ្ជាក់ការទូទាត់
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Success Modal -->
+    <div class="modal fade success-modal" id="successModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center p-5">
+            <div class="success-animation">
+              <div class="mb-4">
+                <i
+                  class="fas fa-check-circle"
+                  style="font-size: 5rem; color: var(--success-color)"
+                ></i>
+              </div>
+              <h4 class="mb-3 fw-bold">ការទូទាត់បានោគជ័យ!</h4>
+              <p class="text-muted mb-4">
+                អរគុណសម្រាប់ការប្រើប្រាស់សេវាកម្មរបស់យើងខ្ញុំ
+              </p>
+              <a href="../../../index.html" class="btn btn-primary px-4 py-2">
+                <i class="fas fa-home me-2"></i>
+                ត្រឡប់ទៅទំព័រដើម
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("confirmPayment")
+        .addEventListener("click", function () {
+          this.disabled = true;
+          this.innerHTML =
+            '<span class="spinner-border spinner-border-sm me-2"></span> កំពុងដំណើរការ...';
+
+          setTimeout(() => {
+            const successModal = new bootstrap.Modal(
+              document.getElementById("successModal")
+            );
+            successModal.show();
+
+            this.disabled = false;
+            this.innerHTML =
+              '<i class="fas fa-check-circle me-2"></i> បញ្ជាក់ការទូទាត់';
+          }, 2000);
+        });
+
+      document
+        .getElementById("receiptUpload")
+        .addEventListener("change", function () {
+          const fileInput = document.getElementById("receiptUpload");
+          const uploadStatus = document.getElementById("uploadStatus");
+          const successIcon = document.getElementById("successIcon");
+
+          if (fileInput.files.length > 0) {
+            uploadStatus.style.display = "block"; // Show loading animation
+            successIcon.style.display = "none"; // Hide success icon
+
+            // Simulate a file upload process
+            setTimeout(() => {
+              uploadStatus.style.display = "none"; // Hide loading animation
+              successIcon.style.display = "flex"; // Show success icon
+            }, 2000); // Simulate a 2-second upload time
+          }
+        });
+
+      // Sample data for demonstration (replace with API call)
+
+      const selectedServices = [
+        { name: "បោកគក់", icon: "../../../assets/image/service-icon/wash.png" },
+        { name: "អ៊ុត", icon: "../../../assets/image/service-icon/iron.png" },
+        {
+          name: "បោកស្ងួត",
+          icon: "../../../assets/image/service-icon/dryWash.png",
+        },
+        {
+          name: "សម្អាតស្បែកជើង",
+          icon: "../../../assets/image/service-icon/shoeClean.png",
+        },
+      ];
+
+      // Function to display selected services
+      function displaySelectedServices() {
+        const selectedServicesContainer =
+          document.getElementById("selectedServices");
+        let servicesHTML = ""; // Initialize an empty string to hold the HTML
+
+        selectedServices.forEach((service) => {
+          servicesHTML += `
+                <div class="col-12 col-md-5 mb-3 mt-2">
+                    <div class="service-card selected-service">
+                        <img src="${service.icon}" alt="${service.name}" style="width: 40px; height: auto;">
+                        <div class="service-info">
+                            <div class="service-name">${service.name}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        selectedServicesContainer.innerHTML = servicesHTML; // Set the inner HTML
+      }
+      const clothes = [
+        {
+          name: "ខោរ (ចំនួន ៣)",
+          price: "1,500៛",
+          img: "../../../assets/image/service-icon/pant.png",
+          type: "ខោរ", // Ensure this is defined
+        },
+        {
+          name: "អាវ (ចំនួន ២)",
+          price: "1,000៛",
+          img: "../../../assets/image/service-icon/shirt.png",
+          type: "អាវ", // Ensure this is defined
+        },
+        {
+          name: "ស្បែកជើង​ (ចំនួន ២)",
+          price: "3,000៛",
+          img: "../../../assets/image/service-icon/shoes.png",
+          type: "ស្បែកជើង", // Ensure this is defined
+        },
+        {
+          name: "ក្រណាត់ (ចំនួន ២)",
+          price: "10,000៛",
+          img: "../../../assets/image/service-icon/capet.png",
+          type: "ក្រណាត់", // Ensure this is defined
+        },
+      ];
+
+      function displayClothes() {
+        const serviceList = document.getElementById("serviceList");
+        serviceList.innerHTML = ""; // Clear existing content
+
+        clothes.forEach((clothing) => {
+          const clothingCard = `
+            <div class="col-12 col-md-6 mb-3">
+              <div class="clothes-card">
+                <img src="${clothing.img}" alt="${clothing.name}" style="width: 40px; height: auto;"></img>
+                <div class="service-info">
+                  <div class="service-name">${clothing.name}</div>
+                  <div class="service-type">${clothing.type}</div> <!-- Ensure this is correctly referenced -->
+                  <div class="service-price">${clothing.price}</div>
+                </div>
+              </div>
+            </div>
+          `;
+          serviceList.innerHTML += clothingCard; // Append each clothing card
+        });
+      }
+
+      // Call the function to display clothes
+      displayClothes();
+      displaySelectedServices();
+    </script>
+  </body>
+</html>

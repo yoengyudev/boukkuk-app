@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="vender/bootstrap-icon/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header class="fixed-header">
+        <nav class="py-3">
+            <div class="container">
+                <div class="row gy-4 align-items-center">
+                    <div class="col-auto order-0">
+                        <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+                    </div>
+                    <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+                        <div class="row d-flex under-logo">
+                            <div
+                                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text"
+                                    placeholder="ស្វែងរក" aria-label="">
+                                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                                    <i class="bi bi-search text-white"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                                <button
+                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                                    <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                                    ហាងនៅក្បែ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+                        <div class="d-flex w-100 align-items-center justify-content-end">
+                            <div class="dropdown rounded-2">
+                                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="profile bg-instead rounded-circle">
+                                        <i class="bi bi-person-circle"></i>
+                                    </div>
+                                    <span>គណនី</span>
+                                    <i class="bi bi-chevron-down fw-bold"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                                    style="width:300px;">
+                                    <li class="mb-3" id="signup-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            បង្កើតគណនី
+                                        </a>
+                                    </li>
+                                    <li class="mb-3" id="login-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            ចូលប្រើប្រាស់
+                                        </a>
+                                    </li>
+                                    <li class="mb-3" id="pro-">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="profile.html">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-person-circle"></i>
+                                            </div>
+                                            ប្រវត្តិរូបរបស់ខ្ញុំ
+                                        </a>
+                                    </li>
+                                    <hr style="color: #ddd;">
+                                    <li id="logout-list">
+                                        <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                            href="#">
+                                            <div class="profile bg-instead rounded-circle">
+                                                <i class="bi bi-power"></i>
+                                            </div>
+                                            ចាកចេញពីគណនី
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <a href=""
+                                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                                <div class="profile bg-instead rounded-circle">
+                                    <i class="bi bi-bell-fill fs-18"></i>
+                                </div>
+                                <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                            </a>
+                            <button type="submit" onclick="wishlist()"
+                                class="hover-nav btn profile d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-banner mb-70 d-none d-md-block">
+            <div class="container p-0">
+                <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
+                    <div class="carousel-inner  bg-transparent">
+                        <div class="carousel-item active poster-dis rounded-5">
+                            <div class="col-7 h-100 d-flex align-items-center px-80">
+                                <div>
+                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
+                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
+                                    <a href="store.html"
+                                        class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item active poster-dis rounded-5">
+                            <div class="col-7 h-100 d-flex align-items-center px-80">
+                                <div>
+                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
+                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
+                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="prev">
+                        <span
+                            class="carousel-prev bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
+                            aria-hidden="true">
+                            <i class="bi bi-chevron-left text-dark"></i>
+                        </span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="next">
+                        <span
+                            class="carousel-next bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
+                            aria-hidden="true">
+                            <i class="bi bi-chevron-right text-dark"></i>
+                        </span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="container">
+                <div class="row py-4 px-3">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-3">
+                                <i class="bi bi-shop fs-3 fs-md-2 text-dark-emphasis"></i>
+                            </div>
+                            <h4 class="text-dark mb-0 fs-5 fs-md-4">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex  flex-sm-row align-items-start align-items-sm-center gap-2 justify-content-md-end">
+                            <select class="form-select filter-shop rounded-5 px-3 text-dark" 
+                                    style="max-width: 300px;"
+                                    id="sort"
+                                    onchange="getLocation(this.value)">
+                                <option value="all">ទាំងអស់</option>
+                                <option value="mumbai">ហាងនៅជិតបំផុត</option>
+                                <option value="noida">ហានមានការវាយតម្លៃល្អបំផុត</option>
+                                <option value="delhi">ហាងមានតម្លៃទាបសម្រាប់ដឹកជញ្ជួន</option>
+                                <option value="banglore">ដឹកជញ្ជួលលៀនបំផុត</option>
+                            </select>
+                            <label for="sort" class="mb-0 px-3 py-2 text-dark-emphasis">តម្រៀប</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                    <!-- Store Card 1 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit"  onclick="wishlistCard()" 
+                                        class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Store Card 2 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit" onclick="wishlistCard()" 
+                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Store Card 3 -->
+                    <div class="col">
+                        <div class="card bg-transparent overflow-hidden border-0 h-100">
+                            <div class="mb-3 overflow-hidden position-relative card-img-wrapper">
+                                <button type="submit" onclick="wishlistCard()" 
+                                        class="btn bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
+                                    <i class="bi bi-heart heart"></i>
+                                </button>
+                                <a href="store.html" class="overflow-hidden d-block">
+                                    <img src="assets/image/store/2.jpg" 
+                                         class="card-img img-store w-100" 
+                                         alt="Store Image">
+                                </a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <a href="store.html" 
+                                       class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
+                                        លីហ៊បោកអ៊ុតផ្សាទឹកថ្លា
+                                    </a>
+                                    <span class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span>4.5</span>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="metter">1000m</span>
+                                    <span class="text-muted">•</span>
+                                    <span>20វិនាទី</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer mt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-primary">Boukuk</h5>
+                    <p class="fs-18">
+                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+                        ដោយធានាបាននូវភាពងាយស្រួល​
+                        និងគុណភាពដល់អ្នកប្រើប្រាស់។
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" style="background-color:#4267B2;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" style="background-color:  #0088cc;"><i class="bi bi-telegram"></i></a>
+                        <a href="#"
+                            style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); "><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 ms-auto">
+                    <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+                    <ul>
+                        <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
+                        <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
+                        <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
+                        <li id="order-history"><a type="button" onclick="profileMe()" class="border-0 p-0 bg-transparent fs-18"> <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-primary">ទំនាក់ទំនង</h5>
+                    <ul>
+                        <li><a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a></li>
+                        <li>
+                            <a href="mailto:boukuk@gmail.com" class="fs-18">
+                                <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
+                </div>
+                <div>
+                    <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/logout.js"></script>
+</body>
+
+</html>
