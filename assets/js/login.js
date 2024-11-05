@@ -25,7 +25,8 @@ login.addEventListener("submit", (even) => {
                 location.href = '../../../index.html';
             }
         });
-});
+
+        });
 
 //============================================== end of login ========================
 
