@@ -1,549 +1,104 @@
 <!DOCTYPE html>
 <html lang="km">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ការកំណត់ទម្រង់ - កម្មវិធីសេវាកម្មបោកគក់</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../../assets/css/main.css" />
-    <link rel="stylesheet" href="../../../assets/css/long.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      .avatar-container {
-        position: relative;
-        width: 150px;
-        height: 150px;
-        margin: 0 auto;
-      }
-
-      .avatar {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        background-color: #f0f0f0;
-        background-image: url("assets/img/default-avatar.png");
-        background-size: cover;
-        background-position: center;
-      }
-
-      .camera-icon {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #fff;
-        border: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .camera-icon i {
-        color: #666;
-        font-size: 16px;
-      }
-
-      .dropdown-menu {
-        min-width: 120px;
-      }
-
-      .dropdown-item {
-        cursor: pointer;
-        padding: 8px 16px;
-      }
-
-      .dropdown-item:hover {
-        background-color: #f8f9fa;
-      }
-    </style>
-  </head>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ការកំណត់ទម្រង់ - កម្មវិធីសេវាកម្មបោកគក់</title>
-  <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/long.css" />
-  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../assets/css/style.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
 
-          <div class="row g-4">
-            <div class="col-md-4 col-lg-3">
-              <div class="sidebar card">
-                <div class="avatar-container mb-4" id="avatarContainer">
-                  <img
-                    src="assets/img/AboutUs-review3avif.avif"
-                    alt="រូបភាពអ្នកប្រើប្រាស់"
-                    class="avatar"
-                    id="userAvatar"
-                  />
-                  <div class="dropdown">
-                    <button
-                      class="camera-icon"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fas fa-camera"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <label class="dropdown-item" for="avatarUpload">
-                          <i class="fas fa-edit me-2"></i>Edit
-                        </label>
-                        <input
-                          type="file"
-                          id="avatarUpload"
-                          accept="image/*"
-                          style="display: none"
-                        />
-                      </li>
-                      <li>
-                        <button
-                          class="dropdown-item"
-                          type="button"
-                          id="deleteImageBtn"
-                        >
-                          <i class="fas fa-trash me-2"></i>Delete
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  class="sidebar-item btn active"
-                  data-section="personal-info"
-                >
-                  <i class="fas fa-user"></i>
-                  <span>ព័ត៌មានផ្ទាល់ខ្លួន</span>
-                </div>
-                <div
-                  class="sidebar-item btn"
-                  data-section="laundry-preferences"
-                >
-                  <i class="fas fa-tshirt"></i>
-                  <span>ចំណូលចិត្តការបោកគក់</span>
-                </div>
-                <div class="sidebar-item btn" data-section="order-history">
-                  <i class="fas fa-history"></i>
-                  <span>ប្រវត្តិការបញ្ជាទិញ</span>
-                </div>
-                <div class="sidebar-item btn" data-section="payment-methods">
-                  <i class="fas fa-credit-card"></i>
-                  <span>វិធីទូទាត់ប្រាក់</span>
-                </div>
-                <div class="sidebar-item btn" data-section="notifications">
-                  <i class="fas fa-bell"></i>
-                  <span>ការជូនដំណឹង</span>
-                </div>
-                <div class="sidebar-item btn" data-section="change-password">
-                  <i class="fas fa-lock"></i>
-                  <span>ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
-                </div>
+<body>
+  <header class="fixed-top">
+    <nav class="py-3">
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-auto order-0">
+            <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+          </div>
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+            <div class="row d-flex under-logo">
+              <div
+                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
+                  aria-label="" />
+                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                  <i class="bi bi-search text-white"></i>
+                </button>
               </div>
-            </div>
-            <div class="col-md-8 col-lg-9">
-              <div class="main-content card">
-                <div id="personal-info" class="content-section">
-                  <h2 class="section-title text-primary">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
-                  <p class="text-muted mb-4">
-                    ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
-                  </p>
-                  <form>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="fullname"
-                          placeholder="ឈ្មោះ"
-                        />
-                        <label for="fullname">ឈ្មោះ</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="email"
-                          placeholder="អ៊ីមែល"
-                        />
-                        <label for="email">អ៊ីមែល</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="tel"
-                          class="form-control"
-                          id="phone"
-                          placeholder="លេខទូរស័ព្ទ"
-                        />
-                        <label for="phone">លេខទូរស័ព្ទ</label>
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <div class="form-floating">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="address"
-                          placeholder="អាសយដ្ឋាន"
-                        />
-                        <label for="address">អាសយដ្ឋាន</label>
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn btn-save w-100 btn-primary"
-                    >
-                      រក្សាទុកការផ្លាស់ប្តូរ
-                    </button>
-                  </form>
-                </div>
-                <div id="laundry-preferences" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ចំណូលចិត្តការបោកគក់
-                  </h2>
-                  <p class="text-muted mb-4">
-                    កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
-                  </p>
-                  <form>
-                    <div class="mb-4">
-                      <label for="detergent" class="form-label"
-                        >សាប៊ូដែលចូលចិត្ត</label
-                      >
-                      <select class="form-select form-control" id="detergent">
-                        <option selected>ជ្រើសរើសសាប៊ូដែលអ្នកចូលចិត្ត</option>
-                        <option value="regular">ធម្មតា</option>
-                        <option value="sensitive">សម្រាប់ស្បែកស្រទន់</option>
-                        <option value="eco-friendly">មិនប៉ះពាល់បរិស្ថាន</option>
-                        <option value="fragrance-free">គ្មានក្លិន</option>
-                      </select>
-                    </div>
-                    <div class="mb-4">
-                      <label for="fabric-softener" class="form-label"
-                        >ទឹកក្រអូបសម្លៀកបំពាក់</label
-                      >
-                      <select
-                        class="form-select form-control"
-                        id="fabric-softener"
-                      >
-                        <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអូប</option>
-                        <option value="yes">បាទ/ចាស ប្រើទឹកក្រអូប</option>
-                        <option value="no">មិនប្រើទឹកក្រអូប</option>
-                      </select>
-                    </div>
-
-                    <div class="mb-4">
-                      <label for="special-instructions" class="form-label"
-                        >ការណែនាំពិសេស</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="special-instructions"
-                        rows="4"
-                        placeholder="សរសេរការណែនាំពិសេសសម្រាប់សម្លៀកបំពាក់របស់អ្នក"
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
-                    >
-                      រក្សាទុកចំណូលចិត្ត
-                    </button>
-                  </form>
-                </div>
-                <div id="order-history" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ប្រវត្តិការបញ្ជាទិញ
-                  </h2>
-                  <p class="text-muted mb-4">
-                    មើលការប��្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>លេខបញ្ជាទិញ</th>
-                          <th>កាលបរិច្ឆេទ</th>
-                          <th>សេវាកម្ម</th>
-                          <th>ស្ថានភាព</th>
-                          <th>តម្លៃសរុប</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#12345</td>
-                          <td>2023-05-15</td>
-                          <td>បោកនិងបត់</td>
-                          <td>
-                            <span class="badge bg-success">បានបញ្ចប់</span>
-                          </td>
-                          <td>$25.00</td>
-                        </tr>
-                        <tr>
-                          <td>#12346</td>
-                          <td>2023-05-10</td>
-                          <td>បោកស្ងួត</td>
-                          <td>
-                            <span class="badge bg-warning">កំពុងដំណើរការ</span>
-                          </td>
-                          <td>$40.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div id="payment-methods" class="content-section d-none">
-                  <h2 class="section-title text-primary">វិធីទូទាត់ប្រាក់</h2>
-                  <p class="text-muted mb-4">
-                    គ្រប់គ្រងជម្រើសទូទាត់ប្រាក់របស់អ្នក។
-                  </p>
-                  <div class="mb-4">
-                    <h3 class="h5">វិធីទូទាត់ប្រាក់ដែលបានរក្សាទុក</h3>
-                    <div id="payment-methods-list">
-                      <div class="card mb-2">
-                        <div
-                          class="card-body d-flex justify-content-between align-items-center"
-                        >
-                          <div>
-                            <i class="fab fa-cc-visa me-2"></i>
-                            <span>Visa បញ្ចប់ដោយលេខ 1234</span>
-                          </div>
-                          <button
-                            class="btn btn-sm btn-outline-danger remove-payment"
-                          >
-                            លុប
-                          </button>
-                        </div>
-                      </div>
-                      <div class="card mb-2">
-                        <div
-                          class="card-body d-flex justify-content-between align-items-center"
-                        >
-                          <div>
-                            <i class="fab fa-cc-mastercard me-2"></i>
-                            <span>Mastercard បញ្ចប់ដោយលេខ 5678</span>
-                          </div>
-                          <button
-                            class="btn btn-sm btn-outline-danger remove-payment"
-                          >
-                            លុប
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    class="btn w-100 btn-save btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addPaymentModal"
-                  >
-                    បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-                  </button>
-                </div>
-                <div id="notifications" class="content-section d-none">
-                  <h2 class="section-title text-primary">ការជូនដំណឹង</h2>
-                  <p class="text-muted mb-4">
-                    គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
-                  </p>
-                  <form>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="emailNotifications"
-                        checked
-                      />
-                      <label class="form-check-label" for="emailNotifications"
-                        >ការជូនដំណឹងតាមអ៊ីមែល</label
-                      >
-                    </div>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="smsNotifications"
-                      />
-                      <label class="form-check-label" for="smsNotifications"
-                        >ការជូនដំណឹងតាម SMS</label
-                      >
-                    </div>
-                    <div class="mb-3 form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="pushNotifications"
-                        checked
-                      />
-                      <label class="form-check-label" for="pushNotifications"
-                        >ការជូនដំណឹងតាមកម្មវិធី</label
-                      >
-                    </div>
-                    <button
-                      type="submit"
-                      class="btn w-100 btn-save btn-primary"
-                    >
-                      រក្សាទុកការកំណត់ការជូនដំណឹង
-                    </button>
-                  </form>
-                </div>
-                <div id="change-password" class="content-section d-none">
-                  <h2 class="section-title text-primary">
-                    ផ្លាស់ប្តូរពាក្យសម្ងាត់
-                  </h2>
-                  <form>
-                    <div class="mb-4 position-relative">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="currentPassword"
-                          placeholder="ពាក្យសម្ងាត់បច្ចុប្បន្ន"
-                          required
-                        />
-                        <label for="currentPassword"
-                          >ពាក្យសម្ងាត់បច្ចុប្បន្ន</label
-                        >
-                        <i
-                          class="fas fa-eye"
-                          id="toggleCurrentPassword"
-                          style="
-                            cursor: pointer;
-                            position: absolute;
-                            right: 10px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                          "
-                        ></i>
-                      </div>
-                    </div>
-                    <div class="mb-4 position-relative">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="newPassword"
-                          placeholder="ពាក្យសម្ងាត់ថ្មី"
-                          required
-                        />
-                        <label for="newPassword">ពាក្យសម្ងាត់ថ្មី</label>
-                        <i
-                          class="fas fa-eye"
-                          id="toggleNewPassword"
-                          style="
-                            cursor: pointer;
-                            position: absolute;
-                            right: 10px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                          "
-                        ></i>
-                      </div>
-                    </div>
-                    <div class="mb-4 position-relative">
-                      <div class="form-floating">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="confirmPassword"
-                          placeholder="បញ្ជាក់ពាក្យសម្ងាត់"
-                          required
-                        />
-                        <label for="confirmPassword">បញ្ជាក់ពាក្យសម្ងាត់</label>
-                        <i
-                          class="fas fa-eye"
-                          id="toggleConfirmPassword"
-                          style="
-                            cursor: pointer;
-                            position: absolute;
-                            right: 10px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                          "
-                        ></i>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      class="btn-change btn w-100 btn-save btn-primary"
-                      id="changePasswordButton"
-                    >
-                      <span id="buttonText">ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
-                      <span
-                        id="spinner"
-                        class="spinner-border spinner-border-sm"
-                        role="status"
-                        aria-hidden="true"
-                        style="display: none"
-                      ></span>
-                    </button>
-                  </form>
-                </div>
+              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
+                  ហាងនៅក្ប
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- Modal for Adding Payment Method -->
-      <div
-        class="modal fade"
-        id="addPaymentModal"
-        tabindex="-1"
-        aria-labelledby="addPaymentModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addPaymentModalLabel">
-                ប្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form id="add-payment-form">
-                <div class="mb-3 form-floating">
-                  <select
-                    class="form-select ps-0 form-control"
-                    id="paymentType"
-                    required
-                  >
-                    <option value="" disabled selected>
-                      ជ្រើសរើសប្រភេទការទូទាត់
-                    </option>
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="amex">American Express</option>
-                    <option value="discover">Discover</option>
-                  </select>
-                  <label class="ps-0" for="paymentType">ប្រភេទការទូទាត់</label>
+          <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+            <div class="d-flex w-100 align-items-center justify-content-end">
+              <div class="dropdown rounded-2">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile_header bg-instead rounded-circle">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <span>គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                  style="width: 300px">
+                  <li class="mb-3">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      បង្កើតគណនី
+                    </a>
+                  </li>
+                  <li class="mb-3" id="login-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ចូលប្រើប្រាស់
+                    </a>
+                  </li>
+                  <li class="mb-3">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="profile_header.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ប្រវត្តិរូបរបស់ខ្ញុំ
+                    </a>
+                  </li>
+                  <hr style="color: #ddd" />
+                  <li id="logout-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-power"></i>
+                      </div>
+                      ចាកចេញពីគណនី
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <a href=""
+                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                <div class="profile_header bg-instead rounded-circle">
+                  <i class="bi bi-bell-fill fs-18"></i>
                 </div>
                 <span class="d-none d-sm-block">ការជូនដំណឹង</span>
               </a>
               <a href=""
                 class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
               </a>
             </div>
           </div>
@@ -553,20 +108,33 @@
   </header>
 
   <main>
-    <section class="profile mt-100">
+    <section class="profile" style="margin-top: 100px">
       <div class="container my-5">
-        <h1 class="section-title text-primary">ការកំណត់ទម្រង់</h1>
+        <h2 class="section-title text-primary">ការកំណត់ទម្រង់</h2>
 
         <div class="row g-4">
           <div class="col-md-4 col-lg-3">
             <div class="sidebar card">
               <div class="avatar-container mb-4" id="avatarContainer">
-                <img src="../../../assets/image/user_profile/user1.png" alt="រូបភាពអ្នកប្រើប្រាស់" class="avatar"
-                  id="userAvatar" />
-                <div class="avatar-overlay">
-                  <i class="fas fa-camera"></i>
+                <img src="assets/img/AboutUs-review3avif.avif" alt="" class="avatar" id="userAvatar" />
+                <div class="dropdown">
+                  <button class="camera-icon z-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-camera"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <label class="dropdown-item" for="avatarUpload">
+                        <i class="fas fa-edit me-2"></i>Edit
+                      </label>
+                      <input type="file" id="avatarUpload" accept="image/*" style="display: none" />
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button" id="deleteImageBtn">
+                        <i class="fas fa-trash me-2"></i>Delete
+                      </button>
+                    </li>
+                  </ul>
                 </div>
-                <input type="file" id="avatarUpload" accept="image/*" style="display: none" />
               </div>
               <div class="sidebar-item btn active" data-section="personal-info">
                 <i class="fas fa-user"></i>
@@ -601,7 +169,7 @@
                 <p class="text-muted mb-4">
                   ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
                 </p>
-                <form action="" id="updateForm">
+                <form id="updateForm">
                   <div class="mb-4">
                     <div class="form-floating">
                       <input type="text" class="form-control" id="fullname" placeholder="ឈ្មោះ" />
@@ -620,10 +188,10 @@
                       <label for="phone">លេខទូរស័ព្ទ</label>
                     </div>
                   </div>
-                  <button type="submit" id="updateButton" class="btn btn-save w-100 btn-primary">
+                  <button id="update_info" class="btn btn-primary w-100" type="submit">
+                    <span class="spinner-border spinner-border-sm" id="spinner" style="display:none;"
+                      aria-hidden="true"></span>
                     <span id="buttonText">រក្សាទុកការផ្លាស់ប្តូរ</span>
-                    <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                      style="display: none;"></span>
                   </button>
                 </form>
               </div>
@@ -669,7 +237,7 @@
                   ប្រវត្តិការបញ្ជាទិញ
                 </h2>
                 <p class="text-muted mb-4">
-                  មើលការបញ្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
+                  មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                 </p>
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -760,7 +328,7 @@
                     <label class="form-check-label" for="pushNotifications">ការជូនដំណឹងតាមកម្មវិធី</label>
                   </div>
                   <button type="submit" class="btn w-100 btn-save btn-primary">
-                    រក្សាទុកការកំណត់ការជូនដំណឹង
+                    រក្ាទុកការំណត់ការជូនដំណឹង
                   </button>
                 </form>
               </div>
@@ -769,29 +337,53 @@
                   ផ្លាស់ប្តូរពាក្យសម្ងាត់
                 </h2>
                 <form>
-                  <div class="mb-4">
+                  <div class="mb-4 position-relative">
                     <div class="form-floating">
-                      <input type="password" class="form-control" id="currentPassword"
-                        placeholder="ពាក្យសម្ងាត់បច្ចុប្បន្ន" required />
-                      <label for="currentPassword">ពាក្យសម្ងាត់បច្ចុប្បន្ន</label>
-                    </div>
-                  </div>
-                  <div class="mb-4">
-                    <div class="form-floating">
-                      <input type="password" class="form-control" id="newPassword" placeholder="ពាក្យសម្ងាត់ថ្មី"
+                      <input type="password" class="form-control" id="currentPassword" placeholder="Current Password"
                         required />
-                      <label for="newPassword">ពាក្យសម្ងាត់ថ្មី</label>
+                      <label for="currentPassword">Current Password</label>
+                      <i class="fas fa-eye" id="toggleCurrentPassword" style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "></i>
                     </div>
                   </div>
-                  <div class="mb-4">
+                  <div class="mb-4 position-relative">
                     <div class="form-floating">
-                      <input type="password" class="form-control" id="confirmPassword" placeholder="បញ្ជាក់ពាក្យសម្ងាត់"
+                      <input type="password" class="form-control" id="newPassword" placeholder="New Password"
                         required />
-                      <label for="confirmPassword">បញ្ជាក់ពាក្យសម្ងាត់</label>
+                      <label for="newPassword">New Password</label>
+                      <i class="fas fa-eye" id="toggleNewPassword" style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "></i>
                     </div>
                   </div>
-                  <button type="submit" class="btn w-100 btn-save btn-primary">
-                    ផ្លាស់ប្តូរពាក្យសម្ងាត់
+                  <div class="mb-4 position-relative">
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                        required />
+                      <label for="confirmPassword">Confirm Password</label>
+                      <i class="fas fa-eye" id="toggleConfirmPassword" style="
+                            cursor: pointer;
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                          "></i>
+                    </div>
+                    <span class="text-danger" id="passwordError"></span>
+                  </div>
+                  <button type="button" class="btn-change btn w-100 btn-save btn-primary" id="changePasswordButton">
+                    <span id="buttonText1">ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
+                    <span id="spinner1" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                      style="display: none"></span>
                   </button>
                 </form>
               </div>
@@ -807,7 +399,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addPaymentModalLabel">
-              បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
+              ប្ថែមវិធីទូទាត់ប្រាក់ថ្មី
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -833,7 +425,7 @@
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required maxlength="5" />
                 <label class="ps-0 ms-0" for="expiryDate">កាលបរិច្ឆេទផុតកំណត់</label>
-                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្នាំ</small>
+                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្���ាំ</small>
               </div>
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="cvv" placeholder="CVV" required maxlength="3" />
@@ -848,12 +440,6 @@
       </div>
     </div>
   </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../../assets/js/header.js"></script>
-  <script src="../../../assets/js/profile.js"></script>
-  <script src="../../../assets/js/footer.js"></script>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const sidebarItems = document.querySelectorAll(".sidebar-item");
@@ -955,65 +541,44 @@
         }
       });
 
-      document
-        .getElementById("avatarUpload")
-        .addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-              document.getElementById("userAvatar").src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-
-      document
-        .getElementById("deleteImageBtn")
-        .addEventListener("click", function () {
-          document.getElementById("userAvatar").src =
-            "assets/img/default-avatar.png"; // Replace with your default avatar path
-          document.getElementById("avatarUpload").value = "";
-        });
-
-      document
-        .getElementById("addButton")
-        .addEventListener("click", function () {
-          document.getElementById("avatarUpload").click();
-          document.getElementById("actionButtons").style.display = "none"; // Hide dropdown after selection
-        });
-
-      function togglePasswordVisibility(inputId, iconId) {
-        const input = document.getElementById(inputId);
-        const icon = document.getElementById(iconId);
-        if (input.type === "password") {
-          input.type = "text";
-          icon.classList.remove("fa-eye");
-          icon.classList.add("fa-eye-slash");
-        } else {
-          input.type = "password";
-          icon.classList.remove("fa-eye-slash");
-          icon.classList.add("fa-eye");
-        }
+    // Add this function to toggle password visibility
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === "password") {
+        input.type = "text"; // Change to text to show password
+        icon.classList.remove("fa-eye"); // Change icon to 'eye' open
+        icon.classList.add("fa-eye-slash"); // Change icon to 'eye' closed
+      } else {
+        input.type = "password"; // Change back to password
+        icon.classList.remove("fa-eye-slash"); // Change icon to 'eye' closed
+        icon.classList.add("fa-eye"); // Change icon to 'eye' open
       }
+    }
 
-      document
-        .getElementById("toggleCurrentPassword")
-        .addEventListener("click", function () {
-          togglePasswordVisibility("currentPassword", "toggleCurrentPassword");
-        });
+    // Add event listeners for the eye icons
+    document
+      .getElementById("toggleCurrentPassword")
+      .addEventListener("click", function () {
+        togglePasswordVisibility("currentPassword", "toggleCurrentPassword");
+      });
 
-      document
-        .getElementById("toggleNewPassword")
-        .addEventListener("click", function () {
-          togglePasswordVisibility("newPassword", "toggleNewPassword");
-        });
+    document
+      .getElementById("toggleNewPassword")
+      .addEventListener("click", function () {
+        togglePasswordVisibility("newPassword", "toggleNewPassword");
+      });
 
-      document
-        .getElementById("toggleConfirmPassword")
-        .addEventListener("click", function () {
-          togglePasswordVisibility("confirmPassword", "toggleConfirmPassword");
-        });
-    </script>
-  </body>
+    document
+      .getElementById("toggleConfirmPassword")
+      .addEventListener("click", function () {
+        togglePasswordVisibility("confirmPassword", "toggleConfirmPassword");
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/header.js"></script>
+  <script src="../../../assets/js/profile.js"></script>
+  <script src="../../../assets/js/footer.js"></script>
+</body>
+
 </html>

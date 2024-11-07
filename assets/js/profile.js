@@ -20,66 +20,6 @@ function getData() {
     });
 }
 getData();
-
-
-//===============================>> Update User Information Function <<================================//
-
-document.getElementById("updateForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let updateName = document.getElementById('fullname').value;
-    let updateEmail = document.getElementById('email').value;
-    let updatePhone = document.getElementById('phone').value;
-    let updateAddress = document.getElementById('address').value;
-    let updateButton = document.getElementById('updateButton');
-    let spinner = document.getElementById('spinner');
-    let buttonText = document.getElementById('buttonText');
-
-    updateButton.disabled = true;
-    spinner.style.display = 'inline-block';
-    buttonText.textContent = 'កំពុងរក្សាទុក...';
-
-    let token = localStorage.getItem("token");
-
-    if (!token) {
-        updateButton.disabled = false;
-        spinner.style.display = 'none';
-        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
-        return;
-    }
-
-    let updatedData = {
-        name: updateName,
-        email: updateEmail,
-        phone: updatePhone,
-        address: updateAddress,
-    };
-    console.log(updatedData.address);
-    fetch(`${g9_host}/api/profile/info`, {    
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token,
-        },
-        body: JSON.stringify(updatedData)
-    })
-        .then(res => res.json())
-        .then(response => {
-            console.log(response.data);
-            console.log(response.data.name);
-            console.log(response.data.email);
-            console.log(response.data.phone);
-            console.log(response.data.address);
-        })
-        .finally(() => {
-            updateButton.disabled = false;
-            spinner.style.display = 'none';
-            buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
-        });
-});
-
-// ======================================ending =================================//
-
 // =====================change password========================
 document
   .getElementById("changePasswordButton")
@@ -92,27 +32,25 @@ document
 
     // Check if all password fields are filled
     if (!oldPassword || !newPassword || !confirmPassword) {
-      alert("Please fill in all password fields.");
+      showAlert("Please fill in all password fields.");
       return;
     }
 
     if (newPassword.length < 8) {
-      alert("New password must be at least 8 characters long.");
+      showAlert("New password must be at least 8 characters long.");
       return;
     }
 
     // Check if new password and confirm password match
     if (newPassword !== confirmPassword) {
-      alert("New password and confirmation do not match.");
+      showAlert("New password and confirmation do not match.");
       return;
     }
-    const buttonText = document.getElementById("buttonText");
-    const spinner = document.getElementById("spinner");
-    buttonText.style.display = "none";
-    spinner.style.display = "inline-block";
-
+    const buttonText1 = document.getElementById("buttonText1");
+    const spinner1 = document.getElementById("spinner1");
+    buttonText1.style.display = "none";
+    spinner1.style.display = "inline-block";
     let token = localStorage.getItem("token");
-
     fetch(`${g9_host}/api/profile/change-pass`, {
       method: "PUT",
       headers: {
@@ -129,11 +67,11 @@ document
       .then((res) => res.json())
       .then((json) => {
         // Hide spinner and show button text again
-        buttonText.style.display = "inline";
-        spinner.style.display = "none";
+        buttonText1.style.display = "inline";
+        spinner1.style.display = "none";
 
         if (json.success) {
-          alert("Password changed successfully!");
+          showAlert("Password changed successfully!");
         }
         // Clear the input fields
         document.getElementById("currentPassword").value = "";
@@ -141,10 +79,112 @@ document
         document.getElementById("confirmPassword").value = "";
       })
       .catch((error) => {
-        buttonText.style.display = "inline";
-        spinner.style.display = "none";
+        buttonText1.style.display = "inline";
+        spinner1.style.display = "none";
         console.error("Error:", error);
-        alert("An error occurred while changing the password.");
+        showAlert("An error occurred while changing the password.");
       });
   });
 // =====================end of change password=================
+
+//===============================>> Update User Information Function <<================================//
+
+document
+  .getElementById("updateForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let updateName = document.getElementById("fullname").value;
+    let updateEmail = document.getElementById("email").value;
+    let updatePhone = document.getElementById("phone").value;
+    let saveButton = document.getElementById('update_info');
+    let spinner = document.getElementById('spinner');
+    let buttonText = document.getElementById('buttonText');
+
+    saveButton.disabled = true;
+    spinner.style.display = 'inline-block';
+    buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
+
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("No token found. Please log in first.");
+      return;
+    }
+
+    let updatedData = {
+      name: updateName,
+      email: updateEmail,
+      phone: updatePhone,
+    };
+
+    fetch('https://mps10.chandalen.dev/api/profile/info',{
+      method: "PUT",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`, 
+      },
+      body: JSON.stringify(updatedData),  
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json.data);
+      })
+      .finally(() => {
+        saveButton.disabled = false;
+        spinner.style.display = 'none';
+        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
+    })
+  });
+
+// ======================================ending =================================//
+
+// ============================ change avarta =========================
+
+let avatarUpload = document.getElementById("avatarUpload");
+avatarUpload.addEventListener("change", function () {
+  let token = localStorage.getItem("token");
+  var avatar = this.files[0];
+  const formData = new FormData();
+  
+  formData.append("avatar", avatar);
+
+  if (avatar) {
+    fetch(`${g9_host}/api/profile/avatar`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.data);
+      });
+  } else {
+    document.getElementById("fileStatus").textContent = "No file selected";
+  }
+});
+
+let delete_Avatar = document.getElementById("deleteImageBtn");
+delete_Avatar.addEventListener("click", function () {
+  let token = localStorage.getItem("token");
+    fetch(`${g9_host}/api/profile/avatar`, {
+      method: "delete",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.data);
+      });
+});
+
+
+// ============================ end of change avarta =========================
