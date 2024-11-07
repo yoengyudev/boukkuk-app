@@ -32,7 +32,7 @@
   padding-left: 80px;
 }
 
-.mt-100{
+.mt-100 {
   margin-top: 100px;
 }
 
@@ -40,7 +40,7 @@
   margin-top: 100px;
 }
 
-.mt-n10{
+.mt-n10 {
   margin-top: -10px;
 }
 
@@ -96,7 +96,7 @@
 /* not merge */
 
 .fixed-header {
-  position:sticky;
+  position: sticky;
   top: 0;
   width: 100%;
   background-color: rgb(255, 255, 255);
@@ -105,7 +105,7 @@
   transition: background-color 0.3s ease;
 }
 
- .profile_header {
+.profile_header {
   width: 40px;
   height: 40px;
   display: flex;
@@ -115,10 +115,10 @@
 
 .btn-location:hover {
   color: #4762e6 !important;
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
 }
 
-.hover-nav{
+.hover-nav {
   transition: 0.5s;
   color: #212529d9;
 }
@@ -145,7 +145,7 @@
   }
 }
 
-.border-out{
+.border-out {
   border: 2px solid white;
   padding: 20px;
   border-radius: 30px;
@@ -494,14 +494,16 @@
   transform: translateY(-3px);
 }
 
-/* ============== lyhor style service provider ================= */
+
+
+/* ============== admin & provider ================= */
 
 
 :root {
-  --blue: #2a2185;
-  --white: #fff;
+  --blue: #4762E6;
+  --white: #ffffff;
   --gray: #f5f5f5;
-  --black1: #222;
+  --black1: #1B1B1B;
   --black2: #999;
 }
 
@@ -516,6 +518,7 @@
   transition: 0.5s;
   overflow: hidden;
 }
+
 .navigation.active {
   width: 80px;
 }
@@ -553,6 +556,7 @@
   text-decoration: none;
   color: var(--white);
 }
+
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
   color: var(--blue);
@@ -566,6 +570,7 @@
   line-height: 75px;
   text-align: center;
 }
+
 .navigation ul li a .icon ion-icon {
   font-size: 1.75rem;
 }
@@ -594,6 +599,7 @@
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
 }
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
   content: "";
@@ -617,6 +623,7 @@
   background: var(--white);
   transition: 0.5s;
 }
+
 .main.active {
   width: calc(100% - 80px);
   left: 80px;
@@ -731,6 +738,7 @@
 .cardBox .card:hover {
   background: var(--blue);
 }
+
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBx {
@@ -763,10 +771,12 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
 .cardHeader h2 {
   font-weight: 600;
   color: var(--blue);
 }
+
 .cardHeader .btn {
   position: relative;
   padding: 5px 10px;
@@ -781,32 +791,41 @@
   border-collapse: collapse;
   margin-top: 10px;
 }
+
 .details table thead td {
   font-weight: 600;
 }
+
 .details .recentOrders table tr {
   color: var(--black1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .details .recentOrders table tr:last-child {
   border-bottom: none;
 }
+
 .details .recentOrders table tbody tr:hover {
   background: var(--blue);
   color: var(--white);
 }
+
 .details .recentOrders table tr td {
   padding: 10px;
 }
+
 .details .recentOrders table tr td:last-child {
   text-align: end;
 }
+
 .details .recentOrders table tr td:nth-child(2) {
   text-align: end;
 }
+
 .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
 }
+
 .status.delivered {
   padding: 2px 4px;
   background: #8de02c;
@@ -815,6 +834,7 @@
   font-size: 14px;
   font-weight: 500;
 }
+
 .status.pending {
   padding: 2px 4px;
   background: #e9b10a;
@@ -823,6 +843,7 @@
   font-size: 14px;
   font-weight: 500;
 }
+
 .status.return {
   padding: 2px 4px;
   background: #f00;
@@ -831,6 +852,7 @@
   font-size: 14px;
   font-weight: 500;
 }
+
 .status.inProgress {
   padding: 2px 4px;
   background: #1795ce;
@@ -849,6 +871,7 @@
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
+
 .recentCustomers .imgBx {
   position: relative;
   width: 40px;
@@ -856,6 +879,7 @@
   border-radius: 50px;
   overflow: hidden;
 }
+
 .recentCustomers .imgBx img {
   position: absolute;
   top: 0;
@@ -864,24 +888,55 @@
   height: 100%;
   object-fit: cover;
 }
+
 .recentCustomers table tr td {
   padding: 12px 10px;
 }
+
 .recentCustomers table tr td h4 {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.2rem;
 }
+
 .recentCustomers table tr td h4 span {
   font-size: 14px;
   color: var(--black2);
 }
+
 .recentCustomers table tr:hover {
   background: var(--blue);
   color: var(--white);
 }
+
 .recentCustomers table tr:hover td h4 span {
   color: var(--white);
+}
+
+.search-icon{
+  transform: translateY(10px);
+}
+
+.btn_status_icon{
+  display:flex;
+}
+
+td{
+  padding-block:15px!important;
+}
+
+.border_modal{
+  border:none !important;
+  box-shadow:0 0.5px 0 0 #ddd;
+}
+
+.detail_profile{
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  border-radius:50%!important;
+  overflow: hidden;
+  margin: auto;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -889,17 +944,21 @@
   .navigation {
     left: -300px;
   }
+
   .navigation.active {
     width: 300px;
     left: 0;
   }
+
   .main {
     width: 100%;
     left: 0;
   }
+
   .main.active {
     left: 300px;
   }
+
   .cardBox {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -909,9 +968,11 @@
   .details {
     grid-template-columns: 1fr;
   }
+
   .recentOrders {
     overflow-x: auto;
   }
+
   .status.inProgress {
     white-space: nowrap;
   }
@@ -921,24 +982,30 @@
   .cardBox {
     grid-template-columns: repeat(1, 1fr);
   }
+
   .cardHeader h2 {
     font-size: 20px;
   }
+
   .user {
     min-width: 40px;
   }
+
   .navigation {
     width: 100%;
     left: -100%;
     z-index: 1000;
   }
+
   .navigation.active {
     width: 100%;
     left: 0;
   }
+
   .toggle {
     z-index: 10001;
   }
+
   .main.active .toggle {
     color: #fff;
     position: fixed;
@@ -946,3 +1013,5 @@
     left: initial;
   }
 }
+
+/* ============== end admin & provider ================= */
