@@ -94,11 +94,11 @@ document.getElementById('addUserForm').addEventListener('submit', function (e) {
     let spinner = document.getElementById('spinner');
     let buttonText = document.getElementById('buttonText');
     let user_name = document.getElementById('userName').value;
-    let user_email = document.getElementById('userEmail').value;
-    let user_phone = document.getElementById('userPhone').value;
+    let user_email = document.getElementById('userEmail').value.trim();
+    let user_phone = document.getElementById('userPhone').value.trim();
     let user_location = document.getElementById('userLocation').value;
-    let user_pass = document.getElementById('userPass').value;
-    let user_confirm_pass = document.getElementById('userConfirmPass').value;
+    let user_pass = document.getElementById('userPass').value.trim();
+    let user_confirm_pass = document.getElementById('userConfirmPass').value.trim();
     let user_image = document.getElementById('userImage').files[0];
     let user_role = document.querySelector('input[name="userRole"]:checked').value;
 
@@ -247,24 +247,23 @@ function getUserForUpdate(userId) {
 document.getElementById('updateForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    let updateUserButton = document.getElementById('updateButton');
-    let spinner = document.getElementById('spinner_Update');
-    let buttonText = document.getElementById('buttonTex_update');
-
     let userId = document.getElementById('editUserId').value;
 
     let editName = document.getElementById('editUserName').value;
-    let editEmail = document.getElementById('editUserEmail').value;
-    let editPhone = document.getElementById('editUserPhone').value;
+    let editEmail = document.getElementById('editUserEmail').value.trim();;
+    let editPhone = document.getElementById('editUserPhone').value.trim();
     let editLocation = document.getElementById('editUserLocation').value;
-    let editPass = document.getElementById('editUserPass').value;
-    let editConfirm_pass = document.getElementById('editUserConfirmPass').value;
+    let editPass = document.getElementById('editUserPass').value.trim();
+    let editConfirm_pass = document.getElementById('editUserConfirmPass').value.trim();
     let editImage = document.getElementById('editUserImage').files[0];
     let editRole = document.querySelector('input[name="editUserRole"]:checked').value;
 
-    updateUserButton.disabled = true;
-    spinner.style.display = 'inline-block';
-    buttonText.textContent = 'Updating...';
+    console.log(editConfirm_pass);
+    console.log(editPass);
+
+
+
+
 
     let formData = new FormData();
     if (editName) formData.append('name', editName);
@@ -272,37 +271,73 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
     if (editPhone) formData.append('phone', editPhone);
     if (editLocation) formData.append('google_map_url', editLocation);
     if (editPass && editConfirm_pass) {
-        formData.append('password', editPass);
-        formData.append('password_confirmation', editConfirm_pass);
+        if (editPass === editConfirm_pass) {
+            formData.append('password', editPass);
+            formData.append('password_confirmation', editConfirm_pass);
+        } else {
+            document.getElementById('err_pass').innerHTML = `<i class="bi bi-info-circle"></i> Passwords do not match!`;
+            isValid = false;
+        }
     }
+
+
+
     formData.append('role_id', editRole);
     if (editImage) {
         formData.append('avatar', editImage);
     }
 
-    fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${getToken}`
-        },
-        body: formData,
-    })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json.data);
-            let updateUserModal = bootstrap.Modal.getInstance(document.getElementById("updateUser"));
-            updateUserModal.hide();
-            document.getElementById('updateForm').reset();
+    let isValid = true;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{9,10}$/;
+
+    if (!editName) {
+        document.getElementById('err_name').innerHTML = `<i class="bi bi-info-circle"></i> Phone number is required!`;
+        isValid = false;
+    } else {
+        document.getElementById('err_name').style.display = 'none';
+    }
+    if (!editPhone) {
+        document.getElementById('err_phone').innerHTML = `<i class="bi bi-info-circle"></i> Full name is required!`;
+        isValid = false;
+    } else {
+        document.getElementById('err_phone').style.display = 'none';
+    }
+
+
+
+    if (isValid) {
+        let updateUserButton = document.getElementById('updateButton');
+        let spinner = document.getElementById('spinner_Update');
+        let buttonText = document.getElementById('buttonTex_update');
+        updateUserButton.disabled = true;
+        spinner.style.display = 'inline-block';
+        buttonText.textContent = 'Updating...';
+
+        fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+            body: formData,
         })
-        .finally(() => {
-            updateUserButton.disabled = false;
-            spinner.style.display = 'none';
-            buttonText.textContent = 'Update';
-        })
-        .catch(error => {
-            console.error('Error updating user:', error);
-        });
+            .then(res => res.json())
+            .then(json => {
+                console.log(json.data);
+                let updateUserModal = bootstrap.Modal.getInstance(document.getElementById("updateUser"));
+                updateUserModal.hide();
+                document.getElementById('updateForm').reset();
+            })
+            .finally(() => {
+                updateUserButton.disabled = false;
+                spinner.style.display = 'none';
+                buttonText.textContent = 'Update';
+            })
+            .catch(error => {
+                console.error('Error updating user:', error);
+            });
+    }
 });
 
 
@@ -333,7 +368,6 @@ function toggleUserStatus(element, userId) {
             if (data.result && data.code === 1) {
                 btn_status_icon.classList.toggle("bi-toggle-on");
                 btn_status_icon.classList.toggle("bi-toggle-off");
-
                 // Update the `data-status` attribute
                 const newStatus = currentStatus === "enabled" ? "disabled" : "enabled";
                 element.setAttribute("data-status", newStatus);

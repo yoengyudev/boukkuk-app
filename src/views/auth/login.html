@@ -19,29 +19,26 @@
       <div class="outer m-auto col-12 col-md-10">
         <div class="row bg-white bg-login bg-danger overflow-hidden m-auto"
           style="max-width: 1100px; border-radius: 8px;">
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 d-none d-xl-block">
             <div class="login-img">
               <img src="../../../assets/image/autenication/login.jpg" class="card-img" alt="">
             </div>
           </div>
-          <div class="col-6 py-5 px-5">
+          <div class="col-12 col-xl-6 py-5 px-5">
             <h3 class="text-primary fw-bold">សូមស្វាគមន៏!</h3>
             <form id="login" class="mt-4">
               <div class="form-floating mb-4 position-relative">
                 <input type="email" class="form-control" id="email" placeholder="New Password" />
                 <label for="email">អុីម៉ែល</label>
+                <span id="err_emaillg" class="err"></span>
               </div>
-              <div class="form-floating mb-3 position-relative">
+              <div class="form-floating mb-5 position-relative">
                 <input type="password" autocomplete="off" class="form-control" id="password" placeholder="New Password" />
                 <label for="pass">ពាក្យសម្ងាត់</label>
-                <span class="password-toggle position-absolute" onclick="togglePasswordVisibility()" style="
-right: 10px;
-top: 50%;
-transform: translateY(-50%);
-cursor: pointer;
-">
+                <span class="password-toggle eye_pass" onclick="togglePasswordVisibility()">
                   <i id="toggleIcon" class="fas fa-eye"></i>
                 </span>
+                <span id="err_passlg" class="err"></span>
               </div>
               <div class="mb-4">
                 <button id="saveButton" class="btn btn-primary w-100" type="submit">

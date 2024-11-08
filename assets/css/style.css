@@ -939,6 +939,24 @@ td{
   margin: auto;
 }
 
+.err{
+  color: red;
+  position: relative;
+  top:5px;
+}
+
+.eye_pass{
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+/* login form style copy 
+style="
+
+"
+*/
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {

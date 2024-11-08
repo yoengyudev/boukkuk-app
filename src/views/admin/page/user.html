@@ -107,7 +107,6 @@
                             <th>Promote</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                     </thead>
                     <tbody id="table_body" class="text-start">
@@ -119,6 +118,7 @@
 
 
     <!-- modal add user  -->
+
     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog modal-lg">
@@ -188,6 +188,7 @@
     </div>
 
     <!-- modal detail view user -->
+
     <div class="modal fade" id="getDetail" tabindex="-1" aria-labelledby="getDetailLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content p-2">
@@ -231,6 +232,7 @@
             </div>
         </div>
     </div>
+
     <!-- modal update user -->
 
     <div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true"
@@ -248,6 +250,7 @@
                             <div class="mb-3 col-6">
                                 <label for="editUserName" class="form-label">Full Name</label>
                                 <input type="text" class="form-control" placeholder="Full name" id="editUserName">
+                                <span id="err_name" class="err"></span>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="editUserEmail" class="form-label">Email</label>
@@ -257,10 +260,12 @@
                             <div class="mb-3 col-6">
                                 <label for="editUserPhone" class="form-label">Phone Number</label>
                                 <input type="text" class="form-control" placeholder="Phone number" id="editUserPhone">
+                                <span id="err_phone" class="err"></span>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="editUserLocation" class="form-label">Location</label>
                                 <input type="text" class="form-control" placeholder="Location" id="editUserLocation">
+                                <span id="err_location" class="err"></span>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="editUserPass" class="form-label">Password</label>
@@ -275,7 +280,7 @@
                                 <label for="editUserImage" class="form-label">Upload User Profile</label>
                                 <input type="file" class="form-control" id="editUserImage" accept="image/*">
                             </div>
-                            <div class="col-12 col-xl-6 d-flex align-items-end">
+                            <div class="col-12 col-xl-6 d-flex align-items-end position-relative">
                                 <div class="row">
                                     <div class="mb-3 col-auto">
                                         <input class="form-check-input" type="radio" name="editUserRole" id="editNormalUser"
@@ -292,6 +297,7 @@
                                             id="editServiceProviderUser" value="3">
                                         <label class="form-check-label" for="editServiceProviderUser">Service Provider</label>
                                     </div>
+                                    <span id="err_role" class="position-absolute top-100"></span>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
