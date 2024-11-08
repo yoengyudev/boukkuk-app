@@ -24,14 +24,16 @@
           </div>
           <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
             <div class="row d-flex under-logo">
-              <div
-                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
-                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
-                  aria-label="" />
-                <button type="submit" class="btn btn-serch bg-primary gap-2">
-                  <i class="bi bi-search text-white"></i>
+              <div class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                <input
+                    class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                    type="text" placeholder="ស្វែងរក" aria-label="search"
+                    onkeydown="handleKeyDown(event)">
+            
+                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+                    <i class="bi bi-search text-white"></i>
                 </button>
-              </div>
+            </div>
               <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                 <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
                   <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
