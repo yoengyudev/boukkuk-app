@@ -168,8 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
         cropper = new Cropper(cropperImage, {
           aspectRatio: 1,
           viewMode: 1,
-          minCropBoxWidth: 200,
-          minCropBoxHeight: 200,
+          minCropBoxWidth: 400, // Larger crop box area
+          minCropBoxHeight: 400,
+          background: false, // Keep modal background clean
+          autoCropArea: 0.8, // Automatically fill 80% of the crop area
         });
       };
       reader.readAsDataURL(file);
@@ -178,8 +180,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   cropImageBtn.addEventListener('click', function () {
     const croppedCanvas = cropper.getCroppedCanvas({
-      width: 200,
-      height: 200
+      width: 400, // Adjust output size if needed
+      height: 400
     });
 
     croppedCanvas.toBlob(function (blob) {
@@ -213,6 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
     avatarUpload.value = ''; // Clear the file input
   });
 });
+
 
 
 

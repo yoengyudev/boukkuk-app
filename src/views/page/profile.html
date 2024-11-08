@@ -138,26 +138,7 @@
                   </ul>
                 </div>
               </div>
-              
-              <!-- Add this modal for the image cropper -->
-              <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="cropperModalLabel">Crop Image</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <img id="cropperImage" src="" alt="Image to crop" style="max-width: 100%;">
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary" id="cropImageBtn">Crop</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+            
 
               <div class="sidebar-item btn active" data-section="personal-info">
                 <i class="fas fa-user"></i>
@@ -463,6 +444,29 @@
       </div>
     </div>
   </main>
+
+  <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-black">
+        <div class="modal-header bg-dark text-white border-0">
+          <h3 class="modal-title" id="cropperModalLabel">Crop Image</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-black p-0">
+          <div class="cropper-wrapper bg-success" style="width: 1200px; height: 500px;">
+            <img id="cropperImage" style="width: 100% !important;" src="" alt="Image to crop">
+          </div>
+        </div>
+        <div class="modal-footer bg-dark border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="cropImageBtn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <script>
 
 
