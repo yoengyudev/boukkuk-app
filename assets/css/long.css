@@ -770,6 +770,7 @@ option {
   width: 30px;
   height: 30px;
 }
+ 
 /* Media query for mobile devices */
 @media (max-width: 1400px) {
   .cart-body .page-header {
@@ -1178,6 +1179,15 @@ option {
   .quantity-display {
     font-size: 1rem; /* Adjust font size for quantity */
   }
+  .accordion-button {
+    box-shadow: none !important;
+  }
+  .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-lg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/%3E%3C/svg%3E") !important;
+  }
+  .accordion-button:not(.collapsed)::after {
+    background-image: background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-lg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/%3E%3C/svg%3E") !important;
+  }
 
   .price-display {
     font-size: 1rem; /* Adjust font size for price display */
@@ -1201,10 +1211,6 @@ option {
   height: 1rem;
   border-width: 0.2em;
   display: none; /* Initially hidden */
-}
-
-#servicesList {
-  margin-top: 1rem;
 }
 
 .cart-body .services-header {
@@ -2275,3 +2281,171 @@ body {
   /* Reduced font size */
 }
 /* ============= End Wish List ================= */
+/* ============== Service ================= */
+.service-provicer .card-service {
+  border: none;
+}
+
+.service-provicer .table-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.service-provicer .action-buttons .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.service-provicer .action-buttons .btn:hover {
+  transform: scale(1.05);
+}
+
+.service-provicer .nav-tabs .nav-link {
+  color: #495057;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.service-provicer .nav-tabs .nav-link.active {
+  color: #007bff;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #007bff;
+}
+
+.service-provicer .nav-tabs .nav-link:hover {
+  border-color: transparent;
+  border-bottom: 2px solid #007bff;
+  isolation: isolate;
+}
+
+#detailTabs {
+  border-bottom: none;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.service-provicer .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+}
+
+.service-provicer .btn-close:focus {
+  box-shadow: none;
+}
+
+.service-provicer .table th {
+  border-top: none;
+  background-color: #f8f9fa;
+}
+
+.service-provicer .action-buttons .btn {
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.service-provicer .action-buttons .btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.service-provicer .action-buttons .btn-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.service-provicer .action-buttons .btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.service-provicer .action-buttons .btn:hover {
+  transform: translateY(-2px);
+}
+
+.service-provicer .action-buttons .btn-info:hover {
+  background-color: #138496;
+}
+
+.service-provicer .action-buttons .btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.service-provicer .action-buttons .btn-danger:hover {
+  background-color: #c82333;
+}
+
+.service-provicer .table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.service-provicer .table tbody tr:hover .table-img {
+  opacity: 1;
+  transition: none;
+}
+
+/* DataTables custom styling */
+.service-provicer .dataTables_wrapper .dataTables_length select {
+  padding-right: 2rem;
+}
+
+.service-provicer .dataTables_wrapper .dataTables_filter input {
+  box-shadow: none;
+  border: 1px solid #d1d5db;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 0.375rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white;
+  transform: scale(1.04);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #007bff;
+  color: white !important;
+}
+
+#servicesTable thead th {
+  background-color: transparent;
+  color: inherit;
+}
+
+.action-buttons .btn:hover {
+  transform: none;
+  /* Remove button hover effect */
+}
+
+.table-responsive {
+  overflow-x: hidden !important;
+  /* Prevent horizontal scroll */
+  overflow-y: auto;
+  /* Allow vertical scroll if needed */
+}
+/* ============== end Service ================= */
+
+/* Remove box shadow from all form inputs */
+input,
+textarea,
+select {
+  box-shadow: none !important; /* Remove box shadow */
+  border: 1px solid #ced4da; /* Optional: Set a default border color */
+}
