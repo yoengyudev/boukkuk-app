@@ -13,8 +13,9 @@ function fetchCategories() {
   })
     .then((res) => res.json())
     .then((json) => {
-      
       let tr = "";
+      console.log(json);
+      
       json.data.forEach((e) => {
         tr += `<tr>
                 <td class='text-start'>${e.id}</td>
@@ -27,10 +28,15 @@ function fetchCategories() {
             </tr>`;
       });
       document.getElementById("table_body").innerHTML = tr;
-      $("#categoriesTable").DataTable({ responsive: true });
+      $("#categoriesTable").DataTable({
+        destroy: true,
+        responsive: true,
+      });
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
+
+
 fetchCategories();
 
 //add category
@@ -50,7 +56,7 @@ function addCategory() {
     .then((json) => {
       console.log(json);
       if (json.message) {
-        alert(json.message)
+        alert(json.message);
       }
       fetchCategories();
     })
