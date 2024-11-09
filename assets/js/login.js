@@ -78,8 +78,19 @@ login.addEventListener("submit", (event) => {
         },
         body: formdata,
     })
-        .then(res => {
-            if (!res.ok) {
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            let token = json.data.token;
+            let roleid = json.data.roles[0].id;
+            localStorage.setItem('token', token);
+            localStorage.setItem('UserRole', roleid);
+            if (token && roleid == 1) {
+                location.href = `${window.location.origin}/index.html`;
+            }
+
+            if(token && roleid == 2 || token && roleid == 3) {
+                location.href = `${window.location.origin}/src/views/admin/index.html`;
             }
             return res.json();
         })

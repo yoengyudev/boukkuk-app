@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../assets/css/main.css">
     <link rel="stylesheet" href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css">
 </head>
 
 <body>
@@ -20,54 +19,53 @@
         <div class="navigation">
             <ul class="p-0">
                 <li>
-                    <a href="#">
+                    <a href="../index.html">
                         <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
+                            <i class="bi bi-droplet"></i>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">Boakuk</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="../index.html">
                         <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <i class="bi bi-grid"></i></h1>
                         </span>
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
+                <li class="user-item">
+                    <a href="../page/user.html">
                         <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
+                            <i class="bi bi-people"></i>
                         </span>
                         <span class="title">User</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="#">
+                <li class="service-item">
+                    <a href="../page/service.html">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <i class="bi bi-bag"></i>
                         </span>
                         <span class="title">Services</span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
+                <li class="category-item">
+                    <a href="../page/category.html">
                         <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
+                            <i class="bi bi-folder"></i>
                         </span>
                         <span class="title">Category</span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
+                <li id="logout-list">
+                    <a href="">
                         <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
+                            <i class="bi bi-box-arrow-right"></i>
                         </span>
                         <span class="title">Sign Out</span>
                     </a>
@@ -79,16 +77,8 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+                    <i class="bi bi-list"></i>
                 </div>
-
-                <div class="search">
-                    <label>
-                        <input type="text" class="form-control" placeholder="Search here">
-                        <ion-icon class="search-icon" name="search-outline"></ion-icon>
-                    </label>
-                </div>
-
                 <div class="user">
                     <img src="/assets/image/service-provider/profile-service-provider.jpeg" alt="">
                 </div>
@@ -96,7 +86,8 @@
             <div class="p-4">
                 <button type="button" class="btn btn-primary px-4 shadow mb-3" data-bs-toggle="modal"
                     data-bs-target="#addUserModal">
-                    <i class="bi bi-person-plus-fill"></i>
+                    <i class="bi bi-plus-circle"></i>
+                    Add New
                 </button>
                 <table id="userTabel" class="table table-striped" style="width:100%">
                     <thead class="text-start">
@@ -283,19 +274,20 @@
                             <div class="col-12 col-xl-6 d-flex align-items-end position-relative">
                                 <div class="row">
                                     <div class="mb-3 col-auto">
-                                        <input class="form-check-input" type="radio" name="editUserRole" id="editNormalUser"
-                                            value="1">
+                                        <input class="form-check-input" type="radio" name="editUserRole"
+                                            id="editNormalUser" value="1">
                                         <label class="form-check-label" for="editNormalUser">User</label>
                                     </div>
                                     <div class="mb-3 col-auto">
-                                        <input class="form-check-input" type="radio" name="editUserRole" id="editAdminUser"
-                                            value="2">
+                                        <input class="form-check-input" type="radio" name="editUserRole"
+                                            id="editAdminUser" value="2">
                                         <label class="form-check-label" for="editAdminUser">Admin</label>
                                     </div>
                                     <div class="mb-3 col-auto">
                                         <input class="form-check-input" type="radio" name="editUserRole"
                                             id="editServiceProviderUser" value="3">
-                                        <label class="form-check-label" for="editServiceProviderUser">Service Provider</label>
+                                        <label class="form-check-label" for="editServiceProviderUser">Service
+                                            Provider</label>
                                     </div>
                                     <span id="err_role" class="position-absolute top-100"></span>
                                 </div>
@@ -307,12 +299,12 @@
                                 </div>
                             </div>
                         </div>
-                            <button id="updateButton" class="btn btn-primary" type="submit">
-                                <span class="spinner-border spinner-border-sm" id="spinner_Update" style="display:none;"
-                                    aria-hidden="true"></span>
-                                <span id="buttonTex_update">Update</span>
-                            </button>
-                            <button type="button" class="btn border">Cancel</button>
+                        <button id="updateButton" class="btn btn-primary" type="submit">
+                            <span class="spinner-border spinner-border-sm" id="spinner_Update" style="display:none;"
+                                aria-hidden="true"></span>
+                            <span id="buttonTex_update">Update</span>
+                        </button>
+                        <button type="button" class="btn border">Cancel</button>
                     </form>
                 </div>
             </div>
@@ -347,16 +339,15 @@
     </script>
     <link rel="stylesheet" href="../.././../../vender/bootstrap/js/bootstrap.bundle.min.js">
     <script src="../../../../assets/js/user.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
-    <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
+    <script src="../../../../assets/js/sidebar.js"></script>
+    <script src="../../../../assets/js/logout.js"></script>
+    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+    <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
 
-    <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

@@ -4,6 +4,8 @@ let signup = document.getElementById("signup-list");
 let login = document.getElementById("login-list");
 let logout_pro = document.getElementById("logout-list");
 let proSetting = document.getElementById("pro-setting");
+
+
 console.log(getToken);
 
 if (getToken) {

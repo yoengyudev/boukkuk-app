@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="vender/bootstrap-icon/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>ស្វែងរក</title>
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row gy-4 align-items-center">
                     <div class="col-auto order-0">
-                        <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+                        <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
                     </div>
                     <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
                         <div class="row d-flex under-logo">
@@ -76,7 +76,7 @@
                                     </li>
                                     <li class="mb-3" id="pro-setting">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="src/views/page/profile.html">
+                                            href="../../../src/views/page/profile.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
@@ -114,84 +114,16 @@
         </nav>
     </header>
 
-    <main>
-        <section class="hero-banner mb-70 d-none d-md-block">
-            <div class="container p-0">
-                <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
-                    <div class="carousel-inner  bg-transparent">
-                        <div class="carousel-item active poster-dis rounded-5">
-                            <div class="col-7 h-100 d-flex align-items-center px-80">
-                                <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ
-                                        10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg
-                                        ឡើងទៅ</h2>
-                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item active poster-dis rounded-5">
-                            <div class="col-7 h-100 d-flex align-items-center px-80">
-                                <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ
-                                        10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg
-                                        ឡើងទៅ</h2>
-                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev">
-                        <span
-                            class="carousel-prev bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
-                            aria-hidden="true">
-                            <i class="bi bi-chevron-left text-dark"></i>
-                        </span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="next">
-                        <span
-                            class="carousel-next bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
-                            aria-hidden="true">
-                            <i class="bi bi-chevron-right text-dark"></i>
-                        </span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </section>
 
-        <section class="mb-5">
-            <div class="container">
-                <div class="row py-4 px-3">
-                    <div class="col-12 col-md-6 mb-3 mb-md-0">
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="rounded-3">
-                                <i class="bi bi-shop fs-3 fs-md-2 text-dark-emphasis"></i>
-                            </div>
-                            <h4 class="text-dark mb-0 fs-5 fs-md-4">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="mb-3 d-flex align-items-center gap-3 justify-content-end">
-                            <label for="addCategoryId" class="form-label mt-2">ប្រភេទ</label>
-                            <select class="form-control" style="width: 300px;" id="addCategoryId" name="category_id"
-                                required>
-                                <!-- Options will be populated here -->
-                            </select>
-                            <div class="invalid-feedback">Please select a
-                                category.</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="store-card" class="row">
-                    <!-- Store Card 1 -->
-                </div>
+    <main style="margin-top: 90px;">
+        <div class="container">
+            <div id="Is-search-found"></div>
+            <div id="store-card" class="row g-4">
+                <!-- Store Card 1 -->
+
             </div>
-        </section>
+            <div id="search_not_found"></div>
+        </div>
     </main>
 
     <footer class="footer mt-70">
@@ -200,8 +132,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h5 class="text-primary">Boukuk</h5>
                     <p class="fs-18">
-                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
-                        និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
                         ដោយធានាបាននូវភាពងាយស្រួល​
                         និងគុណភាពដល់អ្នកប្រើប្រាស់។
                     </p>
@@ -218,11 +149,11 @@
                     <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
                     <ul>
                         <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
-                        <li><a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
+                        <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
                         <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
-                        <li id="order-history"><a type="button" onclick="profile_headerMe()"
-                                class="border-0 p-0 bg-transparent fs-18">
-                                <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+                        <li id="order-history"><a href="" onclick="profileMe()"
+                                class="border-0 p-0 bg-transparent fs-18"> <i
+                                    class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
                         </li>
                     </ul>
                 </div>
@@ -242,8 +173,7 @@
             <hr class="my-4">
             <div class="d-flex justify-content-between">
                 <div>
-                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk
-                        ANT-GROUP9</span>
+                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
                 </div>
                 <div>
                     <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
@@ -252,13 +182,12 @@
         </div>
     </footer>
 
-    <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/footer.js"></script>
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/logout.js"></script>
-    <script src="assets/js/search.js"></script>
 
+    <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/store.js"></script>
+    <script src="../../../assets/js/footer.js"></script>
+    <script src="../../../assets/js/search.js"></script>
+    <script src="../../../assets/js/header.js"></script>
 </body>
 
 </html>

@@ -10,10 +10,12 @@
   <link rel="stylesheet" href="../../../assets/css/long.css" />
   <link rel="stylesheet" href="../../../assets/css/style.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- crop js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
 </head>
 
 <body>
-  <header class="fixed-top">
+  <header class="fixed-header">
     <nav class="py-3">
       <div class="container">
         <div class="row gy-4 align-items-center">
@@ -24,16 +26,17 @@
             <div class="row d-flex under-logo">
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
-                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
-                  aria-label="" />
-                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+
+                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
                   <i class="bi bi-search text-white"></i>
                 </button>
               </div>
               <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                 <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
-                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
-                  ហាងនៅក្ប
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                  ហាងនៅក្បែ
                 </button>
               </div>
             </div>
@@ -51,8 +54,8 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                  style="width: 300px">
-                  <li class="mb-3">
+                  style="width:300px;">
+                  <li class="mb-3" id="signup-list">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
@@ -61,25 +64,26 @@
                     </a>
                   </li>
                   <li class="mb-3" id="login-list">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="src/views/auth/login.html">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
                       </div>
                       ចូលប្រើប្រាស់
                     </a>
                   </li>
-                  <li class="mb-3">
+                  <li class="mb-3" id="pro-setting">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                      href="profile_header.html">
+                      href="profile.html">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
                       </div>
                       ប្រវត្តិរូបរបស់ខ្ញុំ
                     </a>
                   </li>
-                  <hr style="color: #ddd" />
                   <li id="logout-list">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <hr style="color: #ddd;">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href>
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-power"></i>
                       </div>
@@ -89,17 +93,17 @@
                 </ul>
               </div>
 
-              <a href=""
+              <a href
                 class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
                 <div class="profile_header bg-instead rounded-circle">
                   <i class="bi bi-bell-fill fs-18"></i>
                 </div>
                 <span class="d-none d-sm-block">ការជូនដំណឹង</span>
               </a>
-              <a href=""
-                class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
-              </a>
+              <button type="submit" onclick="wishlist()"
+                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -116,7 +120,7 @@
           <div class="col-md-4 col-lg-3">
             <div class="sidebar card">
               <div class="avatar-container mb-4" id="avatarContainer">
-                <img src="assets/img/AboutUs-review3avif.avif" alt="" class="avatar" id="userAvatar" />
+                <img src="assets/img/AboutUs-review3avif.avif" alt class="avatar" id="userAvatar" />
                 <div class="dropdown">
                   <button class="camera-icon z-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-camera"></i>
@@ -136,6 +140,7 @@
                   </ul>
                 </div>
               </div>
+
               <div class="sidebar-item btn active" data-section="personal-info">
                 <i class="fas fa-user"></i>
                 <span>ព័ត៌មានផ្ទាល់ខ្លួន</span>
@@ -407,7 +412,7 @@
             <form id="add-payment-form">
               <div class="mb-3 form-floating">
                 <select class="form-select ps-0 form-control" id="paymentType" required>
-                  <option value="" disabled selected>
+                  <option value disabled selected>
                     ជ្រើសរើសប្រភេទការទូទាត់
                   </option>
                   <option value="visa">Visa</option>
@@ -420,7 +425,8 @@
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="cardNumber" placeholder="លេខកាត" required maxlength="19" />
                 <label class="ps-0 ms-0" for="cardNumber">លេខកាត</label>
-                <small class="form-text text-muted">ទម្រង់: 1234 5678 9012 3456</small>
+                <small class="form-text text-muted">ទម្រង់: 1234 5678 9012
+                  3456</small>
               </div>
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required maxlength="5" />
@@ -440,6 +446,27 @@
       </div>
     </div>
   </main>
+
+  <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-black">
+        <div class="modal-header bg-dark text-white border-0">
+          <h3 class="modal-title" id="cropperModalLabel">Crop Image</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-black p-0">
+          <div class="cropper-wrapper bg-success" style="width: 1200px; height: 500px;">
+            <img id="cropperImage" style="width: 100% !important;" src alt="Image to crop">
+          </div>
+        </div>
+        <div class="modal-footer bg-dark border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="cropImageBtn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const sidebarItems = document.querySelectorAll(".sidebar-item");
@@ -579,6 +606,9 @@
   <script src="../../../assets/js/header.js"></script>
   <script src="../../../assets/js/profile.js"></script>
   <script src="../../../assets/js/footer.js"></script>
+  <script src="../../../assets/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
 </body>
 
 </html>

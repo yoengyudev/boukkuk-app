@@ -118,7 +118,7 @@ document.getElementById('addUserForm').addEventListener('submit', function (e) {
     formData.append('google_map_url', user_location);
     formData.append('password', user_pass);
     formData.append('password_confirmation', user_confirm_pass);
-    formData.append('role_id', user_role); // Append role as a numeric value
+    formData.append('role_id', user_role);
     if (user_image) {
         formData.append('avatar', user_image);
     }

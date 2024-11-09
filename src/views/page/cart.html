@@ -7,132 +7,169 @@
   <title>សេវាកម្មបោកគក់</title>
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/long.css" />
-  <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    .accordion-button {
+      box-shadow: none !important;
+    }
+
+    .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-lg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2'/%3E%3C/svg%3E") !important;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8'/%3E%3C/svg%3E%0A") !important;
+    }
+
+    .accordion-item {
+      margin-bottom: 1rem;
+      /* Adjust the value as needed for spacing */
+      border: 1px solid #e0e0e0;
+      /* Light border for better separation */
+      border-radius: 0.5rem;
+      /* Rounded corners */
+      background-color: #f9f9f9;
+      /* Light background color */
+    }
+
+    .accordion-button {
+      background-color: #f9f9f9;
+      /* Button background color */
+      color: rgb(40, 38, 38);
+      /* Button text color */
+      border: none;
+      /* Remove border */
+      border-radius: 0.5rem;
+      /* Rounded corners */
+      padding: 0.75rem 1.25rem;
+      /* Padding for button */
+      transition: background-color 0.3s;
+      /* Smooth transition */
+    }
+
+    .accordion-body {
+      padding: 1rem;
+      /* Padding inside the accordion body */
+    }
+
+    .services-header {
+      margin-top: 1rem;
+      /* Space above the services header */
+      font-weight: bold;
+      /* Bold text for header */
+    }
+
+    .services-content {
+      margin-top: 0.5rem;
+      /* Space above the services content */
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: transparent;
+    }
+  </style>
 </head>
 
 <body>
-  <header class="fixed-top">
+  <header class="fixed-header">
     <nav class="py-3">
       <div class="container">
         <div class="row gy-4 align-items-center">
           <div class="col-auto order-0">
-            <a href="../../../index.html" class="navbar-brand text-uppercase text-primary fs-3 fw-bold">Boakuk</a>
+            <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
           </div>
           <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
             <div class="row d-flex under-logo">
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
-                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
-                  aria-label="">
-                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+
+                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
                   <i class="bi bi-search text-white"></i>
                 </button>
               </div>
-              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
-                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
-                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
-                  ហាងនៅក្បែ
-                </button>
-              </div>
             </div>
-          </div>
-          <div class="col-auto ms-auto p-0 order-1 order-xl-2">
-            <div class="d-flex w-100 align-items-center justify-content-end">
-              <div class="dropdown rounded-2">
-                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
-                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div class="profile_header bg-instead rounded-circle">
-                    <i class="bi bi-person-circle"></i>
-                  </div>
-                  <span>គណនី</span>
-                  <i class="bi bi-chevron-down fw-bold"></i>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                  style="width:300px;">
-                  <li class="mb-3">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
-                      <div class="profile_header bg-instead rounded-circle">
-                        <i class="bi bi-person-circle"></i>
-                      </div>
-                      បង្កើតគណនី
-                    </a>
-                  </li>
-                  <li class="mb-3" id="login-list">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
-                      <div class="profile_header bg-instead rounded-circle">
-                        <i class="bi bi-person-circle"></i>
-                      </div>
-                      ចូលប្រើប្រាស់
-                    </a>
-                  </li>
-                  <li class="mb-3">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                      href="profile_header.html">
-                      <div class="profile_header bg-instead rounded-circle">
-                        <i class="bi bi-person-circle"></i>
-                      </div>
-                      ប្រវត្តិរូបរបស់ខ្ញុំ
-                    </a>
-                  </li>
-                  <hr style="color: #ddd;">
-                  <li id="logout-list">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
-                      <div class="profile_header bg-instead rounded-circle">
-                        <i class="bi bi-power"></i>
-                      </div>
-                      ចាកចេញពីគណនី
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="dropdown rounded-2">
-                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
-                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div class="profile_header bg-instead rounded-circle">
-                    <i class="bi bi-bell-fill fs-18"></i>
-                  </div>
-                  <span class="d-none d-sm-block">ការជូនដំណឹង</span>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                  style="width:300px;">
-                    <div>
-                      <li class="list-group-item">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0">
-                                <i class="bi bi-box-seam text-primary fs-4"></i>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1">Order Ready for Pickup</h6>
-                                <p class="mb-1 text-muted">Your laundry order #1234 is clean and ready for pickup.</p>
-                                <small class="text-muted">10 minutes ago</small>
-                            </div>
-                        </div>
-                    </li>
-                    </div>
-                </ul>
-              </div>
-
-              <a href=""
-                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
-               
-              </a>
-              <a href=""
-                class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
-              </a>
+            <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+              <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                ហាងនៅក្បែ
+              </button>
             </div>
           </div>
         </div>
+        <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+          <div class="d-flex w-100 align-items-center justify-content-end">
+            <div class="dropdown rounded-2">
+              <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="profile_header bg-instead rounded-circle">
+                  <i class="bi bi-person-circle"></i>
+                </div>
+                <span>គណនី</span>
+                <i class="bi bi-chevron-down fw-bold"></i>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                style="width:300px;">
+                <li class="mb-3" id="signup-list">
+                  <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <div class="profile_header bg-instead rounded-circle">
+                      <i class="bi bi-person-circle"></i>
+                    </div>
+                    បង្កើតគណនី
+                  </a>
+                </li>
+                <li class="mb-3" id="login-list">
+                  <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <div class="profile_header bg-instead rounded-circle">
+                      <i class="bi bi-person-circle"></i>
+                    </div>
+                    ចូលប្រើប្រាស់
+                  </a>
+                </li>
+                <li class="mb-3" id="pro-">
+                  <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                    href="src/views/page/profile.html">
+                    <div class="profile_header bg-instead rounded-circle">
+                      <i class="bi bi-person-circle"></i>
+                    </div>
+                    ប្រវត្តិរូបរបស់ខ្ញុំ
+                  </a>
+                </li>
+                <hr style="color: #ddd;">
+                <li id="logout-list">
+                  <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <div class="profile_header bg-instead rounded-circle">
+                      <i class="bi bi-power"></i>
+                    </div>
+                    ចាកចេញពីគណនី
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <a href=""
+              class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+              <div class="profile_header bg-instead rounded-circle">
+                <i class="bi bi-bell-fill fs-18"></i>
+              </div>
+              <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+            </a>
+            <button type="submit" onclick="wishlist()"
+              class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+              <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+            </button>
+          </div>
+        </div>
+      </div>
       </div>
     </nav>
   </header>
 
-
-  <section class="cart-body mt-100">
+  <section class="cart-body mt-100 mb-5">
     <canvas id="confetti-canvas " style="display: none"></canvas>
     <div class="container position-relative">
       <div class="page-header mt-5 mb-4 d-flex justify-content-between align-items-center">
@@ -161,27 +198,40 @@
           </div>
         </div>
         <div class="card-body p-4">
-          <div id="servicesList">
-            <h3 class="section-title mt-3">សេវាកម្ម</h3>
-            <div class="card mb-4">
-              <div class="card-body">
-                <div id="serviceIcons" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
-                  <!-- Service icons will be dynamically added here -->
+          <h3 class="section-title mt-3">ប្រភេទសម្លៀកបំពាក់</h3>
+
+          <div class="accordion" id="accordionExample">
+            <!-- Template for accordion items -->
+            <div class="accordion-item" id="accordionItemTemplate" style="display: none">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                  aria-controls="collapseOne">
+                  <!-- Service Name -->
+                </button>
+              </h2>
+              <div class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div id="servicesList">
+                    <div class="card">
+                      <div class="card-body p-0">
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4" id="serviceIcons">
+                          <!-- Service icons will be dynamically added here -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="services-header d-flex justify-content-between align-items-center">
+                      <span>ប្រភេទ</span>
+                      <span>ចំនួន</span>
+                      <span>តម្លៃ</span>
+                    </div>
+                    <div class="services-content">
+                      <!-- Services will be dynamically added here -->
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <h3 class="section-title mt-3">ប្រភេទសម្លៀកបំពាក់</h3>
-
-            <div class="services-header d-flex justify-content-between align-items-center">
-              <span>ប្រភេទ</span>
-              <span>ចំនួន</span>
-              <span>តម្លៃ</span>
-            </div>
-            <div class="services-content">
-              <!-- Services will be dynamically added here -->
-            </div>
           </div>
-
           <h3 class="section-title mt-4">សង្ខេបការបញ្ជាទិញ</h3>
           <div class="card mb-4">
             <div class="card-body">
@@ -248,7 +298,7 @@
             </div>
           </div>
         </div>
-        <div class="card-footer bg-light p-4">
+        <div class="card-footer bg-white p-4">
           <button id="checkoutBtn" class="btn btn-primary btn-lg w-100 mb-3 checkout-btn" disabled
             onclick="handleCheckout()">
             <span id="buttonText">បន្តទៅការទូទាត់</span>
@@ -313,7 +363,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              បិទ
+              បិ
             </button>
             <button type="button" class="btn btn-primary" onclick="confirmLocation()">
               បញ្ជាក់ទីតាំង
@@ -322,11 +372,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="../../../assets/js/footer.js"></script>
+  <script src="../../../assets/js/search.js"></script>
   <script>
     // Service types
     const services = [
@@ -352,64 +404,8 @@
       },
     ];
 
-    // Clothing types
-    const clothingItems = [
-      {
-        id: 1,
-        name: "អាវយឺត",
-        icon: "../../../assets/image/service-icon/shirt.png",
-        price: 500,
-      },
-      {
-        id: 2,
-        name: "ខោ",
-        icon: "../../../assets/image/service-icon/pant.png",
-        price: 700,
-      },
-      {
-        id: 3,
-        name: "អាវរងា",
-        icon: "../../../assets/image/service-icon/hoddie.png",
-        price: 1000,
-      },
-      {
-        id: 4,
-        name: "កម្រាលនិងកន្សែង",
-        icon: "../../../assets/image/service-icon/capet.png",
-        price: 6000,
-      },
-      {
-        id: 5,
-        name: "សម្អាតស្បែកជើង",
-        icon: "../../../assets/image/service-icon/shoes.png",
-        price: 2500,
-      },
-      {
-        id: 6,
-        name: "មួក",
-        icon: "../../../assets/image/service-icon/hat.png",
-        price: 500,
-      },
-    ];
-
     let selectedServices = {};
     let selectedClothes = {};
-
-    function createServiceIcons() {
-      const serviceIconsContainer = document.getElementById("serviceIcons");
-      serviceIconsContainer.innerHTML = "";
-      services.forEach((service) => {
-        const serviceIcon = document.createElement("div");
-        serviceIcon.className = "col";
-        serviceIcon.innerHTML = `
-        <div class="service-icon" data-id="${service.id}">
-          <img src="${service.icon}" alt="${service.name}">
-          <span>${service.name}</span>
-        </div>
-      `;
-        serviceIconsContainer.appendChild(serviceIcon);
-      });
-    }
 
     function renderClothingList() {
       const clothingList = document.querySelector(".services-content");
@@ -520,7 +516,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      createServiceIcons();
       renderClothingList();
       document
         .getElementById("serviceIcons")
@@ -562,7 +557,7 @@
       document.getElementById(
         "scheduleModalLabel"
       ).textContent = `កំណត់ពលទទួលយក/ដឹកជញ្ជូន${type === "pickup" ? "ទទួលយក" : "ដឹកជញ្ជូន"
-      }`;
+        }`;
       populateDateOptions();
       populateTimeSlots();
       scheduleModal.show();
@@ -748,6 +743,25 @@
           break;
       }
     }
+
+    function renderAccordion() {
+      const accordionContainer = document.getElementById("accordionExample");
+      services.forEach((service) => {
+        const accordionItem = document
+          .getElementById("accordionItemTemplate")
+          .cloneNode(true);
+        accordionItem.style.display = "block"; // Show the cloned item
+        accordionItem.querySelector(".accordion-button").textContent =
+          service.name;
+        accordionItem.querySelector(".accordion-collapse").id = service.id;
+        accordionItem
+          .querySelector(".accordion-button")
+          .setAttribute("data-bs-target", `#${service.id}`);
+        accordionContainer.appendChild(accordionItem);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderAccordion);
 
     renderServices();
     updateOrderSummary();
