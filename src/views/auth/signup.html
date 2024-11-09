@@ -45,32 +45,21 @@
                                     placeholder="New Password" />
                                 <label for="phone">លេខទូរស័ព្ទ</label>
                             </div>
-                            <div class="form-floating mb-3 position-relative">
+                            <div class="form-floating position-relative">
                                 <input type="password" autocomplete="off" class="form-control" id="pass"
                                     placeholder="New Password" />
                                 <label for="pass">ពាក្យសម្ងាត់</label>
-                                <span class="password-toggle position-absolute" onclick="togglePasswordVisibility()"
-                                    style="
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-              ">
+                                <span class="eye_pass" onclick="togglePasswordVisibility()">
                                     <i id="toggleIcon4" class="fas fa-eye"></i>
                                 </span>
+                                <span id="err_pass"></span>
                             </div>
 
                             <div class="form-floating mb-5 position-relative">
                                 <input type="password" autocomplete="off" class="form-control" id="confirm_pass"
                                     placeholder="New Password" />
                                 <label for="confirm_pass">បញ្ចាក់ពាក្យសម្ងាត់</label>
-                                <span class="password-toggle position-absolute" onclick="togglePasswordVisibility1()"
-                                    style="
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-              ">
+                                <span class="eye_pass" onclick="togglePasswordVisibility1()">
                                     <i id="toggleIcon5" class="fas fa-eye"></i>
                                 </span>
                             </div>

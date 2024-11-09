@@ -48,6 +48,10 @@
   margin-bottom: 70px;
 }
 
+.me-n22{
+  margin-left: -22px!important;
+}
+
 .gap-35 {
   gap: 35px;
 }
@@ -946,16 +950,12 @@ td{
 }
 
 .eye_pass{
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
+  position: relative;
+  top:-40px;
+  left: 92%;
+  z-index:999;
 }
-/* login form style copy 
-style="
-
-"
-*/
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
