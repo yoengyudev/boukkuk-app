@@ -12,7 +12,7 @@ function searchAndRedirect() {
      alert('please input text to search');
   } else {
       sessionStorage.setItem('searchQuery', search_by_name);  
-      location.href = 'http://127.0.0.1:5510/src/views/page/search.html';
+      location.href = `${window.location.origin}/src/views/page/search.html`;
   }
 }
   
@@ -77,5 +77,5 @@ function searchAndRedirect() {
 
   function store(event){
     event.preventDefault();
-    location.href = 'http://127.0.0.1:5510/src/views/page/store.html';
+    location.href = `${window.location.origin}/src/views/page/store.html`;
   }

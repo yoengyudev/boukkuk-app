@@ -565,11 +565,11 @@
   display: block;
   min-width: 60px;
   height: 60px;
-  line-height: 75px;
+  line-height: 60px;
   text-align: center;
 }
 
-.navigation ul li a .icon ion-icon {
+.navigation ul li a .icon i {
   font-size: 1.75rem;
 }
 
@@ -695,7 +695,7 @@
   border: 1px solid var(--black2);
 }
 
-.search label ion-icon {
+.search label i {
   position: absolute;
   top: 0;
   left: 10px;

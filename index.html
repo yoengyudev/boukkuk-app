@@ -20,13 +20,15 @@
                     </div>
                     <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
                         <div class="row d-flex under-logo">
-                            <div class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                            <div
+                                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
                                 <input
                                     class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
                                     type="text" placeholder="ស្វែងរក" aria-label="search"
                                     onkeydown="handleKeyDown(event)">
-                            
-                                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+
+                                <button type="submit" class="btn btn-serch bg-primary gap-2"
+                                    onclick="searchAndRedirect()">
                                     <i class="bi bi-search text-white"></i>
                                 </button>
                             </div>
@@ -65,26 +67,26 @@
                                     </li>
                                     <li class="mb-3" id="login-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
+                                            href="src/views/auth/login.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ចូលប្រើប្រាស់
                                         </a>
                                     </li>
-                                    <li class="mb-3" id="pro-">
+                                    <li class="mb-3" id="pro-setting">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="profile_header.html">
+                                            href="src/views/page/profile.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ប្រវត្តិរូបរបស់ខ្ញុំ
                                         </a>
                                     </li>
-                                    <hr style="color: #ddd;">
                                     <li id="logout-list">
+                                        <hr style="color: #ddd;">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
+                                            href="">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-power"></i>
                                             </div>
@@ -94,7 +96,7 @@
                                 </ul>
                             </div>
 
-                            <a href=""
+                            <a href
                                 class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
                                 <div class="profile_header bg-instead rounded-circle">
                                     <i class="bi bi-bell-fill fs-18"></i>
@@ -120,8 +122,10 @@
                         <div class="carousel-item active poster-dis rounded-5">
                             <div class="col-7 h-100 d-flex align-items-center px-80">
                                 <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
+                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ
+                                        10%
+                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg
+                                        ឡើងទៅ</h2>
                                     <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
                                 </div>
                             </div>
@@ -129,8 +133,10 @@
                         <div class="carousel-item active poster-dis rounded-5">
                             <div class="col-7 h-100 d-flex align-items-center px-80">
                                 <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
+                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ
+                                        10%
+                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg
+                                        ឡើងទៅ</h2>
                                     <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
                                 </div>
                             </div>
@@ -172,10 +178,12 @@
                     <div class="col-12 col-md-6">
                         <div class="mb-3 d-flex align-items-center gap-3 justify-content-end">
                             <label for="addCategoryId" class="form-label mt-2">ប្រភេទ</label>
-                            <select class="form-control" style="width: 300px;" id="addCategoryId" name="category_id" required>
+                            <select class="form-control" style="width: 300px;" id="addCategoryId" name="category_id"
+                                required>
                                 <!-- Options will be populated here -->
                             </select>
-                            <div class="invalid-feedback">Please select a category.</div>
+                            <div class="invalid-feedback">Please select a
+                                category.</div>
                         </div>
                     </div>
                 </div>
@@ -186,14 +194,14 @@
         </section>
     </main>
 
-
     <footer class="footer mt-70">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h5 class="text-primary">Boukuk</h5>
                     <p class="fs-18">
-                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+                        យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
+                        និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
                         ដោយធានាបាននូវភាពងាយស្រួល​
                         និងគុណភាពដល់អ្នកប្រើប្រាស់។
                     </p>
@@ -210,11 +218,11 @@
                     <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
                     <ul>
                         <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
-                        <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
+                        <li><a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
                         <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
                         <li id="order-history"><a type="button" onclick="profile_headerMe()"
-                                class="border-0 p-0 bg-transparent fs-18"> <i
-                                    class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+                                class="border-0 p-0 bg-transparent fs-18">
+                                <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
                         </li>
                     </ul>
                 </div>
@@ -234,7 +242,8 @@
             <hr class="my-4">
             <div class="d-flex justify-content-between">
                 <div>
-                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
+                    <span><i class="bi bi-c-circle"></i> 2024 Boakuk
+                        ANT-GROUP9</span>
                 </div>
                 <div>
                     <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
@@ -248,7 +257,7 @@
     <script src="assets/js/footer.js"></script>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/logout.js"></script>
-    <script src="/../../../assets/js/search.js"></script>
+    <script src="assets/js/search.js"></script>
 
 </body>
 
