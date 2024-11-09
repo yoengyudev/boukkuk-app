@@ -118,14 +118,14 @@ document
       phone: updatePhone,
     };
 
-    fetch('https://mps10.chandalen.dev/api/profile/info',{
+    fetch('https://mps10.chandalen.dev/api/profile/info', {
       method: "PUT",
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(updatedData),  
+      body: JSON.stringify(updatedData),
     })
       .then((res) => {
         return res.json();
@@ -137,53 +137,102 @@ document
         saveButton.disabled = false;
         spinner.style.display = 'none';
         buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
-    })
+      })
   });
 
 // ======================================ending =================================//
 
 // ============================ change avarta =========================
 
-let avatarUpload = document.getElementById("avatarUpload");
-avatarUpload.addEventListener("change", function () {
-  let token = localStorage.getItem("token");
-  var avatar = this.files[0];
-  const formData = new FormData();
-  
-  formData.append("avatar", avatar);
+document.addEventListener('DOMContentLoaded', function () {
+  const avatarUpload = document.getElementById('avatarUpload');
+  const userAvatar = document.getElementById('userAvatar');
+  const deleteImageBtn = document.getElementById('deleteImageBtn');
+  const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+  const cropperImage = document.getElementById('cropperImage');
+  const cropImageBtn = document.getElementById('cropImageBtn');
+  let cropper;
 
-  if (avatar) {
-    fetch(`${g9_host}/api/profile/avatar`, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json.data);
-      });
-  } else {
-    document.getElementById("fileStatus").textContent = "No file selected";
-  }
+  avatarUpload.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        cropperImage.src = event.target.result;
+        cropperModal.show();
+
+        if (cropper) {
+          cropper.destroy();
+        }
+
+        cropper = new Cropper(cropperImage, {
+          aspectRatio: 1,
+          viewMode: 1,
+          minCropBoxWidth: 400, // Larger crop box area
+          minCropBoxHeight: 400,
+          background: false, // Keep modal background clean
+          autoCropArea: 0.8, // Automatically fill 80% of the crop area
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  cropImageBtn.addEventListener('click', function () {
+    const croppedCanvas = cropper.getCroppedCanvas({
+      width: 400, // Adjust output size if needed
+      height: 400
+    });
+
+    croppedCanvas.toBlob(function (blob) {
+      const formData = new FormData();
+      formData.append('avatar', blob);
+
+      const token = localStorage.getItem('token');
+      fetch(`${g9_host}/api/profile/avatar`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          const url = URL.createObjectURL(blob);
+          userAvatar.src = url;
+          cropperModal.hide();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  });
+
+  deleteImageBtn.addEventListener('click', function () {
+    userAvatar.src = 'assets/img/AboutUs-review3avif.avif'; // Reset to default image
+    avatarUpload.value = ''; // Clear the file input
+  });
 });
+
+
+
 
 let delete_Avatar = document.getElementById("deleteImageBtn");
 delete_Avatar.addEventListener("click", function () {
   let token = localStorage.getItem("token");
-    fetch(`${g9_host}/api/profile/avatar`, {
-      method: "delete",
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json.data);
-      });
+  fetch(`${g9_host}/api/profile/avatar`, {
+    method: "delete",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json.data);
+    });
 });
 
 

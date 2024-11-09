@@ -53,142 +53,108 @@
     </style>
   </head>
 
-  <body>
-    <header class="fixed-top">
-      <nav class="py-3">
+<body>
+  <header class="fixed-header">
+    <nav class="py-3">
         <div class="container">
-          <div class="row gy-4 align-items-center">
-            <div class="col-auto order-0">
-              <a
-                href="../../../index.html"
-                class="navbar-brand text-uppercase text-primary fs-3 fw-bold"
-                >Boakuk</a
-              >
-            </div>
-            <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
-              <div class="row d-flex under-logo">
-                <div
-                  class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5"
-                >
-                  <input
-                    class="border-0 w-100 bg-transparent py-1 px-3"
-                    id="location"
-                    type="text"
-                    placeholder="ស្វែងរក"
-                    aria-label=""
-                  />
-                  <button type="submit" class="btn btn-serch bg-primary gap-2">
-                    <i class="bi bi-search text-white"></i>
-                  </button>
+            <div class="row gy-4 align-items-center">
+                <div class="col-auto order-0">
+                    <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
                 </div>
-                <div
-                  class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start"
-                >
-                  <button
-                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
-                  >
-                    <i
-                      class="bi bi-crosshair2 fs-18"
-                      style="transform: translateY(1px)"
-                    ></i>
-                    ហាងនៅក្បែ
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col-auto ms-auto p-0 order-1 order-xl-2">
-              <div class="d-flex w-100 align-items-center justify-content-end">
-                <div class="dropdown rounded-2">
-                  <a
-                    class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <div class="profile_header bg-instead rounded-circle">
-                      <i class="bi bi-person-circle"></i>
+                <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+                    <div class="row d-flex under-logo">
+                      <div class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                        <input
+                            class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                            type="text" placeholder="ស្វែងរក" aria-label="search"
+                            onkeydown="handleKeyDown(event)">
+                    
+                        <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+                            <i class="bi bi-search text-white"></i>
+                        </button>
                     </div>
-                    <span>គណនី</span>
-                    <i class="bi bi-chevron-down fw-bold"></i>
-                  </a>
-
-                  <ul
-                    class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                    style="width: 300px"
-                  >
-                    <li class="mb-3">
-                      <a
-                        class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                        href="#"
-                      >
-                        <div class="profile_header bg-instead rounded-circle">
-                          <i class="bi bi-person-circle"></i>
+                    </div>                        
+                        <div
+                            class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                            <button
+                                class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                                <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                                ហាងនៅក្បែ
+                            </button>
                         </div>
-                        បង្កើតគណនី
-                      </a>
-                    </li>
-                    <li class="mb-3" id="login-list">
-                      <a
-                        class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                        href="#"
-                      >
-                        <div class="profile_header bg-instead rounded-circle">
-                          <i class="bi bi-person-circle"></i>
-                        </div>
-                        ចូលប្រើប្រាស់
-                      </a>
-                    </li>
-                    <li class="mb-3">
-                      <a
-                        class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                        href="profile_header.html"
-                      >
-                        <div class="profile_header bg-instead rounded-circle">
-                          <i class="bi bi-person-circle"></i>
-                        </div>
-                        ប្រវត្តិរូបរបស់ខ្ញុំ
-                      </a>
-                    </li>
-                    <hr style="color: #ddd" />
-                    <li id="logout-list">
-                      <a
-                        class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                        href="#"
-                      >
-                        <div class="profile_header bg-instead rounded-circle">
-                          <i class="bi bi-power"></i>
-                        </div>
-                        ចាកចេញពីគណនី
-                      </a>
-                    </li>
-                  </ul>
+                    </div>
                 </div>
+                <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+                    <div class="d-flex w-100 align-items-center justify-content-end">
+                        <div class="dropdown rounded-2">
+                            <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="profile_header bg-instead rounded-circle">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <span>គណនី</span>
+                                <i class="bi bi-chevron-down fw-bold"></i>
+                            </a>
 
-                <a
-                  href=""
-                  class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
-                >
-                  <div class="profile_header bg-instead rounded-circle">
-                    <i class="bi bi-bell-fill fs-18"></i>
-                  </div>
-                  <span class="d-none d-sm-block">ការជូនដំណឹង</span>
-                </a>
-                <a
-                  href=""
-                  class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle"
-                >
-                  <i
-                    class="bi bi-heart fs-18 bi-2x"
-                    style="transform: translateY(2px)"
-                  ></i>
-                </a>
-              </div>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                                style="width:300px;">
+                                <li class="mb-3" id="signup-list">
+                                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                        href="#">
+                                        <div class="profile_header bg-instead rounded-circle">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        បង្កើតគណនី
+                                    </a>
+                                </li>
+                                <li class="mb-3" id="login-list">
+                                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                        href="#">
+                                        <div class="profile_header bg-instead rounded-circle">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        ចូលប្រើប្រាស់
+                                    </a>
+                                </li>
+                                <li class="mb-3" id="pro-">
+                                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                        href="profile_header.html">
+                                        <div class="profile_header bg-instead rounded-circle">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        ប្រវត្តិរូបរបស់ខ្ញុំ
+                                    </a>
+                                </li>
+                                <hr style="color: #ddd;">
+                                <li id="logout-list">
+                                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                                        href="#">
+                                        <div class="profile_header bg-instead rounded-circle">
+                                            <i class="bi bi-power"></i>
+                                        </div>
+                                        ចាកចេញពីគណនី
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <a href=""
+                            class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                            <div class="profile_header bg-instead rounded-circle">
+                                <i class="bi bi-bell-fill fs-18"></i>
+                            </div>
+                            <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                        </a>
+                        <button type="submit" onclick="wishlist()"
+                            class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                            <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </nav>
-    </header>
+    </nav>
+</header>
 
     <section class="cart-body mt-100 mb-5">
       <canvas id="confetti-canvas " style="display: none"></canvas>
@@ -488,56 +454,37 @@
           </div>
         </div>
       </div>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../../assets/js/footer.js"></script>
-    <script>
-      const services = [
-        { name: "បោកគក់", id: "collapseOne" },
-        { name: "សម្អាតស្បែកជើង", id: "collapseTwo" },
-        // Add more services as needed
-      ];
-      // Clothing types
-      const clothingItems = [
-        {
-          id: 1,
-          name: "អាវយឺត",
-          icon: "../../../assets/image/service-icon/shirt.png",
-          price: 500,
-        },
-        {
-          id: 2,
-          name: "ខោ",
-          icon: "../../../assets/image/service-icon/pant.png",
-          price: 700,
-        },
-        {
-          id: 3,
-          name: "អាវរងា",
-          icon: "../../../assets/image/service-icon/hoddie.png",
-          price: 1000,
-        },
-        {
-          id: 4,
-          name: "កម្រាលនិងកន្សែង",
-          icon: "../../../assets/image/service-icon/capet.png",
-          price: 6000,
-        },
-        {
-          id: 5,
-          name: "សម្អាតស្បែកជើង",
-          icon: "../../../assets/image/service-icon/shoes.png",
-          price: 2500,
-        },
-        {
-          id: 6,
-          name: "មួក",
-          icon: "../../../assets/image/service-icon/hat.png",
-          price: 500,
-        },
-      ];
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="../../../assets/js/footer.js"></script>
+  <script src="../../../assets/js/search.js"></script>
+  <script>
+    // Service types
+    const services = [
+      {
+        id: 1,
+        name: "បោកគក់",
+        icon: "../../../assets/image/service-icon/wash.png",
+      },
+      {
+        id: 2,
+        name: "អ៊ុត",
+        icon: "../../../assets/image/service-icon/iron.png",
+      },
+      {
+        id: 3,
+        name: "បោកស្ងួត",
+        icon: "../../../assets/image/service-icon/dryWash.png",
+      },
+      {
+        id: 4,
+        name: "សម្អាតកម្រាល",
+        icon: "../../../assets/image/service-icon/carpetClean.png",
+      },
+    ];
 
       let selectedServices = {};
       let selectedClothes = {};
