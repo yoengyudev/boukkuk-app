@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="vender/bootstrap-icon/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>ស្វែងរក</title>
+    <link rel="stylesheet" href="/../../../assets/css/main.css">
+    <link rel="stylesheet" href="/../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                                 <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
                                     <i class="bi bi-search text-white"></i>
                                 </button>
-                            </div>
+                            </div>                     
                             <div
                                 class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                                 <button
@@ -112,80 +112,17 @@
         </nav>
     </header>
 
-    <main>
-        <section class="hero-banner mb-70 d-none d-md-block">
-            <div class="container p-0">
-                <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
-                    <div class="carousel-inner  bg-transparent">
-                        <div class="carousel-item active poster-dis rounded-5">
-                            <div class="col-7 h-100 d-flex align-items-center px-80">
-                                <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
-                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item active poster-dis rounded-5">
-                            <div class="col-7 h-100 d-flex align-items-center px-80">
-                                <div>
-                                    <h2 class="text-white lh-lg fw-bold mb-4">បញ្ចុះតម្លៃ 10%
-                                        សម្រាប់ការបោកសម្លៀកបំពាក់ចាប់ពី 20kg ឡើងទៅ</h2>
-                                    <a href="store.html" class="btn px-5 bg-primary text-white rounded-5">ទទួលយក</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev">
-                        <span
-                            class="carousel-prev bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
-                            aria-hidden="true">
-                            <i class="bi bi-chevron-left text-dark"></i>
-                        </span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="next">
-                        <span
-                            class="carousel-next bg-white w-40 h-40 d-flex align-items-center justify-content-center rounded-circle"
-                            aria-hidden="true">
-                            <i class="bi bi-chevron-right text-dark"></i>
-                        </span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </section>
 
-        <section class="mb-5">
-            <div class="container">
-                <div class="row py-4 px-3">
-                    <div class="col-12 col-md-6 mb-3 mb-md-0">
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="rounded-3">
-                                <i class="bi bi-shop fs-3 fs-md-2 text-dark-emphasis"></i>
-                            </div>
-                            <h4 class="text-dark mb-0 fs-5 fs-md-4">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="mb-3 d-flex align-items-center gap-3 justify-content-end">
-                            <label for="addCategoryId" class="form-label mt-2">ប្រភេទ</label>
-                            <select class="form-control" style="width: 300px;" id="addCategoryId" name="category_id" required>
-                                <!-- Options will be populated here -->
-                            </select>
-                            <div class="invalid-feedback">Please select a category.</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="store-card" class="row">
-                    <!-- Store Card 1 -->
-                </div>
-            </div>
-        </section>
+    <main style="margin-top: 90px;">
+       <div class="container">
+        <div id="Is-search-found"></div>
+        <div id="store-card" class="row g-4">
+            <!-- Store Card 1 -->
+            
+        </div>
+        <div id="search_not_found"></div>
+       </div>
     </main>
-
 
     <footer class="footer mt-70">
         <div class="container">
@@ -212,7 +149,7 @@
                         <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
                         <li><a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
                         <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
-                        <li id="order-history"><a type="button" onclick="profile_headerMe()"
+                        <li id="order-history"><a href="" onclick="profileMe()"
                                 class="border-0 p-0 bg-transparent fs-18"> <i
                                     class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
                         </li>
@@ -243,11 +180,10 @@
         </div>
     </footer>
 
-    <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/footer.js"></script>
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/logout.js"></script>
+
+    <script src="/vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/../../../assets/js/store.js"></script>
+    <script src="/../../../assets/js/footer.js"></script>
     <script src="/../../../assets/js/search.js"></script>
 
 </body>
