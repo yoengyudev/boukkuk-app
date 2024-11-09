@@ -19,9 +19,8 @@
   <body>
     <section class="wishList">
       <div class="container">
-        <h1><i class="fas fa-tshirt me-3"></i>Boakuk's Wish List</h1>
-
-        <div id="wishlist-items">
+        <h1><i class="fas fa-tshirt me-3"></i>My Wishlist Items</h1>
+        <div id="wishlist-items" class="row">
           <!-- Wishlist items will be dynamically added here -->
         </div>
       </div>
@@ -31,43 +30,47 @@
       const wishlistItems = [
         {
           id: 1,
-          name: "Clean Pro Laundry",
-          khmerName: "សម្អាតអ៊ុតដោយអ្នកជំនាញ",
+          name: "T-Shirt",
+          khmerName: "អាវយឺត",
           rating: 4.7,
-          address: "St 310, Sangkat Boeung Keng Kang III, Phnom Penh",
-          hours: "Open: 7AM - 9PM",
-          image:
-            "https://www.sunandmoongroup.com.kh/uploads/images/Gallery/Companies_Projects/COMMERCIAL-LAUNDRY/sun-and-moon-laundry.jpg",
+          price: "$2/piece",
+          serviceType: "Wash & Iron",
+          shopName: "Modern Laundry",
+          shopKhmerName: "ម៉ូឌឺនឡនដ្រី",
+          image: "/assets/image/service-icon/shirt.png",
         },
         {
           id: 2,
-          name: "Sparkle Wash",
-          khmerName: "បោកគក់ភ្លឺថ្លា",
+          name: "Jeans",
+          khmerName: "ខោខូវប៊យ",
           rating: 4.5,
-          address: "St 63, Sangkat Tonle Bassac, Phnom Penh",
-          hours: "Open: 6AM - 10PM",
-          image:
-            "https://i0.wp.com/www.movetocambodia.com/wp-content/uploads/modern-laundry-phnom-penh.jpg?resize=660%2C495&ssl=1",
+          price: "$3/piece",
+          serviceType: "Dry Clean",
+          shopName: "Fresh & Clean",
+          shopKhmerName: "ស្រស់និងស្អាត",
+          image: "/assets/image/service-icon/pant.png",
         },
         {
           id: 3,
-          name: "Royal Laundry Service",
-          khmerName: "សេវាកម្មបោកគក់រាជវង្ស",
+          name: "Dress",
+          khmerName: "សម្លៀកបំពាក់",
           rating: 4.8,
-          address: "Preah Monivong Blvd, Sangkat Phsar Thmei II, Phnom Penh",
-          hours: "Open 24/7",
-          image:
-            "https://camtrepreneurs.weebly.com/uploads/2/5/9/0/25909495/2380025_orig.jpg",
+          price: "$4/piece",
+          serviceType: "Premium Wash",
+          shopName: "Royal Laundry",
+          shopKhmerName: "រ៉ូយ៉ាល់ឡនដ្រី",
+          image: "/assets/image/service-icon/hoddie.png",
         },
         {
           id: 4,
-          name: "Fresh & Fast Laundromat",
-          khmerName: "ហាងបោកគក់ស្រស់និងលឿន",
+          name: "Suit",
+          khmerName: "សំពត់",
           rating: 4.3,
-          address: "St 271, Sangkat Tuol Tumpung II, Phnom Penh",
-          hours: "Open: 8AM - 8PM",
-          image:
-            "https://i0.wp.com/kbcambodia.com/wp-content/uploads/2016/12/MODERN-LAUNDRY-2.jpg?fit=960%2C642&ssl=1",
+          price: "$5/piece",
+          serviceType: "Dry Clean",
+          shopName: "Luxury Care",
+          shopKhmerName: "ថែទាំប្រណីត",
+          image: "/assets/image/service-icon/capet.png",
         },
       ];
 
@@ -77,39 +80,41 @@
 
         wishlistItems.forEach((item) => {
           const itemElement = document.createElement("div");
-          itemElement.className = "row wishlist-item align-items-center";
+          itemElement.className = "col-lg-3 col-md-4 col-sm-6 mb-4";
           itemElement.innerHTML = `
-                    <div class="col-md-2">
-                        <img src="${item.image}" alt="${
-            item.name
-          }" class="img-fluid">
-                    </div>
-                    <div class="col-md-6 item-details">
-                        <div class="shop-name">${item.name}</div>
-                        <div class="khmer-name">${item.khmerName}</div>
-                        <div class="shop-rating">
-                            ${"★".repeat(Math.floor(item.rating))}${
-            item.rating % 1 ? "½" : ""
-          }
-                            ${"☆".repeat(5 - Math.ceil(item.rating))}
-                            <span style="color: #7f8c8d; margin-left: 5px;">${
-                              item.rating
-                            }</span>
-                        </div>
-                        <div class="shop-address"><i class="fas fa-map-marker-alt me-2"></i>${
-                          item.address
-                        }</div>
-                        <div class="shop-hours"><i class="far fa-clock me-2"></i>${
-                          item.hours
-                        }</div>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <button class="btn-remove" onclick="removeItem(${
-                          item.id
-                        })"><i class="fas fa-trash-alt me-2"></i>Remove</button>
-                        <a href="view_shop.html" class="btn-visit btn btn-primary mt-2 mt-md-0 text-decoration-none"><i class="fas fa-eye me-2"></i>View Shop</a>
-                    </div>
-                `;
+            <div class="wishlist-item h-100">
+              <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="shop-info mb-2">
+                <h5 class="shop-name">${item.shopName}</h5>
+              </div>
+              <div class="clickable-area" onclick="window.location.href='store.html'" style="cursor: pointer;">
+                <div class="service-image mb-3">
+                  <img src="${item.image}" alt="${item.name}" class="img-fluid w-100">
+                </div>
+                <div class="service-details">
+                  <h4 class="service-name">${item.name}</h4>
+                  <div class="service-type mb-2">
+                    <i class="fas fa-tag me-2"></i>${item.serviceType}
+                  </div>
+                  <div class="service-rating mb-2">
+                    ${"★".repeat(Math.floor(item.rating))}${item.rating % 1 ? "½" : ""}
+                    ${"☆".repeat(5 - Math.ceil(item.rating))}
+                    <span class="rating-value">${item.rating}</span>
+                  </div>
+                  <div class="service-info mb-2">
+                    <div><i class="fas fa-dollar-sign me-2"></i>${item.price}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="service-actions mt-3">
+                <button class="btn-remove w-100" onclick="removeItem(${item.id}); event.stopPropagation();">
+                  <i class="fas fa-trash-alt me-2"></i>Remove
+                </button>
+              </div>
+            </div>
+          `;
           wishlistContainer.appendChild(itemElement);
         });
       }
