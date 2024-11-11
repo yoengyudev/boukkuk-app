@@ -337,7 +337,7 @@ function getCategory(value = 0, search = '') {
       } else {
         data.data.forEach(element => {
           card_service += `
-            <div class="col-4">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card service-card" data-service="${element.name}" data-price="${element.price}">
                   <div class="card-img-container">
                     <img src="${element.image}" alt="" class="card-img" />

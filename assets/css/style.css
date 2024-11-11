@@ -534,12 +534,14 @@
 .navigation ul li.hovered {
   background-color: var(--white);
 }
+
 .navigation ul li.active,
 .navigation ul li.active {
   background-color: var(--white);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
+
 .navigation ul li.active a,
 .navigation ul li.active a {
   color: var(--blue);
@@ -615,6 +617,7 @@
   box-shadow: 35px -35px 0 10px var(--white);
   pointer-events: none;
 }
+
 .navigation ul li.active a::before,
 .navigation ul li.active a::before {
   content: "";
@@ -628,6 +631,7 @@
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
 }
+
 .navigation ul li.active a::after,
 .navigation ul li.active a::after {
   content: "";
@@ -941,36 +945,36 @@
   color: var(--white);
 }
 
-.search-icon{
+.search-icon {
   transform: translateY(10px);
 }
 
-.btn_status_icon{
-  display:flex;
+.btn_status_icon {
+  display: flex;
 }
 
-td{
-  padding-block:15px!important;
+td {
+  padding-block: 15px !important;
 }
 
-.border_modal{
-  border:none !important;
-  box-shadow:0 0.5px 0 0 #ddd;
+.border_modal {
+  border: none !important;
+  box-shadow: 0 0.5px 0 0 #ddd;
 }
 
-.detail_profile{
+.detail_profile {
   width: 200px;
   height: 200px;
   background-color: red;
-  border-radius:50%!important;
+  border-radius: 50% !important;
   overflow: hidden;
   margin: auto;
 }
 
-.err{
+.err {
   color: red;
   position: relative;
-  top:5px;
+  top: 5px;
 }
 
 .eye_pass{
@@ -1150,6 +1154,7 @@ td{
 .btn-secondary:hover {
   background-color: #e0e0e0;
 }
+
 .modal-body.bg-black {
   /* overflow: hidden; */
   display: flex;
@@ -1158,10 +1163,17 @@ td{
 }
 
 .cropper-wrapper img {
-  width: 90%; /* Increase the image width to fill the modal */
-  max-height: 90vh; /* Prevent overflow beyond the viewport height */
+  width: 90%;
+  /* Increase the image width to fill the modal */
+  max-height: 90vh;
+  /* Prevent overflow beyond the viewport height */
   margin: auto;
   display: block;
 }
-
+.wishlist-counter {
+  font-size: 0.75rem;
+  transform: translate(-50%, -50%);
+  right: -45%;
+  top: 5% !important;
+}
 /* ============== end admin & provider ================= */
