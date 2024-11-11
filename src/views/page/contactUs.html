@@ -12,179 +12,271 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/long.css" />
+  <link rel="stylesheet" href="../../../assets/css/style.css">
 </head>
-<body class="py-5 bg-body-tertiary">
-  <section class="contact-us">
-    <div class="floating-bg">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="container">
-      <h1 class="text-center mb-5 fw-bold display-4 text-primary section-title">
-        Get in Touch
-      </h1>
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="card shadow h-100">
-            <div class="card-header bg-primary text-white py-4">
-              <h2 class="card-title h4 mb-0">Contact Us</h2>
-            </div>
-            <div class="card-body p-4">
-              <form id="contactForm">
-                <div class="row mb-2">
-                  <div class="col-sm-6 mb-2 mb-sm-0">
-                    <div class="mb-2 form-floating">
-                      <input type="text" class="form-control" id="firstName" placeholder="First Name" required />
-                      <label for="firstName">First Name</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="mb-2 form-floating">
-                      <input type="text" class="form-control" id="lastName" placeholder="Last Name" required />
-                      <label for="lastName">Last Name</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="mb-2 form-floating">
-                  <input type="email" class="form-control" id="email" placeholder="Email" required />
-                  <label for="email">Email</label>
-                </div>
-                <div class="mb-2 form-floating">
-                  <input type="text" class="form-control" id="subject" placeholder="Subject" required />
-                  <label for="subject">Subject</label>
-                </div>
-                <div class="mb-2 form-floating">
-                  <textarea class="form-control" id="message" rows="15" placeholder="Your Message" required></textarea>
-                  <label for="message">Your Message</label>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 py-3 mt-3" id="submitBtn">
-                  Send Message
-                  <i class="bi bi-send ms-2"></i>
+
+<body>
+  <header class="fixed-header">
+    <nav class="py-3">
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-auto order-0">
+            <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+          </div>
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+            <div class="row d-flex under-logo">
+              <div
+                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+
+                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+                  <i class="bi bi-search text-white"></i>
                 </button>
-              </form>
-              <div id="successMessage" class="text-center py-5" style="display: none">
-                <i class="bi bi-check-circle text-success icon-pulse" style="font-size: 4rem"></i>
-                <h3 class="mt-3">Thank You!</h3>
-                <p class="text-muted">
-                  Your message has been sent successfully. We'll get back to
-                  you soon.
-                </p>
+              </div>
+              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
+                  onclick="findNearbyLocations()">
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                  ហាងនៅក្បែ
+                </button>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card shadow h-100">
-            <div class="card-header">
-              <ul class="nav nav-tabs card-header-tabs flex-wrap" role="tablist">
-                <!-- Added flex-wrap for responsiveness -->
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
-                    type="button" role="tab" aria-controls="info" aria-selected="true">
-                    ព័ត៌មាន
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location"
-                    type="button" role="tab" aria-controls="location" aria-selected="false">
-                    ទីតាំង
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button"
-                    role="tab" aria-controls="faq" aria-selected="false">
-                    សំណួរដែលសួរញឹកញាប់
-                  </button>
-                </li>
-              </ul>
+          <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+            <div class="d-flex w-100 align-items-center justify-content-end">
+              <div class="dropdown rounded-2">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile_header bg-instead rounded-circle">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <span>គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                  style="width:300px;">
+                  <li class="mb-3" id="signup-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      បង្កើតគណនី
+                    </a>
+                  </li>
+                  <li class="mb-3" id="login-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="src/views/auth/login.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ចូលប្រើប្រាស់
+                    </a>
+                  </li>
+                  <li class="mb-3" id="pro-setting">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="src/views/page/profile.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ប្រវត្តិរូបរបស់ខ្ញុំ
+                    </a>
+                  </li>
+                  <li id="logout-list">
+                    <hr style="color: #ddd;">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-power"></i>
+                      </div>
+                      ចាកចេញពីគណនី
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <a href
+                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                <div class="profile_header bg-instead rounded-circle">
+                  <i class="bi bi-bell-fill fs-18"></i>
+                </div>
+                <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+              </a>
+              <button type="submit" onclick="wishlist()"
+                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
+                  0
+                </span>
+              </button>
             </div>
-            <div class="card-body">
-              <div class="tab-content">
-                <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-                  <h3 class="card-title h5 mb-4">ព័ត៌មានទំនាក់ទំនង</h3>
-                  <ul class="list-unstyled">
-                    <li class="mb-2 contact-item">
-                      <i class="bi bi-geo-alt text-primary me-2"></i>
-                      ១២៣ ផ្លូវបោកគក់, ញូវយ៉ក, NY ១០០០១
-                    </li>
-                    <li class="mb-2 contact-item">
-                      <i class="bi bi-telephone text-primary me-2"></i>
-                      +១ (៥៥៥) ១២៣-៤៥៦៧
-                    </li>
-                    <li class="mb-2 contact-item">
-                      <i class="bi bi-envelope text-primary me-2"></i>
-                      contact@americleanlaundry.com
-                    </li>
-                    <li class="contact-item">
-                      <i class="bi bi-clock text-primary me-2"></i>
-                      ចន្ទ-សុក្រ: ៨ព្រឹក-៨ល្ងាច, សៅរ៍-អាទិត្យ: ៩ព្រឹក-៦ល្ងាច
-                    </li>
-                  </ul>
-                </div>
-                <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
-                  <h3 class="card-title h5 mb-4">ទីតាំងរបស់យើង</h3>
-                  <div id="map"></div>
-                </div>
-                <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                  <h3 class="card-title h5 mb-4">សំណួរដែលសួរញឹកញាប់</h3>
-                  <div class="accordion" id="faqAccordion">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          តើខ្ញុំអាចកំណត់ពេលវេលាទៅយកសម្លៀកបំពាក់យ៉ាងដូចម្តេច?
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                          អ្នកអាចកំណត់ពេលវេលាទៅយកសម្លៀកបំពាក់តារយៈកម្មវិធីទូរស័ព្ទចល័តរបស់យើង
-                          ឬដោយហៅទូរស័ព្ទទៅសេវាកម្មអតិថិជនរបស់យើង។
-                          កម្មវិធីរបស់យើងផ្តល់នូវចំណុចប្រទាក់ដែលងាយស្រួលប្រើប្រាស់សម្រាប់ការជ្រើសរើសពេលវេលា
-                          និងកាលបរិច្ឆេទដែលអ្នកពេញចិត្ត។
-                        </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="pt-5 mt-5">
+    <section class="contact-us">
+      <div class="container">
+        <h1 class="text-center mb-5 fw-bold display-4 text-primary section-title">
+          Get in Touch
+        </h1>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card shadow h-100">
+              <div class="card-header bg-primary text-white py-4">
+                <h2 class="card-title h4 mb-0">Contact Us</h2>
+              </div>
+              <div class="card-body p-4">
+                <form id="contactForm">
+                  <div class="row mb-2">
+                    <div class="col-sm-6 mb-2 mb-sm-0">
+                      <div class="mb-2 form-floating">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name" required />
+                        <label for="firstName">First Name</label>
                       </div>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          តើរយៈពេលបញ្ចប់ការងាររបស់អ្នកយ៉ាងដូចម្តេច?
-                        </button>
-                      </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                          រយៈពេលបញ្ចប់ការងារស្តង់ដាររបស់យើងគឺ ២៤-៤៨ ម៉ោង
-                          ប៉ុន្តែយើងក៏មានផ្តល់សេវាកម្មរហ័សសម្រាប់ការដឹកជញ្ជូនលឿនជាងនេះផងដែរ។
-                          សេវាកម្មរហ័សអាចធ្វើឱ្យសម្លៀកបំពាក់របស់អ្នករួចរាល់ក្នុងរយៈពេលតិចជាង
-                          ៦ ម៉ោង អាស្រ័យលើសេវាកម្មដែលបានជ្រើសរើស។
-                        </div>
+                    <div class="col-sm-6">
+                      <div class="mb-2 form-floating">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required />
+                        <label for="lastName">Last Name</label>
                       </div>
                     </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          តើអ្នកមានផ្តល់សេវាកម្មសម្អាតស្ងួតដែរឬទេ?
-                        </button>
-                      </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                          បាទ/ចាស យើងផ្តល់ទាំងសេវាកម្មបោកគក់ និងសម្អាតស្ងួត
-                          ដើម្បីបំពេញតាមតម្រូវការថែទាំសម្លៀកបំពាក់របស់អ្នកទាំងអស់។
-                          សេវាកម្មសម្អាតស្ងួតរបស់យើងប្រើប្រាស់សារធាតុរំលាយដែលមិនប៉ះពាល់ដល់បរិស្ថាន
-                          និងសមស្របសម្រាំក្រណាត់ដែលត្រូវការការថែទាំពិសេស
-                          និងវត្ថុផ្សេងៗទៀត។
+                  </div>
+                  <div class="mb-2 form-floating">
+                    <input type="email" class="form-control" id="email" placeholder="Email" required />
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="mb-2 form-floating">
+                    <input type="text" class="form-control" id="subject" placeholder="Subject" required />
+                    <label for="subject">Subject</label>
+                  </div>
+                  <div class="mb-2 form-floating">
+                    <textarea class="form-control" id="message" rows="15" placeholder="Your Message"
+                      required></textarea>
+                    <label for="message">Your Message</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-3 mt-3" id="submitBtn">
+                    Send Message
+                    <i class="bi bi-send ms-2"></i>
+                  </button>
+                </form>
+                <div id="successMessage" class="text-center py-5" style="display: none">
+                  <i class="bi bi-check-circle text-success icon-pulse" style="font-size: 4rem"></i>
+                  <h3 class="mt-3">Thank You!</h3>
+                  <p class="text-muted">
+                    Your message has been sent successfully. We'll get back to
+                    you soon.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card shadow h-100">
+              <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs flex-wrap" role="tablist">
+                  <!-- Added flex-wrap for responsiveness -->
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
+                      type="button" role="tab" aria-controls="info" aria-selected="true">
+                      ព័ត៌មាន
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location"
+                      type="button" role="tab" aria-controls="location" aria-selected="false">
+                      ទីតាំង
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button"
+                      role="tab" aria-controls="faq" aria-selected="false">
+                      សំណួរដែលសួរញឹកញាប់
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                    <h3 class="card-title h5 mb-4">ព័ត៌មានទំនាក់ទំនង</h3>
+                    <ul class="list-unstyled">
+                      <li class="mb-2 contact-item">
+                        <i class="bi bi-geo-alt text-primary me-2"></i>
+                        ១២៣ ផ្លូវបោកគក់, ញូវយ៉ក, NY ១០០០១
+                      </li>
+                      <li class="mb-2 contact-item">
+                        <i class="bi bi-telephone text-primary me-2"></i>
+                        +១ (៥៥៥) ១២៣-៤៥៦៧
+                      </li>
+                      <li class="mb-2 contact-item">
+                        <i class="bi bi-envelope text-primary me-2"></i>
+                        contact@americleanlaundry.com
+                      </li>
+                      <li class="contact-item">
+                        <i class="bi bi-clock text-primary me-2"></i>
+                        ចន្ទ-សុក្រ: ៨ព្រឹក-៨ល្ងាច, សៅរ៍-អាទិត្យ: ៩ព្រឹក-៦ល្ងាច
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+                    <h3 class="card-title h5 mb-4">ទីតាំងរបស់យើង</h3>
+                    <div id="map"></div>
+                  </div>
+                  <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                    <h3 class="card-title h5 mb-4">សំណួរដែលសួរញឹកញាប់</h3>
+                    <div class="accordion" id="faqAccordion">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            តើខ្ញុំអាចកំណត់ពេលវេលាទៅយកសម្លៀកបំពាក់យ៉ាងដូចម្តេច?
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                          data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                            អ្នកអាចកំណត់ពេលវេលាទៅយកសម្លៀកបំពាក់តារយៈកម្មវិធីទូរស័ព្ទចល័តរបស់យើង
+                            ឬដោយហៅទូរស័ព្ទទៅសេវាកម្មអតិថិជនរបស់យើង។
+                            កម្មវិធីរបស់យើងផ្តល់នូវចំណុចប្រទាក់ដែលងាយស្រួលប្រើប្រាស់សម្រាប់ការជ្រើសរើសពេលវេលា
+                            និងកាលបរិច្ឆេទដែលអ្នកពេញចិត្ត។
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            តើរយៈពេលបញ្ចប់ការងាររបស់អ្នកយ៉ាងដូចម្តេច?
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                          data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                            រយៈពេលបញ្ចប់ការងារស្តង់ដាររបស់យើងគឺ ២៤-៤៨ ម៉ោង
+                            ប៉ុន្តែយើងក៏មានផ្តល់សេវាកម្មរហ័សសម្រាប់ការដឹកជញ្ជូនលឿនជាងនេះផងដែរ។
+                            សេវាកម្មរហ័សអាចធ្វើឱ្យសម្លៀកបំពាក់របស់អ្នករួចរាល់ក្នុងរយៈពេលតិចជាង
+                            ៦ ម៉ោង អាស្រ័យលើសេវាកម្មដែលបានជ្រើសរើស។
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            តើអ្នកមានផ្តល់សេវាកម្មសម្អាតស្ងួតដែរឬទេ?
+                          </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                          data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                            បាទ/ចាស យើងផ្តល់ទាំងសេវាកម្មបោកគក់ និងសម្អាតស្ងួត
+                            ដើម្បីបំពេញតាមតម្រូវការថែទាំសម្លៀកបំពាក់របស់អ្នកទាំងអស់។
+                            សេវាកម្មសម្អាតស្ងួតរបស់យើងប្រើប្រាស់សារធាតុរំលាយដែលមិនប៉ះពាល់ដល់បរិស្ថាន
+                            និងសមស្របសម្រាំក្រណាត់ដែលត្រូវការការថែទាំពិសេស
+                            និងវត្ថុផ្សេងៗទៀត។
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -195,12 +287,84 @@
           </div>
         </div>
       </div>
+    </section>
+  </main>
+  <footer class="footer mt-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">Boukuk</h5>
+          <p class="fs-18">
+            យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
+            និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+            ដោយធានាបាននូវភាពងាយស្រួល​ និងគុណភាពដល់អ្នកប្រើប្រាស់។
+          </p>
+          <div class="social-icons">
+            <a href="#" style="background-color: #4267b2"><i class="bi bi-facebook"></i></a>
+            <a href="#" style="background-color: #0088cc"><i class="bi bi-telegram"></i></a>
+            <a href="#" style="
+                  background: linear-gradient(
+                    45deg,
+                    #feda75,
+                    #fa7e1e,
+                    #d62976,
+                    #962fbf,
+                    #4f5bd5
+                  );
+                "><i class="bi bi-instagram"></i></a>
+            <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 ms-auto">
+          <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+          <ul>
+            <li>
+              <a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a>
+            </li>
+            <li>
+              <a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a>
+            </li>
+            <li>
+              <a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពយើង</a>
+            </li>
+            <li id="order-history">
+              <a href="" onclick="profileMe()" class="border-0 p-0 bg-transparent fs-18">
+                <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">ទំនាក់ទំនង</h5>
+          <ul>
+            <li>
+              <a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a>
+            </li>
+            <li>
+              <a href="mailto:boukuk@gmail.com" class="fs-18">
+                <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" />
+      <div class="d-flex justify-content-between">
+        <div>
+          <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
+        </div>
+        <div>
+          <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
+        </div>
+      </div>
     </div>
-  </section>
-
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="../../../assets/js/header.js"></script>
+  <script src="../../../assets/js/footer.js"></script>
+  <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/aboutUs.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("contactForm");

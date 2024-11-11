@@ -1,37 +1,44 @@
 function handleKeyDown(event) {
   if (event.key === "Enter") {
-      searchAndRedirect();
+    searchAndRedirect();
   }
 }
 
 function searchAndRedirect() {
-  let search_by_name = document.querySelector('.get_vlue_by_search').value;
+  let search_by_name = document.querySelector(".get_vlue_by_search").value;
   console.log(search_by_name);
-  
-  if (search_by_name === '') {
-     alert('please input text to search');
+
+  if (search_by_name === "") {
+    alert("please input text to search");
   } else {
-      sessionStorage.setItem('searchQuery', search_by_name);  
-      location.href = `${window.location.origin}/src/views/page/search.html`;
+    sessionStorage.setItem("searchQuery", search_by_name);
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/page/search.html`;
   }
 }
-  
 
-  document.addEventListener('DOMContentLoaded', function() {
-    let querySearch = sessionStorage.getItem('searchQuery');
-    
-    if (querySearch) {
-      fetch(`https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`)
-        .then(res => res.json())
-        .then(json => {
-          let col_3 = '';
-  
-          if (json.data.length === 0) {
-                document.querySelector('#search_not_found').innerHTML = `<h3 class='text-primary'>No results found for "${querySearch}".</h3>`;
-          } else {
-                document.querySelector('#Is-search-found').innerHTML = `<h3 class='text-primary mb-5'>Search found "${querySearch}".</h3>`;
-            json.data.forEach(element => {
-              col_3 += `
+document.addEventListener("DOMContentLoaded", function () {
+  let querySearch = sessionStorage.getItem("searchQuery");
+
+  if (querySearch) {
+    fetch(
+      `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        let col_3 = "";
+
+        if (json.data.length === 0) {
+          document.querySelector(
+            "#search_not_found"
+          ).innerHTML = `<h3 class='text-primary'>No results found for "${querySearch}".</h3>`;
+        } else {
+          document.querySelector(
+            "#Is-search-found"
+          ).innerHTML = `<h3 class='text-primary mb-5'>Search found "${querySearch}".</h3>`;
+          json.data.forEach((element) => {
+            col_3 += `
                 <div class="col-3">
                   <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                     <p class='id' style="display: none;">${element.id}</p>
@@ -65,17 +72,16 @@ function searchAndRedirect() {
                     </div>
                   </div>
                 </div>`;
-            });
-          }
-  
-          document.querySelector('#store-card').innerHTML = col_3;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    }
-  });
-  
+          });
+        }
 
-  function store(event){
-    event.preventDefault();
-    location.href = `${window.location.origin}/src/views/page/store.html`;
+        document.querySelector("#store-card").innerHTML = col_3;
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   }
+});
+
+function store(event) {
+  event.preventDefault();
+  location.href = `${window.location.origin}/src/views/page/store.html`;
+}

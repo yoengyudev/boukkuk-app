@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <div class="spinner-overlay" id="animation-overlay">
+        <div class="spinner-overlay__inner">
+          <div class="spinner">
+            <div class="spinner__bounce spinner__bounce--1"></div>
+            <div class="spinner__bounce spinner__bounce--2"></div>
+            <div class="spinner__bounce spinner__bounce--3"></div>
+          </div>
+        </div>
+      </div>
     <header class="fixed-header">
         <nav class="py-3">
             <div class="container">
@@ -35,7 +44,7 @@
                             <div
                                 class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                                 <button
-                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis" onclick="findNearbyLocations()">
                                     <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
                                     ហាងនៅក្បែ
                                 </button>
@@ -58,7 +67,7 @@
                                     style="width:300px;">
                                     <li class="mb-3" id="signup-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
+                                            href="src/views/auth/signup.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
@@ -104,8 +113,12 @@
                                 <span class="d-none d-sm-block">ការជូនដំណឹង</span>
                             </a>
                             <button type="submit" onclick="wishlist()"
-                                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
                                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                                <span
+                                    class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
+                                    0
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -187,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="store-card" class="row">
+                <div id="store-card" class="row g-4">
                     <!-- Store Card 1 -->
                 </div>
             </div>
@@ -196,7 +209,7 @@
 
     <footer class="footer mt-70">
         <div class="container">
-            <div class="row">
+            <div class="row gy-3">
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h5 class="text-primary">Boukuk</h5>
                     <p class="fs-18">
@@ -219,7 +232,7 @@
                     <ul>
                         <li><a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
                         <li><a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
-                        <li><a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
+                        <li><a href="src/views/page/aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a></li>
                         <li id="order-history"><a type="button" onclick="profile_headerMe()"
                                 class="border-0 p-0 bg-transparent fs-18">
                                 <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
@@ -258,7 +271,7 @@
     <script src="assets/js/header.js"></script>
     <script src="assets/js/logout.js"></script>
     <script src="assets/js/search.js"></script>
-
+    <script src="assets/js/nearest.js"></script>
 </body>
 
 </html>

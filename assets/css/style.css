@@ -48,6 +48,10 @@
   margin-bottom: 70px;
 }
 
+.me-n22{
+  margin-left: -22px!important;
+}
+
 .gap-35 {
   gap: 35px;
 }
@@ -530,12 +534,14 @@
 .navigation ul li.hovered {
   background-color: var(--white);
 }
+
 .navigation ul li.active,
 .navigation ul li.active {
   background-color: var(--white);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
+
 .navigation ul li.active a,
 .navigation ul li.active a {
   color: var(--blue);
@@ -611,6 +617,7 @@
   box-shadow: 35px -35px 0 10px var(--white);
   pointer-events: none;
 }
+
 .navigation ul li.active a::before,
 .navigation ul li.active a::before {
   content: "";
@@ -624,6 +631,7 @@
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
 }
+
 .navigation ul li.active a::after,
 .navigation ul li.active a::after {
   content: "";
@@ -937,49 +945,115 @@
   color: var(--white);
 }
 
-.search-icon{
+.search-icon {
   transform: translateY(10px);
 }
 
-.btn_status_icon{
-  display:flex;
+.btn_status_icon {
+  display: flex;
 }
 
-td{
-  padding-block:15px!important;
+td {
+  padding-block: 15px !important;
 }
 
-.border_modal{
-  border:none !important;
-  box-shadow:0 0.5px 0 0 #ddd;
+.border_modal {
+  border: none !important;
+  box-shadow: 0 0.5px 0 0 #ddd;
 }
 
-.detail_profile{
+.detail_profile {
   width: 200px;
   height: 200px;
   background-color: red;
-  border-radius:50%!important;
+  border-radius: 50% !important;
   overflow: hidden;
   margin: auto;
 }
 
-.err{
+.err {
   color: red;
   position: relative;
-  top:5px;
+  top: 5px;
 }
 
 .eye_pass{
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
+  position: relative;
+  top:-40px;
+  left: 92%;
+  z-index:999;
 }
-/* login form style copy 
-style="
 
-"
-*/
+
+/* ================= nearest */
+.delivery-icon {
+  width: 20px;
+}
+/* ================= end of nearest */
+
+
+/* ===================== loading ======================== */
+
+#animation-overlay {
+  display: block;
+}
+
+.spinner-overlay {
+  display: none;
+  z-index: 9999;
+  background: #FFFFFF;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.spinner {
+  width: 70px;
+  text-align: center;
+}
+
+.spinner-overlay__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.spinner__bounce {
+  width: 18px;
+  height: 18px;
+  background-color: #4762E6;
+  border-radius: 100%;
+  display: inline-block;
+  animation: bouncedelay 1.4s infinite ease-in-out both;
+    animation-delay: 0s;
+}
+
+.spinner__bounce--1 {
+  animation-delay: -0.32s;
+}
+
+.spinner__bounce--2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+      transform: scale(0);
+  } 
+  40% {
+     transform: scale(1);
+  }
+}
+
+/* ===================== end of loading ======================== */
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -1080,6 +1154,7 @@ style="
 .btn-secondary:hover {
   background-color: #e0e0e0;
 }
+
 .modal-body.bg-black {
   /* overflow: hidden; */
   display: flex;
@@ -1088,12 +1163,19 @@ style="
 }
 
 .cropper-wrapper img {
-  width: 90%; /* Increase the image width to fill the modal */
-  max-height: 90vh; /* Prevent overflow beyond the viewport height */
+  width: 90%;
+  /* Increase the image width to fill the modal */
+  max-height: 90vh;
+  /* Prevent overflow beyond the viewport height */
   margin: auto;
   display: block;
 }
-
+.wishlist-counter {
+  font-size: 0.75rem;
+  transform: translate(-50%, -50%);
+  right: -45%;
+  top: 5% !important;
+}
 /* ============== end admin & provider ================= */
 
 /* ====== re-pass =========== */

@@ -115,8 +115,6 @@ function viewDetails(service) {
       document.getElementById("modalName").textContent = service.name;
       document.getElementById("modalCategory").textContent =
         service.category.name;
-      document.getElementById("modalCategoryId").textContent =
-        service.category.id;
       document.getElementById("modalPrice").textContent = service.price;
       document.getElementById("modalDiscount").textContent = service.discount;
       document.getElementById("modalCreated").textContent = new Date(
@@ -140,8 +138,12 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
+
 function addService(event) {
   event.preventDefault();
+  // let setId = localStorage.setItem('getId',categoryId);
+  // console.log(setId);
+  
   const form = document.getElementById("addServiceForm"); // Get the form element
   const formData = new FormData(form); // Create FormData from the form
 
@@ -150,6 +152,7 @@ function addService(event) {
     alert("Please enter a valid Category ID.");
     return;
   }
+  localStorage.setItem('category_id', categoryId);
   formData.set("category_id", categoryId); // Set the validated category ID back to formData
 
   fetch("https://mps10.chandalen.dev/api/services", {
@@ -170,6 +173,9 @@ function addService(event) {
     })
     .then((data) => {
       console.log(data); // Log the entire response data
+      localStorage.setItem('getID', data.categoryId);
+      console.log(data.categoryId);
+      
       console.log("New Service Details:", {
         name: formData.get("name"),
         description: formData.get("description"),
@@ -182,7 +188,6 @@ function addService(event) {
       }); // Log specific details from the form
 
       DisplayServices(); // Refresh the service list
-      alert("Service added successfully!");
 
       form.reset(); // Clear the form fields
       const imagePreview = document.getElementById("addImagePreview");
@@ -267,7 +272,6 @@ document.getElementById("editForm").addEventListener("submit", (event) => {
     .then((data) => {
       console.log(data);
       DisplayServices();
-      alert("Service updated successfully!");
       bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
     })
     .catch((error) => {

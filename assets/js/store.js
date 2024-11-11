@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="text- d-flex flex-column justify-content-center h-100 p-4">
               <img src="https://thumbs.dreamstime.com/b/laundry-wash-cleaning-icons-black-white-laundry-wash-cleaning-dirty-clothes-basket-washing-machine-icon-152344297.jpg" alt="Empty Cart" class="img-fluid" style="width: 150px; height:auto;">
                  <div class="text-center">
- <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
+                  <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
                   <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>                 </div>
               </div>`;
       totalPriceDiv.textContent = "Total: $0.00";
@@ -175,9 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const itemInfo = document.createElement("div");
         itemInfo.className = "d-flex justify-content-between align-items-center w-100 mt-3";
-        itemInfo.textContent = `${item.category}: ${
-          item.name
-        } - $${item.price.toFixed(2)} x `;
+        itemInfo.textContent = `${item.category}: ${item.name
+          } - $${item.price.toFixed(2)} x `;
 
         const controlsContainer = document.createElement("div");
         controlsContainer.className = "d-flex align-items-center gap-2";
@@ -288,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       event.preventDefault();
       setLoadingState(this, true);
-      
+
       // Simulate loading time (you can remove setTimeout when integrating with real API)
       setTimeout(() => {
         window.location.href = "payment.html";
@@ -298,3 +297,112 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderCart();
 });
+
+
+
+// =================Get all service =================
+
+// Function to fetch and display services based on category and search
+function getCategory(value = 0, search = '') {
+  console.log("Selected Category:", value);
+  console.log("Search Term:", search);
+
+  // Base URL and default parameters
+  const baseUrl = 'https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=';
+  const defaultParams = {
+    page: 1,
+    per_page: 20,
+    search: search,
+    price_start: 0,
+    price_end: 99999,
+    creator: ''
+  };
+
+  if (value !== 0) {
+    defaultParams.category = value;
+  }
+
+  const queryString = new URLSearchParams(defaultParams).toString();
+  const url = `${baseUrl}?${queryString}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let card_service = '';
+      if (data.data.length === 0) {
+        card_service = `<div class="col-12 vh-100 d-flex align-items-center justify-content-center">
+                          <h3>
+                              សេវាកម្មនេះមិនមានទេ
+                          </h3>
+                        </div>`;
+      } else {
+        data.data.forEach(element => {
+          card_service += `
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card service-card" data-service="${element.name}" data-price="${element.price}">
+                  <div class="card-img-container">
+                    <img src="${element.image}" alt="" class="card-img" />
+                  </div>
+                  <div class="card-content">
+                    <h5 class="card-title">${element.name}</h5>
+                    <p class="card-price">$${element.price}</p>
+                    <p class="card-description">
+                      ${element.description || 'Description of the dish goes here.'}
+                    </p>
+                    <div class="quantity-control" style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                      <button class="btn btn-circle decrease btn-primary">-</button>
+                      <span class="quantity" style="width: 40px; text-align: center; margin: 0 5px">0</span>
+                      <button class="btn btn-circle increase btn-outline-primary">+</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          `;
+        });
+      }
+      document.querySelector('#all').innerHTML = card_service;
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+    });
+}
+getCategory();
+
+function searchServices() {
+  const searchTerm = document.getElementById('searchInput').value;
+  getCategory(0, searchTerm);
+}
+document.getElementById('searchInput').addEventListener('keyup', searchServices);
+
+
+// all any categories 
+const categories = [
+  { id: 0, name: "ទាំងអស់" },
+  { id: 1, name: "បោកសម្អាត" },
+  { id: 2, name: "សម្ងួត" },
+  { id: 3, name: "អ៊ុត" },
+  { id: 4, name: "បត់និង​រៀបចំ" },
+  { id: 5, name: "បោកស្ងួត" }
+];
+
+const serviceTabs = document.getElementById("serviceTabs");
+serviceTabs.innerHTML = categories.map((category, index) => `
+  <li class="nav-item" role="presentation">
+    <a class="nav-link ${index === 0 ? 'active' : ''}" href="#${category.id}" data-id="${category.id}">
+      ${category.name}
+    </a>
+  </li>
+`).join("");
+
+document.querySelectorAll("#serviceTabs .nav-link").forEach(tab => {
+  tab.addEventListener("click", function (event) {
+    event.preventDefault();
+    document.querySelectorAll("#serviceTabs .nav-link").forEach(t => t.classList.remove("active"));
+
+    this.classList.add("active");
+
+    const categoryId = parseInt(this.getAttribute("data-id"), 10);
+    getCategory(categoryId);
+  });
+});
+
+getCategory(0); 
