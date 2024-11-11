@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         document.querySelector("#store-card").innerHTML = col_3;
+        document.getElementById('animation-overlay').style.display = 'none';
       })
       .catch((error) => console.error("Error fetching data:", error));
   }

@@ -360,6 +360,7 @@ function getCategory(value = 0, search = '') {
         });
       }
       document.querySelector('#all').innerHTML = card_service;
+      document.getElementById('animation-overlay').style.display = 'none';
     })
     .catch(error => {
       console.error("Error fetching data:", error);

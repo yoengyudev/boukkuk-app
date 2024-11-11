@@ -133,7 +133,6 @@ function getCategory(value = 0) {
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
-      // document.getElementById('animation-overlay').style.display = 'none';
     });
 }
 
