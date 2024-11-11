@@ -140,8 +140,12 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
+
 function addService(event) {
   event.preventDefault();
+  // let setId = localStorage.setItem('getId',categoryId);
+  // console.log(setId);
+  
   const form = document.getElementById("addServiceForm"); // Get the form element
   const formData = new FormData(form); // Create FormData from the form
 
@@ -150,6 +154,7 @@ function addService(event) {
     alert("Please enter a valid Category ID.");
     return;
   }
+  localStorage.setItem('category_id', categoryId);
   formData.set("category_id", categoryId); // Set the validated category ID back to formData
 
   fetch("https://mps10.chandalen.dev/api/services", {
@@ -170,6 +175,9 @@ function addService(event) {
     })
     .then((data) => {
       console.log(data); // Log the entire response data
+      localStorage.setItem('getID', data.categoryId);
+      console.log(data.categoryId);
+      
       console.log("New Service Details:", {
         name: formData.get("name"),
         description: formData.get("description"),

@@ -98,7 +98,6 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
             otpMessageBox.textContent = 'OTP ត្រឹមត្រូវ! កំពុងបន្ត...';
             console.log(otpValue);
             localStorage.setItem('getOtp',otpValue);
-            
             setTimeout(() => {
                 location.href = 're-password.html';
             }, 1000);

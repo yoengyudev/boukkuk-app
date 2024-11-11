@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../../../assets/css/long.css" />
   <link rel="stylesheet" href="../../../assets/css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="../../../vender/fontawesome/css/all.css">
 </head>
 
 <body style="background: linear-gradient(to bottom, #4762e6, #7680f0)">
@@ -36,10 +36,11 @@
                 <input type="password" autocomplete="off" class="form-control" id="password"
                   placeholder="New Password" />
                 <label for="pass">ពាក្យសម្ងាត់</label>
-                <span class="password-toggle eye_pass" onclick="togglePasswordVisibility()">
+                <span class="eye_pass" onclick="togglePasswordVisibility()">
                   <i id="toggleIcon" class="fas fa-eye"></i>
                 </span>
-                <span id="err_passlg" class="err"></span>
+                <span id="err_passlg" class="err me-n22">
+                </span>
               </div>
               <div class="mb-4">
                 <button id="saveButton" class="btn btn-primary w-100" type="submit">
@@ -63,6 +64,7 @@
     </div>
   </section>
 
+  <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../../../assets/js/script.js"></script>
   <script src="../../../assets/js/login.js"></script>
 </body>
