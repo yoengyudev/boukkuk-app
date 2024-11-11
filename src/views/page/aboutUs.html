@@ -7,14 +7,107 @@
   <title>About Us</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
   <link rel="stylesheet" href="/vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/long.css" />
+  <link rel="stylesheet" href="../../../assets/css/style.css">
 </head>
 
 <body class="bg-body-tertiary about_us">
-  <main class="container py-5">
+  <header class="fixed-top">
+    <nav class="py-3">
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-auto order-0">
+            <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+          </div>
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+            <div class="row d-flex under-logo">
+              <div
+                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                <input class="border-0 w-100 bg-transparent py-1 px-3" id="location" type="text" placeholder="ស្វែងរក"
+                  aria-label="" />
+                <button type="submit" class="btn btn-serch bg-primary gap-2">
+                  <i class="bi bi-search text-white"></i>
+                </button>
+              </div>
+              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
+                  ហាងនៅក្បែ
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+            <div class="d-flex w-100 align-items-center justify-content-end">
+              <div class="dropdown rounded-2">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile_header bg-instead rounded-circle">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <span>គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                  style="width: 300px">
+                  <li class="mb-3">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      បង្កើតគណនី
+                    </a>
+                  </li>
+                  <li class="mb-3" id="login-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ចូលប្រើប្រាស់
+                    </a>
+                  </li>
+                  <li class="mb-3">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="profile_header.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ប្រវត្តិរូបរបស់ខ្ញុំ
+                    </a>
+                  </li>
+                  <hr style="color: #ddd" />
+                  <li id="logout-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-power"></i>
+                      </div>
+                      ចាកចេញពីគណនី
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <a href=""
+                class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
+                <div class="profile_header bg-instead rounded-circle">
+                  <i class="bi bi-bell-fill fs-18"></i>
+                </div>
+                <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+              </a>
+              <a href=""
+                class="hover-nav profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container pt-5 mt-5 ">
     <section class="about-hero text-center mb-5 position-relative hero-section">
       <div class="hero-background"></div>
       <h1 class="display-4 fw-bold text-primary mb-4">
@@ -509,119 +602,84 @@
       </div>
     </section>
   </main>
-
+  <footer class="footer mt-70">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">Boukuk</h5>
+          <p class="fs-18">
+            យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
+            និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+            ដោយធានាបាននូវភាពងាយស្រួល​ និងគុណភាពដល់អ្នកប្រើប្រាស់។
+          </p>
+          <div class="social-icons">
+            <a href="#" style="background-color: #4267b2"><i class="bi bi-facebook"></i></a>
+            <a href="#" style="background-color: #0088cc"><i class="bi bi-telegram"></i></a>
+            <a href="#" style="
+                  background: linear-gradient(
+                    45deg,
+                    #feda75,
+                    #fa7e1e,
+                    #d62976,
+                    #962fbf,
+                    #4f5bd5
+                  );
+                "><i class="bi bi-instagram"></i></a>
+            <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 ms-auto">
+          <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+          <ul>
+            <li>
+              <a href="index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a>
+            </li>
+            <li>
+              <a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a>
+            </li>
+            <li>
+              <a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពយើង</a>
+            </li>
+            <li id="order-history">
+              <a href="" onclick="profileMe()" class="border-0 p-0 bg-transparent fs-18">
+                <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">ទំនាក់ទំនង</h5>
+          <ul>
+            <li>
+              <a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a>
+            </li>
+            <li>
+              <a href="mailto:boukuk@gmail.com" class="fs-18">
+                <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" />
+      <div class="d-flex justify-content-between">
+        <div>
+          <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
+        </div>
+        <div>
+          <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
+        </div>
+      </div>
+    </div>
+  </footer>
   <button id="scrollToTop" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4"
     style="display: none">
     <i class="bi bi-arrow-up"></i>
   </button>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-  <script src="/vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      //swipper
-      var swiper = new Swiper(".teamSwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        loop: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        parallax: true,
-        speed: 600,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        breakpoints: {
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        },
-      });
-      // Scroll to top button
-      const scrollToTopBtn = document.getElementById("scrollToTop");
-
-      window.addEventListener("scroll", function () {
-        if (window.pageYOffset > 100) {
-          scrollToTopBtn.style.display = "block";
-        } else {
-          scrollToTopBtn.style.display = "none";
-        }
-      });
-
-      scrollToTopBtn.addEventListener("click", function () {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-
-      // Timeline animation
-      const timelineItems = document.querySelectorAll(".timeline-item");
-      let activeIndex = 0;
-
-      function activateTimelineItem(index) {
-        timelineItems.forEach((item, i) => {
-          if (i === index) {
-            item.querySelector(".timeline-content").style.transform =
-              "scale(1.03)";
-            item.querySelector("h4").style.transform = "scale(1.1)";
-          } else {
-            item.querySelector(".timeline-content").style.transform =
-              "scale(1)";
-            item.querySelector("h4").style.transform = "scale(1)";
-          }
-        });
-      }
-
-      setInterval(() => {
-        activeIndex = (activeIndex + 1) % timelineItems.length;
-        activateTimelineItem(activeIndex);
-      }, 3000);
-
-      // Stats counter animation
-      const stats = document.querySelectorAll("#stats .card-title");
-      const observerOptions = {
-        threshold: 0.1,
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const target = entry.target;
-            const value = parseInt(target.textContent);
-            let current = 0;
-            const increment = value / 50;
-            const timer = setInterval(() => {
-              current += increment;
-              target.textContent =
-                Math.round(current) +
-                (target.textContent.includes("+") ? "+" : "");
-              if (current >= value) {
-                clearInterval(timer);
-                target.textContent =
-                  value + (target.textContent.includes("+") ? "+" : "");
-              }
-            }, 20);
-            observer.unobserve(target);
-          }
-        });
-      }, observerOptions);
-
-      stats.forEach((stat) => observer.observe(stat));
-    });
-  </script>
+  <script src="../../../assets/js/header.js"></script>
+  <script src="../../../assets/js/footer.js"></script>
+  <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/aboutUs.js"></script>
 </body>
 
 </html>

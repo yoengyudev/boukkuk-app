@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ស្វែងរក</title>
-    <link rel="stylesheet" href="/../../../assets/css/main.css">
-    <link rel="stylesheet" href="/../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
 </head>
 
@@ -16,20 +16,22 @@
             <div class="container">
                 <div class="row gy-4 align-items-center">
                     <div class="col-auto order-0">
-                        <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+                        <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
                     </div>
                     <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
                         <div class="row d-flex under-logo">
-                            <div class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                            <div
+                                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
                                 <input
                                     class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
                                     type="text" placeholder="ស្វែងរក" aria-label="search"
                                     onkeydown="handleKeyDown(event)">
-                            
-                                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+
+                                <button type="submit" class="btn btn-serch bg-primary gap-2"
+                                    onclick="searchAndRedirect()">
                                     <i class="bi bi-search text-white"></i>
                                 </button>
-                            </div>                     
+                            </div>
                             <div
                                 class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                                 <button
@@ -65,26 +67,26 @@
                                     </li>
                                     <li class="mb-3" id="login-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
+                                            href="src/views/auth/login.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ចូលប្រើប្រាស់
                                         </a>
                                     </li>
-                                    <li class="mb-3" id="pro-">
+                                    <li class="mb-3" id="pro-setting">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="profile_header.html">
+                                            href="../../../src/views/page/profile.html">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-person-circle"></i>
                                             </div>
                                             ប្រវត្តិរូបរបស់ខ្ញុំ
                                         </a>
                                     </li>
-                                    <hr style="color: #ddd;">
                                     <li id="logout-list">
+                                        <hr style="color: #ddd;">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                                            href="#">
+                                            href="">
                                             <div class="profile_header bg-instead rounded-circle">
                                                 <i class="bi bi-power"></i>
                                             </div>
@@ -94,7 +96,7 @@
                                 </ul>
                             </div>
 
-                            <a href=""
+                            <a href
                                 class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2">
                                 <div class="profile_header bg-instead rounded-circle">
                                     <i class="bi bi-bell-fill fs-18"></i>
@@ -114,14 +116,14 @@
 
 
     <main style="margin-top: 90px;">
-       <div class="container">
-        <div id="Is-search-found"></div>
-        <div id="store-card" class="row g-4">
-            <!-- Store Card 1 -->
-            
+        <div class="container">
+            <div id="Is-search-found"></div>
+            <div id="store-card" class="row g-4">
+                <!-- Store Card 1 -->
+
+            </div>
+            <div id="search_not_found"></div>
         </div>
-        <div id="search_not_found"></div>
-       </div>
     </main>
 
     <footer class="footer mt-70">
@@ -181,11 +183,11 @@
     </footer>
 
 
-    <script src="/vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/../../../assets/js/store.js"></script>
-    <script src="/../../../assets/js/footer.js"></script>
-    <script src="/../../../assets/js/search.js"></script>
-
+    <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/store.js"></script>
+    <script src="../../../assets/js/footer.js"></script>
+    <script src="../../../assets/js/search.js"></script>
+    <script src="../../../assets/js/header.js"></script>
 </body>
 
 </html>

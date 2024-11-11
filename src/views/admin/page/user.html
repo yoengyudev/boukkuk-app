@@ -1,11 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css">
 </head>
+
 <body>
-    
+    <!-- =============== Navigation ================ -->
+    <div class="container-fluid p-0 position-relative w-100">
+        <div class="navigation">
+            <ul class="p-0">
+                <li>
+                    <a href="../index.html">
+                        <span class="icon">
+                            <i class="bi bi-droplet"></i>
+                        </span>
+                        <span class="title">Boakuk</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../index.html">
+                        <span class="icon">
+                            <i class="bi bi-grid"></i></h1>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="user-item">
+                    <a href="../page/user.html">
+                        <span class="icon">
+                            <i class="bi bi-people"></i>
+                        </span>
+                        <span class="title">User</span>
+                    </a>
+                </li>
+                <li class="service-item">
+                    <a href="../page/service.html">
+                        <span class="icon">
+                            <i class="bi bi-bag"></i>
+                        </span>
+                        <span class="title">Services</span>
+                    </a>
+                </li>
+
+                <li class="category-item">
+                    <a href="../page/category.html">
+                        <span class="icon">
+                            <i class="bi bi-folder"></i>
+                        </span>
+                        <span class="title">Category</span>
+                    </a>
+                </li>
+
+                <li id="logout-list">
+                    <a href="">
+                        <span class="icon">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="bi bi-list"></i>
+                </div>
+                <div class="user">
+                    <img src="/assets/image/service-provider/profile-service-provider.jpeg" alt="">
+                </div>
+            </div>
+            <div class="p-4">
+                <button type="button" class="btn btn-primary px-4 shadow mb-3" data-bs-toggle="modal"
+                    data-bs-target="#addUserModal">
+                    <i class="bi bi-plus-circle"></i>
+                    Add New
+                </button>
+                <table id="userTabel" class="table table-striped" style="width:100%">
+                    <thead class="text-start">
+                        <tr>
+                            <th class="text-start">ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Promote</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body" class="text-start">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- modal add user  -->
+
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog modal-lg">
+            <div class="modal-content border-0 p-2 shadow-none">
+                <div class="modal-header bg-instead">
+                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="userName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Full name" id="userName">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="example@gmail.com" id="userEmail">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userPhone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Phone number" id="userPhone">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userLocation" class="form-label">Location</label>
+                                <input type="text" class="form-control" placeholder="Location" id="userLocation">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userPass" class="form-label">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" id="userPass">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userConfirmPass" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Confirm password"
+                                    id="userConfirmPass">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="userImage" class="form-label">Upload User Profile</label>
+                                <input type="file" class="form-control" id="userImage" accept="image/*">
+                            </div>
+                            <div class="col-6"></div>
+                            <div class="mb-5 col-auto">
+                                <input class="form-check-input" type="radio" name="userRole" id="normal_user" value="1"
+                                    checked>
+                                <label class="form-check-label" for="normal_user">Normal User</label>
+                            </div>
+                            <div class="mb-5 col-auto">
+                                <input class="form-check-input" type="radio" name="userRole" id="admin_user" value="2">
+                                <label class="form-check-label" for="admin_user">Admin</label>
+                            </div>
+                            <div class="mb-5 col-auto">
+                                <input class="form-check-input" type="radio" name="userRole" id="serProvider_user"
+                                    value="3">
+                                <label class="form-check-label" for="serProvider_user">Service Provider</label>
+                            </div>
+                        </div>
+                        <button id="registerButton" class="btn btn-primary" type="submit">
+                            <span class="spinner-border spinner-border-sm" id="spinner" style="display:none;"
+                                aria-hidden="true"></span>
+                            <span id="buttonText">Create User</span>
+                        </button>
+                        <button type="reset" class="btn border">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal detail view user -->
+
+    <div class="modal fade" id="getDetail" tabindex="-1" aria-labelledby="getDetailLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content p-2">
+                <div class="modal-header border_modal bg-instead">
+                    <h1 class="modal-title fs-5" id="getDetailLabel">Detail Information of User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-3">
+                        <div class="card detail_profile mb-2">
+                            <img id="de_image" alt="User Profile" class="img-fluid rounded">
+                        </div>
+                        <h4 class="text-center" id="de_name"></h4>
+                    </div>
+                    <div class="mt-4">
+                        <div class="row">
+                            <div class="col-12 col-xl-6">
+                                <span class="fs-18">
+                                    User ID : <span class="text-primary" id="de_id"></span>
+                                </span><br>
+                                <span class="fs-18">
+                                    User Role : <span class="text-primary" id="de_role"></span>
+                                </span><br>
+
+                            </div>
+                            <div class="col-12 col-xl-6">
+                                <span class="fs-18">
+                                    Email : <span class="text-primary" id="de_email"></span>
+                                </span><br>
+                                <span class="fs-18">
+                                    Phone Number : <span class="text-primary" id="de_phone"></span>
+                                </span><br>
+                                <span class="fs-18">
+                                    Location : <span class="text-primary" id="de_location"></span>
+                                </span><br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal update user -->
+
+    <div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog modal-lg">
+            <div class="modal-content border-0 p-2 shadow-none">
+                <div class="modal-header bg-instead">
+                    <h5 class="modal-title" id="updateModal">Update User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm">
+                        <div class="row">
+                            <input type="hidden" id="editUserId">
+                            <div class="mb-3 col-6">
+                                <label for="editUserName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Full name" id="editUserName">
+                                <span id="err_name" class="err"></span>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="example@gmail.com"
+                                    id="editUserEmail">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserPhone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Phone number" id="editUserPhone">
+                                <span id="err_phone" class="err"></span>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserLocation" class="form-label">Location</label>
+                                <input type="text" class="form-control" placeholder="Location" id="editUserLocation">
+                                <span id="err_location" class="err"></span>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserPass" class="form-label">Password</label>
+                                <input type="password" class="form-control" placeholder="Password" id="editUserPass">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserConfirmPass" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Confirm password"
+                                    id="editUserConfirmPass">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="editUserImage" class="form-label">Upload User Profile</label>
+                                <input type="file" class="form-control" id="editUserImage" accept="image/*">
+                            </div>
+                            <div class="col-12 col-xl-6 d-flex align-items-end position-relative">
+                                <div class="row">
+                                    <div class="mb-3 col-auto">
+                                        <input class="form-check-input" type="radio" name="editUserRole"
+                                            id="editNormalUser" value="1">
+                                        <label class="form-check-label" for="editNormalUser">User</label>
+                                    </div>
+                                    <div class="mb-3 col-auto">
+                                        <input class="form-check-input" type="radio" name="editUserRole"
+                                            id="editAdminUser" value="2">
+                                        <label class="form-check-label" for="editAdminUser">Admin</label>
+                                    </div>
+                                    <div class="mb-3 col-auto">
+                                        <input class="form-check-input" type="radio" name="editUserRole"
+                                            id="editServiceProviderUser" value="3">
+                                        <label class="form-check-label" for="editServiceProviderUser">Service
+                                            Provider</label>
+                                    </div>
+                                    <span id="err_role" class="position-absolute top-100"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="edit_profile" class="form-label">Profile image</label>
+                                <div class="card border-0 bg-transparent mb-2">
+                                    <img id="edit_profile" alt="User Profile" width="100px" class="img-fluid rounded">
+                                </div>
+                            </div>
+                        </div>
+                        <button id="updateButton" class="btn btn-primary" type="submit">
+                            <span class="spinner-border spinner-border-sm" id="spinner_Update" style="display:none;"
+                                aria-hidden="true"></span>
+                            <span id="buttonTex_update">Update</span>
+                        </button>
+                        <button type="button" class="btn border">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- =========== Scripts =========  -->
+    <script>
+        let list = document.querySelectorAll(".navigation li");
+
+        function activeLink() {
+            list.forEach((item) => {
+                item.classList.remove("hovered");
+            });
+            this.classList.add("hovered");
+        }
+
+        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+        let toggle = document.querySelector(".toggle");
+        let navigation = document.querySelector(".navigation");
+        let main = document.querySelector(".main");
+
+        toggle.onclick = function () {
+            navigation.classList.toggle("active");
+            main.classList.toggle("active");
+        };
+
+
+    </script>
+    <script src="../.././../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../assets/js/user.js"></script>
+    <script src="../../../../assets/js/sidebar.js"></script>
+    <script src="../../../../assets/js/logout.js"></script>
+    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+    <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
+
+
 </body>
+
 </html>

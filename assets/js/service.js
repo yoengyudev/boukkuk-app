@@ -115,8 +115,6 @@ function viewDetails(service) {
       document.getElementById("modalName").textContent = service.name;
       document.getElementById("modalCategory").textContent =
         service.category.name;
-      document.getElementById("modalCategoryId").textContent =
-        service.category.id;
       document.getElementById("modalPrice").textContent = service.price;
       document.getElementById("modalDiscount").textContent = service.discount;
       document.getElementById("modalCreated").textContent = new Date(
@@ -182,7 +180,6 @@ function addService(event) {
       }); // Log specific details from the form
 
       DisplayServices(); // Refresh the service list
-      alert("Service added successfully!");
 
       form.reset(); // Clear the form fields
       const imagePreview = document.getElementById("addImagePreview");
@@ -267,7 +264,6 @@ document.getElementById("editForm").addEventListener("submit", (event) => {
     .then((data) => {
       console.log(data);
       DisplayServices();
-      alert("Service updated successfully!");
       bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
     })
     .catch((error) => {
