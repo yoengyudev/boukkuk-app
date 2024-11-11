@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <div class="spinner-overlay" id="animation-overlay">
+        <div class="spinner-overlay__inner">
+          <div class="spinner">
+            <div class="spinner__bounce spinner__bounce--1"></div>
+            <div class="spinner__bounce spinner__bounce--2"></div>
+            <div class="spinner__bounce spinner__bounce--3"></div>
+          </div>
+        </div>
+      </div>
     <header class="fixed-header">
         <nav class="py-3">
             <div class="container">
@@ -35,7 +44,7 @@
                             <div
                                 class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                                 <button
-                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+                                    class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis" onclick="findNearbyLocations()">
                                     <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
                                     ហាងនៅក្បែ
                                 </button>
@@ -258,7 +267,7 @@
     <script src="assets/js/header.js"></script>
     <script src="assets/js/logout.js"></script>
     <script src="assets/js/search.js"></script>
-
+    <script src="assets/js/nearest.js"></script>
 </body>
 
 </html>

@@ -25,11 +25,10 @@ function wishlistCard() {
 function getCategory(value = 0) {
   console.log("Selected Category:", value);
   console.log(typeof value);
-
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
   const url = value === 0 
-    ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=1&price_end=1000&creator=`
-    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=1&price_end=1000&creator=`;
+    ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=1&price_end=99999&creator=`
+    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=&price_end=99999&creator=`;
 
   fetch(url)
     .then(res => res.json())
@@ -74,9 +73,11 @@ function getCategory(value = 0) {
 
       // Update the HTML content in the #show-by-category container
       document.querySelector('#store-card').innerHTML = col_3;
+      document.getElementById('animation-overlay').style.display = 'none';
     })
     .catch(error => {
       console.error("Error fetching data:", error);
+      // document.getElementById('animation-overlay').style.display = 'none';
     });
 }
 

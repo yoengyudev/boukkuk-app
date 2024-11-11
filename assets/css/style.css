@@ -981,6 +981,76 @@ style="
 "
 */
 
+
+/* ================= nearest */
+.delivery-icon {
+  width: 20px;
+}
+/* ================= end of nearest */
+
+
+/* ===================== loading ======================== */
+
+#animation-overlay {
+  display: block;
+}
+
+.spinner-overlay {
+  display: none;
+  z-index: 9999;
+  background: #FFFFFF;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.spinner {
+  width: 70px;
+  text-align: center;
+}
+
+.spinner-overlay__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.spinner__bounce {
+  width: 18px;
+  height: 18px;
+  background-color: #4762E6;
+  border-radius: 100%;
+  display: inline-block;
+  animation: bouncedelay 1.4s infinite ease-in-out both;
+    animation-delay: 0s;
+}
+
+.spinner__bounce--1 {
+  animation-delay: -0.32s;
+}
+
+.spinner__bounce--2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+      transform: scale(0);
+  } 
+  40% {
+     transform: scale(1);
+  }
+}
+
+/* ===================== end of loading ======================== */
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
