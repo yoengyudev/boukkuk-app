@@ -151,7 +151,7 @@
 .border-out {
   border: 2px solid white;
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 16px;
 }
 
 /* =============== */
@@ -1177,3 +1177,40 @@ td {
   top: 5% !important;
 }
 /* ============== end admin & provider ================= */
+
+/* ====== re-pass =========== */
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  display: none; /* Hidden by default */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.is-invalid {
+  border-color: #e74c3c;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.error-message {
+  margin-top: 0.25rem;
+  color: #dc3545;
+  font-size: 0.875rem;
+}
+
+.form-floating .error-message {
+  position: relative;
+  z-index: 2;
+}
