@@ -28,8 +28,8 @@ function getCategory(value = 0) {
 
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
   const url = value === 0 
-    ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=1&price_end=1000&creator=`
-    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=1&price_end=1000&creator=`;
+    ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
+    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=`;
 
   fetch(url)
     .then(res => res.json())
@@ -37,7 +37,7 @@ function getCategory(value = 0) {
       let col_3 = '';
       json.data.forEach(element => {
         col_3 += `
-          <div class="col-3">
+          <div class="col-12 col-md-6 col-xl-3">
             <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
               <p class='id' style="display: none;">${element.id}</p>
               <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
@@ -45,7 +45,7 @@ function getCategory(value = 0) {
                         class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
                   <i class="bi bi-heart"></i>
                 </button>
-                <a href="#" onclick='store(event)' class="d-block">
+                <a href="#" onclick='getStore(${element.id})' class="d-block">
                   <img src="${element.image}" 
                        class="card-img img-store w-100" 
                        alt="${element.name}">
@@ -79,6 +79,12 @@ function getCategory(value = 0) {
       console.error("Error fetching data:", error);
     });
 }
+
+function getStore(category_id){
+    localStorage.setItem("store_id", category_id);
+    location.href = 'src/views/page/store.html';
+}
+
 
 function fetchCategories() {
   fetch("https://mps10.chandalen.dev/api/categories")
@@ -114,3 +120,6 @@ addCategoryId.addEventListener("change", () => {
 // Initialize categories and fetch all items initially
 fetchCategories();
 getCategory(); // Load all items by default
+
+
+
