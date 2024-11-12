@@ -87,64 +87,165 @@ fetch('https://mps10.chandalen.dev/api/users', {
 
 // ======================  add new users ======================================
 
-document.getElementById('addUserForm').addEventListener('submit', function (e) {
+// Regular expression patterns
+const namePattern = /^[a-zA-Z\s]+$/;
+const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const phonePattern = /^\+?\d{1,2}?[-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
+const passwordPattern = /^\d{6,}$/;
+
+function validateForm() {
+    let isValid = true;
+  
+    // Validate name
+    let nameInput = document.getElementById('userName');
+    if (!namePattern.test(nameInput.value) || nameInput.value.trim() === '') {
+      nameInput.classList.add('is-invalid');
+      nameInput.nextElementSibling.textContent = 'Please enter a valid name.';
+      isValid = false;
+    } else {
+      nameInput.classList.remove('is-invalid');
+      nameInput.nextElementSibling.textContent = '';
+    }
+  
+    // Validate email
+    let emailInput = document.getElementById('userEmail');
+    if (!emailPattern.test(emailInput.value.trim()) || emailInput.value.trim() === '') {
+      emailInput.classList.add('is-invalid');
+      emailInput.nextElementSibling.textContent = 'Please enter a valid email address.';
+      isValid = false;
+    } else {
+      emailInput.classList.remove('is-invalid');
+      emailInput.nextElementSibling.textContent = '';
+    }
+  
+    // Validate phone
+    let phoneInput = document.getElementById('userPhone');
+    if (!phonePattern.test(phoneInput.value.trim()) || phoneInput.value.trim() === '') {
+      phoneInput.classList.add('is-invalid');
+      phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number.';
+      isValid = false;
+    } else {
+      phoneInput.classList.remove('is-invalid');
+      phoneInput.nextElementSibling.textContent = '';
+    }
+
+  
+    // Validate password
+    let passwordInput = document.getElementById('userPass');
+    let confirmPasswordInput = document.getElementById('userConfirmPass');
+    if (!passwordPattern.test(passwordInput.value.trim()) || passwordInput.value.trim() === '') {
+      passwordInput.classList.add('is-invalid');
+      passwordInput.nextElementSibling.textContent = 'Password must be at least 6 characters';
+      isValid = false;
+    } else {
+      passwordInput.classList.remove('is-invalid');
+      passwordInput.nextElementSibling.textContent = '';
+    }
+  
+    // Validate confirm password
+    if (confirmPasswordInput.value.trim() === '' || passwordInput.value.trim() !== confirmPasswordInput.value.trim()) {
+      confirmPasswordInput.classList.add('is-invalid');
+      confirmPasswordInput.nextElementSibling.textContent = 'Passwords do not match.';
+      isValid = false;
+    } else {
+      confirmPasswordInput.classList.remove('is-invalid');
+      confirmPasswordInput.nextElementSibling.textContent = '';
+    }
+  
+    // Validate image file (optional but if selected, must be an image)
+    let imageInput = document.getElementById('userImage');
+    if (imageInput.files.length > 0) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!allowedTypes.includes(imageInput.files[0].type)) {
+        imageInput.classList.add('is-invalid');
+        imageInput.nextElementSibling.textContent = 'Please upload a valid image file (JPEG, PNG, GIF).';
+        isValid = false;
+      } else {
+        imageInput.classList.remove('is-invalid');
+        imageInput.nextElementSibling.textContent = '';
+      }
+    } else {
+      imageInput.classList.add('is-invalid');
+      imageInput.nextElementSibling.textContent = 'Please select a profile image.';
+      isValid = false;
+    }
+  
+    // Validate user role
+    let roleSelected = document.querySelector('input[name="userRole"]:checked');
+    if (!roleSelected) {
+      document.getElementById('userRoleError').textContent = 'Please select a user role.';
+      isValid = false;
+    } else {
+      document.getElementById('userRoleError').textContent = '';
+    }
+  
+    return isValid;
+  }
+
+  document.getElementById('addUserForm').addEventListener('submit', function (e) {
     e.preventDefault();
-
-    let registerButton = document.getElementById('registerButton');
-    let spinner = document.getElementById('spinner');
-    let buttonText = document.getElementById('buttonText');
-    let user_name = document.getElementById('userName').value;
-    let user_email = document.getElementById('userEmail').value.trim();
-    let user_phone = document.getElementById('userPhone').value.trim();
-    let user_location = document.getElementById('userLocation').value;
-    let user_pass = document.getElementById('userPass').value.trim();
-    let user_confirm_pass = document.getElementById('userConfirmPass').value.trim();
-    let user_image = document.getElementById('userImage').files[0];
-    let user_role = document.querySelector('input[name="userRole"]:checked').value;
-
-    registerButton.disabled = true;
-    spinner.style.display = 'inline-block';
-    buttonText.textContent = 'Creating...';
-
-    if (!getToken) {
-        alert('No authentication token found. Please log in.');
-        return;
+  
+    if (validateForm()) {
+      let registerButton = document.getElementById('registerButton');
+      let spinner = document.getElementById('spinner');
+      let buttonText = document.getElementById('buttonText');
+  
+      registerButton.disabled = true;
+      spinner.style.display = 'inline-block';
+      buttonText.textContent = 'Creating...';
+  
+      if (!getToken) {
+          alert('No authentication token found. Please log in.');
+          return;
+      }
+  
+      // Get values from form inputs
+      let userName = document.getElementById('userName').value;
+      let userEmail = document.getElementById('userEmail').value;
+      let userPhone = document.getElementById('userPhone').value;
+      let userLocation = document.getElementById('userLocation').value;
+      let userPass = document.getElementById('userPass').value;
+      let userConfirmPass = document.getElementById('userConfirmPass').value;
+      let userRole = document.querySelector('input[name="userRole"]:checked').value; // <-- Fix here
+      let userImage = document.getElementById('userImage').files[0];
+  
+      // Append form data
+      let formData = new FormData();
+      formData.append('name', userName);
+      formData.append('email', userEmail);
+      formData.append('phone', userPhone);
+      formData.append('google_map_url', userLocation);
+      formData.append('password', userPass);
+      formData.append('password_confirmation', userConfirmPass);
+      formData.append('role_id', userRole);
+      if (userImage) {
+          formData.append('avatar', userImage);
+      }
+  
+      fetch('https://mps10.chandalen.dev/api/users', {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${getToken}`
+          },
+          body: formData,
+      })
+          .then(res => res.json())
+          .then(json => {
+              console.log(json);
+              let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
+              addUserModal.hide();
+              document.getElementById('addUserForm').reset();
+          })
+          .finally(() => {
+              registerButton.disabled = false;
+              spinner.style.display = 'none';
+              buttonText.textContent = 'Create User';
+          })
+          .catch(error => console.error('Error adding user:', error));
     }
-
-    let formData = new FormData();
-    formData.append('name', user_name);
-    formData.append('email', user_email);
-    formData.append('phone', user_phone);
-    formData.append('google_map_url', user_location);
-    formData.append('password', user_pass);
-    formData.append('password_confirmation', user_confirm_pass);
-    formData.append('role_id', user_role);
-    if (user_image) {
-        formData.append('avatar', user_image);
-    }
-
-    fetch('https://mps10.chandalen.dev/api/users', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${getToken}`
-        },
-        body: formData,
-    })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json);
-            let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
-            addUserModal.hide();
-            document.getElementById('addUserForm').reset();
-        })
-        .finally(() => {
-            registerButton.disabled = false;
-            spinner.style.display = 'none';
-            buttonText.textContent = 'Create User';
-        })
-        .catch(error => console.error('Error adding user:', error));
-});
+  });
+  
 
 
 // ========================= view Details User =======================

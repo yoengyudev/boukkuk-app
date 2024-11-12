@@ -116,7 +116,7 @@
 
   <!-- Detail Modal -->
   <div class="modal fade" id="detailModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header flex-column align-items-start">
           <h5 class="modal-title mb-3">Service Information</h5>
@@ -205,7 +205,7 @@
   </div>
   <!-- Edit Modal -->
   <div class="modal fade" id="editModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Edit Service</h5>
@@ -222,13 +222,15 @@
               <label for="description" class="form-label">Description</label>
               <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Price</label>
-              <input type="number" class="form-control" id="price" name="price" step="0.01" required />
-            </div>
-            <div class="mb-3">
-              <label for="discount" class="form-label">Discount</label>
-              <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" />
+            <div class="d-flex gap-2">
+              <div class="mb-3 w-50">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" required />
+              </div>
+              <div class="mb-3 w-50">
+                <label for="discount" class="form-label">Discount</label>
+                <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" />
+              </div>
             </div>
             <div class="mb-3">
               <label for="category_id" class="form-label">Category</label>
@@ -260,7 +262,7 @@
 
   <!-- Add Service Modal -->
   <div class="modal fade" id="addServiceModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add New Service</h5>
@@ -271,7 +273,7 @@
             <div class="mb-3">
               <label for="addName" class="form-label">Name</label>
               <input type="text" class="form-control" id="addName" name="name" placeholder="Enter service name"
-                required />
+               />
               <div class="invalid-feedback">
                 Please provide a service name.
               </div>
@@ -279,30 +281,32 @@
             <div class="mb-3">
               <label for="addDescription" class="form-label">Description</label>
               <textarea class="form-control" id="addDescription" name="description" rows="3"
-                placeholder="Enter service description" required></textarea>
+                placeholder="Enter service description"></textarea>
               <div class="invalid-feedback">
                 Please provide a description.
               </div>
             </div>
-            <div class="mb-3">
-              <label for="addPrice" class="form-label">Price</label>
-              <input type="number" class="form-control" id="addPrice" name="price" step="0.01" placeholder="Enter price"
-                required />
-              <div class="invalid-feedback">
-                Please provide a valid price.
+            <div class="d-flex gap-2">
+              <div class="mb-3 w-50">
+                <label for="addPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="addPrice" name="price" step="0.01" placeholder="Enter price"
+                 />
+                <div class="invalid-feedback">
+                  Please provide a valid price.
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label for="addDiscount" class="form-label">Discount (%)</label>
-              <input type="number" class="form-control" id="addDiscount" name="discount" min="0" max="100"
-                placeholder="Enter discount" />
-              <div class="invalid-feedback">
-                Please provide a valid discount.
+              <div class="mb-3 w-50">
+                <label for="addDiscount" class="form-label">Discount (%)</label>
+                <input type="number" class="form-control" id="addDiscount" name="discount" min="0" max="100"
+                  placeholder="Enter discount" />
+                <div class="invalid-feedback">
+                  Please provide a valid discount.
+                </div>
               </div>
             </div>
             <div class="mb-3">
               <label for="addCategoryId" class="form-label">Category</label>
-              <select class="form-control" id="addCategoryId" name="category_id" required>
+              <select class="form-control" id="addCategoryId" name="category_id">
                 <!-- Options will be populated here -->
               </select>
               <div class="invalid-feedback">Please select a category.</div>

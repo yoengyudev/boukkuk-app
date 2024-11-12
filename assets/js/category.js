@@ -39,9 +39,20 @@ function fetchCategories() {
 
 fetchCategories();
 
-//add category
+// add category
+
+
+
 function addCategory() {
-  const categoryName = document.getElementById("categoryName").value;
+  const categoryName = document.getElementById("categoryName").value.trim();
+  const errorMessage = document.getElementById("error-message");
+
+  errorMessage.textContent = "";
+
+  if (!categoryName) {
+    errorMessage.textContent = "Category name cannot be empty.";
+    return;
+  }
 
   fetch("https://mps10.chandalen.dev/api/categories", {
     method: "POST",
@@ -55,13 +66,20 @@ function addCategory() {
     .then((res) => res.json())
     .then((json) => {
       console.log(json);
-      if (json.message) {
-        alert(json.message);
-      }
       fetchCategories();
+
+      // Close the modal
+      bootstrap.Modal.getInstance(document.getElementById("addCategoryModal")).hide();
+
+      // Refresh the page after closing the modal
+      setTimeout(() => {
+        window.location.reload();
+      }, 500); // Optional delay to ensure the modal closes smoothly
     })
     .catch((error) => console.error("Error adding category:", error));
 }
+
+
 
 //update category
 function openUpdateModal(id, name) {
@@ -92,11 +110,13 @@ function updateCategory() {
   })
     .then((res) => res.json())
     .then((json) => {
-      if (json.success) {
-        $("#updateCategoryModal").modal("hide");
-        fetchCategories();
-        alert("Category updated successfully!");
-      }
+        // Close the modal
+        bootstrap.Modal.getInstance(document.getElementById("updateCategoryModal")).hide();
+
+        // Refresh the page after closing the modal
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
     })
     .catch((error) => console.error("Error updating category:", error));
 }
@@ -113,16 +133,17 @@ function deleteCategory(categoryId) {
   })
     .then((res) => res.json())
     .then((json) => {
-      if (json.success) {
+      console.log(json)
+      if (json.message) {
         const categoryElement = document.getElementById(
           `category-${categoryId}`
         );
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
         if (categoryElement) {
           categoryElement.remove();
         }
-        alert("Category deleted successfully!");
-      } else {
-        alert("Failed to delete category.");
       }
     })
     .catch((error) => console.error("Error deleting category:", error));
