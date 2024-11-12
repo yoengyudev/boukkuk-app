@@ -1,30 +1,3 @@
-let wishlistCount = 0;
-function updateWishlistCounter() {
-  if (!getToken) return;
-
-  fetch('https://mps10.chandalen.dev/api/profile/wishlists?page=1&per_page=100', {
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + getToken
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      wishlistCount = data.paginate.total;
-      const counter = document.querySelector('.wishlist-counter');
-      if (counter) {
-        counter.classList.add('updated');
-        counter.textContent = wishlistCount;
-        counter.style.display = wishlistCount > 0 ? 'flex' : 'none';
-
-        setTimeout(() => {
-          counter.classList.remove('updated');
-        }, 200);
-      }
-    })
-    .catch(error => console.error('Error fetching wishlist count:', error));
-}
-
 function wishlist() {
   let items_whishlist = getToken
     ? (location.href = "src/views/page/wishlist.html")
@@ -81,7 +54,7 @@ function getCategory(value = 0) {
   console.log("Selected Category:", value);
   console.log(typeof value);
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
-  const url = value === 0 
+  const url = value === 0
     ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
     : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=`;
 
@@ -137,9 +110,9 @@ function getCategory(value = 0) {
     });
 }
 
-function getStore(category_id){
-    localStorage.setItem("store_id", category_id);
-    location.href = 'src/views/page/store.html';
+function getStore(category_id) {
+  localStorage.setItem("store_id", category_id);
+  location.href = 'src/views/page/store.html';
 }
 
 

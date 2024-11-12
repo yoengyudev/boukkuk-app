@@ -1214,3 +1214,19 @@ td {
   position: relative;
   z-index: 2;
 }
+
+.wishlist-btn {
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.1);
+  background-color: #f8f9fa;
+}
+
+.wishlist-btn i {
+  font-size: 1.2rem;
+}
