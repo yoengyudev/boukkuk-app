@@ -169,7 +169,7 @@
     margin-top: 20px;
     /* Space above the cart */
     height: 538px;
-    position: sticky;
+    position: sticky !important;
     top: 190px;
   }
 
@@ -200,10 +200,6 @@
 
   .service-section-store-body .service-section-store {
     width: 70% !important;
-  }
-
-  .service-section-store-checkout {
-    width: 30% !important;
   }
 
   .nav-link {
@@ -268,7 +264,7 @@
       <div class="container">
         <div class="row gy-4 align-items-center">
           <div class="col-auto order-0">
-            <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+            <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
           </div>
           <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
             <div class="row d-flex under-logo">
@@ -324,7 +320,7 @@
                   </li>
                   <li class="mb-3" id="pro-setting">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                      href="src/views/page/profile.html">
+                      href="/src/views/page/profile.html">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
                       </div>
@@ -350,13 +346,13 @@
                 </div>
                 <span class="d-none d-sm-block">ការជូនដំណឹង</span>
               </a>
-              <button type="submit" onclick="wishlist()"
+              <a type="submit" href="wishlist.html"
                 class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
                 <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
                   0
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -383,7 +379,8 @@
               <div class="ms-auto d-flex flex-column justify-content-between">
                 <button type="submit"
                   class="hover-nav btn profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                  <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i></button><span class="fs-5">
+                  <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i></button>
+                <span class="fs-5">
                   4.5 <i class="bi bi-star-fill text-warning"></i>
                 </span>
               </div>
@@ -664,9 +661,10 @@
   <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../../../assets/js/store.js"></script>
   <script src="../../../assets/js/footer.js"></script>
-  <script src="../../../assets/js/search.js"></script>
   <script src="../../../assets/js/header.js"></script>
-  <script></script>
+  <script src="../../../assets/js/logout.js"></script>
+  <script src="../../../assets/js/search.js"></script>
+  <script src="../../../assets/js/nearest.js"></script>
 </body>
 
 </html>
