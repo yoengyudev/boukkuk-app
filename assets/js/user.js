@@ -343,36 +343,102 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
 
 // ====================== User status ========================
 
-function toggleUserStatus(element, userId) {
+// Function to update the icon based on the user's current status from the API
+function updateUserStatusIcon(element, userId) {
     const btn_status_icon = element.querySelector('.btn_status_icon');
-    const currentStatus = btn_status_icon.classList.contains("bi-toggle-on") ? "enabled" : "disabled";
 
-    const apiUrl = currentStatus === "enabled"
-        ? `https://mps10.chandalen.dev/api/users/disable/${userId}`
-        : `https://mps10.chandalen.dev/api/users/enable/${userId}`;
-
-    console.log(getToken);
-
-    fetch(apiUrl, {
-        method: "PUT",
+    // Fetch the current status of the user when the page loads
+    fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            'Accept': 'application/json',
             "Authorization": `Bearer ${getToken}`,
         }
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // Update the icon based on the user's status
+            if (data.result && data.code === 1) {
+                if (data.status === "enabled") {
+                    btn_status_icon.classList.add("bi-toggle-on");
+                    btn_status_icon.classList.remove("bi-toggle-off");
+                    element.setAttribute("data-status", "enabled");
+                } else {
+                    btn_status_icon.classList.add("bi-toggle-off");
+                    btn_status_icon.classList.remove("bi-toggle-on");
+                    element.setAttribute("data-status", "disabled");
+                }
+            } else {
+                console.error("Failed to retrieve user status.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred while retrieving user status. Please try again.");
+        });
+}
 
+// Function to update the icon based on the user's current status from the API
+function updateUserStatusIcon(element, userId) {
+    const btn_status_icon = element.querySelector('.btn_status_icon');
+
+    // Fetch the current status of the user when the page loads
+    fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken}`,  // Ensure getToken is defined and accessible
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Update the icon based on the user's status
+            if (data.result && data.code === 1) {
+                if (data.status === "enabled") {
+                    btn_status_icon.classList.add("bi-toggle-on");
+                    btn_status_icon.classList.remove("bi-toggle-off");
+                    element.setAttribute("data-status", "enabled");
+                } else {
+                    btn_status_icon.classList.add("bi-toggle-off");
+                    btn_status_icon.classList.remove("bi-toggle-on");
+                    element.setAttribute("data-status", "disabled");
+                }
+            } else {
+                console.error("Failed to retrieve user status.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred while retrieving user status. Please try again.");
+        });
+}
+
+// Function to toggle the user status when the icon is clicked
+function toggleUserStatus(element, userId) {
+    const btn_status_icon = element.querySelector('.btn_status_icon');
+    const currentStatus = btn_status_icon.classList.contains("bi-toggle-on") ? "enabled" : "disabled";
+
+    // Corrected template literal for URL
+    const apiUrl = currentStatus === "enabled"
+        ? `https://mps10.chandalen.dev/api/users/disable/${userId}`
+        : `https://mps10.chandalen.dev/api/users/enable/${userId}`;
+
+    fetch(apiUrl, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken}`,  // Ensure getToken is defined and accessible
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
             if (data.result && data.code === 1) {
                 btn_status_icon.classList.toggle("bi-toggle-on");
                 btn_status_icon.classList.toggle("bi-toggle-off");
-                // Update the `data-status` attribute
                 const newStatus = currentStatus === "enabled" ? "disabled" : "enabled";
                 element.setAttribute("data-status", newStatus);
             } else {
-                alert("Failed to update user status. Please try again.");
+                console.error("Failed to update user status.");
             }
         })
         .catch(error => {
@@ -380,6 +446,13 @@ function toggleUserStatus(element, userId) {
             alert("An error occurred. Please try again.");
         });
 }
+
+window.onload = function () {
+    document.querySelectorAll('.user-toggle-btn').forEach(element => {
+        const userId = element.getAttribute('data-user-id');
+        updateUserStatusIcon(element, userId);  // Load initial status on page load
+    });
+};
 
 
 // ==============================promote user ==========================

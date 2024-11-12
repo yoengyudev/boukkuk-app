@@ -83,7 +83,7 @@ function getCategory(value = 0) {
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
   const url = value === 0 
     ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
-    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=`;
+    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
 
   fetch(url)
     .then((res) => res.json())
@@ -100,10 +100,8 @@ function getCategory(value = 0) {
                         class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
                   <i class="bi bi-heart"></i>
                 </button>
-                <a href="#" onclick='getStore(${element.id})' class="d-block">
-                  <img src="${element.image}" 
-                       class="card-img img-store w-100" 
-                       alt="${element.name}">
+                <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')" class="d-block">
+                     <img src="${element.image}" class="card-img img-store w-100" alt="${element.name}">
                 </a>
               </div>
               <div class="card-body p-0">
@@ -127,7 +125,6 @@ function getCategory(value = 0) {
           </div>`;
       });
 
-      // Update the HTML content in the #show-by-category container
       document.querySelector('#store-card').innerHTML = col_3;
       document.getElementById('animation-overlay').style.display = 'none';
     })
@@ -136,9 +133,12 @@ function getCategory(value = 0) {
     });
 }
 
-function getStore(category_id){
-    localStorage.setItem("store_id", category_id);
-    location.href = 'src/views/page/store.html';
+function getStore(creatorID,creatorAvatar){
+  let creator_ID = localStorage.setItem("creator_id", creatorID);
+  console.log(localStorage.getItem('creator_id'));
+
+  let profile_img = localStorage.setItem("store_profile", creatorAvatar);
+  location.href = 'src/views/page/store.html';
 }
 
 
