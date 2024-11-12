@@ -628,7 +628,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .navigation ul li:hover,
-.navigation ul li.hovered {
+.navigation ul li.active {
   background-color: var(--white);
 }
 
@@ -659,7 +659,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .navigation ul li:hover a,
-.navigation ul li.hovered a {
+.navigation ul li.active a {
   color: var(--blue);
 }
 
@@ -688,7 +688,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* --------- curve outside ---------- */
 .navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
+.navigation ul li.active a::before {
   content: "";
   position: absolute;
   right: 0;
@@ -702,7 +702,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
+.navigation ul li.active a::after {
   content: "";
   position: absolute;
   right: 0;

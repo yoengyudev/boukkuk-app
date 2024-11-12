@@ -36,7 +36,7 @@
                     </a>
                 </li>
 
-                <li class="user-item">
+                <li class="user-item active">
                     <a href="../page/user.html">
                         <span class="icon">
                             <i class="bi bi-people"></i>
@@ -323,17 +323,6 @@
 
     <!-- =========== Scripts =========  -->
     <script>
-        let list = document.querySelectorAll(".navigation li");
-
-        function activeLink() {
-            list.forEach((item) => {
-                item.classList.remove("hovered");
-            });
-            this.classList.add("hovered");
-        }
-
-        list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
         let toggle = document.querySelector(".toggle");
         let navigation = document.querySelector(".navigation");
         let main = document.querySelector(".main");
