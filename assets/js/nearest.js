@@ -73,7 +73,7 @@ function error(err) {
     displayResult("Unable to retrieve your location. " + err.message);
 }
 
-// Haversine formula to calculate the distance between two points (in kilometers)
+// Haversine formula to calculate the distance between two points
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of the Earth in km
     const dLat = deg2rad(lat2 - lat1);
@@ -142,7 +142,7 @@ function displayResult(message) {
         }
     } else {
         const currentPath = window.location.href;
-        const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
+        const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
         const encodedResult = encodeURIComponent(JSON.stringify(message));
         location.href = `${basePath}src/views/page/nearest.html?result=${encodedResult}`;
     }
