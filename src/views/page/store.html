@@ -363,18 +363,13 @@
         <div class="row">
           <div class="col-12 col-lg-3">
             <div class="card logo-store border-5 box-shadow border-white overflow-hidden">
-              <img src="/../../../assets/image/store/2.jpg" class="card-img" alt="" />
+              <img id="profile_img" class="card-img" alt="" />
             </div>
           </div>
           <div class="col-12 col-lg-8">
             <div class="pt-0 pt-lg-5 d-flex">
-              <div>
-                <h1 class="store-title text-dark-emphasis">លីហ៊បោកអុត</h1>
-                <p>អំពីហាង: សូមស្វាគមន៏មកកាន់ហាងបោកអ៊ុតរបស់យើងខ្ញុំ</p>
-                <a href="" class="text-primary text-decoration-none">
-                  <i class="bi bi-geo-alt-fill"></i>
-                  80A, ST2004, សង្ទឺកថ្លា ខ័ណ្ឌសែនសុខ ភ្នំពេញ
-                </a>
+              <div id="storeInfo">
+
               </div>
               <div class="ms-auto d-flex flex-column justify-content-between">
                 <button type="submit"
@@ -435,37 +430,39 @@
             padding-left: 110px;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 28px 24px;
           ">
-        <div class="d-flex align-items-center">
-          <!-- Search Input -->
-          <div class="mb-3">
-            <input type="text" class="form-control" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម..." />
-          </div>
+        <div class="container p-0 m-0">
+          <div class="d-flex align-items-end">
+            <!-- Search Input -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម" />
+            </div>
 
-          <!-- Tab Navigation -->
-          <div class="d-flex flex-row mb-3 ms-3">
-            <!-- <ul class="nav nav-tabs flex-nowrap" id="serviceTabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <a class="nav-link active" href="#all">ទាំងអស់</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" href="#washing">បោកសម្អាត</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" href="#dry-cleaning">សម្ងួត</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" href="#ironing">អ៊ុត</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" href="#folding">បត់និង​រៀបចំ</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a class="nav-link" href="#wash-dry">បោកស្ងួត</a>
-              </li>
-            </ul> -->
-            <ul class="nav nav-tabs flex-nowrap" id="serviceTabs" role="tablist">
-
-            </ul>
+            <!-- Tab Navigation -->
+            <div class="d-flex flex-row mb-3 ms-3">
+              <ul class="nav nav-tabs flex-nowrap" id="categoryNav" role="tablist">
+              </ul>
+            </div>
+            <!-- price range -->
+            <div class="wrapper ms-auto mb-3">
+              <div class="price-input">
+                <div class="field">
+                  <input type="number" class="input-min border-0 bg-transparent" value="0" disabled>
+                  <span class="ms-2">(៛)ទាប</span>
+                </div>
+                <div class="separator">-</div>
+                <div class="field">
+                  <span>ខ្ពស់(៛)</span>
+                  <input type="number" class="input-max border-0 bg-transparent ms-2" value="10000" disabled>
+                </div>
+              </div>
+              <div class="slider">
+                <div class="progress"></div>
+              </div>
+              <div class="range-input">
+                <input type="range" class="range-min" min="0" max="10000" value="0" step="1">
+                <input type="range" class="range-max" min="0" max="10000" value="10000" step="1">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -474,13 +471,13 @@
         <hr style="color: #ddd" />
 
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-9 service-section-store">
+          <div class="col-12 col-sm-12 col-md-8 service-section-store">
             <!-- Service Sections -->
-            <div id="all" class="row gy-4" data-category="បោក">
+            <div id="all" class="row gx-2 gy-4" data-category="បោក">
 
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-md-3">
+          <div class="col-12 col-sm-12 col-md-4">
             <div class="card cart">
               <h2>Cart</h2>
               <div id="cart-items" class="overflow-auto" style="height: 538px"></div>

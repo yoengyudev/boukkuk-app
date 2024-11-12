@@ -298,111 +298,189 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCart();
 });
 
+const rangeInput = document.querySelectorAll(".range-input input"),
+  priceInput = document.querySelectorAll(".price-input input"),
+  range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minPrice = parseInt(priceInput[0].value),
+      maxPrice = parseInt(priceInput[1].value);
+
+    if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+      if (e.target.className === "input-min") {
+        rangeInput[0].value = minPrice;
+        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+      } else {
+        rangeInput[1].value = maxPrice;
+        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+      }
+    }
+  });
+});
+
+rangeInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minVal = parseInt(rangeInput[0].value),
+      maxVal = parseInt(rangeInput[1].value);
+
+    if (maxVal - minVal < priceGap) {
+      if (e.target.className === "range-min") {
+        rangeInput[0].value = maxVal - priceGap;
+      } else {
+        rangeInput[1].value = minVal + priceGap;
+      }
+    } else {
+      priceInput[0].value = minVal;
+      priceInput[1].value = maxVal;
+      range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+      range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+    }
+  });
+});
+
+
+// ================get profile_picture==============
+let getProfile = localStorage.getItem('store_profile');
+document.getElementById('profile_img').src = getProfile;
+
+
 
 
 // =================Get all service =================
 
-// Function to fetch and display services based on category and search
 function getCategory(value = 0, search = '') {
   console.log("Selected Category:", value);
   console.log("Search Term:", search);
+  let getCreatorId = localStorage.getItem('creator_id');
+  let start_pri = document.querySelector('.input-min').value;
+  let end_pri = document.querySelector('.input-max').value;
 
-  // Base URL and default parameters
-  const baseUrl = 'https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=';
-  const defaultParams = {
-    page: 1,
-    per_page: 20,
-    search: search,
-    price_start: 0,
-    price_end: 99999,
-    creator: ''
-  };
+  const url = `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ''}&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
 
-  if (value !== 0) {
-    defaultParams.category = value;
-  }
-
-  const queryString = new URLSearchParams(defaultParams).toString();
-  const url = `${baseUrl}?${queryString}`;
   fetch(url)
     .then(response => response.json())
     .then(data => {
       let card_service = '';
-      if (data.data.length === 0) {
-        card_service = `<div class="col-12 vh-100 d-flex align-items-center justify-content-center">
-                          <h3>
-                              សេវាកម្មនេះមិនមានទេ
-                          </h3>
-                        </div>`;
-      } else {
-        data.data.forEach(element => {
+      let categories = new Map();
+
+      data.data.forEach(element => {
+        if (element.category && !categories.has(element.category.id)) {
+          categories.set(element.category.id, element.category.name);
+        }
+
+        if (element.price >= start_pri && element.price <= end_pri) {
           card_service += `
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card service-card" data-service="${element.name}" data-price="${element.price}">
-                  <div class="card-img-container">
-                    <img src="${element.image}" alt="" class="card-img" />
-                  </div>
-                  <div class="card-content">
-                    <h5 class="card-title">${element.name}</h5>
-                    <p class="card-price">$${element.price}</p>
-                    <p class="card-description">
-                      ${element.description || 'Description of the dish goes here.'}
-                    </p>
-                    <div class="quantity-control" style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                      <button class="btn btn-circle decrease btn-primary">-</button>
-                      <span class="quantity" style="width: 40px; text-align: center; margin: 0 5px">0</span>
-                      <button class="btn btn-circle increase btn-outline-primary">+</button>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 service-item" data-category="${element.category ? element.category.id : ''}">
+                  <div class="card service-card" data-service="${element.name}" data-price="${element.price}">
+                    <div class="card-img-container">
+                      <img src="${element.image}" alt="" class="card-img" />
                     </div>
+                    <div class="card-content">
+                      <h5 class="card-title">${element.name}</h5>
+                      <p class="card-price">$${element.price}</p>
+                      <p class="card-description">
+                        ${element.description || 'Description of the dish goes here.'}
+                      </p>
+                      <div class="quantity-control" style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                        <button class="btn btn-circle decrease btn-primary">-</button>
+                        <span class="quantity" style="width: 40px; text-align: center; margin: 0 5px">0</span>
+                        <button class="btn btn-circle increase btn-outline-primary">+</button>
+                      </div>
                   </div>
                 </div>
-            </div>
-          `;
-        });
-      }
+              </div>`;
+        }
+      });
+
       document.querySelector('#all').innerHTML = card_service;
+
+      let categoryNav = `
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" href="#" onclick="filterServices(0, this, event)">ទាំងអស់</a>
+        </li>
+      `;
+
+      categories.forEach((name, id) => {
+        categoryNav += `
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" onclick="filterServices(${id}, this, event)">${name}</a>
+          </li>
+        `;
+      });
+
+      document.querySelector('#categoryNav').innerHTML = categoryNav;
+
+      let storeInfo = ` `;
+      if (data.data.length > 0 && data.data[0].creator) {
+        let store = data.data[0].creator;
+        let storeInfo = `
+          <h1 id="store_name" class="store-title text-dark-emphasis">${store.name}</h1>
+          <p id="store_des" class="fs-18">
+              <i class="bi bi-shop"></i> សូមស្វាគមន៏មកកាន់ហាងរបស់យើងខ្ញុំ។
+          </p>
+          <a href="${store.google_map_url}" id="store_map" class="text-primary fs-18 text-decoration-none">
+            <i class="bi bi-geo-alt"></i>  ទីតាំងហាងរបស់យើង
+          </a>
+        `;
+        document.getElementById('storeInfo').innerHTML = storeInfo;
+
+        document.querySelector('.bg-store').style.backgroundImage = `url('${localStorage.getItem('store_profile')}')`;
+
+      }
+
     })
     .catch(error => {
       console.error("Error fetching data:", error);
     });
 }
+
 getCategory();
+
+// filter service price
+function filterServices(categoryId, element, event) {
+  event.preventDefault();
+  let start_pri = parseFloat(document.querySelector('.input-min').value) || 0;
+  let end_pri = parseFloat(document.querySelector('.input-max').value) || 99999;
+
+  document.querySelectorAll('#categoryNav .nav-link').forEach(link => link.classList.remove('active'));
+  element.classList.add('active');
+
+  document.querySelectorAll('.service-item').forEach(item => {
+    let itemPrice = parseFloat(item.querySelector('.card-price').textContent.replace('$', ''));
+    if ((categoryId === 0 || item.getAttribute('data-category') == categoryId) && itemPrice >= start_pri && itemPrice <= end_pri) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// Synchronize input-min and input-max with range sliders
+document.querySelector('.range-min').addEventListener('input', function () {
+  document.querySelector('.input-min').value = this.value;
+  getCategory();
+});
+
+document.querySelector('.range-max').addEventListener('input', function () {
+  document.querySelector('.input-max').value = this.value;
+  getCategory();
+});
+
+document.querySelector('.input-min').addEventListener('input', function () {
+  document.querySelector('.range-min').value = this.value;
+  getCategory();
+});
+
+document.querySelector('.input-max').addEventListener('input', function () {
+  document.querySelector('.range-max').value = this.value;
+  getCategory();
+});
 
 function searchServices() {
   const searchTerm = document.getElementById('searchInput').value;
   getCategory(0, searchTerm);
 }
+
 document.getElementById('searchInput').addEventListener('keyup', searchServices);
-
-
-// all any categories 
-const categories = [
-  { id: 0, name: "ទាំងអស់" },
-  { id: 1, name: "បោកសម្អាត" },
-  { id: 2, name: "សម្ងួត" },
-  { id: 3, name: "អ៊ុត" },
-  { id: 4, name: "បត់និង​រៀបចំ" },
-  { id: 5, name: "បោកស្ងួត" }
-];
-
-const serviceTabs = document.getElementById("serviceTabs");
-serviceTabs.innerHTML = categories.map((category, index) => `
-  <li class="nav-item" role="presentation">
-    <a class="nav-link ${index === 0 ? 'active' : ''}" href="#${category.id}" data-id="${category.id}">
-      ${category.name}
-    </a>
-  </li>
-`).join("");
-
-document.querySelectorAll("#serviceTabs .nav-link").forEach(tab => {
-  tab.addEventListener("click", function (event) {
-    event.preventDefault();
-    document.querySelectorAll("#serviceTabs .nav-link").forEach(t => t.classList.remove("active"));
-
-    this.classList.add("active");
-
-    const categoryId = parseInt(this.getAttribute("data-id"), 10);
-    getCategory(categoryId);
-  });
-});
-
-getCategory(0); 
