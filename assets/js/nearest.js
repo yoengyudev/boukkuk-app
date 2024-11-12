@@ -3,10 +3,13 @@ let baseUrl = 'https://mps10.chandalen.dev';
 const apiUrl = `${baseUrl}/api/users/providers?page=1&per_page=20&search=`;
 
 function findNearbyLocations() {
+    // document.getElementById('animation-overlay').style.display = 'block';
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true });
     } else {
         displayResult("Geolocation is not supported by this browser.");
+        document.getElementById('animation-overlay').style.display = 'none';
     }
 }
 
@@ -33,6 +36,8 @@ async function success(position) {
     } catch (error) {
         console.error("Error fetching providers:", error);
         displayResult("Failed to load laundry locations.");
+    } finally {
+        document.getElementById('animation-overlay').style.display = 'none';
     }
 }
 

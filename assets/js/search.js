@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let querySearch = sessionStorage.getItem("searchQuery");
 
   if (querySearch) {
+    document.getElementById('animation-overlay').style.display = 'block';
+
     fetch(
       `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`
     )
@@ -76,11 +78,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         document.querySelector("#store-card").innerHTML = col_3;
-        document.getElementById('animation-overlay').style.display = 'none';
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        document.querySelector(
+          "#search_not_found"
+        ).innerHTML = `<h3 class='text-danger'>Failed to load data. Please try again later.</h3>`;
+      })
+      .finally(() => {
+        document.getElementById('animation-overlay').style.display = 'none';
+      });
   }
 });
+
 
 function store(event) {
   event.preventDefault();

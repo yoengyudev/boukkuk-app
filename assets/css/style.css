@@ -1092,9 +1092,6 @@ td {
 
 /* ===================== loading ======================== */
 
-#animation-overlay {
-  display: block;
-}
 
 .spinner-overlay {
   display: none;
