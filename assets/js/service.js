@@ -139,84 +139,161 @@ function viewDetails(service) {
     });
 }
 
-function addService(event) {
-  event.preventDefault();
-  // let setId = localStorage.setItem('getId',categoryId);
-  // console.log(setId);
-  
-  const form = document.getElementById("addServiceForm"); // Get the form element
-  const formData = new FormData(form); // Create FormData from the form
+// ===============================
 
-  const categoryId = parseInt(formData.get("category_id"), 10);
-  if (!categoryId || isNaN(categoryId)) {
-    alert("Please enter a valid Category ID.");
-    return;
+// Validation functions using regex
+const validators = {
+  name: {
+    regex: /^[a-zA-Z0-9\s]{3,50}$/,
+    message: "Name must be 3-50 characters long and contain only letters, numbers and spaces"
+  },
+  description: {
+    regex: /^.{5,500}$/,
+    message: "Description must be between 10-500 characters long"
+  },
+  price: {
+    regex: /^\d*\.?\d{0,2}$/,
+    message: "Please enter a valid price (e.g., 99.99)"
+  },
+  discount: {
+    regex: /^(?:100|[0-9]{1,2})$/,
+    message: "Discount must be between 0-100"
+  },
+  category_id: {
+    regex: /^[1-9]\d*$/,
+    message: "Please select a valid category"
   }
-  localStorage.setItem('category_id', categoryId);
-  formData.set("category_id", categoryId); // Set the validated category ID back to formData
+};
 
-  fetch("https://mps10.chandalen.dev/api/services", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token, // Include the token for authorization
-      Accept: "application/json",
-    },
-    body: formData, // Send the form data
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return res.json().then((errorData) => {
-          throw new Error(JSON.stringify(errorData)); // Throw an error if the response is not ok
-        });
-      }
-      return res.json(); // Parse the response as JSON
-    })
-    .then((data) => {
-      console.log(data); // Log the entire response data
-      localStorage.setItem('getID', data.categoryId);
-      console.log(data.categoryId);
+// Function to validate a single field
+const validateField = (name, value) => {
+  if (!validators[name]) return true;
+  
+  // Handle empty required fields
+  if (!value && name !== 'discount') {
+    return false;
+  }
+  
+  return validators[name].regex.test(value);
+};
+
+// Main form validation and submission handler
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('addServiceForm');
+  const inputs = form.querySelectorAll('input, textarea, select');
+  
+  // Real-time validation
+  inputs.forEach(input => {
+    input.addEventListener('input', function() {
+      const isValid = validateField(this.name, this.value);
       
-      console.log("New Service Details:", {
-        name: formData.get("name"),
-        description: formData.get("description"),
-        price: formData.get("price"),
-        discount: formData.get("discount"),
-        categoryId: formData.get("category_id"),
-        image: formData.get("image")
-          ? formData.get("image").name
-          : "No image uploaded",
-      }); // Log specific details from the form
-
-      DisplayServices(); // Refresh the service list
-
-      form.reset(); // Clear the form fields
-      const imagePreview = document.getElementById("addImagePreview");
-      imagePreview.style.display = "none"; // Hide the image preview
-      imagePreview.src = ""; // Clear the image source
-      document.getElementById("addFileName").textContent = "No file chosen"; // Reset file name display
-      bootstrap.Modal.getInstance(
-        document.getElementById("addServiceModal")
-      ).hide();
-    })
-    .catch((error) => {
-      console.error("Error adding service:", error); // Log the error
-      let errorMessage = "Failed to add service."; // Default error message
-      try {
-        const errorData = JSON.parse(error.message); // Attempt to parse the error message
-        if (errorData.data && errorData.data.category_id) {
-          errorMessage = `Category ID Error: ${errorData.data.category_id[0]}`; // Specific error message for category ID
+      if (!isValid) {
+        this.classList.add('is-invalid');
+        this.classList.remove('is-valid');
+        
+        // Show error message
+        const feedbackDiv = this.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+          feedbackDiv.textContent = validators[this.name]?.message || 'This field is required';
         }
-      } catch (e) {
-        errorMessage = error.message; // Use the original error message if parsing fails
+      } else {
+        this.classList.remove('is-invalid');
+        this.classList.add('is-valid');
       }
-      alert(errorMessage); // Notify the user of the error
     });
-}
+  });
 
-// Add event listener for form submission
-document
-  .getElementById("addServiceForm")
-  .addEventListener("submit", addService);
+  // Form submission handler
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    let isValid = true;
+    const formData = new FormData(form);
+    
+    // Validate all fields before submission
+    inputs.forEach(input => {
+      const value = formData.get(input.name);
+      if (!validateField(input.name, value)) {
+        isValid = false;
+        input.classList.add('is-invalid');
+        
+        // Show error message
+        const feedbackDiv = input.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+          feedbackDiv.textContent = validators[input.name]?.message || 'This field is required';
+        }
+      }
+    });
+
+    // File validation
+    const imageInput = document.getElementById('addImage');
+    if (imageInput.files.length > 0) {
+      const file = imageInput.files[0];
+      const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      const maxSize = 5 * 1024 * 1024; // 5MB
+
+      if (!validTypes.includes(file.type)) {
+        isValid = false;
+        imageInput.classList.add('is-invalid');
+        const feedbackDiv = imageInput.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+          feedbackDiv.textContent = 'Please upload a valid image file (JPEG, PNG, or GIF)';
+        }
+      } else if (file.size > maxSize) {
+        isValid = false;
+        imageInput.classList.add('is-invalid');
+        const feedbackDiv = imageInput.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
+          feedbackDiv.textContent = 'Image size should be less than 5MB';
+        }
+      }
+    }
+
+    if (isValid) {
+      // If all validations pass, proceed with your existing addService logic
+      const formData = new FormData(form);
+      const categoryId = parseInt(formData.get("category_id"), 10);
+      
+      if (!categoryId || isNaN(categoryId)) {
+        alert("Please enter a valid Category ID.");
+        return;
+      }
+      
+      localStorage.setItem('category_id', categoryId);
+      formData.set("category_id", categoryId);
+
+      // Your existing fetch logic here
+      fetch("https://mps10.chandalen.dev/api/services", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+          Accept: "application/json",
+        },
+        body: formData,
+      })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(errorData => {
+            throw new Error(JSON.stringify(errorData));
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        // Your existing success handling code
+        DisplayServices();
+        form.reset();
+        bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
+      })
+      .catch(error => {
+        console.error("Error adding service:", error);
+        alert("Failed to add service. Please try again.");
+      });
+    }
+  });
+});
+
+// ========================
 
 function editService(button) {
   const row = $(button).closest("tr");
