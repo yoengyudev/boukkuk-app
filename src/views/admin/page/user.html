@@ -124,55 +124,63 @@
                             <div class="mb-3 col-6">
                                 <label for="userName" class="form-label">Full Name</label>
                                 <input type="text" class="form-control" placeholder="Full name" id="userName">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="userEmail" class="form-label">Email</label>
                                 <input type="email" class="form-control" placeholder="example@gmail.com" id="userEmail">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="userPhone" class="form-label">Phone Number</label>
                                 <input type="text" class="form-control" placeholder="Phone number" id="userPhone">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="userLocation" class="form-label">Location</label>
                                 <input type="text" class="form-control" placeholder="Location" id="userLocation">
+                                <div class="invalid-feedback"></div>
                             </div>
+                            
                             <div class="mb-3 col-6">
                                 <label for="userPass" class="form-label">Password</label>
                                 <input type="password" class="form-control" placeholder="Password" id="userPass">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="userConfirmPass" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" placeholder="Confirm password"
-                                    id="userConfirmPass">
+                                <input type="password" class="form-control" placeholder="Confirm password" id="userConfirmPass">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="userImage" class="form-label">Upload User Profile</label>
                                 <input type="file" class="form-control" id="userImage" accept="image/*">
+                                <div class="invalid-feedback"></div>
                             </div>
-                            <div class="col-6"></div>
-                            <div class="mb-5 col-auto">
-                                <input class="form-check-input" type="radio" name="userRole" id="normal_user" value="1"
-                                    checked>
-                                <label class="form-check-label" for="normal_user">Normal User</label>
+                            <div class="d-flex gap-3">
+                                <div class="mb-5 col-auto">
+                                    <input class="form-check-input" type="radio" name="userRole" id="normal_user" value="1" checked>
+                                    <label class="form-check-label" for="normal_user">Normal User</label>
+                                </div>
+                                <div class="mb-5 col-auto">
+                                    <input class="form-check-input" type="radio" name="userRole" id="admin_user" value="2">
+                                    <label class="form-check-label" for="admin_user">Admin</label>
+                                </div>
+                                <div class="mb-5 col-auto">
+                                    <input class="form-check-input" type="radio" name="userRole" id="serProvider_user" value="3">
+                                    <label class="form-check-label" for="serProvider_user">Service Provider</label>
+                                </div>
+                                <div id="userRoleError" class="invalid-feedback d-block"></div>
                             </div>
-                            <div class="mb-5 col-auto">
-                                <input class="form-check-input" type="radio" name="userRole" id="admin_user" value="2">
-                                <label class="form-check-label" for="admin_user">Admin</label>
-                            </div>
-                            <div class="mb-5 col-auto">
-                                <input class="form-check-input" type="radio" name="userRole" id="serProvider_user"
-                                    value="3">
-                                <label class="form-check-label" for="serProvider_user">Service Provider</label>
-                            </div>
+                            
                         </div>
                         <button id="registerButton" class="btn btn-primary" type="submit">
-                            <span class="spinner-border spinner-border-sm" id="spinner" style="display:none;"
-                                aria-hidden="true"></span>
+                            <span class="spinner-border spinner-border-sm" id="spinner" style="display:none;" aria-hidden="true"></span>
                             <span id="buttonText">Create User</span>
                         </button>
                         <button type="reset" class="btn border">Cancel</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -337,15 +345,9 @@
 
 
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-   <script src="../../../../assets/js/user.js"></script>
-=======
-=======
->>>>>>> kimlong
-    <script src="../.././../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../.././../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../../../assets/js/user.js"></script>
->>>>>>> Sopheaktra
     <script src="../../../../assets/js/sidebar.js"></script>
     <script src="../../../../assets/js/logout.js"></script>
     <script src="../../../../vender/datatable/js/bootstrap.bundle.min.js"></script>
