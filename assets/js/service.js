@@ -277,6 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error(JSON.stringify(errorData));
           });
         }
+        // Refresh the page after closing the modal
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
         return res.json();
       })
       .then(data => {
