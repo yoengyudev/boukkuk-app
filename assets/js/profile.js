@@ -3,11 +3,11 @@
 let g9_host = "https://mps10.chandalen.dev";
 
 function getData() {
-  let token = localStorage.getItem("token");
+  let UserToken = localStorage.getItem("UserToken");
   fetch(`${g9_host}/api/me`, {
     method: "GET",
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + UserToken,
     },
   })
     .then((res) => res.json())
@@ -50,13 +50,13 @@ document
     const spinner1 = document.getElementById("spinner1");
     buttonText1.style.display = "none";
     spinner1.style.display = "inline-block";
-    let token = localStorage.getItem("token");
+    let UserToken = localStorage.getItem("UserToken");
     fetch(`${g9_host}/api/profile/change-pass`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + UserToken,
       },
       body: JSON.stringify({
         old_pass: oldPassword,
@@ -105,9 +105,9 @@ document
     spinner.style.display = 'inline-block';
     buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
 
-    let token = localStorage.getItem("token");
+    let UserToken = localStorage.getItem("UserToken");
 
-    if (!token) {
+    if (!UserToken) {
       alert("No token found. Please log in first.");
       return;
     }
@@ -123,7 +123,7 @@ document
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${UserToken}`,
       },
       body: JSON.stringify(updatedData),
     })
@@ -188,13 +188,13 @@ document.addEventListener('DOMContentLoaded', function () {
       const formData = new FormData();
       formData.append('avatar', blob);
 
-      const token = localStorage.getItem('token');
+      const UserToken = localStorage.getItem('UserToken');
       fetch(`${g9_host}/api/profile/avatar`, {
         method: 'POST',
         body: formData,
         headers: {
           Accept: 'application/json',
-          Authorization: 'Bearer ' + token,
+          Authorization: 'Bearer ' + UserToken,
         },
       })
         .then(response => response.json())
@@ -221,12 +221,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let delete_Avatar = document.getElementById("deleteImageBtn");
 delete_Avatar.addEventListener("click", function () {
-  let token = localStorage.getItem("token");
+  let UserToken = localStorage.getItem("UserToken");
   fetch(`${g9_host}/api/profile/avatar`, {
     method: "delete",
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + UserToken,
     },
   })
     .then((res) => res.json())

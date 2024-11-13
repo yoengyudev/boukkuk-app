@@ -1,5 +1,5 @@
 function wishlist() {
-  let items_whishlist = getToken
+  let items_whishlist = UserToken
     ? (location.href = "src/views/page/wishlist.html")
     : (location.href = "src/views/auth/login.html");
 }
@@ -7,7 +7,7 @@ function wishlist() {
 let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
-  if (!getToken) {
+  if (!UserToken) {
     location.href = "src/views/auth/login.html";
     return;
   }
@@ -17,7 +17,7 @@ function wishlistCard(serviceId, heartButton) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken}`,
+      Authorization: `Bearer ${UserToken}`,
     },
     body: JSON.stringify({
       service_id: serviceId,

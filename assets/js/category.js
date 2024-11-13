@@ -1,6 +1,5 @@
 let list = document.querySelectorAll(".navigation li");
-const getToken = localStorage.getItem("token");
-console.log("Token:", getToken);
+import { AdminToken } from './tokens.js';
 
 //get categories
 function fetchCategories() {
@@ -8,7 +7,7 @@ function fetchCategories() {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${getToken}`,
+      Authorization: `Bearer ${AdminToken}`,
     },
   })
     .then((res) => res.json())
@@ -58,7 +57,7 @@ function addCategory() {
     method: "POST",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${getToken}`,
+      Authorization: `Bearer ${AdminToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name: categoryName }),
@@ -103,7 +102,7 @@ function updateCategory() {
     method: "PUT",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${getToken}`,
+      Authorization: `Bearer ${AdminToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name: updatedName }),
@@ -128,7 +127,7 @@ function deleteCategory(categoryId) {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${getToken}`,
+      Authorization: `Bearer ${AdminToken}`,
     },
   })
     .then((res) => res.json())

@@ -1,4 +1,4 @@
-const getToken = localStorage.getItem("token");
+const UserToken = localStorage.getItem("UserToken");
 
 let signup = document.getElementById("signup-list");
 let login = document.getElementById("login-list");
@@ -6,9 +6,9 @@ let logout_pro = document.getElementById("logout-list");
 let proSetting = document.getElementById("pro-setting");
 
 
-console.log(getToken);
+console.log(UserToken);
 
-if (getToken) {
+if (UserToken) {
   signup.style.display = "none";
   login.style.display = "none";
   proSetting.style.display = "block";
@@ -22,12 +22,12 @@ if (getToken) {
 
 let wishlistCount = 0;
 function updateWishlistCounter() {
-  if (!getToken) return;
+  if (!UserToken) return;
 
   fetch('https://mps10.chandalen.dev/api/profile/wishlists?page=1&per_page=100', {
     headers: {
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + getToken
+      'Authorization': 'Bearer ' + UserToken
     }
   })
     .then(response => response.json())

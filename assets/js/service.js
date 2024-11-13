@@ -20,8 +20,8 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 // =====================================================================
-let token = localStorage.getItem("token");
-console.log(token);
+let AdminToken = localStorage.getItem("AdminToken");
+console.log(AdminToken);
 let dataTable;
 
 function DisplayServices() {
@@ -29,7 +29,7 @@ function DisplayServices() {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + AdminToken,
     },
   })
     .then((res) => res.json())
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch("https://mps10.chandalen.dev/api/services", {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + AdminToken,
           Accept: "application/json",
         },
         body: formData,
@@ -335,7 +335,7 @@ document.getElementById("editForm").addEventListener("submit", (event) => {
   fetch(`https://mps10.chandalen.dev/api/services/${id}`, {
     method: "Post",
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + AdminToken,
       Accept: "application/json",
     },
     body: formData,
@@ -366,7 +366,7 @@ function deleteService(button) {
     fetch(`https://mps10.chandalen.dev/api/services/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + AdminToken,
         Accept: "application/json",
       },
     })

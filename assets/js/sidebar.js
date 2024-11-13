@@ -2,14 +2,14 @@ let user_item = document.querySelector('.user-item');
 let category_item = document.querySelector('.category-item');
 let service_item = document.querySelector('.service-item');
 let roleid = localStorage.getItem('UserRole');
-let tokenSidebar = localStorage.getItem('token');
+let AdminToken = localStorage.getItem('AdminToken');
 console.log(roleid);
-console.log(tokenSidebar);
+console.log(AdminToken);
 
-if (!tokenSidebar) {
-    location.href = `${window.location.origin}/src/views/auth/login.html`;
-} else if (roleid == 1) {
-    location.href = `${window.location.origin}/index.html`;
+if (!AdminToken) {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
 }
 
 if (roleid == 3) {

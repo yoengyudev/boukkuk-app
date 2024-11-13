@@ -16,7 +16,7 @@ function fetchWishlistItems(page = 1) {
         {
             headers: {
                 Accept: "application/json",
-                Authorization: "Bearer " + getToken,
+                Authorization: "Bearer " + UserToken,
             },
         }
     )
@@ -174,7 +174,7 @@ function removeItem(id) {
         method: "DELETE",
         headers: {
             Accept: "application/json",
-            Authorization: "Bearer " + getToken,
+            Authorization: "Bearer " + UserToken,
         },
     })
         .then((response) => {
@@ -200,14 +200,14 @@ function removeItem(id) {
 
 // Add this function to ensure updateWishlistCounter is available in this context
 function updateWishlistCounter() {
-    if (!getToken) return;
+    if (!UserToken) return;
 
     fetch(
         "https://mps10.chandalen.dev/api/profile/wishlists?page=1&per_page=100",
         {
             headers: {
                 Accept: "application/json",
-                Authorization: "Bearer " + getToken,
+                Authorization: "Bearer " + UserToken,
             },
         }
     )

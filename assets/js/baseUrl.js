@@ -1,0 +1,1 @@
+export const baseUrl = 'https://mps10.chandalen.dev';

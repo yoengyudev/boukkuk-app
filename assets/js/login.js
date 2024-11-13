@@ -83,34 +83,22 @@ login.addEventListener("submit", (event) => {
             console.log(json);
             let token = json.data.token;
             let roleid = json.data.roles[0].id;
-            localStorage.setItem('token', token);
             localStorage.setItem('UserRole', roleid);
-            if (token && roleid == 1) {
-                location.href = `${window.location.origin}/index.html`;
+
+            if (roleid == 1) {
+                localStorage.setItem('UserToken', token);
+                const currentPath = window.location.href;
+                const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+                location.href = `${basePath}index.html`;
             }
 
-            if(token && roleid == 2 || token && roleid == 3) {
-                location.href = `${window.location.origin}/src/views/admin/index.html`;
+            if(roleid == 2 || roleid == 3) {
+                localStorage.setItem('AdminToken', token);
+                const currentPath = window.location.href;
+                const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+                location.href = `${basePath}src/views/admin/index.html`;
             }
             return res.json();
-        })
-        .then(json => {
-            if (json.data && json.data.token) {
-                const token = json.data.token;
-                localStorage.setItem('token', token);
-                location.href = '../../../index.html';
-            } else {
-                if (!json.data.email) {
-                    err_emaillge.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលមិនត្រឹមត្រូវ!`;
-                }
-
-                if (!json.data.password) {
-                    err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> ពាក្យសម្ងាត់មិនត្រឹមត្រូវ`;
-                }else{
-                    err_passlg.style.display = 'none';
-                }
-                
-            }
         })
         .catch(error => {
             err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ`;

@@ -1,12 +1,12 @@
 // =======================>> Get all user <<========================
-let getToken = localStorage.getItem('token');
-console.log(getToken);
+import { AdminToken } from './tokens.js';
+import { baseUrl } from './baseUrl.js';
 
-fetch('https://mps10.chandalen.dev/api/users', {
+fetch(`${baseUrl}/api/users`, {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
-        'Authorization': `Bearer ${getToken}`
+        'Authorization': `Bearer ${AdminToken}`
     },
 })
     .then(res => res.json())
@@ -95,157 +95,157 @@ const passwordPattern = /^\d{6,}$/;
 
 function validateForm() {
     let isValid = true;
-  
+
     // Validate name
     let nameInput = document.getElementById('userName');
     if (!namePattern.test(nameInput.value) || nameInput.value.trim() === '') {
-      nameInput.classList.add('is-invalid');
-      nameInput.nextElementSibling.textContent = 'Please enter a valid name.';
-      isValid = false;
+        nameInput.classList.add('is-invalid');
+        nameInput.nextElementSibling.textContent = 'Please enter a valid name.';
+        isValid = false;
     } else {
-      nameInput.classList.remove('is-invalid');
-      nameInput.nextElementSibling.textContent = '';
+        nameInput.classList.remove('is-invalid');
+        nameInput.nextElementSibling.textContent = '';
     }
-  
+
     // Validate email
     let emailInput = document.getElementById('userEmail');
     if (!emailPattern.test(emailInput.value.trim()) || emailInput.value.trim() === '') {
-      emailInput.classList.add('is-invalid');
-      emailInput.nextElementSibling.textContent = 'Please enter a valid email address.';
-      isValid = false;
+        emailInput.classList.add('is-invalid');
+        emailInput.nextElementSibling.textContent = 'Please enter a valid email address.';
+        isValid = false;
     } else {
-      emailInput.classList.remove('is-invalid');
-      emailInput.nextElementSibling.textContent = '';
+        emailInput.classList.remove('is-invalid');
+        emailInput.nextElementSibling.textContent = '';
     }
-  
+
     // Validate phone
     let phoneInput = document.getElementById('userPhone');
     if (!phonePattern.test(phoneInput.value.trim()) || phoneInput.value.trim() === '') {
-      phoneInput.classList.add('is-invalid');
-      phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number.';
-      isValid = false;
+        phoneInput.classList.add('is-invalid');
+        phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number.';
+        isValid = false;
     } else {
-      phoneInput.classList.remove('is-invalid');
-      phoneInput.nextElementSibling.textContent = '';
+        phoneInput.classList.remove('is-invalid');
+        phoneInput.nextElementSibling.textContent = '';
     }
 
-  
+
     // Validate password
     let passwordInput = document.getElementById('userPass');
     let confirmPasswordInput = document.getElementById('userConfirmPass');
     if (!passwordPattern.test(passwordInput.value.trim()) || passwordInput.value.trim() === '') {
-      passwordInput.classList.add('is-invalid');
-      passwordInput.nextElementSibling.textContent = 'Password must be at least 6 characters';
-      isValid = false;
+        passwordInput.classList.add('is-invalid');
+        passwordInput.nextElementSibling.textContent = 'Password must be at least 6 characters';
+        isValid = false;
     } else {
-      passwordInput.classList.remove('is-invalid');
-      passwordInput.nextElementSibling.textContent = '';
+        passwordInput.classList.remove('is-invalid');
+        passwordInput.nextElementSibling.textContent = '';
     }
-  
+
     // Validate confirm password
     if (confirmPasswordInput.value.trim() === '' || passwordInput.value.trim() !== confirmPasswordInput.value.trim()) {
-      confirmPasswordInput.classList.add('is-invalid');
-      confirmPasswordInput.nextElementSibling.textContent = 'Passwords do not match.';
-      isValid = false;
+        confirmPasswordInput.classList.add('is-invalid');
+        confirmPasswordInput.nextElementSibling.textContent = 'Passwords do not match.';
+        isValid = false;
     } else {
-      confirmPasswordInput.classList.remove('is-invalid');
-      confirmPasswordInput.nextElementSibling.textContent = '';
+        confirmPasswordInput.classList.remove('is-invalid');
+        confirmPasswordInput.nextElementSibling.textContent = '';
     }
-  
+
     // Validate image file (optional but if selected, must be an image)
     let imageInput = document.getElementById('userImage');
     if (imageInput.files.length > 0) {
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!allowedTypes.includes(imageInput.files[0].type)) {
-        imageInput.classList.add('is-invalid');
-        imageInput.nextElementSibling.textContent = 'Please upload a valid image file (JPEG, PNG, GIF).';
-        isValid = false;
-      } else {
-        imageInput.classList.remove('is-invalid');
-        imageInput.nextElementSibling.textContent = '';
-      }
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!allowedTypes.includes(imageInput.files[0].type)) {
+            imageInput.classList.add('is-invalid');
+            imageInput.nextElementSibling.textContent = 'Please upload a valid image file (JPEG, PNG, GIF).';
+            isValid = false;
+        } else {
+            imageInput.classList.remove('is-invalid');
+            imageInput.nextElementSibling.textContent = '';
+        }
     } else {
-      imageInput.classList.add('is-invalid');
-      imageInput.nextElementSibling.textContent = 'Please select a profile image.';
-      isValid = false;
+        imageInput.classList.add('is-invalid');
+        imageInput.nextElementSibling.textContent = 'Please select a profile image.';
+        isValid = false;
     }
-  
+
     // Validate user role
     let roleSelected = document.querySelector('input[name="userRole"]:checked');
     if (!roleSelected) {
-      document.getElementById('userRoleError').textContent = 'Please select a user role.';
-      isValid = false;
+        document.getElementById('userRoleError').textContent = 'Please select a user role.';
+        isValid = false;
     } else {
-      document.getElementById('userRoleError').textContent = '';
+        document.getElementById('userRoleError').textContent = '';
     }
-  
-    return isValid;
-  }
 
-  document.getElementById('addUserForm').addEventListener('submit', function (e) {
+    return isValid;
+}
+
+document.getElementById('addUserForm').addEventListener('submit', function (e) {
     e.preventDefault();
-  
+
     if (validateForm()) {
-      let registerButton = document.getElementById('registerButton');
-      let spinner = document.getElementById('spinner');
-      let buttonText = document.getElementById('buttonText');
-  
-      registerButton.disabled = true;
-      spinner.style.display = 'inline-block';
-      buttonText.textContent = 'Creating...';
-  
-      if (!getToken) {
-          alert('No authentication token found. Please log in.');
-          return;
-      }
-  
-      // Get values from form inputs
-      let userName = document.getElementById('userName').value;
-      let userEmail = document.getElementById('userEmail').value;
-      let userPhone = document.getElementById('userPhone').value;
-      let userLocation = document.getElementById('userLocation').value;
-      let userPass = document.getElementById('userPass').value;
-      let userConfirmPass = document.getElementById('userConfirmPass').value;
-      let userRole = document.querySelector('input[name="userRole"]:checked').value; // <-- Fix here
-      let userImage = document.getElementById('userImage').files[0];
-  
-      // Append form data
-      let formData = new FormData();
-      formData.append('name', userName);
-      formData.append('email', userEmail);
-      formData.append('phone', userPhone);
-      formData.append('google_map_url', userLocation);
-      formData.append('password', userPass);
-      formData.append('password_confirmation', userConfirmPass);
-      formData.append('role_id', userRole);
-      if (userImage) {
-          formData.append('avatar', userImage);
-      }
-  
-      fetch('https://mps10.chandalen.dev/api/users', {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Authorization': `Bearer ${getToken}`
-          },
-          body: formData,
-      })
-          .then(res => res.json())
-          .then(json => {
-              console.log(json);
-              let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
-              addUserModal.hide();
-              document.getElementById('addUserForm').reset();
-          })
-          .finally(() => {
-              registerButton.disabled = false;
-              spinner.style.display = 'none';
-              buttonText.textContent = 'Create User';
-          })
-          .catch(error => console.error('Error adding user:', error));
+        let registerButton = document.getElementById('registerButton');
+        let spinner = document.getElementById('spinner');
+        let buttonText = document.getElementById('buttonText');
+
+        registerButton.disabled = true;
+        spinner.style.display = 'inline-block';
+        buttonText.textContent = 'Creating...';
+
+        if (!AdminToken) {
+            alert('No authentication token found. Please log in.');
+            return;
+        }
+
+        // Get values from form inputs
+        let userName = document.getElementById('userName').value;
+        let userEmail = document.getElementById('userEmail').value;
+        let userPhone = document.getElementById('userPhone').value;
+        let userLocation = document.getElementById('userLocation').value;
+        let userPass = document.getElementById('userPass').value;
+        let userConfirmPass = document.getElementById('userConfirmPass').value;
+        let userRole = document.querySelector('input[name="userRole"]:checked').value; // <-- Fix here
+        let userImage = document.getElementById('userImage').files[0];
+
+        // Append form data
+        let formData = new FormData();
+        formData.append('name', userName);
+        formData.append('email', userEmail);
+        formData.append('phone', userPhone);
+        formData.append('google_map_url', userLocation);
+        formData.append('password', userPass);
+        formData.append('password_confirmation', userConfirmPass);
+        formData.append('role_id', userRole);
+        if (userImage) {
+            formData.append('avatar', userImage);
+        }
+
+        fetch('https://mps10.chandalen.dev/api/users', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${AdminToken}`
+            },
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(json => {
+                // console.log(json);
+                let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
+                addUserModal.hide();
+                document.getElementById('addUserForm').reset();
+            })
+            .finally(() => {
+                registerButton.disabled = false;
+                spinner.style.display = 'none';
+                buttonText.textContent = 'Create User';
+            })
+            .catch(error => console.error('Error adding user:', error));
     }
-  });
-  
+});
+
 
 
 // ========================= view Details User =======================
@@ -255,7 +255,7 @@ function viewDetails(userId) {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${getToken}`
+            'Authorization': `Bearer ${AdminToken}`
         }
     })
         .then(response => response.json())
@@ -277,6 +277,9 @@ function viewDetails(userId) {
         });
 }
 
+window.viewDetails = viewDetails;
+
+
 // delete user ============================
 
 function deleteUser(userId) {
@@ -288,7 +291,7 @@ function deleteUser(userId) {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${getToken}`
+            'Authorization': `Bearer ${AdminToken}`
         }
     })
         .then(response => {
@@ -303,18 +306,18 @@ function deleteUser(userId) {
         });
 }
 
+window.deleteUser = deleteUser;
 
 // update usre 
 
 
 // ========================= Get User Details for Update ========================
-function getUserForUpdate(userId) {
-    const getToken = localStorage.getItem('token');
+    function getUserForUpdate(userId) {
     fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${getToken}`
+            'Authorization': `Bearer ${AdminToken}`
         }
     })
         .then(response => response.json())
@@ -419,7 +422,7 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${getToken}`
+                'Authorization': `Bearer ${AdminToken}`
             },
             body: formData,
         })
@@ -453,7 +456,7 @@ function updateUserStatusIcon(element, userId) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${getToken}`,
+            "Authorization": `Bearer ${AdminToken}`,
         }
     })
         .then(response => response.json())
@@ -480,39 +483,39 @@ function updateUserStatusIcon(element, userId) {
 }
 
 // Function to update the icon based on the user's current status from the API
-function updateUserStatusIcon(element, userId) {
-    const btn_status_icon = element.querySelector('.btn_status_icon');
+// function updateUserStatusIcon(element, userId) {
+//     const btn_status_icon = element.querySelector('.btn_status_icon');
 
-    // Fetch the current status of the user when the page loads
-    fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${getToken}`,  // Ensure getToken is defined and accessible
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Update the icon based on the user's status
-            if (data.result && data.code === 1) {
-                if (data.status === "enabled") {
-                    btn_status_icon.classList.add("bi-toggle-on");
-                    btn_status_icon.classList.remove("bi-toggle-off");
-                    element.setAttribute("data-status", "enabled");
-                } else {
-                    btn_status_icon.classList.add("bi-toggle-off");
-                    btn_status_icon.classList.remove("bi-toggle-on");
-                    element.setAttribute("data-status", "disabled");
-                }
-            } else {
-                console.error("Failed to retrieve user status.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("An error occurred while retrieving user status. Please try again.");
-        });
-}
+//     // Fetch the current status of the user when the page loads
+//     fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Authorization": `Bearer ${AdminToken}`,
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             // Update the icon based on the user's status
+//             if (data.result && data.code === 1) {
+//                 if (data.status === "enabled") {
+//                     btn_status_icon.classList.add("bi-toggle-on");
+//                     btn_status_icon.classList.remove("bi-toggle-off");
+//                     element.setAttribute("data-status", "enabled");
+//                 } else {
+//                     btn_status_icon.classList.add("bi-toggle-off");
+//                     btn_status_icon.classList.remove("bi-toggle-on");
+//                     element.setAttribute("data-status", "disabled");
+//                 }
+//             } else {
+//                 console.error("Failed to retrieve user status.");
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error:", error);
+//             alert("An error occurred while retrieving user status. Please try again.");
+//         });
+// }
 
 // Function to toggle the user status when the icon is clicked
 function toggleUserStatus(element, userId) {
@@ -528,7 +531,7 @@ function toggleUserStatus(element, userId) {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${getToken}`,  // Ensure getToken is defined and accessible
+            "Authorization": `Bearer ${AdminToken}`,
         }
     })
         .then(response => response.json())
@@ -564,7 +567,7 @@ function promoteUser(roleId, userId) {
         headers: {
             "Content-Type": "application/json",
             'Accept': 'application/json',
-            "Authorization": `Bearer ${getToken}`,
+            "Authorization": `Bearer ${AdminToken}`,
         },
         body: JSON.stringify({ role_id: roleId })
     })
@@ -581,3 +584,10 @@ function promoteUser(roleId, userId) {
             alert("An error occurred. Please try again.");
         });
 }
+
+
+
+    //
+
+
+// ES6
