@@ -45,11 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                     <p class='id' style="display: none;">${element.id}</p>
                     <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
-                      <button type="submit" onclick="wishlistCard()" 
+                      <button type="submit" 
+                              onclick="wishlistCard(${element.id}, this)" 
                               class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
                         <i class="bi bi-heart"></i>
                       </button>
-                      <a href="" onclick='store(event)' class="overflow-hidden d-block">
+                      <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')" class="overflow-hidden d-block">
                         <img src="${element.image}" 
                             class="card-img img-store w-100" 
                             alt="${element.name}">
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="card-body p-0">
                       <div class="d-flex justify-content-between align-items-start mb-2">
-                        <a href="" onclick='store(event)' 
+                        <a href="#" onclick='store(event)' 
                             class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                             ${element.name}
                         </a>
@@ -91,8 +92,59 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 function store(event) {
   event.preventDefault();
   location.href = `${window.location.origin}/src/views/page/store.html`;
+}
+
+function wishlistCard(serviceId, heartButton) {
+  const getToken = localStorage.getItem('token');
+  
+  if (!getToken) {
+    location.href = "../auth/login.html";
+    return;
+  }
+
+  fetch("https://mps10.chandalen.dev/api/wishlists", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken}`,
+    },
+    body: JSON.stringify({
+      service_id: serviceId,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update wishlist");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Toggle heart icon
+      const heartIcon = heartButton.querySelector("i");
+      if (heartIcon.classList.contains("bi-heart")) {
+        heartIcon.classList.remove("bi-heart");
+        heartIcon.classList.add("bi-heart-fill");
+      } else {
+        heartIcon.classList.remove("bi-heart-fill");
+        heartIcon.classList.add("bi-heart");
+      }
+      // Update the wishlist counter if you have that functionality
+      if (typeof updateWishlistCounter === 'function') {
+        updateWishlistCounter();
+      }
+    })
+    .catch((error) => {
+      console.error("Error updating wishlist:", error);
+      alert("Failed to update wishlist. Please try again.");
+    });
+}
+
+function getStore(creatorID, creatorAvatar) {
+  localStorage.setItem("creator_id", creatorID);
+  localStorage.setItem("store_profile", creatorAvatar);
+  location.href = 'store.html';
 }

@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    sessionStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
   }
 
@@ -206,7 +206,7 @@ $${item.price.toFixed(2)}
           cart = cart.filter(cartItem => cartItem.id !== item.id);
           
           // Update localStorage
-          localStorage.setItem('cart', JSON.stringify(cart));
+          sessionStorage.setItem('cart', JSON.stringify(cart));
           
           // Remove from DOM
           itemDiv.remove();
@@ -222,38 +222,29 @@ $${item.price.toFixed(2)}
         });
 
         decreaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find(
-            (cartItem) => cartItem.uniqueId === item.uniqueId
-          );
+          const cartItem = cart.find(cartItem => cartItem.id === item.id);
           if (cartItem && cartItem.quantity > 1) {
             cartItem.quantity--;
-            total = cart.reduce(
-              (sum, item) => sum + item.price * item.quantity,
-              0
-            );
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
             renderCart();
           } else if (cartItem && cartItem.quantity === 1) {
-            cart = cart.filter(
-              (cartItem) => cartItem.uniqueId !== item.uniqueId
-            );
-            total = cart.reduce(
-              (sum, item) => sum + item.price * item.quantity,
-              0
-            );
+            cart = cart.filter(cartItem => cartItem.id !== item.id);
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
             renderCart();
           }
         });
 
         increaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find(
-            (cartItem) => cartItem.uniqueId === item.uniqueId
-          );
+          const cartItem = cart.find(cartItem => cartItem.id === item.id);
           if (cartItem) {
             cartItem.quantity++;
-            total = cart.reduce(
-              (sum, item) => sum + item.price * item.quantity,
-              0
-            );
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
             renderCart();
           }
         });
@@ -357,9 +348,10 @@ $${item.price.toFixed(2)}
     .then(data => {
       console.log('Checkout successful:', data);
       cart = [];
-      localStorage.removeItem('cart');
+      sessionStorage.removeItem('cart');
       renderCart();
-      alert('ការបញ្ជាទិញរបស់អ្នកបានជោគជ័យ!');
+      // Redirect to payment.html after successful checkout
+      window.location.href = 'payment.html';
     })
     .catch(error => {
       console.error('Error during checkout:', error);
@@ -386,7 +378,7 @@ $${item.price.toFixed(2)}
   });
 
   // Load cart from localStorage and calculate total
-  const savedCart = localStorage.getItem('cart');
+  const savedCart = sessionStorage.getItem('cart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
     total = calculateTotal(); // Calculate initial total
@@ -600,7 +592,7 @@ document
 // When clearing the cart (after successful checkout)
 function clearCart() {
   cart = [];
-  localStorage.removeItem('cart');
+  sessionStorage.removeItem('cart');
   renderCart();
 }
 

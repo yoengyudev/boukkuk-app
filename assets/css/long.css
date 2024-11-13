@@ -1165,6 +1165,8 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Match shadow with order card */
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: 17px;
   transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
 }
 
@@ -1185,10 +1187,6 @@ body {
 .payment .clothes-card:hover {
   transform: translateY(-3px); /* Lift effect on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-}
-
-.payment .service-info {
-  margin-left: 1rem;
 }
 
 .payment .service-name {

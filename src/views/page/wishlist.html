@@ -26,7 +26,7 @@
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
                 <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
-                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)" />
 
                 <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
                   <i class="bi bi-search text-white"></i>
@@ -35,7 +35,7 @@
               <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                 <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
                   onclick="findNearbyLocations()">
-                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
                   ហាងនៅក្បែ
                 </button>
               </div>
@@ -54,7 +54,7 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                  style="width:300px;">
+                  style="width: 300px">
                   <li class="mb-3" id="signup-list">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
                       href="../../../src/views/auth/signup.html">
@@ -83,7 +83,7 @@
                     </a>
                   </li>
                   <li id="logout-list">
-                    <hr style="color: #ddd;">
+                    <hr style="color: #ddd" />
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-power"></i>
@@ -107,7 +107,7 @@
 
                 <!-- Dropdown Notification Menu -->
                 <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="notificationDropdown"
-                  style="width: 300px; max-height: 400px; overflow-y: auto;">
+                  style="width: 300px; max-height: 400px; overflow-y: auto">
                   <!-- Notification Header -->
                   <h6 class="dropdown-header">Notifications</h6>
 
@@ -115,7 +115,7 @@
                   <div class="notification-item d-flex align-items-start mb-2">
                     <div
                       class="notification-icon bg-primary rounded-circle d-flex justify-content-center align-items-center"
-                      style="width: 40px; height: 40px;">
+                      style="width: 40px; height: 40px">
                       <i class="bi bi-info-circle text-white"></i>
                     </div>
                     <div class="ms-2">
@@ -129,7 +129,7 @@
                   <div class="notification-item d-flex align-items-start mb-2">
                     <div
                       class="notification-icon bg-success rounded-circle d-flex justify-content-center align-items-center"
-                      style="width: 40px; height: 40px;">
+                      style="width: 40px; height: 40px">
                       <i class="bi bi-check-circle text-white"></i>
                     </div>
                     <div class="ms-2">
@@ -145,13 +145,13 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" onclick="wishlist()"
+              <a href="wishlist.html" type="submit"
                 class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
-                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
-                <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
+                <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger wishlist-counter">
                   0
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
