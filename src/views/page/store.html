@@ -421,7 +421,7 @@
 
               </div>
               <div class="ms-auto d-flex flex-column justify-content-between">
-                <button type="submit"
+                <button type="submit" onclick="wishlistCard(firstId, this)"
                   class="hover-nav btn profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
                   <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i></button>
                 <span class="fs-5">
@@ -509,8 +509,8 @@
                 <div class="progress"></div>
               </div>
               <div class="range-input">
-                <input type="range" class="range-min" min="0" max="10000" value="0" step="1">
-                <input type="range" class="range-max" min="0" max="10000" value="10000" step="1">
+                <input type="range" class="range-min" min="0" max="99999" value="0" step="1">
+                <input type="range" class="range-max" min="0" max="99999" value="99999" step="1">
               </div>
             </div>
           </div>
@@ -709,6 +709,7 @@
   <script src="../../../assets/js/logout.js"></script>
   <script src="../../../assets/js/search.js"></script>
   <script src="../../../assets/js/nearest.js"></script>
+  <script src="../../../assets/js/index.js"></script>
 </body>
 
 </html>

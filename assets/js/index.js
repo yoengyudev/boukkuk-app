@@ -109,7 +109,6 @@ function getCategory(value = 0) {
 function getStore(creatorID,creatorAvatar){
   let creator_ID = localStorage.setItem("creator_id", creatorID);
   console.log(localStorage.getItem('creator_id'));
-
   let profile_img = localStorage.setItem("store_profile", creatorAvatar);
   location.href = 'src/views/page/store.html';
 }
