@@ -298,6 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCart();
 });
 
+// price range ui code 
+
 const rangeInput = document.querySelectorAll(".range-input input"),
   priceInput = document.querySelectorAll(".price-input input"),
   range = document.querySelector(".slider .progress");
@@ -349,7 +351,7 @@ document.getElementById('profile_img').src = getProfile;
 
 
 // =================Get all service =================
-
+let firstId = ' ';
 function getCategory(value = 0, search = '') {
   console.log("Selected Category:", value);
   console.log("Search Term:", search);
@@ -365,10 +367,16 @@ function getCategory(value = 0, search = '') {
       let card_service = '';
       let categories = new Map();
 
+      if (data.data.length > 0) {
+        firstId = data.data[0].id; 
+        console.log("First Service ID:", firstId);
+      }
+
       data.data.forEach(element => {
         if (element.category && !categories.has(element.category.id)) {
           categories.set(element.category.id, element.category.name);
         }
+
 
         if (element.price >= start_pri && element.price <= end_pri) {
           card_service += `
@@ -393,7 +401,6 @@ function getCategory(value = 0, search = '') {
               </div>`;
         }
       });
-
       document.querySelector('#all').innerHTML = card_service;
       document.getElementById('animation-overlay').style.display = 'none';
 
@@ -426,7 +433,6 @@ function getCategory(value = 0, search = '') {
           </a>
         `;
         document.getElementById('storeInfo').innerHTML = storeInfo;
-
         document.querySelector('.bg-store').style.backgroundImage = `url('${localStorage.getItem('store_profile')}')`;
 
       }

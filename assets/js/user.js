@@ -584,10 +584,3 @@ function promoteUser(roleId, userId) {
             alert("An error occurred. Please try again.");
         });
 }
-
-
-
-    //
-
-
-// ES6
