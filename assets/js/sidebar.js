@@ -2,7 +2,7 @@ let user_item = document.querySelector('.user-item');
 let category_item = document.querySelector('.category-item');
 let service_item = document.querySelector('.service-item');
 let roleid = localStorage.getItem('UserRole');
-let AdminToken = localStorage.getItem('AdminToken');
+import { AdminToken, UserToken } from './tokens.js';
 console.log(roleid);
 console.log(AdminToken);
 

@@ -1,4 +1,4 @@
-let g9_host = "https://mps10.chandalen.dev";
+import { baseUrl } from "./baseUrl.js";
 // ============================ logout ============================
 
 let logout = document.getElementById("logout-list");
@@ -9,7 +9,7 @@ console.log(logout);
 if (logoutAdmin) {
     logoutAdmin.addEventListener('click', () => {
         localStorage.removeItem('AdminToken');
-        fetch(`${g9_host}/api/logout`, {
+        fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {
               'Accept': 'application/json'

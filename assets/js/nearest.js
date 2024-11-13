@@ -1,10 +1,8 @@
+import { baseUrl } from "./baseUrl.js";
 const maxDistance = 5;
-let baseUrl = 'https://mps10.chandalen.dev';
 const apiUrl = `${baseUrl}/api/users/providers?page=1&per_page=20&search=`;
 
 function findNearbyLocations() {
-    // document.getElementById('animation-overlay').style.display = 'block';
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true });
     } else {
@@ -12,6 +10,8 @@ function findNearbyLocations() {
         document.getElementById('animation-overlay').style.display = 'none';
     }
 }
+
+window.findNearbyLocations = findNearbyLocations;
 
 async function success(position) {
     const userLatitude = position.coords.latitude;

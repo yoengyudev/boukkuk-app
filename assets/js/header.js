@@ -1,5 +1,5 @@
 const UserToken = localStorage.getItem("UserToken");
-
+import { baseUrl } from './baseUrl.js';
 let signup = document.getElementById("signup-list");
 let login = document.getElementById("login-list");
 let logout_pro = document.getElementById("logout-list");
@@ -24,7 +24,7 @@ let wishlistCount = 0;
 function updateWishlistCounter() {
   if (!UserToken) return;
 
-  fetch('https://mps10.chandalen.dev/api/profile/wishlists?page=1&per_page=100', {
+  fetch(`${baseUrl}/api/profile/wishlists?page=1&per_page=100`, {
     headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer ' + UserToken

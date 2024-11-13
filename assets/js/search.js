@@ -1,8 +1,12 @@
+import { baseUrl } from './baseUrl.js';
+
 function handleKeyDown(event) {
   if (event.key === "Enter") {
     searchAndRedirect();
   }
 }
+
+window.handleKeyDown = handleKeyDown;
 
 function searchAndRedirect() {
   let search_by_name = document.querySelector(".get_vlue_by_search").value;
@@ -25,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('animation-overlay').style.display = 'block';
 
     fetch(
-      `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`
+      `${baseUrl}/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -97,6 +101,9 @@ function store(event) {
   location.href = `${window.location.origin}/src/views/page/store.html`;
 }
 
+window.store = store;
+
+
 function wishlistCard(serviceId, heartButton) {
   const UserToken = localStorage.getItem('UserToken');
   
@@ -105,7 +112,7 @@ function wishlistCard(serviceId, heartButton) {
     return;
   }
 
-  fetch("https://mps10.chandalen.dev/api/wishlists", {
+  fetch(`${baseUrl}/api/wishlists`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -143,8 +150,14 @@ function wishlistCard(serviceId, heartButton) {
     });
 }
 
+window.wishlistCard = wishlistCard;
+
 function getStore(creatorID, creatorAvatar) {
   localStorage.setItem("creator_id", creatorID);
   localStorage.setItem("store_profile", creatorAvatar);
-  location.href = 'store.html';
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}src/views/page/store.html`;
 }
+
+window.getStore = getStore;

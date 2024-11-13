@@ -1,9 +1,9 @@
 let list = document.querySelectorAll(".navigation li");
-import { AdminToken } from './tokens.js';
-
+import { AdminToken, UserToken } from './tokens.js';
+import { baseUrl } from './baseUrl.js';
 //get categories
 function fetchCategories() {
-  fetch("https://mps10.chandalen.dev/api/categories", {
+  fetch(`${baseUrl}/api/categories`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -53,7 +53,7 @@ function addCategory() {
     return;
   }
 
-  fetch("https://mps10.chandalen.dev/api/categories", {
+  fetch(`${baseUrl}/api/categories`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -78,6 +78,8 @@ function addCategory() {
     .catch((error) => console.error("Error adding category:", error));
 }
 
+window.addCategory = addCategory;
+
 
 
 //update category
@@ -87,6 +89,8 @@ function openUpdateModal(id, name) {
   document.getElementById("updateCategoryId").value = id;
   document.getElementById("updateCategoryName").value = name;
 }
+
+window.openUpdateModal = openUpdateModal;
 
 function updateCategory() {
   const categoryId = document.getElementById("updateCategoryId").value;
@@ -98,7 +102,7 @@ function updateCategory() {
     return alert("Please enter a category name.");
   }
 
-  fetch(`https://mps10.chandalen.dev/api/categories/${categoryId}`, {
+  fetch(`${baseUrl}/api/categories/${categoryId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -119,11 +123,14 @@ function updateCategory() {
     })
     .catch((error) => console.error("Error updating category:", error));
 }
+
+window.updateCategory = updateCategory;
+
 // delete function
 function deleteCategory(categoryId) {
   if (!confirm("Are you sure you want to delete this category?")) return;
 
-  fetch(`https://mps10.chandalen.dev/api/categories/${categoryId}`, {
+  fetch(`${baseUrl}/api/categories/${categoryId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
@@ -147,6 +154,8 @@ function deleteCategory(categoryId) {
     })
     .catch((error) => console.error("Error deleting category:", error));
 }
+
+window.deleteCategory = deleteCategory;
 
 function activeLink() {
   list.forEach((item) => {

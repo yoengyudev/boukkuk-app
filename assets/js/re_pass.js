@@ -1,3 +1,4 @@
+import { baseUrl } from './baseUrl.js';
 lucide.createIcons();
 
 function togglePassword(inputId, iconId) {
@@ -66,7 +67,7 @@ document.getElementById("resetForm").addEventListener("submit", function (e) {
   }
 
   // API request
-  fetch("https://mps10.chandalen.dev/api/reset/pass", {
+  fetch(`${baseUrl}/api/reset/pass`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

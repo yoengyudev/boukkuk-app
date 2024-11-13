@@ -1,15 +1,6 @@
-// add hovered class to selected list item
-let list = document.querySelectorAll(".navigation li");
 
-function activeLink() {
-  list.forEach((item) => {
-    item.classList.remove("hovered");
-  });
-  this.classList.add("hovered");
-}
-
-list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
+import { AdminToken, UserToken } from './tokens.js';
+import { baseUrl } from './baseUrl.js';
 // Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
@@ -20,8 +11,7 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 // =====================================================================
-let AdminToken = localStorage.getItem("AdminToken");
-console.log(AdminToken);
+
 let dataTable;
 
 function DisplayServices() {
@@ -29,13 +19,13 @@ function DisplayServices() {
   console.log(serviceId);
 
   fetch(
-    `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
+    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
       serviceId,
     {
       method: "GET",
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + AdminToken,
       },
     }
   )
@@ -113,7 +103,7 @@ $(document).ready(function () {
 function viewDetails(service) {
   const id = service.id;
   console.log(id);
-  fetch("https://mps10.chandalen.dev/api/services/" + id)
+  fetch(`${baseUrl}/api/services/` + id)
     .then((res) => res.json())
     .then((json) => {
       console.log(json);
@@ -150,9 +140,8 @@ function viewDetails(service) {
 // Validation functions using regex
 const validators = {
   name: {
-    regex: /^[a-zA-Z0-9\s]{3,50}$/,
-    message:
-      "Name must be 3-50 characters long and contain only letters, numbers and spaces",
+    regex: /^.{3,50}$/,
+    message: "Name must be 3-50 characters long and contain only letters, numbers and spaces"
   },
   description: {
     regex: /^.{5,500}$/,
@@ -272,8 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("category_id", categoryId);
       formData.set("category_id", categoryId);
 
-      // Your existing fetch logic here
-      fetch("https://mps10.chandalen.dev/api/services", {
+      fetch(`${baseUrl}/api/services`, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + AdminToken,
@@ -281,32 +269,28 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: formData,
       })
-        .then((res) => {
-          if (!res.ok) {
-            return res.json().then((errorData) => {
-              throw new Error(JSON.stringify(errorData));
-            });
-          }
-          return res.json();
-        })
-        .then((data) => {
-          DisplayServices();
-          form.reset();
-          // Clear image preview
-          const imagePreview = document.getElementById("addImagePreview");
-          imagePreview.src = "";
-          imagePreview.style.display = "none";
-          // Reset file name display
-          document.getElementById("addFileName").textContent = "No file chosen";
-          // Close modal
-          bootstrap.Modal.getInstance(
-            document.getElementById("addServiceModal")
-          ).hide();
-        })
-        .catch((error) => {
-          console.error("Error adding service:", error);
-          alert("Failed to add service. Please try again.");
-        });
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(errorData => {
+            throw new Error(JSON.stringify(errorData));
+          });
+        }
+        // Refresh the page after closing the modal
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        return res.json();
+      })
+      .then(data => {
+        // Your existing success handling code
+        DisplayServices();
+        form.reset();
+        bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
+      })
+      .catch(error => {
+        console.error("Error adding service:", error);
+        alert("Failed to add service. Please try again.");
+      });
     }
   });
 });
@@ -350,7 +334,7 @@ document.getElementById("editForm").addEventListener("submit", (event) => {
   const formData = new FormData(event.target);
   const id = formData.get("id");
 
-  fetch(`https://mps10.chandalen.dev/api/services/${id}`, {
+  fetch(`${baseUrl}/api/services/${id}`, {
     method: "Post",
     headers: {
       Authorization: "Bearer " + AdminToken,
@@ -381,7 +365,7 @@ function deleteService(button) {
   const id = data.id;
 
   if (confirm("Are you sure you want to delete this service?")) {
-    fetch(`https://mps10.chandalen.dev/api/services/${id}`, {
+    fetch(`${baseUrl}/api/services/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + AdminToken,
@@ -396,7 +380,6 @@ function deleteService(button) {
       })
       .then((json) => {
         dataTable.row(row).remove().draw();
-        alert("Service deleted successfully!");
       })
       .catch((error) => {
         console.error("Error deleting service:", error);
@@ -426,18 +409,13 @@ function displayFileName(event) {
   const fileName = event.target.files[0]
     ? event.target.files[0].name
     : "No file chosen";
-  document.getElementById("addFileName").textContent = fileName; // Update to new ID
+  document.getElementById("addFileName").textContent = fileName;
 }
 
-function displayFileName(event) {
-  const fileName = event.target.files[0]
-    ? event.target.files[0].name
-    : "No file chosen";
-  document.getElementById("fileName").textContent = fileName;
-}
+
 
 function fetchCategories() {
-  fetch("https://mps10.chandalen.dev/api/categories")
+  fetch(`${baseUrl}/api/categories`)
     .then((res) => res.json())
     .then((data) => {
       const categorySelectAdd = document.getElementById("addCategoryId");
@@ -461,6 +439,6 @@ function fetchCategories() {
 }
 // Call fetchCategories when the document is ready
 $(document).ready(function () {
-  fetchCategories(); // Fetch categories on page load
+  fetchCategories();
   DisplayServices();
 });

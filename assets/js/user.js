@@ -1,5 +1,5 @@
 // =======================>> Get all user <<========================
-import { AdminToken } from './tokens.js';
+import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
 
 fetch(`${baseUrl}/api/users`, {
@@ -88,7 +88,7 @@ fetch(`${baseUrl}/api/users`, {
 // ======================  add new users ======================================
 
 // Regular expression patterns
-const namePattern = /^[a-zA-Z\s]+$/;
+const namePattern = /^.{3,50}$/;
 const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const phonePattern = /^\+?\d{1,2}?[-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
 const passwordPattern = /^\d{6,}$/;
@@ -186,63 +186,66 @@ document.getElementById('addUserForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     if (validateForm()) {
-        let registerButton = document.getElementById('registerButton');
-        let spinner = document.getElementById('spinner');
-        let buttonText = document.getElementById('buttonText');
-
-        registerButton.disabled = true;
-        spinner.style.display = 'inline-block';
-        buttonText.textContent = 'Creating...';
-
-        if (!AdminToken) {
-            alert('No authentication token found. Please log in.');
-            return;
-        }
-
-        // Get values from form inputs
-        let userName = document.getElementById('userName').value;
-        let userEmail = document.getElementById('userEmail').value;
-        let userPhone = document.getElementById('userPhone').value;
-        let userLocation = document.getElementById('userLocation').value;
-        let userPass = document.getElementById('userPass').value;
-        let userConfirmPass = document.getElementById('userConfirmPass').value;
-        let userRole = document.querySelector('input[name="userRole"]:checked').value; // <-- Fix here
-        let userImage = document.getElementById('userImage').files[0];
-
-        // Append form data
-        let formData = new FormData();
-        formData.append('name', userName);
-        formData.append('email', userEmail);
-        formData.append('phone', userPhone);
-        formData.append('google_map_url', userLocation);
-        formData.append('password', userPass);
-        formData.append('password_confirmation', userConfirmPass);
-        formData.append('role_id', userRole);
-        if (userImage) {
-            formData.append('avatar', userImage);
-        }
-
-        fetch('https://mps10.chandalen.dev/api/users', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${AdminToken}`
-            },
-            body: formData,
-        })
-            .then(res => res.json())
-            .then(json => {
-                // console.log(json);
-                let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
-                addUserModal.hide();
-                document.getElementById('addUserForm').reset();
-            })
-            .finally(() => {
-                registerButton.disabled = false;
-                spinner.style.display = 'none';
-                buttonText.textContent = 'Create User';
-            })
-            .catch(error => console.error('Error adding user:', error));
+      let registerButton = document.getElementById('registerButton');
+      let spinner = document.getElementById('spinner');
+      let buttonText = document.getElementById('buttonText');
+  
+      registerButton.disabled = true;
+      spinner.style.display = 'inline-block';
+      buttonText.textContent = 'Creating...';
+  
+      if (!getToken) {
+          alert('No authentication token found. Please log in.');
+          return;
+      }
+  
+      // Get values from form inputs
+      let userName = document.getElementById('userName').value;
+      let userEmail = document.getElementById('userEmail').value;
+      let userPhone = document.getElementById('userPhone').value;
+      let userLocation = document.getElementById('userLocation').value;
+      let userPass = document.getElementById('userPass').value;
+      let userConfirmPass = document.getElementById('userConfirmPass').value;
+      let userRole = document.querySelector('input[name="userRole"]:checked').value; // <-- Fix here
+      let userImage = document.getElementById('userImage').files[0];
+  
+      // Append form data
+      let formData = new FormData();
+      formData.append('name', userName);
+      formData.append('email', userEmail);
+      formData.append('phone', userPhone);
+      formData.append('google_map_url', userLocation);
+      formData.append('password', userPass);
+      formData.append('password_confirmation', userConfirmPass);
+      formData.append('role_id', userRole);
+      if (userImage) {
+          formData.append('avatar', userImage);
+      }
+  
+      fetch(`${baseUrl}/api/users`, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${getToken}`
+          },
+          body: formData,
+      })
+          .then(res => res.json())
+          .then(json => {
+              console.log(json);
+              let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
+              addUserModal.hide();
+              document.getElementById('addUserForm').reset();
+              setTimeout(() => {
+                window.location.reload();
+              }, 500);
+          })
+          .finally(() => {
+              registerButton.disabled = false;
+              spinner.style.display = 'none';
+              buttonText.textContent = 'Create User';
+          })
+          .catch(error => console.error('Error adding user:', error));
     }
 });
 
@@ -251,7 +254,7 @@ document.getElementById('addUserForm').addEventListener('submit', function (e) {
 // ========================= view Details User =======================
 
 function viewDetails(userId) {
-    fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
+    fetch(`${baseUrl}/api/users/${userId}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -287,7 +290,7 @@ function deleteUser(userId) {
         return;
     }
 
-    fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
+    fetch(`${baseUrl}/api/users/${userId}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -295,6 +298,9 @@ function deleteUser(userId) {
         }
     })
         .then(response => {
+            setTimeout(() => {
+                window.location.reload();
+              }, 500);
             return response.json();
         })
         .then(data => {
@@ -313,7 +319,7 @@ window.deleteUser = deleteUser;
 
 // ========================= Get User Details for Update ========================
     function getUserForUpdate(userId) {
-    fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
+    fetch(`${baseUrl}/api/users/${userId}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -418,7 +424,7 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
         spinner.style.display = 'inline-block';
         buttonText.textContent = 'Updating...';
 
-        fetch(`https://mps10.chandalen.dev/api/users/${userId}`, {
+        fetch(`${baseUrl}/api/users/${userId}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -432,6 +438,9 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
                 let updateUserModal = bootstrap.Modal.getInstance(document.getElementById("updateUser"));
                 updateUserModal.hide();
                 document.getElementById('updateForm').reset();
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 500);
             })
             .finally(() => {
                 updateUserButton.disabled = false;
@@ -452,7 +461,7 @@ function updateUserStatusIcon(element, userId) {
     const btn_status_icon = element.querySelector('.btn_status_icon');
 
     // Fetch the current status of the user when the page loads
-    fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
+    fetch(`${baseUrl}/api/users/status/${userId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -482,40 +491,6 @@ function updateUserStatusIcon(element, userId) {
         });
 }
 
-// Function to update the icon based on the user's current status from the API
-// function updateUserStatusIcon(element, userId) {
-//     const btn_status_icon = element.querySelector('.btn_status_icon');
-
-//     // Fetch the current status of the user when the page loads
-//     fetch(`https://mps10.chandalen.dev/api/users/status/${userId}`, {
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": `Bearer ${AdminToken}`,
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             // Update the icon based on the user's status
-//             if (data.result && data.code === 1) {
-//                 if (data.status === "enabled") {
-//                     btn_status_icon.classList.add("bi-toggle-on");
-//                     btn_status_icon.classList.remove("bi-toggle-off");
-//                     element.setAttribute("data-status", "enabled");
-//                 } else {
-//                     btn_status_icon.classList.add("bi-toggle-off");
-//                     btn_status_icon.classList.remove("bi-toggle-on");
-//                     element.setAttribute("data-status", "disabled");
-//                 }
-//             } else {
-//                 console.error("Failed to retrieve user status.");
-//             }
-//         })
-//         .catch(error => {
-//             console.error("Error:", error);
-//             alert("An error occurred while retrieving user status. Please try again.");
-//         });
-// }
 
 // Function to toggle the user status when the icon is clicked
 function toggleUserStatus(element, userId) {
@@ -524,8 +499,8 @@ function toggleUserStatus(element, userId) {
 
     // Corrected template literal for URL
     const apiUrl = currentStatus === "enabled"
-        ? `https://mps10.chandalen.dev/api/users/disable/${userId}`
-        : `https://mps10.chandalen.dev/api/users/enable/${userId}`;
+        ? `${baseUrl}/api/users/disable/${userId}`
+        : `${baseUrl}/api/users/enable/${userId}`;
 
     fetch(apiUrl, {
         method: "PUT",
@@ -562,7 +537,7 @@ window.onload = function () {
 // ==============================promote user ==========================
 
 function promoteUser(roleId, userId) {
-    fetch(`https://mps10.chandalen.dev/api/users/set-role/${userId}`, {
+    fetch(`${baseUrl}/api/users/set-role/${userId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

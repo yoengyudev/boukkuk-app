@@ -1,8 +1,16 @@
+import { baseUrl } from "./baseUrl.js";
+import { AdminToken, UserToken } from "./tokens.js";
+
 function wishlist() {
-  let items_whishlist = UserToken
-    ? (location.href = "src/views/page/wishlist.html")
-    : (location.href = "src/views/auth/login.html");
+  if (UserToken) {
+    location.href = "src/views/page/wishlist.html";
+  } else {
+    location.href = "src/views/auth/login.html";
+  }
 }
+
+window.wishlist = wishlist;
+
 
 let isclick = false;
 
@@ -12,7 +20,7 @@ function wishlistCard(serviceId, heartButton) {
     return;
   }
 
-  fetch("https://mps10.chandalen.dev/api/wishlists", {
+  fetch(`${baseUrl}/api/wishlists`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -48,6 +56,8 @@ function wishlistCard(serviceId, heartButton) {
     });
 }
 
+window.wishlistCard = wishlistCard;
+
 // ============ show store card ==========
 
 function getCategory(value = 0) {
@@ -55,8 +65,8 @@ function getCategory(value = 0) {
   console.log(typeof value);
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
   const url = value === 0
-    ? `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
-    : `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
+    ? `${baseUrl}/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
+    : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
 
   fetch(url)
     .then((res) => res.json())
@@ -110,12 +120,16 @@ function getStore(creatorID,creatorAvatar){
   let creator_ID = localStorage.setItem("creator_id", creatorID);
   console.log(localStorage.getItem('creator_id'));
   let profile_img = localStorage.setItem("store_profile", creatorAvatar);
-  location.href = 'src/views/page/store.html';
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}src/views/page/store.html`;
+  console.log("Hello world");
 }
 
+window.getStore = getStore;
 
 function fetchCategories() {
-  fetch("https://mps10.chandalen.dev/api/categories")
+  fetch(`${baseUrl}/api/categories`)
     .then((res) => res.json())
     .then((data) => {
       const categorySelectAdd = document.getElementById("addCategoryId");
@@ -142,12 +156,12 @@ let addCategoryId = document.getElementById("addCategoryId");
 
 addCategoryId.addEventListener("change", () => {
   console.log(addCategoryId.value);
-  getCategory(Number(addCategoryId.value)); // Pass the selected value to the getCategory function
+  getCategory(Number(addCategoryId.value));
 });
 
 // Initialize categories and fetch all items initially
 fetchCategories();
-getCategory(); // Load all items by default
+getCategory(); 
 
 
 

@@ -1,3 +1,4 @@
+import { baseUrl } from './baseUrl.js';
 // ======================>> get emails <<========================
 document.getElementById('getEmail').textContent = localStorage.getItem('otpEmail') || 'name@gmail.com';
 
@@ -30,7 +31,7 @@ resendOtpButton.addEventListener('click', async () => {
     buttonText1.textContent = 'ផ្ញើកូដម្ដងទៀត...';
 
     try {
-        const response = await fetch('https://mps10.chandalen.dev/api/forgot/pass', {
+        const response = await fetch(`${baseUrl}/api/forgot/pass`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -78,7 +79,7 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
     const otpValue = Array.from(otpInputs).map(input => input.value).join('');
     
     try {
-        const response = await fetch('https://mps10.chandalen.dev/api/forgot/verify-otp', {
+        const response = await fetch(`${baseUrl}/api/forgot/verify-otp`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

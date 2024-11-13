@@ -1,4 +1,4 @@
-const g9_host = "https://mps10.chandalen.dev";
+import { baseUrl } from "./baseUrl.js";
 
 const messageBox = document.getElementById('messageBox');
 messageBox.style.display = 'none';
@@ -15,7 +15,7 @@ document.getElementById('emailForm').addEventListener('submit', async (e) => {
     buttonText.textContent = 'កំណត់ពាក្យសម្ងាត់...';
 
     try {
-        const response = await fetch(`${g9_host}/api/forgot/pass`, {
+        const response = await fetch(`${baseUrl}/api/forgot/pass`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

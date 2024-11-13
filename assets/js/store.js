@@ -1,3 +1,4 @@
+import { baseUrl } from './baseUrl.js';
 document.addEventListener("DOMContentLoaded", function () {
   const serviceCards = document.querySelectorAll(".service-card");
   const cartItemsDiv = document.getElementById("cart-items");
@@ -320,7 +321,7 @@ $${item.price.toFixed(2)}
       qty: cart[0].quantity    // Send the first item's quantity
     };
 
-    fetch('https://mps10.chandalen.dev/api/carts', {
+    fetch(`${baseUrl}/api/carts`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -443,7 +444,7 @@ function getCategory(value = 0, search = '') {
   let start_pri = document.querySelector(".input-min").value;
   let end_pri = document.querySelector(".input-max").value;
 
-  const url = `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ""
+  const url = `${baseUrl}/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ""
     }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
 
   fetch(url)
