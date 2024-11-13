@@ -487,7 +487,7 @@ function getCategory(value = 0, search = '') {
             }
                       </p>
                       <button class="add-to-cart-btn">
-                        <i class="bi bi-cart-plus"></i> បន្ថែមទៅកន្ត្រក់
+                        <i class="bi bi-cart-plus"></i> បន្ថែម
                       </button>
                     </div>
                 </div>

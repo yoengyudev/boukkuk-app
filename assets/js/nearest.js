@@ -76,6 +76,7 @@ function calculateDeliveryTime(distanceInKm) {
 function error(err) {
     console.error("Error occurred:", err.message);
     displayResult("Unable to retrieve your location. " + err.message);
+    document.getElementById('animation-overlay').style.display = 'none';
 }
 
 // Haversine formula to calculate the distance between two points

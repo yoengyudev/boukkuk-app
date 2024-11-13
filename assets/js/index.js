@@ -74,7 +74,7 @@ function getCategory(value = 0) {
       let col_3 = "";
       json.data.forEach((element) => {
         col_3 += `
-          <div class="col-12 col-md-6 col-xl-3">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
               <p class='id' style="display: none;">${element.id}</p>
               <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
@@ -83,7 +83,7 @@ function getCategory(value = 0) {
                         class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
                   <i class="bi bi-heart"></i>
                 </button>
-                <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')" class="d-block">
+                <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')" class="d-block p-5">
                      <img src="${element.image}" class="card-img img-store w-100" alt="${element.name}">
                 </a>
               </div>
