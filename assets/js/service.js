@@ -144,7 +144,7 @@ function viewDetails(service) {
 // Validation functions using regex
 const validators = {
   name: {
-    regex: /^[a-zA-Z0-9\s]{3,50}$/,
+    regex: /^.{3,50}$/,
     message: "Name must be 3-50 characters long and contain only letters, numbers and spaces"
   },
   description: {
