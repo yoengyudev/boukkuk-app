@@ -382,7 +382,6 @@ function deleteService(button) {
       })
       .then((json) => {
         dataTable.row(row).remove().draw();
-        alert("Service deleted successfully!");
       })
       .catch((error) => {
         console.error("Error deleting service:", error);
