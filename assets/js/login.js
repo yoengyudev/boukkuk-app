@@ -22,10 +22,6 @@ function validateEmail(email) {
     return emailRegex.test(email);
 }
 
-function validatePassword(password) {
-    return password.length >= 6;
-}
-
 const login = document.getElementById("login");
 login.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -43,16 +39,16 @@ login.addEventListener("submit", (event) => {
     } else if (!validateEmail(email)) {
         err_emaillge.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលមិនត្រឹមត្រូវ!`;
         isValid = false;
-    }else{
+    } else {
         err_emaillge.style.display = 'none';
     }
 
+    // Check if password is empty
     if (!password) {
         err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> សូមបញ្ចូលពាក្យសម្ងាត់`;
         isValid = false;
-    } else if (!validatePassword(password)) {
-        err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> ពាក្យសម្ងាត់ត្រូវមានយ៉ាងតិច ៦ តួអក្សរ`;
-        isValid = false;
+    } else {
+        err_passlg.style.display = 'none';
     }
 
     if (!isValid) {
@@ -81,35 +77,24 @@ login.addEventListener("submit", (event) => {
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            let token = json.data.token;
-            let roleid = json.data.roles[0].id;
-            localStorage.setItem('token', token);
-            localStorage.setItem('UserRole', roleid);
-            if (token && roleid == 1) {
-                location.href = `${window.location.origin}/index.html`;
-            }
 
-            if(token && roleid == 2 || token && roleid == 3) {
-                location.href = `${window.location.origin}/src/views/admin/index.html`;
-            }
-            return res.json();
-        })
-        .then(json => {
             if (json.data && json.data.token) {
                 const token = json.data.token;
+                const roleid = json.data.roles[0].id;
                 localStorage.setItem('token', token);
-                location.href = '../../../index.html';
-            } else {
-                if (!json.data.email) {
-                    err_emaillge.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលមិនត្រឹមត្រូវ!`;
-                }
+                localStorage.setItem('UserRole', roleid);
 
-                if (!json.data.password) {
-                    err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> ពាក្យសម្ងាត់មិនត្រឹមត្រូវ`;
-                }else{
-                    err_passlg.style.display = 'none';
+                // Redirect based on role
+                if (roleid == 1) {
+                    location.href = `${window.location.origin}/index.html`;
+                } else if (roleid == 2 || roleid == 3) {
+                    location.href = `${window.location.origin}/src/views/admin/index.html`;
                 }
-                
+            } else {
+                // Show error message from API response
+                const errorMessage = json.message || 'អុីម៉ែលឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
+                err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> ${errorMessage}`;
+                err_passlg.style.display = 'block';
             }
         })
         .catch(error => {
@@ -122,4 +107,3 @@ login.addEventListener("submit", (event) => {
             buttonText.textContent = 'ចូលប្រើប្រាស់គណនី';
         });
 });
-
