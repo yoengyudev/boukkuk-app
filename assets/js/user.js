@@ -88,7 +88,7 @@ fetch('https://mps10.chandalen.dev/api/users', {
 // ======================  add new users ======================================
 
 // Regular expression patterns
-const namePattern = /^[a-zA-Z\s]+$/;
+const namePattern = /^.{3,50}$/;
 const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const phonePattern = /^\+?\d{1,2}?[-\s]?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
 const passwordPattern = /^\d{6,}$/;
@@ -236,6 +236,9 @@ function validateForm() {
               let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addUserModal"));
               addUserModal.hide();
               document.getElementById('addUserForm').reset();
+              setTimeout(() => {
+                window.location.reload();
+              }, 500);
           })
           .finally(() => {
               registerButton.disabled = false;
@@ -292,6 +295,9 @@ function deleteUser(userId) {
         }
     })
         .then(response => {
+            setTimeout(() => {
+                window.location.reload();
+              }, 500);
             return response.json();
         })
         .then(data => {
@@ -429,6 +435,9 @@ document.getElementById('updateForm').addEventListener('submit', function (e) {
                 let updateUserModal = bootstrap.Modal.getInstance(document.getElementById("updateUser"));
                 updateUserModal.hide();
                 document.getElementById('updateForm').reset();
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 500);
             })
             .finally(() => {
                 updateUserButton.disabled = false;
