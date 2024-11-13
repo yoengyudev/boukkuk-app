@@ -25,13 +25,20 @@ console.log(AdminToken);
 let dataTable;
 
 function DisplayServices() {
-  fetch(`https://mps10.chandalen.dev/api/services`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + AdminToken,
-    },
-  })
+  let serviceId = localStorage.getItem("providerId");
+  console.log(serviceId);
+
+  fetch(
+    `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
+      serviceId,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
       const services = data.data;
@@ -99,7 +106,6 @@ function DisplayServices() {
       });
     });
 }
-
 $(document).ready(function () {
   DisplayServices();
 });
@@ -145,106 +151,110 @@ function viewDetails(service) {
 const validators = {
   name: {
     regex: /^[a-zA-Z0-9\s]{3,50}$/,
-    message: "Name must be 3-50 characters long and contain only letters, numbers and spaces"
+    message:
+      "Name must be 3-50 characters long and contain only letters, numbers and spaces",
   },
   description: {
     regex: /^.{5,500}$/,
-    message: "Description must be between 10-500 characters long"
+    message: "Description must be between 10-500 characters long",
   },
   price: {
     regex: /^\d*\.?\d{0,2}$/,
-    message: "Please enter a valid price (e.g., 99.99)"
+    message: "Please enter a valid price (e.g., 99.99)",
   },
   discount: {
     regex: /^(?:100|[0-9]{1,2})$/,
-    message: "Discount must be between 0-100"
+    message: "Discount must be between 0-100",
   },
   category_id: {
     regex: /^[1-9]\d*$/,
-    message: "Please select a valid category"
-  }
+    message: "Please select a valid category",
+  },
 };
 
 // Function to validate a single field
 const validateField = (name, value) => {
   if (!validators[name]) return true;
-  
+
   // Handle empty required fields
-  if (!value && name !== 'discount') {
+  if (!value && name !== "discount") {
     return false;
   }
-  
+
   return validators[name].regex.test(value);
 };
 
 // Main form validation and submission handler
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('addServiceForm');
-  const inputs = form.querySelectorAll('input, textarea, select');
-  
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("addServiceForm");
+  const inputs = form.querySelectorAll("input, textarea, select");
+
   // Real-time validation
-  inputs.forEach(input => {
-    input.addEventListener('input', function() {
+  inputs.forEach((input) => {
+    input.addEventListener("input", function () {
       const isValid = validateField(this.name, this.value);
-      
+
       if (!isValid) {
-        this.classList.add('is-invalid');
-        this.classList.remove('is-valid');
-        
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+
         // Show error message
         const feedbackDiv = this.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
-          feedbackDiv.textContent = validators[this.name]?.message || 'This field is required';
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            validators[this.name]?.message || "This field is required";
         }
       } else {
-        this.classList.remove('is-invalid');
-        this.classList.add('is-valid');
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
       }
     });
   });
 
   // Form submission handler
-  form.addEventListener('submit', function(event) {
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
-    
+
     let isValid = true;
     const formData = new FormData(form);
-    
+
     // Validate all fields before submission
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       const value = formData.get(input.name);
       if (!validateField(input.name, value)) {
         isValid = false;
-        input.classList.add('is-invalid');
-        
+        input.classList.add("is-invalid");
+
         // Show error message
         const feedbackDiv = input.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
-          feedbackDiv.textContent = validators[input.name]?.message || 'This field is required';
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            validators[input.name]?.message || "This field is required";
         }
       }
     });
 
     // File validation
-    const imageInput = document.getElementById('addImage');
+    const imageInput = document.getElementById("addImage");
     if (imageInput.files.length > 0) {
       const file = imageInput.files[0];
-      const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      const validTypes = ["image/jpeg", "image/png", "image/gif"];
       const maxSize = 5 * 1024 * 1024; // 5MB
 
       if (!validTypes.includes(file.type)) {
         isValid = false;
-        imageInput.classList.add('is-invalid');
+        imageInput.classList.add("is-invalid");
         const feedbackDiv = imageInput.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
-          feedbackDiv.textContent = 'Please upload a valid image file (JPEG, PNG, or GIF)';
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            "Please upload a valid image file (JPEG, PNG, or GIF)";
         }
       } else if (file.size > maxSize) {
         isValid = false;
-        imageInput.classList.add('is-invalid');
+        imageInput.classList.add("is-invalid");
         const feedbackDiv = imageInput.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains('invalid-feedback')) {
-          feedbackDiv.textContent = 'Image size should be less than 5MB';
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent = "Image size should be less than 5MB";
         }
       }
     }
@@ -253,13 +263,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // If all validations pass, proceed with your existing addService logic
       const formData = new FormData(form);
       const categoryId = parseInt(formData.get("category_id"), 10);
-      
+
       if (!categoryId || isNaN(categoryId)) {
         alert("Please enter a valid Category ID.");
         return;
       }
-      
-      localStorage.setItem('category_id', categoryId);
+
+      localStorage.setItem("category_id", categoryId);
       formData.set("category_id", categoryId);
 
       // Your existing fetch logic here
@@ -271,24 +281,32 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: formData,
       })
-      .then(res => {
-        if (!res.ok) {
-          return res.json().then(errorData => {
-            throw new Error(JSON.stringify(errorData));
-          });
-        }
-        return res.json();
-      })
-      .then(data => {
-        // Your existing success handling code
-        DisplayServices();
-        form.reset();
-        bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
-      })
-      .catch(error => {
-        console.error("Error adding service:", error);
-        alert("Failed to add service. Please try again.");
-      });
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((errorData) => {
+              throw new Error(JSON.stringify(errorData));
+            });
+          }
+          return res.json();
+        })
+        .then((data) => {
+          DisplayServices();
+          form.reset();
+          // Clear image preview
+          const imagePreview = document.getElementById("addImagePreview");
+          imagePreview.src = "";
+          imagePreview.style.display = "none";
+          // Reset file name display
+          document.getElementById("addFileName").textContent = "No file chosen";
+          // Close modal
+          bootstrap.Modal.getInstance(
+            document.getElementById("addServiceModal")
+          ).hide();
+        })
+        .catch((error) => {
+          console.error("Error adding service:", error);
+          alert("Failed to add service. Please try again.");
+        });
     }
   });
 });
@@ -441,7 +459,6 @@ function fetchCategories() {
     })
     .catch((error) => console.error("Error fetching categories:", error));
 }
-
 // Call fetchCategories when the document is ready
 $(document).ready(function () {
   fetchCategories(); // Fetch categories on page load

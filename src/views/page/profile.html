@@ -209,6 +209,10 @@
                 <i class="fas fa-lock"></i>
                 <span>ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
               </div>
+              <div class="sidebar-item btn" data-section="cart-items">
+                <i class="fas fa-shopping-cart"></i>
+                <span>ទំនិញក្នុងកន្ត្រក</span>
+              </div>
             </div>
           </div>
           <div class="col-md-8 col-lg-9">
@@ -436,6 +440,107 @@
                   </button>
                 </form>
               </div>
+              <div id="cart-items" class="content-section d-none">
+                <h2 class="section-title text-primary">ទំនិញក្នុងកន្ត្រក</h2>
+                <p class="text-muted mb-4">រាល់សេវាកម្មដែលបានបញ្ចូលក្នុងកន្ត្រក តែមិនទាន់បានទូទាត់។</p>
+
+                <div class="row g-4">
+                  <!-- Cart Item Card -->
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-md-2 col-4 mb-3 mb-md-0">
+                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image">
+                          </div>
+                          <div class="col-md-4 col-8 mb-3 mb-md-0">
+                            <h5 class="card-title mb-1">ហាង ABC Laundry</h5>
+                            <p class="card-text text-muted mb-1">
+                              <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                              ផ្លូវ ១២៣, សង្កាត់បឹងកេងកង
+                            </p>
+                            <p class="card-text">
+                              <i class="fas fa-clock text-primary me-2"></i>
+                              បានបញ្ចូល: ១៥ មីនា ២០២៤
+                            </p>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
+                            <ul class="list-unstyled">
+                              <li><i class="fas fa-check text-success me-2"></i>បោកគក់ធម្មតា</li>
+                              <li><i class="fas fa-check text-success me-2"></i>បោកស្ងួត</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3 col-6 text-md-end">
+                            <h5 class="text-primary mb-3">$25.00</h5>
+                            <div class="d-flex gap-2 justify-content-md-end">
+                              <button class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash me-1"></i>លុប
+                              </button>
+                              <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-credit-card me-1"></i>បង់ប្រាក់
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Another Cart Item -->
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col-md-2 col-4 mb-3 mb-md-0">
+                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image">
+                          </div>
+                          <div class="col-md-4 col-8 mb-3 mb-md-0">
+                            <h5 class="card-title mb-1">ហាង XYZ Cleaning</h5>
+                            <p class="card-text text-muted mb-1">
+                              <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                              ផ្លូវ ៤៥៦, សង្កាត់ទួលស្វាយព្រៃ
+                            </p>
+                            <p class="card-text">
+                              <i class="fas fa-clock text-primary me-2"></i>
+                              បានបញ្ចូល: ១៤ មីនា ២០២៤
+                            </p>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
+                            <ul class="list-unstyled">
+                              <li><i class="fas fa-check text-success me-2"></i>បោកគក់ពិសេស</li>
+                              <li><i class="fas fa-check text-success me-2"></i>អ៊ុតសម្លៀកបំពាក់</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3 col-6 text-md-end">
+                            <h5 class="text-primary mb-3">$35.00</h5>
+                            <div class="d-flex gap-2 justify-content-md-end">
+                              <button class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash me-1"></i>លុប
+                              </button>
+                              <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-credit-card me-1"></i>បង់ប្រាក់
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Empty Cart Message -->
+                  <div class="col-12 d-none">
+                    <div class="text-center py-5">
+                      <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                      <h5 class="text-muted">មិនមានទំនិញក្នុងកន្ត្រកទេ</h5>
+                      <a href="../../index.html" class="btn btn-primary mt-3">
+                        <i class="fas fa-shopping-bag me-2"></i>រកមើលសេវាកម្ម
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -475,7 +580,7 @@
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required maxlength="5" />
                 <label class="ps-0 ms-0" for="expiryDate">កាលបរិច្ឆេទផុតកំណត់</label>
-                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្���ាំ</small>
+                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្នាំ</small>
               </div>
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="cvv" placeholder="CVV" required maxlength="3" />
@@ -514,7 +619,8 @@
           <ul>
             <li><a href="../../../index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
             <li><a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
-            <li><a href="../../../src/views/page/aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពីយើង</a>
+            <li><a href="../../../src/views/page/aboutUs.html" class="fs-18"><i
+                  class="bi bi-info-circle me-2"></i>អំពីយើង</a>
             </li>
             <li id="order-history"><a type="button" onclick="profile_headerMe()"
                 class="border-0 p-0 bg-transparent fs-18">

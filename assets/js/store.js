@@ -117,125 +117,143 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  function updateCart(card, newQuantity) {
+  function updateCart(card) {
+    const serviceId = parseInt(card.dataset.serviceId);
     const serviceName = card.dataset.service;
-    const serviceCategory = card.dataset.category;
     const servicePrice = parseFloat(card.dataset.price);
-    const uniqueId = `${serviceCategory}-${serviceName}`;
-    const serviceImage = card.querySelector(".card-img").src;
+    const serviceImage = card.querySelector('img')?.src || '';
 
-    // Update card quantity
-    const quantitySpan = card.querySelector(".quantity");
-    quantitySpan.textContent = newQuantity;
-    const decreaseButton = card.querySelector(".decrease");
-    decreaseButton.disabled = newQuantity === 0;
-
-    // Find existing item using uniqueId
-    const existingItem = cart.find((item) => item.uniqueId === uniqueId);
+    const existingItem = cart.find(item => item.id === serviceId);
 
     if (existingItem) {
-      existingItem.quantity = newQuantity;
-      if (newQuantity === 0) {
-        cart = cart.filter((item) => item.uniqueId !== uniqueId);
-      }
-    } else if (newQuantity > 0) {
+      existingItem.quantity += 1;
+    } else {
       cart.push({
+        id: serviceId,
         name: serviceName,
-        category: serviceCategory,
         price: servicePrice,
-        quantity: newQuantity,
-        image: serviceImage,
-        uniqueId: uniqueId,
+        quantity: 1,
+        image: serviceImage
       });
     }
 
-    total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    sessionStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
+  }
+
+  function calculateTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
   function renderCart() {
     cartItemsDiv.innerHTML = "";
     if (cart.length === 0) {
       cartItemsDiv.innerHTML = `
-              <div class="text- d-flex flex-column justify-content-center h-100 p-4">
-              <img src="https://thumbs.dreamstime.com/b/laundry-wash-cleaning-icons-black-white-laundry-wash-cleaning-dirty-clothes-basket-washing-machine-icon-152344297.jpg" alt="Empty Cart" class="img-fluid" style="width: 150px; height:auto;">
-                 <div class="text-center">
-                  <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
-                  <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>                 </div>
-              </div>`;
+        <div class="text-center d-flex flex-column justify-content-center h-100 p-4">
+          <img src="https://thumbs.dreamstime.com/b/laundry-wash-cleaning-icons-black-white-laundry-wash-cleaning-dirty-clothes-basket-washing-machine-icon-152344297.jpg" alt="Empty Cart" class="img-fluid mx-auto" style="width: 150px; height:auto;">
+          <div class="text-center">
+            <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
+            <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>
+          </div>
+        </div>`;
       totalPriceDiv.textContent = "Total: $0.00";
-      setLoadingState(checkoutButton, false);
       checkoutButton.disabled = true;
     } else {
       cart.forEach((item) => {
         const itemDiv = document.createElement("div");
-        itemDiv.className =
-          "cart-item d-flex align-items-start justify-content-between mb-3";
+        itemDiv.className = "cart-item mb-3 border-bottom pb-2";
         itemDiv.setAttribute("data-unique-id", item.uniqueId);
 
-        const itemInfo = document.createElement("div");
-        itemInfo.className = "d-flex justify-content-between align-items-center w-100 mt-3";
-        itemInfo.textContent = `${item.category}: ${item.name
-          } - $${item.price.toFixed(2)} x `;
+        itemDiv.innerHTML = `
+          <div class="d-flex justify-content-between w-100 align-items-center gap-2">
+            <div class="cart-item-image" style="width: 50px; height: 50px; min-width: 50px;">
+              <img src="${item.image}" alt="${item.name
+          }" class="rounded w-100 h-100 object-fit-cover">
+            </div>
+            <div class="d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <div class="text-truncate d-flex flex-column align-items-center pe-2 ps-3" style="max-width: 150px;">
+                <div>
+                ${item.name} 
+                </div>
+                <div>
+$${item.price.toFixed(2)}              
+                </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" 
+                    >-</button>
+                  <span class="quantity cart-quantity" >${item.quantity
+          }</span>
+                  <button class="increase-cart btn btn-sm btn-outline-primary rounded-circle increase-btn" 
+                    >+</button>
+                  <button class="btn btn-link text-danger ps-2 fs-5 p-0 delete-btn" >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
 
-        const controlsContainer = document.createElement("div");
-        controlsContainer.className = "d-flex align-items-center gap-2";
+        // Add event listeners for the buttons
+        const deleteBtn = itemDiv.querySelector(".delete-btn");
+        const decreaseBtn = itemDiv.querySelector(".decrease-btn");
+        const increaseBtn = itemDiv.querySelector(".increase-btn");
 
-        const quantityControl = document.createElement("div");
-        quantityControl.className = "d-flex align-items-center";
+        deleteBtn.addEventListener('click', () => {
+          // Remove from cart array
+          cart = cart.filter(cartItem => cartItem.id !== item.id);
 
-        const decreaseButton = createButton("-", true, () => {
-          if (item.quantity > 0) {
-            const card = document.querySelector(
-              `.service-card[data-unique-id="${item.uniqueId}"]`
-            );
-            if (card) {
-              updateCart(card, item.quantity - 1);
-            }
+          // Update localStorage
+          sessionStorage.setItem('cart', JSON.stringify(cart));
+
+          // Remove from DOM
+          itemDiv.remove();
+
+          // Update total
+          total = calculateTotal();
+          totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
+
+          // Check if cart is empty
+          if (cart.length === 0) {
+            renderCart();
           }
         });
 
-        const quantitySpan = document.createElement("span");
-        quantitySpan.className = "quantity mx-2";
-        quantitySpan.textContent = item.quantity;
-
-        const increaseButton = createButton("+", false, () => {
-          const card = document.querySelector(
-            `.service-card[data-unique-id="${item.uniqueId}"]`
-          );
-          if (card) {
-            updateCart(card, item.quantity + 1);
+        decreaseBtn.addEventListener("click", () => {
+          const cartItem = cart.find(cartItem => cartItem.id === item.id);
+          if (cartItem && cartItem.quantity > 1) {
+            cartItem.quantity--;
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
+            renderCart();
+          } else if (cartItem && cartItem.quantity === 1) {
+            cart = cart.filter(cartItem => cartItem.id !== item.id);
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
+            renderCart();
           }
         });
 
-        // Create delete button
-        const deleteButton = document.createElement("button");
-        deleteButton.className = "btn btn-link text-danger p-0";
-        deleteButton.innerHTML = '<i class="trash-icon-store bi bi-trash"></i>';
-        deleteButton.style.fontSize = "1rem";
-        deleteButton.addEventListener("click", () => {
-          const card = document.querySelector(
-            `.service-card[data-unique-id="${item.uniqueId}"]`
-          );
-          if (card) {
-            updateCart(card, 0);
+        increaseBtn.addEventListener("click", () => {
+          const cartItem = cart.find(cartItem => cartItem.id === item.id);
+          if (cartItem) {
+            cartItem.quantity++;
+            // Update sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            total = calculateTotal();
+            renderCart();
           }
         });
 
-        quantityControl.appendChild(decreaseButton);
-        quantityControl.appendChild(quantitySpan);
-        quantityControl.appendChild(increaseButton);
-
-        // Add both quantity controls and delete button to the container
-        controlsContainer.appendChild(quantityControl);
-        controlsContainer.appendChild(deleteButton);
-
-        itemInfo.appendChild(controlsContainer);
-        itemDiv.appendChild(itemInfo);
         cartItemsDiv.appendChild(itemDiv);
       });
+
+      total = calculateTotal();
       totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
-      setLoadingState(checkoutButton, false);
       checkoutButton.disabled = false;
     }
   }
@@ -243,7 +261,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function createButton(text, isDecrease, onClick) {
     const button = document.createElement("button");
     button.textContent = text;
-    button.className = isDecrease ? "btn btn-circle decrease btn-primary" : "btn btn-circle increase btn-outline-primary";
+    button.className = isDecrease
+      ? "btn btn-circle decrease btn-primary"
+      : "btn btn-circle increase btn-outline-primary";
     button.style.width = "30px";
     button.style.height = "30px";
     button.style.padding = "0";
@@ -276,26 +296,94 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
     } else {
       button.disabled = false;
-      button.innerHTML = 'ទូទាត់ទឹកប្រាក់';
+      button.innerHTML = "ទូទាត់ទឹកប្រាក់";
     }
   }
 
   checkoutButton.addEventListener("click", function (event) {
-    if (this.disabled) {
-      event.preventDefault();
-      alert("Please add items to your cart before checking out.");
-    } else {
-      event.preventDefault();
-      setLoadingState(this, true);
-
-      // Simulate loading time (you can remove setTimeout when integrating with real API)
-      setTimeout(() => {
-        window.location.href = "payment.html";
-      }, 1000); // 1 second delay for demo
+    event.preventDefault();
+    if (this.disabled || cart.length === 0) {
+      alert("សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រក់របស់អ្នក!");
+      return;
     }
+
+    setLoadingState(this, true);
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('សូមធ្វើការ Login ជាមុនសិន!');
+      window.location.href = 'login.html';
+      return;
+    }
+    const requestData = {
+      service_id: cart[0].id,  // Send the first item's service ID
+      qty: cart[0].quantity    // Send the first item's quantity
+    };
+
+    fetch('https://mps10.chandalen.dev/api/carts', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(requestData)
+    })
+      .then(async response => {
+        const data = await response.json();
+        console.log('Server response:', data);
+
+        if (!response.ok) {
+          if (response.status === 422) {
+            const errorMessage = data.message ||
+              Object.values(data.data || {}).flat().join(', ') ||
+              'Validation error occurred';
+            throw new Error(errorMessage);
+          }
+          throw new Error('Network response was not ok');
+        }
+
+        return data;
+      })
+      .then(data => {
+        console.log('Checkout successful:', data);
+        cart = [];
+        sessionStorage.removeItem('cart');
+        renderCart();
+        // Redirect to payment.html after successful checkout
+        window.location.href = 'payment.html';
+      })
+      .catch(error => {
+        console.error('Error during checkout:', error);
+        alert(`មានបញ្ហាក្នុងការបញ្ជាទិញ: ${error.message}`);
+      })
+      .finally(() => {
+        setLoadingState(checkoutButton, false);
+      });
   });
 
   renderCart();
+
+  // Add event listener for Add to Cart buttons
+  document.addEventListener("click", function (e) {
+    if (
+      e.target.classList.contains("add-to-cart-btn") ||
+      e.target.closest(".add-to-cart-btn")
+    ) {
+      const card = e.target.closest(".service-card");
+      if (card) {
+        updateCart(card);
+      }
+    }
+  });
+
+  // Load cart from localStorage and calculate total
+  const savedCart = sessionStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    total = calculateTotal(); // Calculate initial total
+    renderCart();
+  }
 });
 
 // price range ui code 
@@ -342,33 +430,30 @@ rangeInput.forEach((input) => {
   });
 });
 
-
 // ================get profile_picture==============
-let getProfile = localStorage.getItem('store_profile');
-document.getElementById('profile_img').src = getProfile;
-
-
-
+let getProfile = localStorage.getItem("store_profile");
+document.getElementById("profile_img").src = getProfile;
 
 // =================Get all service =================
 let firstId = ' ';
 function getCategory(value = 0, search = '') {
   console.log("Selected Category:", value);
   console.log("Search Term:", search);
-  let getCreatorId = localStorage.getItem('creator_id');
-  let start_pri = document.querySelector('.input-min').value;
-  let end_pri = document.querySelector('.input-max').value;
+  let getCreatorId = localStorage.getItem("creator_id");
+  let start_pri = document.querySelector(".input-min").value;
+  let end_pri = document.querySelector(".input-max").value;
 
-  const url = `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ''}&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
+  const url = `https://mps10.chandalen.dev/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ""
+    }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
 
   fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      let card_service = '';
+    .then((response) => response.json())
+    .then((data) => {
+      let card_service = "";
       let categories = new Map();
 
       if (data.data.length > 0) {
-        firstId = data.data[0].id; 
+        firstId = data.data[0].id;
         console.log("First Service ID:", firstId);
       }
 
@@ -380,8 +465,15 @@ function getCategory(value = 0, search = '') {
 
         if (element.price >= start_pri && element.price <= end_pri) {
           card_service += `
-              <div class="col-12 col-sm-6 col-md-4 col-lg-3 service-item" data-category="${element.category ? element.category.id : ''}">
-                  <div class="card service-card" data-service="${element.name}" data-price="${element.price}">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 service-item" data-category="${element.category ? element.category.id : ""
+            }">
+                  <div class="card service-card" 
+                    data-service-id="${element.id}" 
+                    data-service="${element.name}" 
+                    data-price="${element.price}"
+                    data-category-name="${element.category ? element.category.name : ""
+            }"
+                  >
                     <div class="card-img-container">
                       <img src="${element.image}" alt="" class="card-img" />
                     </div>
@@ -389,14 +481,14 @@ function getCategory(value = 0, search = '') {
                       <h5 class="card-title">${element.name}</h5>
                       <p class="card-price">$${element.price}</p>
                       <p class="card-description">
-                        ${element.description || 'Description of the dish goes here.'}
+                        ${element.description ||
+            "Description of the dish goes here."
+            }
                       </p>
-                      <div class="quantity-control" style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                        <button class="btn btn-circle decrease btn-primary">-</button>
-                        <span class="quantity" style="width: 40px; text-align: center; margin: 0 5px">0</span>
-                        <button class="btn btn-circle increase btn-outline-primary">+</button>
-                      </div>
-                  </div>
+                      <button class="add-to-cart-btn">
+                        <i class="bi bi-cart-plus"></i> បន្ថែមទៅកន្ត្រក់
+                      </button>
+                    </div>
                 </div>
               </div>`;
         }
@@ -418,7 +510,7 @@ function getCategory(value = 0, search = '') {
         `;
       });
 
-      document.querySelector('#categoryNav').innerHTML = categoryNav;
+      document.querySelector("#categoryNav").innerHTML = categoryNav;
 
       let storeInfo = ` `;
       if (data.data.length > 0 && data.data[0].creator) {
@@ -435,10 +527,14 @@ function getCategory(value = 0, search = '') {
         document.getElementById('storeInfo').innerHTML = storeInfo;
         document.querySelector('.bg-store').style.backgroundImage = `url('${localStorage.getItem('store_profile')}')`;
 
+        document.querySelector(
+          ".bg-store"
+        ).style.backgroundImage = `url('${localStorage.getItem(
+          "store_profile"
+        )}')`;
       }
-
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
@@ -448,46 +544,63 @@ getCategory();
 // filter service price
 function filterServices(categoryId, element, event) {
   event.preventDefault();
-  let start_pri = parseFloat(document.querySelector('.input-min').value) || 0;
-  let end_pri = parseFloat(document.querySelector('.input-max').value) || 99999;
+  let start_pri = parseFloat(document.querySelector(".input-min").value) || 0;
+  let end_pri = parseFloat(document.querySelector(".input-max").value) || 99999;
 
-  document.querySelectorAll('#categoryNav .nav-link').forEach(link => link.classList.remove('active'));
-  element.classList.add('active');
+  document
+    .querySelectorAll("#categoryNav .nav-link")
+    .forEach((link) => link.classList.remove("active"));
+  element.classList.add("active");
 
-  document.querySelectorAll('.service-item').forEach(item => {
-    let itemPrice = parseFloat(item.querySelector('.card-price').textContent.replace('$', ''));
-    if ((categoryId === 0 || item.getAttribute('data-category') == categoryId) && itemPrice >= start_pri && itemPrice <= end_pri) {
-      item.style.display = 'block';
+  document.querySelectorAll(".service-item").forEach((item) => {
+    let itemPrice = parseFloat(
+      item.querySelector(".card-price").textContent.replace("$", "")
+    );
+    if (
+      (categoryId === 0 || item.getAttribute("data-category") == categoryId) &&
+      itemPrice >= start_pri &&
+      itemPrice <= end_pri
+    ) {
+      item.style.display = "block";
     } else {
-      item.style.display = 'none';
+      item.style.display = "none";
     }
   });
 }
 
 // Synchronize input-min and input-max with range sliders
-document.querySelector('.range-min').addEventListener('input', function () {
-  document.querySelector('.input-min').value = this.value;
+document.querySelector(".range-min").addEventListener("input", function () {
+  document.querySelector(".input-min").value = this.value;
   getCategory();
 });
 
-document.querySelector('.range-max').addEventListener('input', function () {
-  document.querySelector('.input-max').value = this.value;
+document.querySelector(".range-max").addEventListener("input", function () {
+  document.querySelector(".input-max").value = this.value;
   getCategory();
 });
 
-document.querySelector('.input-min').addEventListener('input', function () {
-  document.querySelector('.range-min').value = this.value;
+document.querySelector(".input-min").addEventListener("input", function () {
+  document.querySelector(".range-min").value = this.value;
   getCategory();
 });
 
-document.querySelector('.input-max').addEventListener('input', function () {
-  document.querySelector('.range-max').value = this.value;
+document.querySelector(".input-max").addEventListener("input", function () {
+  document.querySelector(".range-max").value = this.value;
   getCategory();
 });
-
 function searchServices() {
-  const searchTerm = document.getElementById('searchInput').value;
+  const searchTerm = document.getElementById("searchInput").value;
   getCategory(0, searchTerm);
 }
 
-document.getElementById('searchInput').addEventListener('keyup', searchServices);
+document
+  .getElementById("searchInput")
+  .addEventListener("keyup", searchServices);
+
+// When clearing the cart (after successful checkout)
+function clearCart() {
+  cart = [];
+  sessionStorage.removeItem('cart');
+  renderCart();
+}
+
