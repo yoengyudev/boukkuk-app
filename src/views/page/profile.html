@@ -12,6 +12,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <!-- crop js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+  <style>
+    .form-floating {
+      margin-bottom: 5px;
+    }
+
+    [id^="error-mess-"] {
+      min-height: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -398,6 +407,7 @@
                             top: 50%;
                             transform: translateY(-50%);
                           "></i>
+                       <div id="error-mess-cur"></div>
                     </div>
                   </div>
                   <div class="mb-4 position-relative">
@@ -412,6 +422,7 @@
                             top: 50%;
                             transform: translateY(-50%);
                           "></i>
+                        <div id="error-mess-new"></div>
                     </div>
                   </div>
                   <div class="mb-4 position-relative">
@@ -426,6 +437,7 @@
                             top: 50%;
                             transform: translateY(-50%);
                           "></i>
+                        <div id="error-mess-com"></div>
                     </div>
                     <span class="text-danger" id="passwordError"></span>
                   </div>
@@ -490,6 +502,8 @@
       </div>
     </div>
   </main>
+
+
   <footer class="footer mt-70">
     <div class="container">
       <div class="row gy-3">

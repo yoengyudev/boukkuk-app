@@ -20,71 +20,124 @@ function getData() {
     });
 }
 getData();
+
 // =====================change password========================
-document
-  .getElementById("changePasswordButton")
-  .addEventListener("click", function () {
-    const oldPassword = document.getElementById("currentPassword").value.trim();
-    const newPassword = document.getElementById("newPassword").value.trim();
-    const confirmPassword = document
-      .getElementById("confirmPassword")
-      .value.trim();
 
-    // Check if all password fields are filled
-    if (!oldPassword || !newPassword || !confirmPassword) {
-      showAlert("Please fill in all password fields.");
-      return;
-    }
+document.getElementById("changePasswordButton").addEventListener("click", function () {
+  // Clear previous error messages
+  clearErrorMessages();
+  
+  const oldPassword = document.getElementById("currentPassword").value.trim();
+  const newPassword = document.getElementById("newPassword").value.trim();
+  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  
+  let hasError = false;
 
-    if (newPassword.length < 8) {
-      showAlert("New password must be at least 8 characters long.");
-      return;
-    }
+  // Validate current password
+  if (!oldPassword) {
+    displayError("error-mess-cur", "Current password is required");
+    hasError = true;
+  }
 
-    // Check if new password and confirm password match
-    if (newPassword !== confirmPassword) {
-      showAlert("New password and confirmation do not match.");
-      return;
-    }
-    const buttonText1 = document.getElementById("buttonText1");
-    const spinner1 = document.getElementById("spinner1");
-    buttonText1.style.display = "none";
-    spinner1.style.display = "inline-block";
-    let token = localStorage.getItem("token");
-    fetch(`${g9_host}/api/profile/change-pass`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        old_pass: oldPassword,
-        new_pass: newPassword,
-        new_pass_confirmation: confirmPassword,
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        // Hide spinner and show button text again
-        buttonText1.style.display = "inline";
-        spinner1.style.display = "none";
+  // Validate new password
+  if (!newPassword) {
+    displayError("error-mess-new", "New password is required");
+    hasError = true;
+  } else if (newPassword.length < 6) {
+    displayError("error-mess-new", "New password must be at least 6 characters long");
+    hasError = true;
+  }
 
-        if (json.success) {
-          showAlert("Password changed successfully!");
-        }
-        // Clear the input fields
+  // Validate confirm password
+  if (!confirmPassword) {
+    displayError("error-mess-com", "Confirm password is required");
+    hasError = true;
+  } else if (newPassword !== confirmPassword) {
+    displayError("error-mess-com", "Passwords do not match");
+    hasError = true;
+  }
+
+  if (hasError) {
+    return;
+  }
+
+  // Show loading state
+  const buttonText1 = document.getElementById("buttonText1");
+  const spinner1 = document.getElementById("spinner1");
+  buttonText1.style.display = "none";
+  spinner1.style.display = "inline-block";
+
+  let token = localStorage.getItem("token");
+  
+  fetch(`${g9_host}/api/profile/change-pass`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({
+      old_pass: oldPassword,
+      new_pass: newPassword,
+      new_pass_confirmation: confirmPassword,
+    }),
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+      
+      buttonText1.style.display = "inline";
+      spinner1.style.display = "none";
+
+      if (json.message) {
+        // Clear inputs
         document.getElementById("currentPassword").value = "";
         document.getElementById("newPassword").value = "";
         document.getElementById("confirmPassword").value = "";
-      })
-      .catch((error) => {
-        buttonText1.style.display = "inline";
-        spinner1.style.display = "none";
-        console.error("Error:", error);
-        showAlert("An error occurred while changing the password.");
-      });
+        
+        alert("Password changed successfully!");
+        
+      } else {
+        // Handle API error messages
+        if (json.message) {
+          if (json.message.toLowerCase().includes("old password")) {
+            displayError("error-mess-cur", json.message);
+          } else {
+            alert(json.message);
+          }
+        }
+      }
+    })
+    .catch((error) => {
+      buttonText1.style.display = "inline";
+      spinner1.style.display = "none";
+      console.error("Error:", error);
+      alert("An error occurred while changing the password.");
+    });
+});
+
+// Helper functions
+function displayError(elementId, message) {
+  const errorElement = document.getElementById(elementId);
+  errorElement.textContent = message;
+  errorElement.style.color = "red";
+  errorElement.style.fontSize = "12px";
+  errorElement.style.marginTop = "5px";
+}
+
+function clearErrorMessages() {
+  const errorElements = [
+    "error-mess-cur",
+    "error-mess-new",
+    "error-mess-com"
+  ];
+  errorElements.forEach(elementId => {
+    document.getElementById(elementId).textContent = "";
   });
+}
+
+
+// Add some CSS to your stylesheet
 // =====================end of change password=================
 
 //===============================>> Update User Information Function <<================================//
