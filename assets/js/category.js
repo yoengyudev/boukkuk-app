@@ -1,6 +1,9 @@
-let list = document.querySelectorAll(".navigation li");
 import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
+import { modalContent, togglePasswordVisibility } from './updateUserInfo.js';
+
+let list = document.querySelectorAll(".navigation li");
+
 //get categories
 function fetchCategories() {
   fetch(`${baseUrl}/api/categories`, {
@@ -165,12 +168,3 @@ function activeLink() {
 }
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
-
-let toggle = document.querySelector(".toggle");
-let navigation = document.querySelector(".navigation");
-let main = document.querySelector(".main");
-
-toggle.onclick = function () {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-};

@@ -1,6 +1,9 @@
 // =======================>> Get all user <<========================
 import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
+import { modalContent, togglePasswordVisibility } from './updateUserInfo.js';
+
+// Rest of your user.js code
 
 fetch(`${baseUrl}/api/users`, {
     method: 'GET',
