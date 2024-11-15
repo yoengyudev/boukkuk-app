@@ -2089,12 +2089,14 @@ select {
   transition: all 0.3s ease;
   z-index: 1003;
   padding: 8px 0;
+  display: block;
 }
 
 .global-profile-menu .dropdown-menu.active {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
+  display: block;
 }
 
 .global-profile-menu .dropdown-menu ul {
@@ -2104,7 +2106,7 @@ select {
 }
 
 .global-profile-menu .dropdown-menu ul li {
-  padding: 0px 24px;
+  padding: 8px 24px;
   transition: background-color 0.2s ease;
 }
 
@@ -2113,11 +2115,10 @@ select {
 }
 
 .global-profile-menu .dropdown-menu ul li a {
-  text-decoration: none;
   color: #333;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  padding: 15px 0;
   gap: 12px;
   font-size: 14px;
   font-weight: 500;

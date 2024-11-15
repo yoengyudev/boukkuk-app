@@ -1,8 +1,29 @@
 import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
-import { modalContent, togglePasswordVisibility } from './updateUserInfo.js';
+import { 
+    modalContent, 
+    togglePasswordVisibility, 
+    initInformationForm, 
+    adminModalContent, 
+    initAdminInformationForm, 
+    initPasswordForm 
+} from './updateUserInfo.js';
 
 let list = document.querySelectorAll(".navigation li");
+
+// Add these lines near the top of your category.js file, after the imports
+window.togglePasswordVisibility = togglePasswordVisibility;
+window.previewImage = function(input) {
+    const preview = document.getElementById('avatarPreview');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
 
 //get categories
 function fetchCategories() {
@@ -168,3 +189,11 @@ function activeLink() {
 }
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Category page loaded");
+    const profile = document.querySelector(".global-profile-menu");
+    const menu = profile?.querySelector(".dropdown-menu");
+    console.log("Profile element:", profile);
+    console.log("Menu element:", menu);
+});

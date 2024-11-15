@@ -532,25 +532,7 @@
         </div>
       </div>
     </div>
-    <script>
-      // Use DOMContentLoaded to ensure elements are loaded
-      document.addEventListener("DOMContentLoaded", function () {
-        const profile = document.querySelector(".profile");
-        const menu = document.querySelector(".menu");
 
-        // Toggle menu on profile click
-        profile.addEventListener("click", function (e) {
-          menu.classList.toggle("active");
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function (e) {
-          if (!profile.contains(e.target)) {
-            menu.classList.remove("active");
-          }
-        });
-      });
-    </script>
 
     <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>

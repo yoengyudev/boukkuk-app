@@ -233,7 +233,6 @@ export function initInformationForm() {
       });
   });
 }
-
 // Modified initInformationForm for admin users
 export function initAdminInformationForm() {
   const form = document.getElementById("informationForm");
@@ -352,13 +351,15 @@ export function initPasswordForm() {
   });
 }
 
-// Initialize profile menu functionality with role-specific content
 document.addEventListener("DOMContentLoaded", function () {
   const profile = document.querySelector(".global-profile-menu");
   const menu = profile?.querySelector(".dropdown-menu");
   const profileModal = new bootstrap.Modal(document.getElementById("profileModal"));
   const roleId = localStorage.getItem('UserRole');
   const isAdmin = roleId === '2';
+  
+  console.log("Profile element:", profile); // Debug log
+  console.log("Menu element:", menu); // Debug log
   
   if (profile && menu) {
     // Toggle menu on profile click
