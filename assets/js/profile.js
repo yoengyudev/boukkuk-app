@@ -1,4 +1,5 @@
 import { baseUrl } from "./baseUrl.js";
+import { UserToken } from "./tokens.js";
 //=============================>> Get User Information Functions <<===============================//
 
 function getData() {
@@ -287,4 +288,79 @@ delete_Avatar.addEventListener("click", function () {
 });
 
 
-// ============================ end of change avarta =========================
+
+const apiUrl = "{{g9_host}}/api/profile/purchased?page=1&per_page=20&payment_status=";
+
+const fetchOrders = async (status = "all") => {
+  try {
+    const response = await fetch(apiUrl + status);
+    const data = await response.json();
+    populateOrders(data.orders); // Assuming 'orders' is the key for the list of orders
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+  }
+};
+
+//my purchased
+function fetchPurchased() {
+  fetch(`${baseUrl}/api/profile/purchased?page=1&per_page=20&payment_status=`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${UserToken}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+
+      const tableBody = document.getElementById("body_table");
+      let tr = ""; 
+
+      json.data.forEach((e) => {
+        tr += `
+          <tr>
+            <td class="text-start">
+              <div class="d-flex align-items-center gap-2">
+                <div class="service_img shadow"> 
+                  <img src="${e.transition_file || 'default_image.jpg'}" width="50" alt="Service">
+                </div>
+                <div class="d-flex flex-column">
+                  <span class="fw-medium text-start">${e.service?.name || "N/A"}</span>
+                  <span class="text-dark-emphasis">Qty: ${e.qty || 0}</span>
+                </div>
+              </div>
+            </td>
+            <td class="text-start">
+              <span class="status-${(e.payment_status || 'pending').toLowerCase()}">
+                ${e.payment_status || 'Pending'}
+              </span>
+            </td>
+            <td class="text-start">${e.total || "$0.00"}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#orderModal">
+                Order Details
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tableBody.innerHTML = tr;
+
+      $("#purchasedTable").DataTable({
+        destroy: true,
+        responsive: true,
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+fetchPurchased();
+
+
+
+
+// ============================ end of change avatar =========================

@@ -12,6 +12,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <!-- crop js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+
+  <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css">
+  <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css">
   <style>
     .form-floating {
       margin-bottom: 5px;
@@ -19,6 +22,57 @@
 
     [id^="error-mess-"] {
       min-height: 20px;
+    }
+
+    .order-history {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: #555;
+    }
+
+    .tab.active {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .order-table th,
+    .order-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .order-table th {
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+
+    .order-table img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+    }
+
+    .order-table .btn {
+      padding: 5px 10px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -294,6 +348,43 @@
                   </button>
                 </form>
               </div>
+              <!-- <div id="order-history" class="content-section d-none">
+                <h2 class="section-title text-primary">
+                  ប្រវត្តិការបញ្ជាទិញ
+                </h2>
+                <p class="text-muted mb-4">
+                  មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
+                </p>
+                <ul class="nav nav-tabs mb-3" id="filterTabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-filter="all" href="#">All Orders (50)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="pending" href="#">Pending (10)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="completed" href="#">Completed (8)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="cancelled" href="#">Cancelled (22)</a>
+                  </li>
+                </ul>
+                  <table id="purchasedTable" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody id="body_table">
+                      <tr>
+
+                      </tr>
+                    </tbody>
+                  </table>
+              </div> -->
               <div id="order-history" class="content-section d-none">
                 <h2 class="section-title text-primary">
                   ប្រវត្តិការបញ្ជាទិញ
@@ -301,39 +392,33 @@
                 <p class="text-muted mb-4">
                   មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                 </p>
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>លេខបញ្ជាទិញ</th>
-                        <th>កាលបរិច្ឆេទ</th>
-                        <th>សេវាកម្ម</th>
-                        <th>ស្ថានភាព</th>
-                        <th>តម្លៃសរុប</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#12345</td>
-                        <td>2023-05-15</td>
-                        <td>បោកនិងបត់</td>
-                        <td>
-                          <span class="badge bg-success">បានបញ្ចប់</span>
-                        </td>
-                        <td>$25.00</td>
-                      </tr>
-                      <tr>
-                        <td>#12346</td>
-                        <td>2023-05-10</td>
-                        <td>បោកស្ងួត</td>
-                        <td>
-                          <span class="badge bg-warning">កំពុងដំណើរការ</span>
-                        </td>
-                        <td>$40.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <ul class="nav nav-tabs mb-3" id="filterTabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-filter="all" href="#">All Orders (50)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="pending" href="#">Pending (10)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="completed" href="#">Completed (8)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="cancelled" href="#">Cancelled (22)</a>
+                  </li>
+                </ul>
+                <table id="purchasedTable" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th class="bg-primary">Item</th>
+                      <th class="bg-primary">Status</th>
+                      <th class="bg-primary">Total</th>
+                      <th class="bg-primary">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="body_table">
+                    <!-- Dynamic rows will be inserted here -->
+                  </tbody>
+                </table>
               </div>
               <div id="payment-methods" class="content-section d-none">
                 <h2 class="section-title text-primary">វិធីទូទាត់ប្រាក់</h2>
@@ -686,6 +771,25 @@
       </div>
     </div>
   </div>
+  <!-- Order Details Modal -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Item:</strong> <span id="modalItem"></span></p>
+          <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+          <p><strong>Total:</strong> <span id="modalTotal"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="../../../assets/js/footer.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -829,6 +933,11 @@
   <script type="module" src="../../../assets/js/search.js"></script>
   <script type="module" src="../../../assets/js/nearest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+  <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+  <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
 
 </body>
 

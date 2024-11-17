@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Purchased Data</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+  <table id="purchasedTable" class="display">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Payment Status</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="body_table">
+    </tbody>
+  </table>
+
+  <script>
+    function fetchPurchased() {
+      // Simulated static data
+      const staticData = {
+        data: [
+          {
+            transition_file: "https://via.placeholder.com/50",
+            service: { name: "Web Hosting" },
+            qty: 2,
+            payment_status: "Completed",
+            total: "$50",
+          },
+          {
+            transition_file: "https://via.placeholder.com/50",
+            service: { name: "Domain Purchase" },
+            qty: 1,
+            payment_status: "Pending",
+            total: "$15",
+          },
+          {
+            transition_file: "https://via.placeholder.com/50",
+            service: { name: "SSL Certificate" },
+            qty: 1,
+            payment_status: "Failed",
+            total: "$10",
+          },
+        ],
+      };
+
+      console.log(staticData); 
+
+      const tableBody = document.getElementById("body_table");
+      let tr = ""; 
+
+      staticData.data.forEach((e) => {
+        tr += `
+          <tr>
+           <td class="text-start">
+            <div class="d-flex align-items-center gap-2">
+              <div class="service_img shadow"> 
+                <img src="${e.transition_file}" width="50" alt="Service">
+              </div>
+              <div class="d-flex flex-column">
+                <span class="fw-medium text-start">${e.service.name}</span>
+                <span class="text-dark-emphasis">Qty: ${e.qty}</span>
+              </div>
+            </div>
+           </td>
+           <td class="text-start">
+              <span class="status-${(e.payment_status || 'pending').toLowerCase()}">
+                ${e.payment_status || 'Pending'}
+              </span>
+            </td>
+            <td class="text-start">${e.total}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#orderModal">
+                Order Details
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tableBody.innerHTML = tr;
+
+      // Initialize DataTable
+      $("#purchasedTable").DataTable({
+        destroy: true,
+        responsive: true,
+      });
+    }
+
+    fetchPurchased();
+  </script>
+</body>
+</html>
