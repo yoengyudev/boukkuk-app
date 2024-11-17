@@ -103,15 +103,44 @@ function fetchOrders() {
 // get detail 
 
 function PaymentDetails(orderId) {
-    const pending = document.getElementById('pending');
-    const approve = document.getElementById('approve');
-    const reject = document.getElementById('reject');
+    const approveBtn = document.getElementById("approveBtn");
+    const rejectBtn = document.getElementById("rejectBtn");
+    const upStateBtn = document.getElementById("upStateBtn");
+    const updPickupBtn = document.getElementById('updPickupBtn')
+
+    approveBtn.setAttribute("data-order-id", orderId);
+    rejectBtn.setAttribute("data-order-id", orderId);
+    upStateBtn.setAttribute("data-order-id", orderId);
+    updPickupBtn.setAttribute('data-order-id', orderId);
+
     const modalContent = document.getElementById('modalContent');
     const loader = document.getElementById('loader');
+    let pedding = document.getElementById('pedding');
+    let approve = document.getElementById('approve');
+    let reject = document.getElementById('reject');
+    const placed_order = document.getElementById('placedOrder');
+    const laundry_pickup = document.getElementById('laundryPickUp');
+    const in_process = document.getElementById('inProcess');
+    const pro_iron = document.getElementById('processToIron');
+    const ironing = document.getElementById('ironing');
+    const ready_delivery = document.getElementById('readyForDelivery');
+    const outForDelivery = document.getElementById('outForDelivery');
+    const delivered = document.getElementById('delivered');
+    let buyer_name = document.getElementById('buyer_name');
+    let buyer_email = document.getElementById('buyer_email');
+    let buyer_phone = document.getElementById('buyer_phone');
+    let buyer_loc = document.getElementById('buyer_loc');
+    let buyer_add = document.getElementById('buyer_add');
+    let ser_img = document.getElementById('ser_img');
+    let ser_dec = document.getElementById('ser_dec');
+    let ser_name = document.getElementById('ser_name');
+    let ser_categ = document.getElementById('ser_categ');
+    let ser_price = document.getElementById('ser_pri');
+    let ser_dis = document.getElementById('ser_dis');
+
 
     const url = `${baseUrl}/api/payments/${orderId}`;
     console.log(orderId, url);
-    
 
     loader.style.display = 'block';
     modalContent.style.display = 'none';
@@ -119,8 +148,8 @@ function PaymentDetails(orderId) {
     fetch(url, {
         method: 'GET',
         headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${AdminToken}`,
+            Accept: 'application/json',
+            Authorization: `Bearer ${AdminToken}`,
         },
     })
         .then((response) => {
@@ -131,116 +160,73 @@ function PaymentDetails(orderId) {
         })
         .then((data) => {
             console.log('Payment Details:', data);
+            // Preselect Payment Status
+            document.querySelectorAll("input[name='paymentStatus']").forEach(input => {
+                input.checked = parseInt(input.value) === data.data.payment_status;
+            });
+
+            // Preselect Service Status
+            document.querySelectorAll("input[name='serviceStatus']").forEach(input => {
+                input.checked = parseInt(input.value) === data.data.service_status;
+            });
+
 
             if (data.data.payment_status === 1) {
-                pending.checked = true;
+                pedding.checked = true;
             } else if (data.data.payment_status === 2) {
                 approve.checked = true;
             } else if (data.data.payment_status === 3) {
                 reject.checked = true;
             }
 
-            modalContent.innerHTML = `
-                        <div class="row g-5 mb-5 mt-3 px-4 pb-5">
-                        <!-- Payment Status Section -->
-                        <div class="col-12">
-                            <div class="card h-100 border-0">
-                                <div>
-                                    <h5 class="mb-4">Payment Status</h5>
-                                    <form action="" method="post">
-                                        <div class="d-flex gap-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="paymentStatus" id="pending" value="1">
-                                                <label class="form-check-label" for="pending">Pending</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="paymentStatus" id="approve" value="2">
-                                                <label class="form-check-label" for="approve">Approved</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="paymentStatus" id="reject" value="3">
-                                                <label class="form-check-label" for="reject">Rejected</label>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Service Status Section -->
-                        <div class="col-12">
-                            <div class="card h-100 border-0">
-                                <div>
-                                    <h5 class="mb-4">Service Status</h5>
-                                    <form action="" method="post">
-                                        <div class="d-flex gap-3 flex-wrap">
-                                            <!-- Dynamically generated service status options -->
-                                            ${generateServiceStatusOptions(data.service_status)}
-                                        </div>
-                                        <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Schedule Pickup Section -->
-                        <div class="col-6">
-                            <div class="card h-100 border-0">
-                                <h5 class="mb-4">Schedule Pickup</h5>
-                                <form action="" method="post">
-                                    <div>
-                                        <label for="datetime" class="form-label">Select Date and Time</label>
-                                        <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="${data.pickup_schedule || ''}">
-                                    </div>
-                                    <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
-                                </form>
-                            </div>
-                        </div>
-                    
-                        <!-- Buyer Information Section -->
-                        <div class="col-12 col-xl-6">
-                            <div class="card border-0">
-                                <h5 class="card-title">Buyer Information</h5>
-                                <hr style="color: #ddd;">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="${data.buyer.avatar}" alt="Buyer Avatar" class="avatar-img me-3">
-                                    <div>
-                                        <h6 class="mb-0">${data.buyer.name}</h6>
-                                        <small class="text-muted">${data.buyer.email}</small>
-                                    </div>
-                                </div>
-                                <p class="mb-1">Phone: ${data.buyer.phone}</p>
-                                <p class="mb-1">Location: ${data.buyer.latitude}, ${data.buyer.longitude}</p>
-                                <a href="${data.buyer.google_map_url}" target="_blank" class="btn btn-sm p-0 text-primary">
-                                    <i class="bi bi-geo-alt"></i> View on Google Maps
-                                </a>
-                            </div>
-                        </div>
-                    
-                        <!-- Service Information Section -->
-                        <div class="col-12 col-xl-6">
-                            <div class="card border-0">
-                                <h5 class="card-title">Service Information</h5>
-                                <hr style="color: #ddd;">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="${data.service.image}" alt="Service Image" class="card-img me-3">
-                                    <div>
-                                        <h6 class="mb-0">${data.service.name}</h6>
-                                        <p class="text-muted small">${data.service.description}</p>
-                                    </div>
-                                </div>
-                                <p class="mb-1">Category: ${data.service.category.name}</p>
-                                <p class="mb-1">Price: $${data.service.price}</p>
-                                <p class="mb-1">Discount: ${data.service.discount}%</p>
-                            </div>
-                        </div>
-                    </div>
+            if (data.data.service_status === 1) {
+                placed_order.checked = true;
+            } else if (data.data.service_status === 2) {
+                laundry_pickup.checked = true;
+            } else if (data.data.service_status === 3) {
+                in_process.checked = true;
+            } else if (data.data.service_status === 4) {
+                pro_iron.checked = true;
+            } else if (data.data.service_status === 5) {
+                ironing.checked = true;
+            } else if (data.data.service_status === 6) {
+                ready_delivery.checked = true;
+            } else if (data.data.service_status === 7) {
+                out_for_delivery.checked = true;
+            } else if (data.data.service_status === 8) {
+                delivered.checked = true;
+            }
 
-            `;
+            document.getElementById('datePickup').value = data.data.pickup_schedule;
+
+            buyer_img.src = data.data.buyer.avatar;
+            buyer_name.innerHTML = data.data.buyer.name;
+            buyer_email.innerHTML = data.data.buyer.email;
+            buyer_phone.innerHTML = data.data.buyer.phone;
+            buyer_loc.innerHTML = data.data.buyer.latitude + ',' + data.data.buyer.longitude;
+            buyer_add.href = data.data.buyer.google_map_url;
+
+            ser_img.src = data.data.service.image;
+            ser_dec.innerHTML = data.data.service.description;
+            ser_name.innerHTML = data.data.service.name;
+            ser_categ.innerHTML = data.data.service.category.name;
+            ser_price.innerHTML = '$' + data.data.service.price;
+            ser_dis.innerHTML = data.data.service.discount ? `$${data.data.service.discount}` : 'No Discount';
+
+            document.getElementById('order_id').innerHTML = data.data.id;
+            document.getElementById('order_Qty').innerHTML = data.data.qty;
+            document.getElementById('total_price').innerHTML = data.data.qty * data.data.price;
+            document.getElementById('order_date').innerHTML = new Date(data.data.created_at).toLocaleString();
+
+            document.getElementById('tran_img').src = data.data.transaction_file;
+            document.getElementById('tran_imgBlank').href = data.data.transaction_file;
+
+
+
         })
         .catch((error) => {
             console.error('Error fetching payment details:', error);
+            modalContent.innerHTML = `<p class="text-danger">Failed to fetch payment details. Please try again later.</p>`;
         })
         .finally(() => {
             loader.style.display = 'none';
@@ -249,3 +235,255 @@ function PaymentDetails(orderId) {
 }
 
 window.PaymentDetails = PaymentDetails;
+
+
+
+// approve================
+document.getElementById("approveBtn").addEventListener("click", function () {
+    const approveSpinner = document.getElementById("approveSpinner");
+    const approveText = document.getElementById("approveText");
+    const approveBtn = document.getElementById("approveBtn");
+
+    approveSpinner.style.display = "inline-block";
+    approveText.textContent = "Saving...";
+    approveBtn.disabled = true;
+
+    const orderId = approveBtn.getAttribute("data-order-id");
+
+    function approve(orderId) {
+        const url = `${baseUrl}/api/payments/approve/${orderId}`;
+        console.log(orderId, url);
+
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Bearer ${AdminToken}`,
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Payment Approved:", data);
+                alert("Payment has been successfully approved!");
+                $("#detailPayment").modal("hide");
+            })
+            .catch(error => {
+                console.error("Error approving payment:", error);
+                alert("Failed to approve payment. Please try again later.");
+            })
+            .finally(() => {
+                // Reset button state
+                approveText.textContent = "Save";
+                approveSpinner.style.display = "none";
+                approveBtn.disabled = false;
+            });
+    }
+    approve(orderId);
+});
+
+// Reject ===================================
+document.getElementById("rejectBtn").addEventListener("click", function () {
+    const approveSpinner = document.getElementById("rejectSpinner");
+    const approveText = document.getElementById("rejectText");
+    const approveBtn = document.getElementById("rejectBtn");
+
+    approveSpinner.style.display = "inline-block";
+    approveText.textContent = "Rejecting...";
+    approveBtn.disabled = true;
+
+    const orderId = rejectBtn.getAttribute("data-order-id");
+
+    function reject(orderId) {
+        const url = `${baseUrl}/api/payments/reject/${orderId}`;
+        console.log(orderId, url);
+
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Bearer ${AdminToken}`,
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Payment Reject:", data);
+                alert("Payment has been successfully approved!");
+                $("#detailPayment").modal("hide");
+            })
+            .catch(error => {
+                console.error("Error approving payment:", error);
+                alert("Failed to approve payment. Please try again later.");
+            })
+            .finally(() => {
+                // Reset button state
+                approveText.textContent = "Reject";
+                approveSpinner.style.display = "none";
+                approveBtn.disabled = false;
+            });
+    }
+    reject(orderId);
+});
+
+// update service status
+document.getElementById("upStateBtn").addEventListener("click", function () {
+    const approveSpinner = document.getElementById("upStateSpinner");
+    const approveText = document.getElementById("upStateText");
+    const approveBtn = document.getElementById("upStateBtn");
+
+    const selectedStatus = document.querySelector("input[name='serviceStatus']:checked");
+
+    if (!selectedStatus) {
+        alert("Please select a service status before saving.");
+        return;
+    }
+
+    const statusValue = selectedStatus.value;
+
+    approveSpinner.style.display = "inline-block";
+    approveText.textContent = "Updating...";
+    approveBtn.disabled = true;
+
+    const orderId = approveBtn.getAttribute("data-order-id");
+    console.log("Updating service status for Order ID:", orderId);
+
+    function updSttService(orderId) {
+        const url = `${baseUrl}/api/payments/set-status/${orderId}`;
+        console.log("PUT request to URL:", url);
+
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Bearer ${AdminToken}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ service_status: statusValue }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Service Status Updated:", data);
+                if (data.result) {
+                    alert(`Service status updated successfully for Order ID: ${orderId}`);
+                    $("#detailPayment").modal("hide"); // Close the modal
+                } else {
+                    alert(data.message || "Failed to update service status.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error updating service status:", error);
+                alert("Failed to update service status. Please try again later.");
+            })
+            .finally(() => {
+                // Reset button state
+                approveText.textContent = "Update service status";
+                approveSpinner.style.display = "none";
+                approveBtn.disabled = false;
+            });
+    }
+    updSttService(orderId);
+});
+
+
+// update pickup schedule 
+
+document.getElementById("updPickupBtn").addEventListener("click", function () {
+    const approveSpinner = document.getElementById("upPickupSpinner");
+    const approveText = document.getElementById("upPickupText");
+    const approveBtn = document.getElementById("updPickupBtn");
+
+    // Fetch the selected date and time from the input
+    const pickupDateInput = document.getElementById("datePickup").value;
+
+    if (!pickupDateInput) {
+        alert("Please select a valid date and time for the pickup schedule.");
+        return;
+    }
+
+    // Custom function to format date as "YYYY-MM-DD HH:MM:SS"
+    function formatDateToApi(inputDate) {
+        const date = new Date(inputDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const seconds = String(date.getSeconds()).padStart(2, "0");
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    const pickupDate = formatDateToApi(pickupDateInput);
+    console.log("Formatted pickup date:", pickupDate);
+
+    approveSpinner.style.display = "inline-block";
+    approveText.textContent = "Updating...";
+    approveBtn.disabled = true;
+
+    const orderId = approveBtn.getAttribute("data-order-id");
+    console.log("Updating pickup schedule for Order ID:", orderId);
+
+    function upPickUpShe(orderId) {
+        const url = `${baseUrl}/api/payments/set-pickup-schedule/${orderId}`;
+        console.log("PUT request to URL:", url);
+
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Bearer ${AdminToken}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ pickup_schedule: pickupDate }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    // Attempt to read the response to get more details
+                    return response.json().then((errData) => {
+                        throw new Error(
+                            `HTTP error! status: ${response.status} - ${
+                                errData.message || "Unknown error"
+                            }`
+                        );
+                    });
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Pickup status updated:", data);
+                if (data.result) {
+                    alert(`Pickup schedule updated successfully for Order ID: ${orderId}`);
+                    $("#detailPayment").modal("hide");
+                } else {
+                    alert(data.message || "Failed to update pickup schedule.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error updating pickup schedule:", error);
+                alert("Failed to update pickup schedule. Please try again later.");
+            })
+            .finally(() => {
+                approveText.textContent = "Update Pickup Schedule";
+                approveSpinner.style.display = "none";
+                approveBtn.disabled = false;
+            });
+    }
+    upPickUpShe(orderId);
+});
+
+
+
