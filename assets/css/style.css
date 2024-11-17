@@ -1324,3 +1324,47 @@ td {
 .wishlist-btn i {
   font-size: 1.2rem;
 }
+
+/* get order */
+.service_img,
+.profile_cus{
+  width: 40px;
+  height: 40px;
+  border-radius:5px;
+  background-color:#4762e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.service_img img,
+.profile_cus img{
+  object-fit: cover;
+}
+
+.profile_cus{
+  border-radius: 50%;
+}
+
+#getorder_table tbody tr {
+  vertical-align: middle; 
+}
+
+.s_img img {
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.transaction img {
+  width: 300px;
+}
+/* end get order */
