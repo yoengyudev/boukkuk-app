@@ -3,9 +3,9 @@ import { AdminToken, UserToken } from "./tokens.js";
 
 function wishlist() {
   if (UserToken) {
-    location.href = "src/views/page/wishlist.html";
+    location.href = "./src/views/auth/wishlist.html";
   } else {
-    location.href = "src/views/auth/login.html";
+    location.href = "../../src/views/auth/login.html";
   }
 }
 
@@ -16,8 +16,7 @@ let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
   if (!UserToken) {
-    location.href = "src/views/auth/login.html";
-    return;
+    location.href = '../../src/views/auth/login.html';
   }
 
   fetch(`${baseUrl}/api/wishlists`, {
@@ -162,6 +161,5 @@ addCategoryId.addEventListener("change", () => {
 // Initialize categories and fetch all items initially
 fetchCategories();
 getCategory(); 
-
 
 
