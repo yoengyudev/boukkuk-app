@@ -568,7 +568,7 @@ function filterServices(categoryId, element, event) {
     }
   });
 }
-
+window.filterServices = filterServices;
 // Synchronize input-min and input-max with range sliders
 document.querySelector(".range-min").addEventListener("input", function () {
   document.querySelector(".input-min").value = this.value;

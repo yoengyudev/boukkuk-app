@@ -1,4 +1,5 @@
 import { baseUrl } from "./baseUrl.js";
+import { UserToken } from "./tokens.js";
 let currentPage = 1;
 const perPage = 12;
 let paginationData = {};
@@ -196,7 +197,7 @@ function removeItem(id) {
       alert("Failed to remove item from wishlist. Please try again.");
     });
 }
-
+window.removeItem = removeItem;
 // Add this function to ensure updateWishlistCounter is available in this context
 function updateWishlistCounter() {
   if (!UserToken) return;

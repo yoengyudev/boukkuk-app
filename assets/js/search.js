@@ -1,4 +1,4 @@
-import { baseUrl } from './baseUrl.js';
+import { baseUrl } from "./baseUrl.js";
 
 function handleKeyDown(event) {
   if (event.key === "Enter") {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let querySearch = sessionStorage.getItem("searchQuery");
 
   if (querySearch) {
-    document.getElementById('animation-overlay').style.display = 'block';
+    document.getElementById("animation-overlay").style.display = "block";
 
     fetch(
       `${baseUrl}/api/services?page=1&per_page=20&search=${querySearch}&category=&price_start=&price_end=&creator=`
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ).innerHTML = `<h3 class='text-danger'>Failed to load data. Please try again later.</h3>`;
       })
       .finally(() => {
-        document.getElementById('animation-overlay').style.display = 'none';
+        document.getElementById("animation-overlay").style.display = "none";
       });
   }
 });
@@ -103,12 +103,14 @@ function store(event) {
 
 window.store = store;
 
-
 function wishlistCard(serviceId, heartButton) {
-  const UserToken = localStorage.getItem('UserToken');
-  
+  const UserToken = localStorage.getItem("UserToken");
+
   if (!UserToken) {
     location.href = "../auth/login.html";
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
     return;
   }
 
@@ -140,7 +142,7 @@ function wishlistCard(serviceId, heartButton) {
         heartIcon.classList.add("bi-heart");
       }
       // Update the wishlist counter if you have that functionality
-      if (typeof updateWishlistCounter === 'function') {
+      if (typeof updateWishlistCounter === "function") {
         updateWishlistCounter();
       }
     })

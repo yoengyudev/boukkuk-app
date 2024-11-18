@@ -5,18 +5,21 @@ function wishlist() {
   if (UserToken) {
     location.href = "src/views/page/wishlist.html";
   } else {
-    location.href = "src/views/auth/login.html";
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
   }
 }
 
 window.wishlist = wishlist;
 
-
 let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
   if (!UserToken) {
-    location.href = "src/views/auth/login.html";
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
     return;
   }
 
@@ -38,6 +41,8 @@ function wishlistCard(serviceId, heartButton) {
       return response.json();
     })
     .then((data) => {
+      console.log(data);
+
       // Toggle heart icon
       const heartIcon = heartButton.querySelector("i");
       if (heartIcon.classList.contains("bi-heart")) {
@@ -64,9 +69,10 @@ function getCategory(value = 0) {
   console.log("Selected Category:", value);
   console.log(typeof value);
   // Update the URL based on the selected category; if "All" is selected, omit the category filter
-  const url = value === 0
-    ? `${baseUrl}/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
-    : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
+  const url =
+    value === 0
+      ? `${baseUrl}/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
+      : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
 
   fetch(url)
     .then((res) => res.json())
@@ -108,17 +114,17 @@ function getCategory(value = 0) {
           </div>`;
       });
 
-      document.querySelector('#store-card').innerHTML = col_3;
-      document.getElementById('animation-overlay').style.display = 'none';
+      document.querySelector("#store-card").innerHTML = col_3;
+      document.getElementById("animation-overlay").style.display = "none";
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
 
-function getStore(creatorID,creatorAvatar){
+function getStore(creatorID, creatorAvatar) {
   let creator_ID = localStorage.setItem("creator_id", creatorID);
-  console.log(localStorage.getItem('creator_id'));
+  console.log(localStorage.getItem("creator_id"));
   let profile_img = localStorage.setItem("store_profile", creatorAvatar);
   const currentPath = window.location.href;
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
@@ -161,7 +167,4 @@ addCategoryId.addEventListener("change", () => {
 
 // Initialize categories and fetch all items initially
 fetchCategories();
-getCategory(); 
-
-
-
+getCategory();
