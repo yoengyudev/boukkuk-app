@@ -4,7 +4,7 @@ import { baseUrl } from './baseUrl.js';
 document.addEventListener('DOMContentLoaded', fetchOrders);
 
 function fetchOrders() {
-    const url = `${baseUrl}/api/profile/purchased?page=1&per_page=20&payment_status=`;
+    const url = `${baseUrl}/api/profile/payment-check?page=1&per_page=20&payment_status=`;
 
     fetch(url, {
         method: 'GET',

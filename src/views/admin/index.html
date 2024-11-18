@@ -36,7 +36,7 @@
                 <li class="active">
                     <a href="index.html">
                         <span class="icon">
-                            <i class="bi bi-grid"></i></h1>
+                            <i class="bi bi-grid"></i>
                         </span>
                         <span class="title">Dashboard</span>
                     </a>
@@ -151,21 +151,21 @@
             <!-- ================ Order Details List ================= -->
             <div class="details">
                 <div class="recentOrders">
-                    <div class="cardHeader p-0 m-0">
+                    <div class="cardHeader">
                         <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
+                        <a href="page/getorder.html" class="btn">View All</a>
                     </div>
-                    <table class="p-0 m-0">
-                        <thead class="p-0 m-0">
+                    <table>
+                        <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Total</td>
-                                <td>Payment</td>
+                                <td class="text-start">Total</td>
+                                <td class="text-start">Payment</td>
                                 <td>Status</td>
                             </tr>
                         </thead>
 
-                        <tbody id="order_table">
+                        <tbody id="recentOrder">
 
                         </tbody>
                     </table>
@@ -175,86 +175,8 @@
                         <h2>Recent Customers</h2>
                     </div>
 
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img
-                                        src="/assets/image/service-provider/profile-service-provider.jpeg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
+                    <table id="getRecentUser">
+                        
                     </table>
                 </div>
             </div>
@@ -276,7 +198,7 @@
     </script>
     <script type="module" src="../../../assets/js/sidebar.js"></script>
     <script type="module" src="../../../assets/js/logout.js"></script>
-    <!-- <script type="module" src="../../../assets/js/dashboard.js"></script> -->
+    <script type="module" src="../../../assets/js/dashboard.js"></script>
 </body>
 
 </html>
