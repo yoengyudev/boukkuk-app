@@ -1,10 +1,9 @@
 const UserToken = localStorage.getItem("UserToken");
-import { baseUrl } from './baseUrl.js';
+import { baseUrl } from "./baseUrl.js";
 let signup = document.getElementById("signup-list");
 let login = document.getElementById("login-list");
 let logout_pro = document.getElementById("logout-list");
 let proSetting = document.getElementById("pro-setting");
-
 
 console.log(UserToken);
 
@@ -26,24 +25,25 @@ function updateWishlistCounter() {
 
   fetch(`${baseUrl}/api/profile/wishlists?page=1&per_page=100`, {
     headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + UserToken
-    }
+      Accept: "application/json",
+      Authorization: "Bearer " + UserToken,
+    },
   })
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       wishlistCount = data.paginate.total;
-      const counter = document.querySelector('.wishlist-counter');
+      const counter = document.querySelector(".wishlist-counter");
       if (counter) {
-        counter.classList.add('updated');
+        counter.classList.add("updated");
         counter.textContent = wishlistCount;
-        counter.style.display = wishlistCount > 0 ? 'flex' : 'none';
+        counter.style.display = wishlistCount > 0 ? "flex" : "none";
 
         setTimeout(() => {
-          counter.classList.remove('updated');
+          counter.classList.remove("updated");
         }, 200);
       }
     })
-    .catch(error => console.error('Error fetching wishlist count:', error));
+    .catch((error) => console.error("Error fetching wishlist count:", error));
 }
 updateWishlistCounter();
+window.updateWishlistCounter = updateWishlistCounter;

@@ -1,4 +1,4 @@
-import { baseUrl } from './baseUrl.js';
+import { baseUrl } from "./baseUrl.js";
 let currentPage = 1;
 const perPage = 12;
 let paginationData = {};
@@ -12,15 +12,12 @@ function fetchWishlistItems(page = 1) {
 </div>
 `;
 
-  fetch(
-    `${baseUrl}/api/profile/wishlists?page=${page}&per_page=${perPage}`,
-    {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + UserToken,
-      },
-    }
-  )
+  fetch(`${baseUrl}/api/profile/wishlists?page=${page}&per_page=${perPage}`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + UserToken,
+    },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch wishlist items");
@@ -104,7 +101,6 @@ function renderWishlist(items) {
     wishlistContainer.appendChild(itemElement);
   });
 }
-
 function renderPagination() {
   const paginationElement = document.getElementById("pagination");
   const paginationControls = document.querySelector(".pagination-controls");
@@ -126,8 +122,9 @@ function renderPagination() {
   // Previous button
   paginationHTML += `
     <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
-      <a class="page-link" href="#" onclick="changePage(${currentPage - 1
-    })" aria-label="Previous">
+      <a class="page-link" href="#" onclick="changePage(${
+        currentPage - 1
+      })" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -145,8 +142,9 @@ function renderPagination() {
   // Next button
   paginationHTML += `
     <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
-      <a class="page-link" href="#" onclick="changePage(${currentPage + 1
-    })" aria-label="Next">
+      <a class="page-link" href="#" onclick="changePage(${
+        currentPage + 1
+      })" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -203,15 +201,12 @@ function removeItem(id) {
 function updateWishlistCounter() {
   if (!UserToken) return;
 
-  fetch(
-    `${baseUrl}/api/profile/wishlists?page=1&per_page=100`,
-    {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + UserToken,
-      },
-    }
-  )
+  fetch(`${baseUrl}/api/profile/wishlists?page=1&per_page=100`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + UserToken,
+    },
+  })
     .then((response) => response.json())
     .then((data) => {
       const wishlistCount = data.paginate.total;

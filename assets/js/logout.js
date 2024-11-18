@@ -25,4 +25,23 @@ if (logoutAdmin) {
     });
 }
 
+if (logout) {
+    logout.addEventListener('click', () => {
+        localStorage.removeItem('UserToken');
+        fetch(`${baseUrl}/api/logout`, {
+            method: 'DELETE', 
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: null
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            isAuthenticated = false;
+            window.location.reload();
+        })
+    });
+}
+
 // ============================ end of logout ============================
