@@ -19,7 +19,7 @@ function DisplayServices() {
   console.log(serviceId);
 
   fetch(
-    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
+    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=` +
       serviceId,
     {
       method: "GET",

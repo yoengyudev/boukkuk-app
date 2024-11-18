@@ -105,8 +105,8 @@
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers" id="all_service"></div>
+                        <div class="cardName">Services</div>
                     </div>
 
                     <div class="iconBx">
@@ -116,8 +116,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
+                        <div class="numbers" id="booking"></div>
+                        <div class="cardName">Booking</div>
                     </div>
 
                     <div class="iconBx">
@@ -127,8 +127,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="numbers" id="customers"></div>
+                        <div class="cardName">Customers</div>
                     </div>
 
                     <div class="iconBx">
@@ -138,7 +138,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">$7,842</div>
+                        <div class="numbers" id="total">$</div>
                         <div class="cardName">Earning</div>
                     </div>
 
@@ -151,77 +151,22 @@
             <!-- ================ Order Details List ================= -->
             <div class="details">
                 <div class="recentOrders">
-                    <div class="cardHeader">
+                    <div class="cardHeader p-0 m-0">
                         <h2>Recent Orders</h2>
                         <a href="#" class="btn">View All</a>
                     </div>
-
-                    <table>
-                        <thead>
+                    <table class="p-0 m-0">
+                        <thead class="p-0 m-0">
                             <tr>
                                 <td>Name</td>
-                                <td>Price</td>
+                                <td>Total</td>
                                 <td>Payment</td>
                                 <td>Status</td>
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
+                        <tbody id="order_table">
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -331,6 +276,7 @@
     </script>
     <script type="module" src="../../../assets/js/sidebar.js"></script>
     <script type="module" src="../../../assets/js/logout.js"></script>
+    <!-- <script type="module" src="../../../assets/js/dashboard.js"></script> -->
 </body>
 
 </html>
