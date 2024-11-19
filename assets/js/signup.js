@@ -1,4 +1,3 @@
-import { baseUrl } from './baseUrl.js';
 // ==========================> hidden and Open eye in input box ======================
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById("pass");
@@ -131,7 +130,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     };
 
     // Send the request
-    fetch(`${baseUrl}/api/register`, {
+    fetch('https://mps10.chandalen.dev/api/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -147,7 +146,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     })
     .then(json => {
         if (json.data && json.data.token) {
-            localStorage.setItem('token', json.data.token);
+            localStorage.setItem('UserToken', json.data.token);
             location.href = '../../../index.html';
         } else {
             throw new Error('Token not found in response');

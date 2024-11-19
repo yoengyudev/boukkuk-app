@@ -20,12 +20,12 @@ toggle.onclick = function () {
 let dataTable;
 
 function DisplayServices() {
-  let serviceId = localStorage.getItem("providerId");
-  console.log(serviceId);
+  let ProviderID = localStorage.getItem("ProviderID");
+  console.log("Hello " + ProviderID);
 
   fetch(
-    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
-      serviceId,
+    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=` +
+    ProviderID,
     {
       method: "GET",
       headers: {
@@ -37,6 +37,7 @@ function DisplayServices() {
     .then((res) => res.json())
     .then((data) => {
       const services = data.data;
+      console.log("result " + data.data);
 
       if ($.fn.DataTable.isDataTable("#servicesTable")) {
         $("#servicesTable").DataTable().destroy();
@@ -65,8 +66,8 @@ function DisplayServices() {
               return `
                   <div class="action-buttons">
                     <button  data-bs-toggle="modal" data-bs-target="#detailModal" class="btn btn-info btn-sm" onclick="viewDetails(${JSON.stringify(
-                      row
-                    ).replace(/"/g, "&quot;")})">
+                row
+              ).replace(/"/g, "&quot;")})">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editService(this)">
@@ -139,7 +140,9 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
+
 window.viewDetails = viewDetails;
+
 // ===============================
 
 // Validation functions using regex
@@ -186,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add profile dropdown functionality
   const profile = document.querySelector(".profile");
   const menu = document.querySelector(".menu");
-  
+
   if (profile && menu) {
     // Toggle menu on profile click
     profile.addEventListener("click", function (e) {
@@ -218,23 +221,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Use admin modal content for admin users
       const modalConfig = isAdmin ? adminModalContent : modalContent;
-      
+
       modalTitle.textContent = modalConfig[type].title;
       modalBody.innerHTML = modalConfig[type].content;
 
-      // Initialize form handlers
-      if (type === "information") {
-        setTimeout(() => {
-          isAdmin ? initAdminInformationForm() : initInformationForm();
-        }, 0);
-      } else {
-        initPasswordForm();
-      }
+      localStorage.setItem("category_id", categoryId);
+      formData.set("category_id", categoryId);
 
-      // Show modal
-      const profileModal = new bootstrap.Modal(document.getElementById("profileModal"));
-      profileModal.show();
-      menu.classList.remove("active");
+      fetch(`${baseUrl}/api/services`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + AdminToken,
+          Accept: "application/json",
+        },
+        body: formData,
+      })
+        .then(res => {
+          if (!res.ok) {
+            return res.json().then(errorData => {
+              throw new Error(JSON.stringify(errorData));
+            });
+          }
+          // Refresh the page after closing the modal
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+          return res.json();
+        })
+        .then(data => {
+          // Your existing success handling code
+          DisplayServices();
+          form.reset();
+          bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
+        })
+        .catch(error => {
+          console.error("Error adding service:", error);
+          alert("Failed to add service. Please try again.");
+        });
     });
   }
 });
@@ -270,7 +293,9 @@ function editService(button) {
     document.getElementById("fileName").textContent = "No file chosen";
   }
 }
+
 window.editService = editService;
+
 document.getElementById("editForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
@@ -330,8 +355,10 @@ function deleteService(button) {
   }
 }
 
-function previewServiceImage(event) {
-  const imagePreview = document.getElementById("addImagePreview");
+window.deleteService = deleteService;
+
+function previewImage(event) {
+  const imagePreview = document.getElementById("addImagePreview"); // Update to new ID
   const file = event.target.files[0];
 
   if (file) {
@@ -347,12 +374,18 @@ function previewServiceImage(event) {
   }
 }
 
+window.previewImage = previewImage;
+
 function displayFileName(event) {
   const fileName = event.target.files[0]
     ? event.target.files[0].name
     : "No file chosen";
   document.getElementById("addFileName").textContent = fileName;
 }
+
+window.displayFileName = displayFileName;
+
+
 
 function fetchCategories() {
   fetch(`${baseUrl}/api/categories`)

@@ -18,8 +18,6 @@ function togglePasswordVisibility() {
 
 window.togglePasswordVisibility = togglePasswordVisibility;
 
-
-
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -43,7 +41,7 @@ login.addEventListener("submit", (event) => {
     err_emaillge.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលមិនត្រឹមត្រូវ!`;
     isValid = false;
   } else {
-    err_emaillge.style.display = 'none';
+    err_emaillge.innerHTML = '';
   }
 
   // Check if password is empty
@@ -51,7 +49,7 @@ login.addEventListener("submit", (event) => {
     err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> សូមបញ្ចូលពាក្យសម្ងាត់`;
     isValid = false;
   } else {
-    err_passlg.style.display = 'none';
+    err_passlg.innerHTML = '';
   }
 
   if (!isValid) {
@@ -77,27 +75,33 @@ login.addEventListener("submit", (event) => {
     },
     body: formdata,
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Invalid email or password');
+      }
+      return res.json();
+    })
     .then(json => {
       console.log(json);
-      let token = json.data.token;
-      let roleid = json.data.roles[0].id;
+      const token = json.data.token;
+      const roleid = json.data.roles[0].id;
       localStorage.setItem('UserRole', roleid);
+
+      const currentPath = window.location.href;
+      const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
 
       if (roleid == 1) {
         localStorage.setItem('UserToken', token);
-        const currentPath = window.location.href;
-        const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
         location.href = `${basePath}index.html`;
       }
 
       if (roleid == 2 || roleid == 3) {
+        if(roleid == 3) {
+          localStorage.setItem('ProviderID', json.data.id);
+        }
         localStorage.setItem('AdminToken', token);
-        const currentPath = window.location.href;
-        const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
         location.href = `${basePath}src/views/admin/index.html`;
       }
-      return res.json();
     })
     .catch(error => {
       err_passlg.innerHTML = `<i class="bi bi-exclamation-circle"></i> អុីម៉ែលឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ`;

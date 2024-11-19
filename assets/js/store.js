@@ -1,4 +1,5 @@
 import { baseUrl } from './baseUrl.js';
+import { UserToken } from './tokens.js'
 document.addEventListener("DOMContentLoaded", function () {
   const serviceCards = document.querySelectorAll(".service-card");
   const cartItemsDiv = document.getElementById("cart-items");
@@ -310,8 +311,7 @@ $${item.price.toFixed(2)}
 
     setLoadingState(this, true);
 
-    const token = localStorage.getItem('token');
-    if (!token) {
+    if (!UserToken) {
       alert('សូមធ្វើការ Login ជាមុនសិន!');
       window.location.href = 'login.html';
       return;
@@ -326,7 +326,7 @@ $${item.price.toFixed(2)}
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${UserToken}`
       },
       body: JSON.stringify(requestData)
     })

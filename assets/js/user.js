@@ -380,6 +380,8 @@ function getUserForUpdate(userId) {
     );
 }
 
+window.getUserForUpdate = getUserForUpdate;
+
 // ========================Update code ========================
 
 document.getElementById("updateForm").addEventListener("submit", function (e) {
@@ -562,6 +564,8 @@ function toggleUserStatus(element, userId) {
     });
 }
 
+window.toggleUserStatus = toggleUserStatus;
+
 window.onload = function () {
   document.querySelectorAll(".user-toggle-btn").forEach((element) => {
     const userId = element.getAttribute("data-user-id");
@@ -594,4 +598,5 @@ function promoteUser(roleId, userId) {
       alert("An error occurred. Please try again.");
     });
 }
+
 window.promoteUser = promoteUser;

@@ -3,11 +3,15 @@ import { AdminToken, UserToken } from "./tokens.js";
 
 function wishlist() {
   if (UserToken) {
-    location.href = "src/views/page/wishlist.html";
+    location.href = "./src/views/auth/wishlist.html";
   } else {
+<<<<<<< HEAD
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
     location.href = `${basePath}src/views/auth/login.html`;
+=======
+    location.href = "../../src/views/auth/login.html";
+>>>>>>> 0991a715866c50eabce3a48c23c49d3e9e92ac28
   }
 }
 
@@ -17,10 +21,14 @@ let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
   if (!UserToken) {
+<<<<<<< HEAD
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
     location.href = `${basePath}src/views/auth/login.html`;
     return;
+=======
+    location.href = '../../src/views/auth/login.html';
+>>>>>>> 0991a715866c50eabce3a48c23c49d3e9e92ac28
   }
 
   fetch(`${baseUrl}/api/wishlists`, {
@@ -167,4 +175,10 @@ addCategoryId.addEventListener("change", () => {
 
 // Initialize categories and fetch all items initially
 fetchCategories();
+<<<<<<< HEAD
 getCategory();
+=======
+getCategory(); 
+
+
+>>>>>>> 0991a715866c50eabce3a48c23c49d3e9e92ac28

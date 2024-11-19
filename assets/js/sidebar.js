@@ -1,6 +1,7 @@
 let user_item = document.querySelector('.user-item');
 let category_item = document.querySelector('.category-item');
 let service_item = document.querySelector('.service-item');
+let order_item = document.querySelector('.order-item');
 let roleid = localStorage.getItem('UserRole');
 import { AdminToken, UserToken } from './tokens.js';
 console.log(roleid);
@@ -17,4 +18,5 @@ if (roleid == 3) {
     category_item.style.display = 'none';
 } else if (roleid == 2) {
     service_item.style.display = 'none';
+    order_item.style.display = 'none';
 }
