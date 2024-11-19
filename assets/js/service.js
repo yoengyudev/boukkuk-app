@@ -1,6 +1,11 @@
+import { AdminToken, UserToken } from "./tokens.js";
+import { baseUrl } from "./baseUrl.js";
+import { modalContent, togglePasswordVisibility, initInformationForm, adminModalContent, initAdminInformationForm, initPasswordForm } from './updateUserInfo.js';
 
-import { AdminToken, UserToken } from './tokens.js';
-import { baseUrl } from './baseUrl.js';
+// Make togglePasswordVisibility available globally
+window.togglePasswordVisibility = togglePasswordVisibility;
+window.initInformationForm = initInformationForm;
+
 // Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
@@ -33,7 +38,7 @@ function DisplayServices() {
     .then((data) => {
       const services = data.data;
       console.log("result " + data.data);
-      
+
       if ($.fn.DataTable.isDataTable("#servicesTable")) {
         $("#servicesTable").DataTable().destroy();
       }
@@ -144,7 +149,8 @@ window.viewDetails = viewDetails;
 const validators = {
   name: {
     regex: /^.{3,50}$/,
-    message: "Name must be 3-50 characters long and contain only letters, numbers and spaces"
+    message:
+      "Name must be 3-50 characters long and contain only letters, numbers and spaces",
   },
   description: {
     regex: /^.{5,500}$/,
@@ -178,88 +184,46 @@ const validateField = (name, value) => {
 
 // Main form validation and submission handler
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("addServiceForm");
-  const inputs = form.querySelectorAll("input, textarea, select");
+  DisplayServices();
 
-  // Real-time validation
-  inputs.forEach((input) => {
-    input.addEventListener("input", function () {
-      const isValid = validateField(this.name, this.value);
+  // Add profile dropdown functionality
+  const profile = document.querySelector(".profile");
+  const menu = document.querySelector(".menu");
 
-      if (!isValid) {
-        this.classList.add("is-invalid");
-        this.classList.remove("is-valid");
-
-        // Show error message
-        const feedbackDiv = this.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
-          feedbackDiv.textContent =
-            validators[this.name]?.message || "This field is required";
-        }
-      } else {
-        this.classList.remove("is-invalid");
-        this.classList.add("is-valid");
-      }
+  if (profile && menu) {
+    // Toggle menu on profile click
+    profile.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent event bubbling
+      menu.classList.toggle("active");
     });
-  });
 
-  // Form submission handler
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let isValid = true;
-    const formData = new FormData(form);
-
-    // Validate all fields before submission
-    inputs.forEach((input) => {
-      const value = formData.get(input.name);
-      if (!validateField(input.name, value)) {
-        isValid = false;
-        input.classList.add("is-invalid");
-
-        // Show error message
-        const feedbackDiv = input.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
-          feedbackDiv.textContent =
-            validators[input.name]?.message || "This field is required";
-        }
+    // Close menu when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!profile.contains(e.target)) {
+        menu.classList.remove("active");
       }
     });
 
-    // File validation
-    const imageInput = document.getElementById("addImage");
-    if (imageInput.files.length > 0) {
-      const file = imageInput.files[0];
-      const validTypes = ["image/jpeg", "image/png", "image/gif"];
-      const maxSize = 5 * 1024 * 1024; // 5MB
+    // Handle menu item clicks
+    menu.addEventListener("click", function (e) {
+      const link = e.target.closest("a");
+      if (!link) return;
 
-      if (!validTypes.includes(file.type)) {
-        isValid = false;
-        imageInput.classList.add("is-invalid");
-        const feedbackDiv = imageInput.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
-          feedbackDiv.textContent =
-            "Please upload a valid image file (JPEG, PNG, or GIF)";
-        }
-      } else if (file.size > maxSize) {
-        isValid = false;
-        imageInput.classList.add("is-invalid");
-        const feedbackDiv = imageInput.nextElementSibling;
-        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
-          feedbackDiv.textContent = "Image size should be less than 5MB";
-        }
-      }
-    }
+      e.preventDefault();
+      const type = link.textContent.trim().toLowerCase().includes("password")
+        ? "password"
+        : "information";
 
-    if (isValid) {
-      // If all validations pass, proceed with your existing addService logic
-      const formData = new FormData(form);
-      const categoryId = parseInt(formData.get("category_id"), 10);
+      // Update modal content
+      const modalTitle = document.getElementById("profileModalTitle");
+      const modalBody = document.querySelector("#profileModal .modal-body");
+      const isAdmin = localStorage.getItem('UserRole') === '2';
 
-      if (!categoryId || isNaN(categoryId)) {
-        alert("Please enter a valid Category ID.");
-        return;
-      }
+      // Use admin modal content for admin users
+      const modalConfig = isAdmin ? adminModalContent : modalContent;
+
+      modalTitle.textContent = modalConfig[type].title;
+      modalBody.innerHTML = modalConfig[type].content;
 
       localStorage.setItem("category_id", categoryId);
       formData.set("category_id", categoryId);
@@ -294,8 +258,8 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("Error adding service:", error);
           alert("Failed to add service. Please try again.");
         });
-    }
-  });
+    });
+  }
 });
 
 // ========================
@@ -322,9 +286,7 @@ function editService(button) {
   if (data.image) {
     document.getElementById("imagePreview").src = data.image;
     document.getElementById("imagePreview").style.display = "block";
-    document.getElementById("fileName").textContent = data.image
-      .split("/")
-      .pop();
+    document.getElementById("fileName").textContent = "";
   } else {
     document.getElementById("imagePreview").src = "";
     document.getElementById("imagePreview").style.display = "none";
@@ -453,3 +415,4 @@ $(document).ready(function () {
   fetchCategories();
   DisplayServices();
 });
+

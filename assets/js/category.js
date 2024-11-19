@@ -1,6 +1,30 @@
-let list = document.querySelectorAll(".navigation li");
 import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
+import { 
+    modalContent, 
+    togglePasswordVisibility, 
+    initInformationForm, 
+    adminModalContent, 
+    initAdminInformationForm, 
+    initPasswordForm 
+} from './updateUserInfo.js';
+
+let list = document.querySelectorAll(".navigation li");
+
+// Add these lines near the top of your category.js file, after the imports
+window.togglePasswordVisibility = togglePasswordVisibility;
+window.previewImage = function(input) {
+    const preview = document.getElementById('avatarPreview');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
 //get categories
 function fetchCategories() {
   fetch(`${baseUrl}/api/categories`, {
@@ -166,11 +190,10 @@ function activeLink() {
 
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
-let toggle = document.querySelector(".toggle");
-let navigation = document.querySelector(".navigation");
-let main = document.querySelector(".main");
-
-toggle.onclick = function () {
-  navigation.classList.toggle("active");
-  main.classList.toggle("active");
-};
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Category page loaded");
+    const profile = document.querySelector(".global-profile-menu");
+    const menu = profile?.querySelector(".dropdown-menu");
+    console.log("Profile element:", profile);
+    console.log("Menu element:", menu);
+});
