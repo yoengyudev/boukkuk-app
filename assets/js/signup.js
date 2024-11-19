@@ -146,7 +146,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     })
     .then(json => {
         if (json.data && json.data.token) {
-            localStorage.setItem('token', json.data.token);
+            localStorage.setItem('UserToken', json.data.token);
             location.href = '../../../index.html';
         } else {
             throw new Error('Token not found in response');
