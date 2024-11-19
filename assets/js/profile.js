@@ -432,29 +432,29 @@ function fetchPurchased(status = "all") {
         ],
         pageLength: 10,
         searching: true,
-        dom: '<"top"lf>rt<"bottom"p>',
+        dom: '<"top d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex align-items-center"f>>rt<"bottom"p>',
         language: {
-          emptyTable: "No orders found",
-          lengthMenu: "Show _MENU_ entries",
-          search: "Search:",
-          info: "Showing _START_ to _END_ of _TOTAL_ entries",
-          paginate: {
-            first: "First",
-            last: "Last",
-            next: "Next",
-            previous: "Previous",
-          },
+          lengthMenu: `
+            <div class="d-flex align-items-center gap-2">
+              <label class="mb-0">Show</label>
+              <select class="form-select mt-0 form-select-sm" aria-label="entries">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="-1">All</option>
+              </select>
+              <label class="mb-0">entries</label>
+            </div>
+          `,
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+        },
+        classes: {
+          sWrapper: "dataTables_wrapper dt-bootstrap5",
+          sFilterInput: "form-control form-control-sm ms-2",
+          sLengthSelect: "form-select form-select-sm",
         },
       });
-    })
-    .catch((error) => {
-      console.error("Fetch error:", error);
-      const tableBody = document.getElementById("body_table");
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="4" class="text-center">Error loading orders</td>
-        </tr>
-      `;
     });
 }
 
