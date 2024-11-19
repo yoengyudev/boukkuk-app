@@ -19,7 +19,7 @@ function DisplayServices() {
   console.log(serviceId);
 
   fetch(
-    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=5&price_end=20&creator=` +
+    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&creator=` +
       serviceId,
     {
       method: "GET",
@@ -134,7 +134,7 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
-
+window.viewDetails = viewDetails;
 // ===============================
 
 // Validation functions using regex
@@ -328,7 +328,7 @@ function editService(button) {
     document.getElementById("fileName").textContent = "No file chosen";
   }
 }
-
+window.editService = editService;
 document.getElementById("editForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);

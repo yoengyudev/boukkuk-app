@@ -23,98 +23,104 @@ getData();
 
 // =====================change password========================
 
-document.getElementById("changePasswordButton").addEventListener("click", function () {
-  // Clear previous error messages
-  clearErrorMessages();
+document
+  .getElementById("changePasswordButton")
+  .addEventListener("click", function () {
+    // Clear previous error messages
+    clearErrorMessages();
 
-  const oldPassword = document.getElementById("currentPassword").value.trim();
-  const newPassword = document.getElementById("newPassword").value.trim();
-  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const oldPassword = document.getElementById("currentPassword").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+    const confirmPassword = document
+      .getElementById("confirmPassword")
+      .value.trim();
 
-  let hasError = false;
+    let hasError = false;
 
-  // Validate current password
-  if (!oldPassword) {
-    displayError("error-mess-cur", "Current password is required");
-    hasError = true;
-  }
+    // Validate current password
+    if (!oldPassword) {
+      displayError("error-mess-cur", "Current password is required");
+      hasError = true;
+    }
 
-  // Validate new password
-  if (!newPassword) {
-    displayError("error-mess-new", "New password is required");
-    hasError = true;
-  } else if (newPassword.length < 6) {
-    displayError("error-mess-new", "New password must be at least 6 characters long");
-    hasError = true;
-  }
+    // Validate new password
+    if (!newPassword) {
+      displayError("error-mess-new", "New password is required");
+      hasError = true;
+    } else if (newPassword.length < 6) {
+      displayError(
+        "error-mess-new",
+        "New password must be at least 6 characters long"
+      );
+      hasError = true;
+    }
 
-  // Validate confirm password
-  if (!confirmPassword) {
-    displayError("error-mess-com", "Confirm password is required");
-    hasError = true;
-  } else if (newPassword !== confirmPassword) {
-    displayError("error-mess-com", "Passwords do not match");
-    hasError = true;
-  }
+    // Validate confirm password
+    if (!confirmPassword) {
+      displayError("error-mess-com", "Confirm password is required");
+      hasError = true;
+    } else if (newPassword !== confirmPassword) {
+      displayError("error-mess-com", "Passwords do not match");
+      hasError = true;
+    }
 
-  if (hasError) {
-    return;
-  }
+    if (hasError) {
+      return;
+    }
 
-  // Show loading state
-  const buttonText1 = document.getElementById("buttonText1");
-  const spinner1 = document.getElementById("spinner1");
-  buttonText1.style.display = "none";
-  spinner1.style.display = "inline-block";
+    // Show loading state
+    const buttonText1 = document.getElementById("buttonText1");
+    const spinner1 = document.getElementById("spinner1");
+    buttonText1.style.display = "none";
+    spinner1.style.display = "inline-block";
 
-  let token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
 
-  fetch(`${baseUrl}/api/profile/change-pass`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: "Bearer " + token,
-    },
-    body: JSON.stringify({
-      old_pass: oldPassword,
-      new_pass: newPassword,
-      new_pass_confirmation: confirmPassword,
-    }),
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
+    fetch(`${baseUrl}/api/profile/change-pass`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        old_pass: oldPassword,
+        new_pass: newPassword,
+        new_pass_confirmation: confirmPassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
 
-      buttonText1.style.display = "inline";
-      spinner1.style.display = "none";
+        buttonText1.style.display = "inline";
+        spinner1.style.display = "none";
 
-      if (json.message) {
-        // Clear inputs
-        document.getElementById("currentPassword").value = "";
-        document.getElementById("newPassword").value = "";
-        document.getElementById("confirmPassword").value = "";
-
-        alert("Password changed successfully!");
-
-      } else {
-        // Handle API error messages
         if (json.message) {
-          if (json.message.toLowerCase().includes("old password")) {
-            displayError("error-mess-cur", json.message);
-          } else {
-            alert(json.message);
+          // Clear inputs
+          document.getElementById("currentPassword").value = "";
+          document.getElementById("newPassword").value = "";
+          document.getElementById("confirmPassword").value = "";
+
+          alert("Password changed successfully!");
+        } else {
+          // Handle API error messages
+          if (json.message) {
+            if (json.message.toLowerCase().includes("old password")) {
+              displayError("error-mess-cur", json.message);
+            } else {
+              alert(json.message);
+            }
           }
         }
-      }
-    })
-    .catch((error) => {
-      buttonText1.style.display = "inline";
-      spinner1.style.display = "none";
-      console.error("Error:", error);
-      alert("An error occurred while changing the password.");
-    });
-});
+      })
+      .catch((error) => {
+        buttonText1.style.display = "inline";
+        spinner1.style.display = "none";
+        console.error("Error:", error);
+        alert("An error occurred while changing the password.");
+      });
+  });
 
 // Helper functions
 function displayError(elementId, message) {
@@ -126,16 +132,11 @@ function displayError(elementId, message) {
 }
 
 function clearErrorMessages() {
-  const errorElements = [
-    "error-mess-cur",
-    "error-mess-new",
-    "error-mess-com"
-  ];
-  errorElements.forEach(elementId => {
+  const errorElements = ["error-mess-cur", "error-mess-new", "error-mess-com"];
+  errorElements.forEach((elementId) => {
     document.getElementById(elementId).textContent = "";
   });
 }
-
 
 // =====================end of change password=================
 
@@ -149,13 +150,13 @@ document
     let updateName = document.getElementById("fullname").value;
     let updateEmail = document.getElementById("email").value;
     let updatePhone = document.getElementById("phone").value;
-    let saveButton = document.getElementById('update_info');
-    let spinner = document.getElementById('spinner');
-    let buttonText = document.getElementById('buttonText');
+    let saveButton = document.getElementById("update_info");
+    let spinner = document.getElementById("spinner");
+    let buttonText = document.getElementById("buttonText");
 
     saveButton.disabled = true;
-    spinner.style.display = 'inline-block';
-    buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ...';
+    spinner.style.display = "inline-block";
+    buttonText.textContent = "រក្សាទុកការផ្លាស់ប្តូរ...";
 
     let UserToken = localStorage.getItem("UserToken");
 
@@ -173,8 +174,8 @@ document
     fetch(`${baseUrl}/api/profile/info`, {
       method: "PUT",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${UserToken}`,
       },
       body: JSON.stringify(updatedData),
@@ -187,25 +188,27 @@ document
       })
       .finally(() => {
         saveButton.disabled = false;
-        spinner.style.display = 'none';
-        buttonText.textContent = 'រក្សាទុកការផ្លាស់ប្តូរ';
-      })
+        spinner.style.display = "none";
+        buttonText.textContent = "រក្សាទុកការផ្លាស់ប្តូរ";
+      });
   });
 
 // ======================================ending =================================//
 
 // ============================ change avarta =========================
 
-document.addEventListener('DOMContentLoaded', function () {
-  const avatarUpload = document.getElementById('avatarUpload');
-  const userAvatar = document.getElementById('userAvatar');
-  const deleteImageBtn = document.getElementById('deleteImageBtn');
-  const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
-  const cropperImage = document.getElementById('cropperImage');
-  const cropImageBtn = document.getElementById('cropImageBtn');
+document.addEventListener("DOMContentLoaded", function () {
+  const avatarUpload = document.getElementById("avatarUpload");
+  const userAvatar = document.getElementById("userAvatar");
+  const deleteImageBtn = document.getElementById("deleteImageBtn");
+  const cropperModal = new bootstrap.Modal(
+    document.getElementById("cropperModal")
+  );
+  const cropperImage = document.getElementById("cropperImage");
+  const cropImageBtn = document.getElementById("cropImageBtn");
   let cropper;
 
-  avatarUpload.addEventListener('change', function (e) {
+  avatarUpload.addEventListener("change", function (e) {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -230,46 +233,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  cropImageBtn.addEventListener('click', function () {
+  cropImageBtn.addEventListener("click", function () {
     const croppedCanvas = cropper.getCroppedCanvas({
       width: 400, // Adjust output size if needed
-      height: 400
+      height: 400,
     });
 
     croppedCanvas.toBlob(function (blob) {
       const formData = new FormData();
-      formData.append('avatar', blob);
+      formData.append("avatar", blob);
 
-      const UserToken = localStorage.getItem('UserToken');
+      const UserToken = localStorage.getItem("UserToken");
       fetch(`${baseUrl}/api/profile/avatar`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
         headers: {
-          Accept: 'application/json',
-          Authorization: 'Bearer ' + UserToken,
+          Accept: "application/json",
+          Authorization: "Bearer " + UserToken,
         },
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           console.log(data);
           const url = URL.createObjectURL(blob);
           userAvatar.src = url;
           cropperModal.hide();
         })
-        .catch(error => {
-          console.error('Error:', error);
+        .catch((error) => {
+          console.error("Error:", error);
         });
     });
   });
 
-  deleteImageBtn.addEventListener('click', function () {
-    userAvatar.src = 'assets/img/AboutUs-review3avif.avif'; // Reset to default image
-    avatarUpload.value = ''; // Clear the file input
+  deleteImageBtn.addEventListener("click", function () {
+    userAvatar.src = "assets/img/AboutUs-review3avif.avif"; // Reset to default image
+    avatarUpload.value = ""; // Clear the file input
   });
 });
-
-
-
 
 let delete_Avatar = document.getElementById("deleteImageBtn");
 delete_Avatar.addEventListener("click", function () {
@@ -287,10 +287,7 @@ delete_Avatar.addEventListener("click", function () {
     });
 });
 
-
-
-const apiUrl = "{{g9_host}}/api/profile/purchased?page=1&per_page=20&payment_status=";
-
+const apiUrl = `${baseUrl}/api/profile/purchased?page=1&per_page=20&payment_status=`;
 const fetchOrders = async (status = "all") => {
   try {
     const response = await fetch(apiUrl + status);
@@ -302,8 +299,18 @@ const fetchOrders = async (status = "all") => {
 };
 
 //my purchased
-function fetchPurchased() {
-  fetch(`${baseUrl}/api/profile/purchased?page=1&per_page=20&payment_status=`, {
+function fetchPurchased(status = "all") {
+  const UserToken = localStorage.getItem("UserToken");
+
+  // Properly destroy existing DataTable
+  let table = $("#purchasedTable").DataTable();
+  if (table) {
+    table.clear().destroy();
+    // Also remove any lingering datatable classes/attributes
+    $("#purchasedTable").removeClass("dataTable").find("tbody").empty();
+  }
+
+  fetch(`${baseUrl}/api/profile/purchased?page=1&per_page=20`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -312,55 +319,407 @@ function fetchPurchased() {
   })
     .then((res) => res.json())
     .then((json) => {
-      console.log(json);
-
       const tableBody = document.getElementById("body_table");
-      let tr = ""; 
+      let tr = "";
 
-      json.data.forEach((e) => {
-        tr += `
-          <tr>
-            <td class="text-start">
-              <div class="d-flex align-items-center gap-2">
-                <div class="service_img shadow"> 
-                  <img src="${e.transition_file || 'default_image.jpg'}" width="50" alt="Service">
-                </div>
-                <div class="d-flex flex-column">
-                  <span class="fw-medium text-start">${e.service?.name || "N/A"}</span>
-                  <span class="text-dark-emphasis">Qty: ${e.qty || 0}</span>
-                </div>
-              </div>
-            </td>
-            <td class="text-start">
-              <span class="status-${(e.payment_status || 'pending').toLowerCase()}">
-                ${e.payment_status || 'Pending'}
-              </span>
-            </td>
-            <td class="text-start">${e.total || "$0.00"}</td>
-            <td>
-              <button type="button" class="btn btn-primary btn-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#orderModal">
-                Order Details
-              </button>
-            </td>
-          </tr>
-        `;
+      // Filter data based on status
+      const filteredData = json.data.filter((order) => {
+        if (status === "all") return true;
+        // Make sure to convert both to same type for comparison
+        return order.payment_status === parseInt(status);
       });
 
-      tableBody.innerHTML = tr;
+      console.log("Filtered Data:", filteredData); // Debug log
 
+      if (filteredData.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="4" class="text-center">No orders found</td>
+          </tr>
+        `;
+      } else {
+        filteredData.forEach((e) => {
+          let statusText;
+          let statusClass;
+
+          switch (parseInt(e.payment_status)) {
+            case 1:
+              statusText = "Pending";
+              statusClass = "text-warning";
+              break;
+            case 2:
+              statusText = "Approved";
+              statusClass = "text-success";
+              break;
+            case 3:
+              statusText = "Rejected";
+              statusClass = "text-danger";
+              break;
+            default:
+              statusText = "Unknown";
+              statusClass = "text-secondary";
+          }
+
+          tr += `
+            <tr>
+              <td class="text-start">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="service_img rounded overflow-hidden" style="width: 55px; height: 55px;"> 
+                    <img src="${
+                      e.service.image
+                    }" class="w-100 h-100 object-fit-cover" alt="Service">
+                  </div>
+                  <div class="d-flex flex-column">
+                    <span class="fw-medium text-start">${
+                      e.service?.name || "N/A"
+                    }</span>
+                    <span class="text-muted small">Qty: ${e.qty || 0}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-start align-middle">
+                <span class="${statusClass} fw-medium">
+                  ${statusText}
+                </span>
+              </td>
+              <td class="text-start align-middle">
+                $${e.service.price || "0.00"}
+              </td>
+              <td class="text-center align-middle">
+                <button type="button" 
+                  class="btn btn-primary px-3 py-2" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#orderModal"
+                  onclick='showOrderDetails(${JSON.stringify({
+                    service: {
+                      name: e.service?.name || "N/A",
+                      description: e.service?.description || "N/A",
+                      serviceType: e.service?.category?.name || "N/A",
+                      image: e.service?.image || "",
+                    },
+                    creator: {
+                      name: e.service?.creator?.name || "N/A",
+                      email: e.service?.creator?.email || "N/A",
+                      phone: e.service?.creator?.phone || "N/A",
+                      google_map_url: e.service?.creator?.google_map_url || "#",
+                      avatar: e.service?.creator?.avatar || "",
+                    },
+                    order: {
+                      orderDate: e.created_at || "N/A",
+                      status: statusText,
+                      qty: e.qty || 0,
+                      total: e.price || "$0.00",
+                    },
+                  })})'
+                  title="View Details">
+                  <i class="bi bi-eye fs-5"></i>
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        tableBody.innerHTML = tr;
+      }
+
+      // Initialize DataTable with configuration
       $("#purchasedTable").DataTable({
         destroy: true,
         responsive: true,
+        lengthMenu: [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"],
+        ],
+        pageLength: 10,
+        searching: true,
+        dom: '<"top"lf>rt<"bottom"p>',
+        language: {
+          emptyTable: "No orders found",
+          lengthMenu: "Show _MENU_ entries",
+          search: "Search:",
+          info: "Showing _START_ to _END_ of _TOTAL_ entries",
+          paginate: {
+            first: "First",
+            last: "Last",
+            next: "Next",
+            previous: "Previous",
+          },
+        },
       });
     })
     .catch((error) => {
-      console.error("Error fetching data:", error);
+      console.error("Fetch error:", error);
+      const tableBody = document.getElementById("body_table");
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="4" class="text-center">Error loading orders</td>
+        </tr>
+      `;
     });
 }
 
+// Update the showOrderDetails function to handle tabbed information
+function showOrderDetails(details) {
+  const modalBody = document.querySelector("#orderModal .modal-body");
+  modalBody.innerHTML = `
+    <ul class="nav nav-tabs mb-3" id="orderDetailTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="service-tab" data-bs-toggle="tab" data-bs-target="#service-content" type="button" role="tab">
+          Service Details
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="creator-tab" data-bs-toggle="tab" data-bs-target="#creator-content" type="button" role="tab">
+          Creator Info
+        </button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="orderDetailTabContent">
+      <!-- Enhanced Service Details Tab -->
+      <div class="tab-pane fade show active" id="service-content" role="tabpanel">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <!-- Service Header -->
+            <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+              <div class="service-image rounded-3 overflow-hidden" style="width: 100px; height: 100px;">
+                <img src="${details.service.image}" 
+                     class="w-100 h-100 object-fit-cover" 
+                     alt="${details.service.name}">
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">${details.service.name}</h5>
+                <p class="mb-0 text-muted">
+                  <i class="bi bi-tag-fill me-1"></i>
+                  ${details.service.serviceType}
+                </p>
+              </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="mb-4">
+              <h6 class="text-primary mb-3 fw-bold">
+                <i class="bi bi-info-circle me-2"></i>Description
+              </h6>
+              <p class="mb-0 text-secondary">
+                ${details.service.description}
+              </p>
+            </div>
+
+            <!-- Order Information Section -->
+            <div>
+              <h6 class="text-primary mb-3 fw-bold">
+                <i class="bi bi-receipt me-2"></i>Order Information
+              </h6>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-calendar text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Order Date</small>
+                      <span class="fw-medium">
+                        ${new Date(
+                          details.order.orderDate
+                        ).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-box text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Quantity</small>
+                      <span class="fw-medium">${details.order.qty} items</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-check-circle text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Status</small>
+                      <span class="badge bg-${getStatusColor(
+                        details.order.status
+                      )} rounded-pill">
+                        ${details.order.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-currency-dollar text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Total Amount</small>
+                      <span class="fw-medium">$${details.order.total}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Creator Info Tab (unchanged) -->
+      <div class="tab-pane fade" id="creator-content" role="tabpanel">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <!-- Creator Header -->
+            <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+              <div class="position-relative">
+                <img src="${details.creator.avatar}" 
+                     class="rounded-circle border border-2 border-white shadow-sm" 
+                     width="80" 
+                     height="80" 
+                     alt="Creator Avatar"
+                     style="object-fit: cover;">
+                <span class="position-absolute bottom-0 end-0 bg-success profile-icon-info p-1 border border-2 border-white"
+                      style="width: 16px; height: 16px;"></span>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">${details.creator.name}</h5>
+                <p class="mb-0 text-muted">
+                  <i class="bi bi-patch-check-fill text-primary me-1"></i>
+                  Verified Service Provider
+                </p>
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mb-4">
+              <h6 class="text-primary mb-3 fw-bold">
+                <i class="bi bi-info-circle me-2"></i>Contact Information
+              </h6>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-envelope text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Email Address</small>
+                      <span class="fw-medium">${details.creator.email}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-telephone text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Phone Number</small>
+                      <span class="fw-medium">${details.creator.phone}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location Section -->
+            <div>
+              <h6 class="text-primary mb-3 fw-bold">
+                <i class="bi bi-geo-alt me-2"></i>Location
+              </h6>
+              <div class="d-grid">
+                <a href="${details.creator.google_map_url}" 
+                   target="_blank" 
+                   class="btn btn-outline-primary">
+                  <i class="bi bi-map me-2"></i>View on Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Helper function to get status color
+function getStatusColor(status) {
+  switch (status.toLowerCase()) {
+    case "pending":
+      return "warning";
+    case "approved":
+      return "success";
+    case "rejected":
+      return "danger";
+    default:
+      return "secondary";
+  }
+}
+
+// Make showOrderDetails available globally
+window.showOrderDetails = showOrderDetails;
+
 fetchPurchased();
 
-
-
-
 // ============================ end of change avatar =========================
+
+// First, update the HTML tabs
+document.querySelector("#filterTabs").innerHTML = `
+  <li class="nav-item">
+    <a class="nav-link active" data-filter="all" href="#">All Orders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-filter="1" href="#">Pending</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-filter="2" href="#">Approved</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-filter="3" href="#">Rejected</a>
+  </li>
+`;
+
+// Add click event listeners for the filter tabs
+document.addEventListener("DOMContentLoaded", function () {
+  const filterTabs = document.querySelectorAll("#filterTabs .nav-link");
+
+  filterTabs.forEach((tab) => {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Remove active class from all tabs
+      filterTabs.forEach((t) => t.classList.remove("active"));
+      // Add active class to clicked tab
+      this.classList.add("active");
+
+      // Get status from data-filter attribute
+      const status = this.getAttribute("data-filter");
+      console.log("Clicked status:", status); // Debug log
+      fetchPurchased(status);
+    });
+  });
+
+  // Initial fetch with "all" status
+  fetchPurchased("all");
+});
+
+// Add this helper function for status badge colors
+function getStatusClass(status) {
+  switch (status.toLowerCase()) {
+    case "pending":
+      return "bg-warning text-dark";
+    case "approved":
+      return "bg-success text-white";
+    case "rejected":
+      return "bg-danger text-white";
+    default:
+      return "bg-secondary text-white";
+  }
+}
