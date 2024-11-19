@@ -396,6 +396,7 @@ function fetchPurchased(status = "all") {
                       description: e.service?.description || "N/A",
                       serviceType: e.service?.category?.name || "N/A",
                       image: e.service?.image || "",
+                      status: e.service_status || e.status || null,
                     },
                     creator: {
                       name: e.service?.creator?.name || "N/A",
@@ -458,7 +459,7 @@ function fetchPurchased(status = "all") {
     });
 }
 
-// Update the showOrderDetails function to handle tabbed information
+// Update the showOrderDetails function to include service status
 function showOrderDetails(details) {
   const modalBody = document.querySelector("#orderModal .modal-body");
   modalBody.innerHTML = `
@@ -546,7 +547,7 @@ function showOrderDetails(details) {
                       <i class="bi bi-check-circle text-primary"></i>
                     </div>
                     <div>
-                      <small class="text-muted d-block">Status</small>
+                      <small class="text-muted d-block">Payment Status</small>
                       <span class="badge bg-${getStatusColor(
                         details.order.status
                       )} rounded-pill">
@@ -564,6 +565,20 @@ function showOrderDetails(details) {
                     <div>
                       <small class="text-muted d-block">Total Amount</small>
                       <span class="fw-medium">$${details.order.total}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item border-0 px-0 py-2">
+                  <div class="d-flex align-items-center">
+                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
+                      <i class="bi bi-clock-history text-primary"></i>
+                    </div>
+                    <div>
+                      <small class="text-muted d-block">Service Status</small>
+                      <span class="badge bg-${getServiceStatusColor(details.service.status)} rounded-pill">
+                        ${getServiceStatusText(details.service.status)}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -660,6 +675,39 @@ function getStatusColor(status) {
       return "danger";
     default:
       return "secondary";
+  }
+}
+
+// Add these helper functions
+function getServiceStatusColor(status) {
+  if (!status) return "secondary"; // Handle null/undefined case first
+  
+  switch (parseInt(status)) {
+    case 1: return "info";      // placed order
+    case 2: return "primary";   // laundry pick up
+    case 3: return "warning";   // in process
+    case 4: return "warning";   // process to iron
+    case 5: return "warning";   // ironing
+    case 6: return "success";   // ready for delivery
+    case 7: return "info";      // out for delivery
+    case 8: return "success";   // delivered
+    default: return "secondary";
+  }
+}
+
+function getServiceStatusText(status) {
+  if (!status) return "Unknown Status"; // Handle null/undefined case first
+  
+  switch (parseInt(status)) {
+    case 1: return "Placed Order";
+    case 2: return "Laundry Pick Up";
+    case 3: return "In Process";
+    case 4: return "Process to Iron";
+    case 5: return "Ironing";
+    case 6: return "Ready for Delivery";
+    case 7: return "Out for Delivery";
+    case 8: return "Delivered";
+    default: return "Unknown Status";
   }
 }
 
