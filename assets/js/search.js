@@ -107,16 +107,9 @@ function wishlistCard(serviceId, heartButton) {
   const UserToken = localStorage.getItem("UserToken");
 
   if (!UserToken) {
-<<<<<<< HEAD
-    location.href = "../auth/login.html";
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-    location.href = `${basePath}src/views/auth/login.html`;
-=======
-    const currentPath = window.location.href;
-    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-    location.href = ${basePath}src/views/page/search.html;
->>>>>>> 0991a715866c50eabce3a48c23c49d3e9e92ac28
+    location.href = `${basePath}src/views/page/search.html`;
     return;
   }
 
