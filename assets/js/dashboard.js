@@ -50,10 +50,10 @@ fetchAndDisplayData();
 
 
 // get Recent order
-console.log(localStorage.getItem('creator_id'));
-let creatorID = localStorage.getItem('creator_id');
+console.log(localStorage.getItem('ProviderID'));
+let ProviderID = localStorage.getItem('ProviderID');
 function displayService() {
-    const apiUrl = `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=${creatorID}`;
+    const apiUrl = `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=${ProviderID}`;
 
     fetch(apiUrl, {
         method: 'GET',
