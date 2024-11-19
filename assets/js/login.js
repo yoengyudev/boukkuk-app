@@ -83,7 +83,6 @@ login.addEventListener("submit", (event) => {
       let token = json.data.token;
       let roleid = json.data.roles[0].id;
       localStorage.setItem('UserRole', roleid);
-
       if (roleid == 1) {
         localStorage.setItem('UserToken', token);
         const currentPath = window.location.href;
@@ -92,6 +91,9 @@ login.addEventListener("submit", (event) => {
       }
 
       if (roleid == 2 || roleid == 3) {
+        if(roleid == 3) {
+          localStorage.setItem('ProviderID', json.data.id);
+        }
         localStorage.setItem('AdminToken', token);
         const currentPath = window.location.href;
         const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
