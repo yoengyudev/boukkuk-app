@@ -28,6 +28,10 @@
   font-size: 16px;
 }
 
+.fs-13{
+  font-size: 13px!important;
+}
+
 .px-80 {
   padding-left: 80px;
 }
@@ -887,8 +891,6 @@ input[type="range"]::-moz-range-thumb {
 
 .details .recentOrders {
   position: relative;
-  display: grid;
-  min-height: 500px;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -993,8 +995,6 @@ input[type="range"]::-moz-range-thumb {
 
 .recentCustomers {
   position: relative;
-  display: grid;
-  min-height: 500px;
   padding: 20px;
   background: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -1324,3 +1324,54 @@ td {
 .wishlist-btn i {
   font-size: 1.2rem;
 }
+
+/* get order */
+.service_img,
+.profile_cus{
+  width: 40px;
+  height: 40px;
+  border-radius:5px;
+  background-color:#4762e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.service_img img,
+.profile_cus img{
+  object-fit: cover;
+}
+
+.profile_cus{
+  border-radius: 50%;
+}
+
+#getorder_table tbody tr {
+  vertical-align: middle; 
+}
+
+.s_img img {
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border:2px solid #ddd;
+  padding: 5px;
+}
+
+.transaction img {
+  width:100%;
+  object-fit: cover;
+}
+
+#recentOrder > tr{
+  border-radius: 10px!important;
+}
+/* end get order */
