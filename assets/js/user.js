@@ -337,7 +337,7 @@ function deleteUser(userId) {
 
 window.deleteUser = deleteUser;
 
-// update usre
+// update user
 
 // ========================= Get User Details for Update ========================
 function getUserForUpdate(userId) {
@@ -357,8 +357,9 @@ function getUserForUpdate(userId) {
       document.getElementById("editUserLocation").value =
         userData.data.google_map_url;
       document.getElementById("editUserPass").value = userData.data.pass;
-      document.getElementById("editUserConfirmPass").value =
-        userData.data.confirm_pass; // Leave confirm password empty
+      document.getElementById("editUserConfirmPass").value =userData.data.confirm_pass;
+      document.getElementById("latitude").value =  userData.data.latitude;
+      document.getElementById("longitude").value = userData.data.longitude;
       console.log(userData.data.roles);
       const roleId = userData.data.roles[0]
         ? userData.data.roles[0].id
