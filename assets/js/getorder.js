@@ -13,7 +13,12 @@ function fetchOrders() {
             'Authorization': `Bearer ${AdminToken}`,
         },
     })
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then((data) => {
             console.log('API Response:', data);
 
@@ -24,62 +29,62 @@ function fetchOrders() {
                 $('#getorder_table').DataTable().destroy();
             }
 
-            if (data.result && Array.isArray(data.data) && data.data.length > 0) {
-                const statusMapping = {
-                    1: { text: 'Pending', class: 'text-warning' },
-                    2: { text: 'Approved', class: 'text-success' },
-                    3: { text: 'Rejected', class: 'text-danger' },
-                };
-
-                data.data.forEach((order) => {
-                    const tr = document.createElement('tr');
-                    const status = statusMapping[order.payment_status] || { text: 'Unknown', class: 'text-secondary' };
-
-                    tr.innerHTML = `
-                        <td class="text-start">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="service_img shadow">
-                                    <img src="${order.service.image}" width="50" alt="Service">
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <span class="fw-medium text-start">${order.service.name}</span>
-                                    <span class="text-dark-emphasis">Qty : ${order.qty}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-start">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="profile_cus">
-                                    <img src="${order.buyer.avatar}" width="50" alt="Customer">
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <span class="fw-medium text-start">${order.buyer.name}</span>
-                                    <span class="text-dark-emphasis">${order.buyer.email}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-start">
-                            <span class="${status.class}">${status.text}</span>
-                        </td>
-                        <td class="text-start">$${order.price ? order.price.toFixed(2) : '0.00'}</td>
-                        <td class="text-end">
-                            <button class="btn btn-success btn-sm px-3 py-1 payment-details-btn" onclick="PaymentDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#detailPayment">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </td>
-
-                    `;
-
-                    tableBody.appendChild(tr);
-                });
-
-            } else {
+            // Check if data.result is falsy or data.data is null/undefined or not an array
+            if (!data.result || !Array.isArray(data.data) || data.data.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="text-center">No data available in table</td>
+                        <td colspan="5" class="text-center text-warning">No orders found. Please try again later.</td>
                     </tr>
                 `;
+                return;
             }
+
+            const statusMapping = {
+                1: { text: 'Pending', class: 'text-warning' },
+                2: { text: 'Approved', class: 'text-success' },
+                3: { text: 'Rejected', class: 'text-danger' },
+            };
+
+            data.data.forEach((order) => {
+                const tr = document.createElement('tr');
+                const status = statusMapping[order.payment_status] || { text: 'Unknown', class: 'text-secondary' };
+
+                tr.innerHTML = `
+                    <td class="text-start">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="service_img shadow">
+                                <img src="${order.service.image}" width="50" alt="Service">
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="fw-medium text-start">${order.service.name}</span>
+                                <span class="text-dark-emphasis">Qty : ${order.qty}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-start">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="profile_cus">
+                                <img src="${order.buyer.avatar}" width="50" alt="Customer">
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="fw-medium text-start">${order.buyer.name}</span>
+                                <span class="text-dark-emphasis">${order.buyer.email}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-start">
+                        <span class="${status.class}">${status.text}</span>
+                    </td>
+                    <td class="text-start">$${order.price ? order.price.toFixed(2) : '0.00'}</td>
+                    <td class="text-end">
+                        <button class="btn btn-success btn-sm px-3 py-1 payment-details-btn" onclick="PaymentDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#detailPayment">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(tr);
+            });
 
             $('#getorder_table').DataTable({
                 responsive: true,
@@ -97,6 +102,7 @@ function fetchOrders() {
             `;
         });
 }
+
 
 
 
