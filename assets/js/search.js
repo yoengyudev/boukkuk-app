@@ -1,4 +1,5 @@
 import { baseUrl } from "./baseUrl.js";
+import { UserToken } from "./tokens.js";
 
 function handleKeyDown(event) {
   if (event.key === "Enter") {
@@ -98,18 +99,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function store(event) {
   event.preventDefault();
-  location.href = `${window.location.origin}/src/views/page/store.html`;
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}/src/views/page/store.html`;
 }
 
 window.store = store;
 
 function wishlistCard(serviceId, heartButton) {
-  const UserToken = localStorage.getItem("UserToken");
 
   if (!UserToken) {
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-    location.href = `${basePath}src/views/page/search.html`;
+    location.href = `${basePath}src/views/auth/login.html`;
     return;
   }
 
