@@ -123,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const serviceId = parseInt(card.dataset.serviceId);
     const serviceName = card.dataset.service;
     const servicePrice = parseFloat(card.dataset.price);
-    const serviceImage = card.querySelector('img')?.src || '';
+    const serviceImage = card.querySelector("img")?.src || "";
 
-    const existingItem = cart.find(item => item.id === serviceId);
+    const existingItem = cart.find((item) => item.id === serviceId);
 
     if (existingItem) {
       existingItem.quantity += 1;
@@ -135,16 +135,16 @@ document.addEventListener("DOMContentLoaded", function () {
         name: serviceName,
         price: servicePrice,
         quantity: 1,
-        image: serviceImage
+        image: serviceImage,
       });
     }
 
-    sessionStorage.setItem('cart', JSON.stringify(cart));
+    sessionStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
   }
 
   function calculateTotal() {
-    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 
   function renderCart() {
@@ -169,8 +169,9 @@ document.addEventListener("DOMContentLoaded", function () {
         itemDiv.innerHTML = `
           <div class="d-flex justify-content-between w-100 align-items-center gap-2">
             <div class="cart-item-image" style="width: 50px; height: 50px; min-width: 50px;">
-              <img src="${item.image}" alt="${item.name
-          }" class="rounded w-100 h-100 object-fit-cover">
+              <img src="${item.image}" alt="${
+          item.name
+        }" class="rounded w-100 h-100 object-fit-cover">
             </div>
             <div class="d-flex flex-column flex-grow-1">
               <div class="d-flex justify-content-between align-items-center w-100">
@@ -185,8 +186,7 @@ $${item.price.toFixed(2)}
                 <div class="d-flex align-items-center gap-2">
                   <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" 
                     >-</button>
-                  <span class="quantity cart-quantity" >${item.quantity
-          }</span>
+                  <span class="quantity cart-quantity" >${item.quantity}</span>
                   <button class="increase-cart btn btn-sm btn-outline-primary rounded-circle increase-btn" 
                     >+</button>
                   <button class="btn btn-link text-danger ps-2 fs-5 p-0 delete-btn" >
@@ -203,12 +203,12 @@ $${item.price.toFixed(2)}
         const decreaseBtn = itemDiv.querySelector(".decrease-btn");
         const increaseBtn = itemDiv.querySelector(".increase-btn");
 
-        deleteBtn.addEventListener('click', () => {
+        deleteBtn.addEventListener("click", () => {
           // Remove from cart array
-          cart = cart.filter(cartItem => cartItem.id !== item.id);
+          cart = cart.filter((cartItem) => cartItem.id !== item.id);
 
           // Update localStorage
-          sessionStorage.setItem('cart', JSON.stringify(cart));
+          sessionStorage.setItem("cart", JSON.stringify(cart));
 
           // Remove from DOM
           itemDiv.remove();
@@ -224,28 +224,28 @@ $${item.price.toFixed(2)}
         });
 
         decreaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find(cartItem => cartItem.id === item.id);
+          const cartItem = cart.find((cartItem) => cartItem.id === item.id);
           if (cartItem && cartItem.quantity > 1) {
             cartItem.quantity--;
             // Update sessionStorage
-            sessionStorage.setItem('cart', JSON.stringify(cart));
+            sessionStorage.setItem("cart", JSON.stringify(cart));
             total = calculateTotal();
             renderCart();
           } else if (cartItem && cartItem.quantity === 1) {
-            cart = cart.filter(cartItem => cartItem.id !== item.id);
+            cart = cart.filter((cartItem) => cartItem.id !== item.id);
             // Update sessionStorage
-            sessionStorage.setItem('cart', JSON.stringify(cart));
+            sessionStorage.setItem("cart", JSON.stringify(cart));
             total = calculateTotal();
             renderCart();
           }
         });
 
         increaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find(cartItem => cartItem.id === item.id);
+          const cartItem = cart.find((cartItem) => cartItem.id === item.id);
           if (cartItem) {
             cartItem.quantity++;
             // Update sessionStorage
-            sessionStorage.setItem('cart', JSON.stringify(cart));
+            sessionStorage.setItem("cart", JSON.stringify(cart));
             total = calculateTotal();
             renderCart();
           }
@@ -317,45 +317,48 @@ $${item.price.toFixed(2)}
       return;
     }
     const requestData = {
-      service_id: cart[0].id,  // Send the first item's service ID
-      qty: cart[0].quantity    // Send the first item's quantity
+      service_id: cart.map(item => item.id),
+      qty: cart.map(item => item.quantity)
     };
 
     fetch(`${baseUrl}/api/carts`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${UserToken}`
       },
-      body: JSON.stringify(requestData)
+      body: JSON.stringify(requestData),
     })
-      .then(async response => {
+      .then(async (response) => {
         const data = await response.json();
-        console.log('Server response:', data);
+        console.log("Server response:", data);
 
         if (!response.ok) {
           if (response.status === 422) {
-            const errorMessage = data.message ||
-              Object.values(data.data || {}).flat().join(', ') ||
-              'Validation error occurred';
+            const errorMessage =
+              data.message ||
+              Object.values(data.data || {})
+                .flat()
+                .join(", ") ||
+              "Validation error occurred";
             throw new Error(errorMessage);
           }
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         return data;
       })
-      .then(data => {
-        console.log('Checkout successful:', data);
+      .then((data) => {
+        console.log("Checkout successful:", data);
         cart = [];
-        sessionStorage.removeItem('cart');
+        sessionStorage.removeItem("cart");
         renderCart();
         // Redirect to payment.html after successful checkout
-        window.location.href = 'payment.html';
+        window.location.href = "payment.html";
       })
-      .catch(error => {
-        console.error('Error during checkout:', error);
+      .catch((error) => {
+        console.error("Error during checkout:", error);
         alert(`មានបញ្ហាក្នុងការបញ្ជាទិញ: ${error.message}`);
       })
       .finally(() => {
@@ -379,7 +382,7 @@ $${item.price.toFixed(2)}
   });
 
   // Load cart from localStorage and calculate total
-  const savedCart = sessionStorage.getItem('cart');
+  const savedCart = sessionStorage.getItem("cart");
   if (savedCart) {
     cart = JSON.parse(savedCart);
     total = calculateTotal(); // Calculate initial total
@@ -387,7 +390,7 @@ $${item.price.toFixed(2)}
   }
 });
 
-// price range ui code 
+// price range ui code
 
 const rangeInput = document.querySelectorAll(".range-input input"),
   priceInput = document.querySelectorAll(".price-input input"),
@@ -436,16 +439,17 @@ let getProfile = localStorage.getItem("store_profile");
 document.getElementById("profile_img").src = getProfile;
 
 // =================Get all service =================
-let firstId = ' ';
-function getCategory(value = 0, search = '') {
+let firstId = " ";
+function getCategory(value = 0, search = "") {
   console.log("Selected Category:", value);
   console.log("Search Term:", search);
   let getCreatorId = localStorage.getItem("creator_id");
   let start_pri = document.querySelector(".input-min").value;
   let end_pri = document.querySelector(".input-max").value;
 
-  const url = `${baseUrl}/api/services?page=1&per_page=20&search=${search}&category=${value !== 0 ? value : ""
-    }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
+  const url = `${baseUrl}/api/services?page=1&per_page=20&search=${search}&category=${
+    value !== 0 ? value : ""
+  }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -458,22 +462,23 @@ function getCategory(value = 0, search = '') {
         console.log("First Service ID:", firstId);
       }
 
-      data.data.forEach(element => {
+      data.data.forEach((element) => {
         if (element.category && !categories.has(element.category.id)) {
           categories.set(element.category.id, element.category.name);
         }
 
-
         if (element.price >= start_pri && element.price <= end_pri) {
           card_service += `
-              <div class="col-12 col-sm-6 col-md-4 col-lg-3 service-item" data-category="${element.category ? element.category.id : ""
-            }">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 service-item" data-category="${
+                element.category ? element.category.id : ""
+              }">
                   <div class="card service-card" 
                     data-service-id="${element.id}" 
                     data-service="${element.name}" 
                     data-price="${element.price}"
-                    data-category-name="${element.category ? element.category.name : ""
-            }"
+                    data-category-name="${
+                      element.category ? element.category.name : ""
+                    }"
                   >
                     <div class="card-img-container">
                       <img src="${element.image}" alt="" class="card-img" />
@@ -482,9 +487,10 @@ function getCategory(value = 0, search = '') {
                       <h5 class="card-title">${element.name}</h5>
                       <p class="card-price">$${element.price}</p>
                       <p class="card-description">
-                        ${element.description ||
-            "Description of the dish goes here."
-            }
+                        ${
+                          element.description ||
+                          "Description of the dish goes here."
+                        }
                       </p>
                       <button class="add-to-cart-btn">
                         <i class="bi bi-cart-plus"></i> បន្ថែម
@@ -494,8 +500,8 @@ function getCategory(value = 0, search = '') {
               </div>`;
         }
       });
-      document.querySelector('#all').innerHTML = card_service;
-      document.getElementById('animation-overlay').style.display = 'none';
+      document.querySelector("#all").innerHTML = card_service;
+      document.getElementById("animation-overlay").style.display = "none";
 
       let categoryNav = `
         <li class="nav-item" role="presentation">
@@ -525,8 +531,12 @@ function getCategory(value = 0, search = '') {
             <i class="bi bi-geo-alt"></i>  ទីតាំងហាងរបស់យើង
           </a>
         `;
-        document.getElementById('storeInfo').innerHTML = storeInfo;
-        document.querySelector('.bg-store').style.backgroundImage = `url('${localStorage.getItem('store_profile')}')`;
+        document.getElementById("storeInfo").innerHTML = storeInfo;
+        document.querySelector(
+          ".bg-store"
+        ).style.backgroundImage = `url('${localStorage.getItem(
+          "store_profile"
+        )}')`;
 
         document.querySelector(
           ".bg-store"
@@ -601,7 +611,6 @@ document
 // When clearing the cart (after successful checkout)
 function clearCart() {
   cart = [];
-  sessionStorage.removeItem('cart');
+  sessionStorage.removeItem("cart");
   renderCart();
 }
-

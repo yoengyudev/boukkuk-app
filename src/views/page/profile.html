@@ -7,11 +7,12 @@
   <title>ការកំណត់ទម្រង់ - កម្មវិធីសេវាកម្មបោកគក់</title>
   <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
-  <link rel="stylesheet" href="../../../assets/css/long.css" />
   <link rel="stylesheet" href="../../../assets/css/style.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <!-- crop js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" />
+  <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css" />
+  <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css" />
   <style>
     .form-floating {
       margin-bottom: 5px;
@@ -19,6 +20,194 @@
 
     [id^="error-mess-"] {
       min-height: 20px;
+    }
+
+    .order-history {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: #555;
+    }
+
+    .tab.active {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .order-table th,
+    .order-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .order-table th {
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+
+    .order-table img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+    }
+
+    .order-table .btn {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    /* Modal Styles */
+    .modal-content {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+    }
+
+    .modal-header {
+      padding: 1.5rem 1.5rem 0.5rem;
+    }
+
+    .modal-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Service Image */
+    .service-img {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .status-pending {
+      background: #fff8e5;
+      color: #b77f0a;
+    }
+
+    .status-approved {
+      background: #e7f6ed;
+      color: #0e7b3a;
+    }
+
+    .status-rejected {
+      background: #fee7e7;
+      color: #d92d20;
+    }
+
+    /* Detail Items */
+    .detail-item {
+      height: 100%;
+      transition: transform 0.2s ease;
+    }
+
+    .detail-item:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Provider Card */
+    .provider-card {
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-info i {
+      font-size: 1rem;
+    }
+
+    /* Map Button */
+    .btn-outline-primary {
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Dividers */
+    hr {
+      opacity: 0.1;
+    }
+
+    /* Animations */
+    .modal.fade .modal-dialog {
+      transition: transform 0.2s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+      transform: none;
+    }
+
+    .service-details,
+    .order-details,
+    .creator-details {
+      background: rgba(248, 249, 250, 0.5) !important;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .service-details:hover,
+    .order-details:hover,
+    .creator-details:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Images */
+    .service-img,
+    .creator-avatar {
+      border: 2px solid #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Links */
+    .btn-outline-primary {
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Icons */
+    .bi {
+      font-size: 1.1rem;
+    }
+
+    .profile-icon-info {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -36,7 +225,7 @@
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
                 <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
-                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)" />
 
                 <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
                   <i class="bi bi-search text-white"></i>
@@ -44,7 +233,7 @@
               </div>
               <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
                 <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
-                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
                   ហាងនៅក្បែ
                 </button>
               </div>
@@ -63,7 +252,7 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
-                  style="width:300px;">
+                  style="width: 300px">
                   <li class="mb-3" id="signup-list">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
                       <div class="profile_header bg-instead rounded-circle">
@@ -91,7 +280,7 @@
                     </a>
                   </li>
                   <li id="logout-list">
-                    <hr style="color: #ddd;">
+                    <hr style="color: #ddd" />
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href>
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-power"></i>
@@ -115,7 +304,7 @@
 
                 <!-- Dropdown Notification Menu -->
                 <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="notificationDropdown"
-                  style="width: 300px; max-height: 400px; overflow-y: auto;">
+                  style="width: 300px; max-height: 400px; overflow-y: auto">
                   <!-- Notification Header -->
                   <h6 class="dropdown-header">Notifications</h6>
 
@@ -123,7 +312,7 @@
                   <div class="notification-item d-flex align-items-start mb-2">
                     <div
                       class="notification-icon bg-primary rounded-circle d-flex justify-content-center align-items-center"
-                      style="width: 40px; height: 40px;">
+                      style="width: 40px; height: 40px">
                       <i class="bi bi-info-circle text-white"></i>
                     </div>
                     <div class="ms-2">
@@ -137,7 +326,7 @@
                   <div class="notification-item d-flex align-items-start mb-2">
                     <div
                       class="notification-icon bg-success rounded-circle d-flex justify-content-center align-items-center"
-                      style="width: 40px; height: 40px;">
+                      style="width: 40px; height: 40px">
                       <i class="bi bi-check-circle text-white"></i>
                     </div>
                     <div class="ms-2">
@@ -155,7 +344,7 @@
               </div>
               <button type="submit" onclick="wishlist()"
                 class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
               </button>
             </div>
           </div>
@@ -229,7 +418,7 @@
               <div id="personal-info" class="content-section">
                 <h2 class="section-title text-primary">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
                 <p class="text-muted mb-4">
-                  ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នកនៅទីនេះ។
+                  ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អនកនៅទីនេះ។
                 </p>
                 <form id="updateForm">
                   <div class="mb-4">
@@ -251,7 +440,7 @@
                     </div>
                   </div>
                   <button id="update_info" class="btn btn-primary w-100" type="submit">
-                    <span class="spinner-border spinner-border-sm" id="spinner" style="display:none;"
+                    <span class="spinner-border spinner-border-sm" id="spinner" style="display: none"
                       aria-hidden="true"></span>
                     <span id="buttonText">រក្សាទុកការផ្លាស់ប្តូរ</span>
                   </button>
@@ -278,7 +467,7 @@
                   <div class="mb-4">
                     <label for="fabric-softener" class="form-label">ទឹកក្រអូបសម្លៀកបំពាក់</label>
                     <select class="form-select form-control" id="fabric-softener">
-                      <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអូប</option>
+                      <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអ���ប</option>
                       <option value="yes">បាទ/ចាស ប្រើទឹកក្រអូប</option>
                       <option value="no">មិនប្រើទឹកក្រអូប</option>
                     </select>
@@ -294,6 +483,43 @@
                   </button>
                 </form>
               </div>
+              <!-- <div id="order-history" class="content-section d-none">
+                <h2 class="section-title text-primary">
+                  ប្រវត្តិការបញ្ជាទិញ
+                </h2>
+                <p class="text-muted mb-4">
+                  មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
+                </p>
+                <ul class="nav nav-tabs mb-3" id="filterTabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-filter="all" href="#">All Orders (50)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="pending" href="#">Pending (10)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="completed" href="#">Completed (8)</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="cancelled" href="#">Cancelled (22)</a>
+                  </li>
+                </ul>
+                  <table id="purchasedTable" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody id="body_table">
+                      <tr>
+
+                      </tr>
+                    </tbody>
+                  </table>
+              </div> -->
               <div id="order-history" class="content-section d-none">
                 <h2 class="section-title text-primary">
                   ប្រវត្តិការបញ្ជាទិញ
@@ -301,44 +527,38 @@
                 <p class="text-muted mb-4">
                   មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                 </p>
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>លេខបញ្ជាទិញ</th>
-                        <th>កាលបរិច្ឆេទ</th>
-                        <th>សេវាកម្ម</th>
-                        <th>ស្ថានភាព</th>
-                        <th>តម្លៃសរុប</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#12345</td>
-                        <td>2023-05-15</td>
-                        <td>បោកនិងបត់</td>
-                        <td>
-                          <span class="badge bg-success">បានបញ្ចប់</span>
-                        </td>
-                        <td>$25.00</td>
-                      </tr>
-                      <tr>
-                        <td>#12346</td>
-                        <td>2023-05-10</td>
-                        <td>បោកស្ងួត</td>
-                        <td>
-                          <span class="badge bg-warning">កំពុងដំណើរការ</span>
-                        </td>
-                        <td>$40.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <ul class="nav nav-tabs mb-3" id="filterTabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-filter="all" href="#">All Orders</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="1" href="#">Pending</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="2" href="#">Approved</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-filter="3" href="#">Rejected</a>
+                  </li>
+                </ul>
+                <table id="purchasedTable" class="table table-striped" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th class="bg-primary text-start">Item</th>
+                      <th class="bg-primary text-start">Status</th>
+                      <th class="bg-primary text-start">Total</th>
+                      <th class="bg-primary text-center">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="body_table">
+                    <!-- Dynamic rows will be inserted here -->
+                  </tbody>
+                </table>
               </div>
               <div id="payment-methods" class="content-section d-none">
                 <h2 class="section-title text-primary">វិធីទូទាត់ប្រាក់</h2>
                 <p class="text-muted mb-4">
-                  គ្រប់គ្រងជម្រើសទូទាត់ប្រាក់របស់អ្នក។
+                  គ្រប់គ្រងជ���្រើសទូទាត់ប្រាក់របស់អ្នក។
                 </p>
                 <div class="mb-4">
                   <h3 class="h5">វិធីទូទាត់ប្រាក់ដែលបានរក្សាទុក</h3>
@@ -454,7 +674,9 @@
               </div>
               <div id="cart-items" class="content-section d-none">
                 <h2 class="section-title text-primary">ទំនិញក្នុងកន្ត្រក</h2>
-                <p class="text-muted mb-4">រាល់សេវាកម្មដែលបានបញ្ចូលក្នុងកន្ត្រក តែមិនទាន់បានទូទាត់។</p>
+                <p class="text-muted mb-4">
+                  រាល់សេវាកម្មដែលបានបញ្ចូលក្នុងកន្ត្រក តែមិនទាន់បានទូទាត់។
+                </p>
 
                 <div class="row g-4">
                   <!-- Cart Item Card -->
@@ -463,7 +685,7 @@
                       <div class="card-body">
                         <div class="row align-items-center">
                           <div class="col-md-2 col-4 mb-3 mb-md-0">
-                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image">
+                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image" />
                           </div>
                           <div class="col-md-4 col-8 mb-3 mb-md-0">
                             <h5 class="card-title mb-1">ហាង ABC Laundry</h5>
@@ -477,10 +699,14 @@
                             </p>
                           </div>
                           <div class="col-md-3 col-6">
-                            <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
+                            <h6 class="mb-2">សេវាកម្���ជ្រើសរើស:</h6>
                             <ul class="list-unstyled">
-                              <li><i class="fas fa-check text-success me-2"></i>បោកគក់ធម្មតា</li>
-                              <li><i class="fas fa-check text-success me-2"></i>បោកស្ងួត</li>
+                              <li>
+                                <i class="fas fa-check text-success me-2"></i>បោកគក់ធម្មតា
+                              </li>
+                              <li>
+                                <i class="fas fa-check text-success me-2"></i>បោកស្ងួត
+                              </li>
                             </ul>
                           </div>
                           <div class="col-md-3 col-6 text-md-end">
@@ -505,7 +731,7 @@
                       <div class="card-body">
                         <div class="row align-items-center">
                           <div class="col-md-2 col-4 mb-3 mb-md-0">
-                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image">
+                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image" />
                           </div>
                           <div class="col-md-4 col-8 mb-3 mb-md-0">
                             <h5 class="card-title mb-1">ហាង XYZ Cleaning</h5>
@@ -521,8 +747,12 @@
                           <div class="col-md-3 col-6">
                             <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
                             <ul class="list-unstyled">
-                              <li><i class="fas fa-check text-success me-2"></i>បោកគក់ពិសេស</li>
-                              <li><i class="fas fa-check text-success me-2"></i>អ៊ុតសម្លៀកបំពាក់</li>
+                              <li>
+                                <i class="fas fa-check text-success me-2"></i>បោកគក់ពិសេស
+                              </li>
+                              <li>
+                                <i class="fas fa-check text-success me-2"></i>អ៊ុតសម្លៀកបំពាក់
+                              </li>
                             </ul>
                           </div>
                           <div class="col-md-3 col-6 text-md-end">
@@ -586,8 +816,7 @@
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="cardNumber" placeholder="លេខកាត" required maxlength="19" />
                 <label class="ps-0 ms-0" for="cardNumber">លេខកាត</label>
-                <small class="form-text text-muted">ទម្រង់: 1234 5678 9012
-                  3456</small>
+                <small class="form-text text-muted">ទម្រង់: 1234 5678 9012 3456</small>
               </div>
               <div class="mb-3 form-floating">
                 <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required maxlength="5" />
@@ -608,7 +837,6 @@
     </div>
   </main>
 
-
   <footer class="footer mt-70">
     <div class="container">
       <div class="row gy-3">
@@ -617,27 +845,39 @@
           <p class="fs-18">
             យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
             និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
-            ដោយធានាបាននូវភាពងាយស្រួល​
-            និងគុណភាពដល់អ្នកប្រើប្រាស់។
+            ដោយធានាបាននូវភាពងាយស្រួល​ និងគុណភាពដល់អ្នកប្រើប្រាស់។
           </p>
           <div class="social-icons">
-            <a href="#" style="background-color:#4267B2;"><i class="bi bi-facebook"></i></a>
-            <a href="#" style="background-color:  #0088cc;"><i class="bi bi-telegram"></i></a>
-            <a href="#" style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); "><i
-                class="bi bi-instagram"></i></a>
+            <a href="#" style="background-color: #4267b2"><i class="bi bi-facebook"></i></a>
+            <a href="#" style="background-color: #0088cc"><i class="bi bi-telegram"></i></a>
+            <a href="#" style="
+                  background: linear-gradient(
+                    45deg,
+                    #feda75,
+                    #fa7e1e,
+                    #d62976,
+                    #962fbf,
+                    #4f5bd5
+                  );
+                "><i class="bi bi-instagram"></i></a>
             <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
           </div>
         </div>
         <div class="col-lg-2 ms-auto">
-          <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+          <h5 class="text-primary">ត��ណភ្ជាប់រហ័ស</h5>
           <ul>
-            <li><a href="../../../index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a></li>
-            <li><a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a></li>
-            <li><a href="../../../src/views/page/aboutUs.html" class="fs-18"><i
+            <li>
+              <a href="../../../index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a>
+            </li>
+            <li>
+              <a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a>
+            </li>
+            <li>
+              <a href="../../../src/views/page/aboutUs.html" class="fs-18"><i
                   class="bi bi-info-circle me-2"></i>អំពីយើង</a>
             </li>
-            <li id="order-history"><a type="button" onclick="profile_headerMe()"
-                class="border-0 p-0 bg-transparent fs-18">
+            <li id="order-history">
+              <a type="button" onclick="profile_headerMe()" class="border-0 p-0 bg-transparent fs-18">
                 <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
             </li>
           </ul>
@@ -645,21 +885,21 @@
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
           <h5 class="text-primary">ទំនាក់ទំនង</h5>
           <ul>
-            <li><a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a></li>
+            <li>
+              <a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a>
+            </li>
             <li>
               <a href="mailto:boukuk@gmail.com" class="fs-18">
                 <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
               </a>
             </li>
-
           </ul>
         </div>
       </div>
-      <hr class="my-4">
+      <hr class="my-4" />
       <div class="d-flex justify-content-between">
         <div>
-          <span><i class="bi bi-c-circle"></i> 2024 Boakuk
-            ANT-GROUP9</span>
+          <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
         </div>
         <div>
           <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
@@ -675,13 +915,111 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-0">
-          <div class="cropper-wrapper d-flex align-items-center justify-content-center" style="height: 300px;">
-            <img id="cropperImage" src="" alt="Image to crop" style="max-width: 100%; max-height: 100%;">
+          <div class="cropper-wrapper d-flex align-items-center justify-content-center" style="height: 300px">
+            <img id="cropperImage" src="" alt="Image to crop" style="max-width: 100%; max-height: 100%" />
           </div>
         </div>
         <div class="modal-footer border">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="cropImageBtn">Done</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" id="cropImageBtn">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Order Details Modal -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0">
+        <div class="modal-header border-0 bg-light">
+          <h5 class="modal-title fw-bold" id="orderModalLabel">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>ព័ត៌មានលម្អិតនៃការបញ្ជាទិញ
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row">
+            <!-- Service Info -->
+            <div class="col-md-6 mb-4">
+              <div class="service-details p-3 bg-light rounded-3">
+                <h6 class="text-primary mb-3">ព័ត៌មានសេវាកម្ម</h6>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="service-img rounded-3 overflow-hidden" style="width: 80px; height: 80px">
+                    <img src="${details.service.image}" class="w-100 h-100 object-fit-cover" alt="Service" />
+                  </div>
+                  <div>
+                    <h6 class="mb-1">${details.service.name}</h6>
+                    <p class="text-muted small mb-1">
+                      ${details.service.serviceType}
+                    </p>
+                    <p class="text-muted small mb-0">
+                      ${details.service.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Info -->
+            <div class="col-md-6 mb-4">
+              <div class="order-details p-3 bg-light rounded-3">
+                <h6 class="text-primary mb-3">ព័ត៌មានការបញ្ជាទិញ</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2">
+                    <i class="bi bi-calendar3 text-primary me-2"></i>
+                    <span class="text-muted">កាលបរិច្ឆេទ:</span>
+                    <span class="fw-medium">${new
+                      Date(details.order.orderDate).toLocaleDateString()}</span>
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-tag text-primary me-2"></i>
+                    <span class="text-muted">ចំនួន:</span>
+                    <span class="fw-medium">${details.order.qty} ឯកតា</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-cash text-primary me-2"></i>
+                    <span class="text-muted">តម្លៃសរុប:</span>
+                    <span class="fw-medium">$${details.order.total}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Creator Info -->
+            <div class="col-12">
+              <div class="creator-details p-3 bg-light rounded-3">
+                <h6 class="text-primary mb-3">ព័ត៌មានអ្នកផ្តល់សេវាកម្ម</h6>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="creator-avatar rounded-circle overflow-hidden" style="width: 50px; height: 50px">
+                    <img src="${details.creator.avatar}" class="w-100 h-100 object-fit-cover" alt="Creator" />
+                  </div>
+                  <div>
+                    <h6 class="mb-1">${details.creator.name}</h6>
+                    <p class="text-muted small mb-0">អ្នកផ្តល់សេវាកម្ម</p>
+                  </div>
+                </div>
+                <div class="contact-info ms-2">
+                  <p class="mb-2">
+                    <i class="bi bi-envelope text-primary me-2"></i>${details.creator.email}
+                  </p>
+                  <p class="mb-2">
+                    <i class="bi bi-telephone text-primary me-2"></i>${details.creator.phone}
+                  </p>
+                  <a href="${details.creator.google_map_url}" target="_blank" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-geo-alt me-2"></i>មើលទីតាំងលើផែនទី
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 bg-light">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -694,7 +1032,11 @@
   <script type="module" src="../../../assets/js/search.js"></script>
   <script type="module" src="../../../assets/js/nearest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-
+  <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+  <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
 </body>
 
 </html>
