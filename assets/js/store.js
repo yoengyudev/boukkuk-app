@@ -1,14 +1,24 @@
 import { baseUrl } from './baseUrl.js';
 import { UserToken } from './tokens.js'
-document.addEventListener("DOMContentLoaded", function () {
-  const serviceCards = document.querySelectorAll(".service-card");
   const cartItemsDiv = document.getElementById("cart-items");
+  const serviceCards = document.querySelectorAll(".service-card");
   const totalPriceDiv = document.getElementById("total-price");
   const checkoutButton = document.getElementById("checkout-button");
   const tabs = document.querySelectorAll(".nav-link");
   const sections = document.querySelectorAll(".service-section");
-  let cart = [];
-  let total = 0;
+  let getCreatorId = localStorage.getItem("creator_id");
+  let localCart = [];
+
+  if (!getCreatorId) {
+    console.log("Hello world");
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}index.html`;
+  
+    throw new Error("Redirecting to index.html");
+  }
+  
+  
 
   // Improved Intersection Observer options
   const observerOptions = {
@@ -69,36 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 10)
   );
 
-  // Initialize all service cards with their category
-  serviceCards.forEach((card) => {
-    const category = card
-      .closest(".service-section")
-      .getAttribute("data-category");
-    const serviceName = card.getAttribute("data-service");
-    // Add category as data attribute to the card
-    card.setAttribute("data-category", category);
-
-    // Create unique ID combining category and service name
-    const uniqueId = `${category}-${serviceName}`;
-    card.setAttribute("data-unique-id", uniqueId);
-
-    // Add click handlers to the buttons
-    const decreaseBtn = card.querySelector(".decrease");
-    const increaseBtn = card.querySelector(".increase");
-    const quantitySpan = card.querySelector(".quantity");
-
-    decreaseBtn.addEventListener("click", () => {
-      const currentQty = parseInt(quantitySpan.textContent);
-      if (currentQty > 0) {
-        updateCart(card, currentQty - 1);
-      }
-    });
-
-    increaseBtn.addEventListener("click", () => {
-      const currentQty = parseInt(quantitySpan.textContent);
-      updateCart(card, currentQty + 1);
-    });
-  });
 
   // Smooth scroll with offset correction
   tabs.forEach((tab) => {
@@ -119,163 +99,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  function updateCart(card) {
-    const serviceId = parseInt(card.dataset.serviceId);
-    const serviceName = card.dataset.service;
-    const servicePrice = parseFloat(card.dataset.price);
-    const serviceImage = card.querySelector("img")?.src || "";
 
-    const existingItem = cart.find((item) => item.id === serviceId);
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({
-        id: serviceId,
-        name: serviceName,
-        price: servicePrice,
-        quantity: 1,
-        image: serviceImage,
-      });
-    }
-
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
-  }
-
-  function calculateTotal() {
-    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }
-
-  function renderCart() {
-    cartItemsDiv.innerHTML = "";
-    if (cart.length === 0) {
-      cartItemsDiv.innerHTML = `
-        <div class="text-center d-flex flex-column justify-content-center h-100 p-4">
-          <img src="https://thumbs.dreamstime.com/b/laundry-wash-cleaning-icons-black-white-laundry-wash-cleaning-dirty-clothes-basket-washing-machine-icon-152344297.jpg" alt="Empty Cart" class="img-fluid mx-auto" style="width: 150px; height:auto;">
-          <div class="text-center">
-            <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
-            <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>
-          </div>
-        </div>`;
-      totalPriceDiv.textContent = "Total: $0.00";
-      checkoutButton.disabled = true;
-    } else {
-      cart.forEach((item) => {
-        const itemDiv = document.createElement("div");
-        itemDiv.className = "cart-item mb-3 border-bottom pb-2";
-        itemDiv.setAttribute("data-unique-id", item.uniqueId);
-
-        itemDiv.innerHTML = `
-          <div class="d-flex justify-content-between w-100 align-items-center gap-2">
-            <div class="cart-item-image" style="width: 50px; height: 50px; min-width: 50px;">
-              <img src="${item.image}" alt="${
-          item.name
-        }" class="rounded w-100 h-100 object-fit-cover">
-            </div>
-            <div class="d-flex flex-column flex-grow-1">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <div class="text-truncate d-flex flex-column align-items-center pe-2 ps-3" style="max-width: 150px;">
-                <div>
-                ${item.name} 
-                </div>
-                <div>
-$${item.price.toFixed(2)}              
-                </div>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                  <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" 
-                    >-</button>
-                  <span class="quantity cart-quantity" >${item.quantity}</span>
-                  <button class="increase-cart btn btn-sm btn-outline-primary rounded-circle increase-btn" 
-                    >+</button>
-                  <button class="btn btn-link text-danger ps-2 fs-5 p-0 delete-btn" >
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-
-        // Add event listeners for the buttons
-        const deleteBtn = itemDiv.querySelector(".delete-btn");
-        const decreaseBtn = itemDiv.querySelector(".decrease-btn");
-        const increaseBtn = itemDiv.querySelector(".increase-btn");
-
-        deleteBtn.addEventListener("click", () => {
-          // Remove from cart array
-          cart = cart.filter((cartItem) => cartItem.id !== item.id);
-
-          // Update localStorage
-          sessionStorage.setItem("cart", JSON.stringify(cart));
-
-          // Remove from DOM
-          itemDiv.remove();
-
-          // Update total
-          total = calculateTotal();
-          totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
-
-          // Check if cart is empty
-          if (cart.length === 0) {
-            renderCart();
-          }
-        });
-
-        decreaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find((cartItem) => cartItem.id === item.id);
-          if (cartItem && cartItem.quantity > 1) {
-            cartItem.quantity--;
-            // Update sessionStorage
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-            total = calculateTotal();
-            renderCart();
-          } else if (cartItem && cartItem.quantity === 1) {
-            cart = cart.filter((cartItem) => cartItem.id !== item.id);
-            // Update sessionStorage
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-            total = calculateTotal();
-            renderCart();
-          }
-        });
-
-        increaseBtn.addEventListener("click", () => {
-          const cartItem = cart.find((cartItem) => cartItem.id === item.id);
-          if (cartItem) {
-            cartItem.quantity++;
-            // Update sessionStorage
-            sessionStorage.setItem("cart", JSON.stringify(cart));
-            total = calculateTotal();
-            renderCart();
-          }
-        });
-
-        cartItemsDiv.appendChild(itemDiv);
-      });
-
-      total = calculateTotal();
-      totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
-      checkoutButton.disabled = false;
-    }
-  }
-
-  function createButton(text, isDecrease, onClick) {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.className = isDecrease
-      ? "btn btn-circle decrease btn-primary"
-      : "btn btn-circle increase btn-outline-primary";
-    button.style.width = "30px";
-    button.style.height = "30px";
-    button.style.padding = "0";
-    button.style.borderRadius = "50%";
-    button.style.display = "flex";
-    button.style.alignItems = "center";
-    button.style.justifyContent = "center";
-    button.addEventListener("click", onClick);
-    return button;
-  }
 
   function debounce(func, wait) {
     let timeout;
@@ -289,106 +114,6 @@ $${item.price.toFixed(2)}
     };
   }
 
-  function setLoadingState(button, isLoading) {
-    if (isLoading) {
-      button.disabled = true;
-      button.innerHTML = `
-        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-        កំពុងដំណើរការ...
-      `;
-    } else {
-      button.disabled = false;
-      button.innerHTML = "ទូទាត់ទឹកប្រាក់";
-    }
-  }
-
-  checkoutButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    if (this.disabled || cart.length === 0) {
-      alert("សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រក់របស់អ្នក!");
-      return;
-    }
-
-    setLoadingState(this, true);
-
-    if (!UserToken) {
-      alert('សូមធ្វើការ Login ជាមុនសិន!');
-      window.location.href = 'login.html';
-      return;
-    }
-    const requestData = {
-      service_id: cart.map(item => item.id),
-      qty: cart.map(item => item.quantity)
-    };
-
-    fetch(`${baseUrl}/api/carts`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${UserToken}`
-      },
-      body: JSON.stringify(requestData),
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        console.log("Server response:", data);
-
-        if (!response.ok) {
-          if (response.status === 422) {
-            const errorMessage =
-              data.message ||
-              Object.values(data.data || {})
-                .flat()
-                .join(", ") ||
-              "Validation error occurred";
-            throw new Error(errorMessage);
-          }
-          throw new Error("Network response was not ok");
-        }
-
-        return data;
-      })
-      .then((data) => {
-        console.log("Checkout successful:", data);
-        cart = [];
-        sessionStorage.removeItem("cart");
-        renderCart();
-        // Redirect to payment.html after successful checkout
-        window.location.href = "payment.html";
-      })
-      .catch((error) => {
-        console.error("Error during checkout:", error);
-        alert(`មានបញ្ហាក្នុងការបញ្ជាទិញ: ${error.message}`);
-      })
-      .finally(() => {
-        setLoadingState(checkoutButton, false);
-      });
-  });
-
-  renderCart();
-
-  // Add event listener for Add to Cart buttons
-  document.addEventListener("click", function (e) {
-    if (
-      e.target.classList.contains("add-to-cart-btn") ||
-      e.target.closest(".add-to-cart-btn")
-    ) {
-      const card = e.target.closest(".service-card");
-      if (card) {
-        updateCart(card);
-      }
-    }
-  });
-
-  // Load cart from localStorage and calculate total
-  const savedCart = sessionStorage.getItem("cart");
-  if (savedCart) {
-    cart = JSON.parse(savedCart);
-    total = calculateTotal(); // Calculate initial total
-    renderCart();
-  }
-});
 
 // price range ui code
 
@@ -443,10 +168,10 @@ let firstId = " ";
 function getCategory(value = 0, search = "") {
   console.log("Selected Category:", value);
   console.log("Search Term:", search);
-  let getCreatorId = localStorage.getItem("creator_id");
   let start_pri = document.querySelector(".input-min").value;
   let end_pri = document.querySelector(".input-max").value;
-
+  console.log(getCreatorId);
+  
   const url = `${baseUrl}/api/services?page=1&per_page=20&search=${search}&category=${
     value !== 0 ? value : ""
   }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
@@ -608,9 +333,261 @@ document
   .getElementById("searchInput")
   .addEventListener("keyup", searchServices);
 
-// When clearing the cart (after successful checkout)
-function clearCart() {
-  cart = [];
-  sessionStorage.removeItem("cart");
-  renderCart();
+
+
+// -------------- add to cart -------------
+document.addEventListener("click", function (e) {
+  if (!UserToken) {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
+    return;
+  }
+
+
+  const button = e.target.closest(".add-to-cart-btn");
+  if (button) {
+    const card = button.closest(".service-card");
+    const serviceId = card.dataset.serviceId;
+
+    console.log("Adding to cart:", serviceId);
+
+
+    const formData = new FormData();
+    formData.append("service_id", serviceId);
+    formData.append("qty", 1);
+
+    const originalText = '<i class="bi bi-cart-plus"></i> បន្ថែម'; 
+    button.textContent = "កំពុងបន្ថែម...";
+    button.disabled = true; 
+
+    fetch(`${baseUrl}/api/carts`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${UserToken}`
+      },
+      body: formData, 
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add to cart.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        summaryCart();
+        console.log("Add to cart successful:", data);
+      })
+      .catch((error) => {
+        console.error("Error adding to cart:", error);
+        alert("Failed to add item to cart. Please try again.");
+      })
+      .finally(() => {
+        // Restore button state
+        button.innerHTML = originalText;
+        button.disabled = false;
+      });
+  }
+});
+
+// ---------------- summary cart -------------------------------
+
+// Function to fetch the cart from the server
+async function summaryCart() {
+  try {
+    const response = await fetch(`${baseUrl}/api/profile/carts`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${UserToken}`,
+        "Accept": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch cart items.");
+    }
+
+    const data = await response.json();
+    localCart = data.data.items.map(item => ({
+      id: item.id,
+      serviceId: item.service.id,
+      name: item.service.name,
+      price: Number(item.price),
+      qty: Number(item.qty),
+      image: item.service.image
+    }));
+
+    renderCart();
+  } catch (error) {
+    console.error("Error fetching cart items:", error);
+    alert("Failed to load cart. Please try again.");
+  }
 }
+
+function renderCart() {
+  cartItemsDiv.innerHTML = "";
+  let total = 0;
+
+  if (localCart.length === 0) {
+    cartItemsDiv.innerHTML = `
+      <div class="text-center d-flex flex-column justify-content-center h-100 p-4">
+        <img src="https://thumbs.dreamstime.com/b/laundry-wash-cleaning-icons-black-white-laundry-wash-cleaning-dirty-clothes-basket-washing-machine-icon-152344297.jpg" alt="Empty Cart" class="img-fluid mx-auto" style="width: 150px; height:auto;">
+        <div class="text-center">
+          <i class="bi bi-cart text-muted me-2" style="font-size: 1.5rem;"></i>
+          <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>
+        </div>
+      </div>`;
+    totalPriceDiv.textContent = "Total: $0.00";
+    checkoutButton.disabled = true;
+    return;
+  }
+
+  localCart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "cart-item mb-3 border-bottom pb-2";
+    itemDiv.innerHTML = `
+      <div class="d-flex justify-content-between w-100 align-items-center gap-2">
+        <div class="cart-item-image" style="width: 50px; height: 50px; min-width: 50px;">
+          <img src="${item.image}" alt="${item.name}" class="rounded w-100 h-100 object-fit-cover">
+        </div>
+        <div class="d-flex flex-column flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="text-truncate d-flex flex-column align-items-center pe-2 ps-3" style="max-width: 150px;">
+              <div>${item.name}</div>
+              <div>$${item.price.toFixed(2)}</div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" ${item.qty === 1 ? "disabled" : ""}>-</button>
+              <span class="quantity cart-quantity">${item.qty}</span>
+              <button class="increase-cart btn btn-sm btn-outline-primary rounded-circle increase-btn">+</button>
+              <button class="btn btn-link text-danger ps-2 fs-5 p-0 delete-btn">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Event listeners for buttons
+    const decreaseBtn = itemDiv.querySelector(".decrease-btn");
+    const increaseBtn = itemDiv.querySelector(".increase-btn");
+    const deleteBtn = itemDiv.querySelector(".delete-btn");
+
+    decreaseBtn.addEventListener("click", () => {
+      if (item.qty > 1) {
+        item.qty -= 1;
+      } else {
+        localCart.splice(index, 1);
+      }
+      renderCart();
+    });
+
+    increaseBtn.addEventListener("click", () => {
+      item.qty += 1;
+      renderCart();
+    });
+
+    deleteBtn.addEventListener("click", async () => {
+      console.log("Removing item...");
+    
+      // Save the original icon HTML
+      const originalIcon = deleteBtn.innerHTML;
+    
+      // Replace the icon with the spinner
+      deleteBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>';
+      deleteBtn.disabled = true; 
+    
+      try {
+        // Send DELETE request to the server
+        const response = await fetch(`${baseUrl}/api/carts/${item.id}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${UserToken}`,
+            "Accept": "application/json",
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error("Failed to remove item from the server.");
+        }
+    
+        // Remove item from the localCart array
+        localCart.splice(index, 1);
+        renderCart();
+      } catch (error) {
+        console.error("Error removing item:", error);
+        alert("Failed to remove item. Please try again.");
+      } finally {
+        deleteBtn.innerHTML = originalIcon;
+        deleteBtn.disabled = false;
+      }
+    });
+    
+
+    cartItemsDiv.appendChild(itemDiv);
+  });
+
+  totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
+  checkoutButton.disabled = false;
+}
+
+
+async function updateCartOnServer() {
+  const updateButton = document.getElementById("updateCartButton");
+  const originalText = updateButton.textContent; 
+
+  // Show text spinner and disable update button
+  updateButton.textContent = "កំពុងកែប្រែ...";
+  updateButton.disabled = true;
+
+  try {
+    // Remove all items from the server
+    for (const item of localCart) {
+      await fetch(`${baseUrl}/api/carts/${item.id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${UserToken}`,
+          "Accept": "application/json",
+        },
+      });
+    }
+
+    // Re-add items with updated quantities
+    for (const item of localCart) {
+      const formData = new FormData();
+      formData.append("service_id", item.serviceId);
+      formData.append("qty", item.qty);
+
+      await fetch(`${baseUrl}/api/carts`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${UserToken}`,
+          "Accept": "application/json",
+        },
+        body: formData,
+      });
+    }
+
+    await summaryCart(); 
+    alert("Cart updated successfully!");
+  } catch (error) {
+    console.error("Failed to update cart:", error);
+    alert("Failed to update cart. Please try again.");
+  } finally {
+    // Restore original text and re-enable button
+    updateButton.textContent = originalText;
+    updateButton.disabled = false;
+  }
+}
+
+
+summaryCart();
+
+updateCartButton.addEventListener("click", updateCartOnServer);
+
+
