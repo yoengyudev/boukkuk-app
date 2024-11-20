@@ -1,9 +1,7 @@
 // =======================>> Get all user <<========================
-import { AdminToken, UserToken } from "./tokens.js";
+import { AdminToken } from "./tokens.js";
 import { baseUrl } from "./baseUrl.js";
 import { modalContent, togglePasswordVisibility } from "./updateUserInfo.js";
-
-// Rest of your user.js code
 
 fetch(`${baseUrl}/api/users`, {
   method: "GET",
@@ -17,6 +15,7 @@ fetch(`${baseUrl}/api/users`, {
     let tr = "";
     const users = json.data;
     users.forEach((e) => {
+      const isDisabled = e.is_disabled === 1;
       tr += `<tr>
                 <td class='text-start'>${e.id}</td>
                 <td>${e.name}</td>
@@ -49,8 +48,8 @@ fetch(`${baseUrl}/api/users`, {
 
 
                 <td>
-                    <a href="javascript:void(0)" onclick="toggleUserStatus(this, ${e.id})" class="btn_status p-0 text-decoration-none">
-                        <i class="bi bi-toggle-on text-primary btn_status_icon fs-4"></i>
+                    <a href="javascript:void(0)" onclick="toggleUserStatus(this, ${e.id}, ${isDisabled})" class="btn_status p-0 text-decoration-none">
+                        <i class="bi bi-toggle-${isDisabled ? 'off' : 'on'} text-${isDisabled ? 'danger' : 'primary'} btn_status_icon fs-4"></i>
                     </a>
                 </td>
                 <td>
@@ -351,14 +350,14 @@ function getUserForUpdate(userId) {
     .then((response) => response.json())
     .then((userData) => {
       console.log(userData.data);
-      
+
       document.getElementById("editUserId").value = userData.data.id;
       document.getElementById("editUserName").value = userData.data.name;
       document.getElementById("editUserEmail").value = userData.data.email;
       document.getElementById("editUserPhone").value = userData.data.phone;
       document.getElementById("editUserLocation").value = userData.data.google_map_url;
       // encrypt the password
-      document.getElementById("latitude").value =  userData.data.latitude;
+      document.getElementById("latitude").value = userData.data.latitude;
       document.getElementById("longitude").value = userData.data.longitude;
 
       console.log(userData.data.roles);
@@ -426,7 +425,7 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
   if (editEmail) formData.append("email", editEmail);
   if (editPhone) formData.append("phone", editPhone);
   if (editLocation) formData.append("google_map_url", editLocation);
-  formData.append("latitude",latitude);
+  formData.append("latitude", latitude);
   formData.append("longitude", longitude);
   formData.append("role_id", editRole);
   if (editImage) {
@@ -461,7 +460,7 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
     updateUserButton.disabled = true;
     spinner.style.display = "inline-block";
     buttonText.textContent = "Updating...";
-    
+
     fetch(`${baseUrl}/api/users/${userId}`, {
       method: "POST",
       headers: {
@@ -495,90 +494,40 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
 
 // ====================== User status ========================
 
-// Function to update the icon based on the user's current status from the API
-function updateUserStatusIcon(element, userId) {
-  const btn_status_icon = element.querySelector(".btn_status_icon");
+function toggleUserStatus(button, userId, isDisabled) {
+  const endpoint = isDisabled
+    ? `${baseUrl}/api/users/enable/${userId}`
+    : `${baseUrl}/api/users/disable/${userId}`;
 
-  // Fetch the current status of the user when the page loads
-  fetch(`${baseUrl}/api/users/status/${userId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${AdminToken}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Update the icon based on the user's status
-      if (data.result && data.code === 1) {
-        if (data.status === "enabled") {
-          btn_status_icon.classList.add("bi-toggle-on");
-          btn_status_icon.classList.remove("bi-toggle-off");
-          element.setAttribute("data-status", "enabled");
-        } else {
-          btn_status_icon.classList.add("bi-toggle-off");
-          btn_status_icon.classList.remove("bi-toggle-on");
-          element.setAttribute("data-status", "disabled");
-        }
-      } else {
-        console.error("Failed to retrieve user status.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert(
-        "An error occurred while retrieving user status. Please try again."
-      );
-    });
-}
-
-window.updateUserStatusIcon = updateUserStatusIcon;
-
-// Function to toggle the user status when the icon is clicked
-function toggleUserStatus(element, userId) {
-  const btn_status_icon = element.querySelector(".btn_status_icon");
-  const currentStatus = btn_status_icon.classList.contains("bi-toggle-on")
-    ? "enabled"
-    : "disabled";
-
-  // Corrected template literal for URL
-  const apiUrl =
-    currentStatus === "enabled"
-      ? `${baseUrl}/api/users/disable/${userId}`
-      : `${baseUrl}/api/users/enable/${userId}`;
-
-  fetch(apiUrl, {
+  fetch(endpoint, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      Accept: "application/json",
       Authorization: `Bearer ${AdminToken}`,
     },
   })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.result && data.code === 1) {
-        btn_status_icon.classList.toggle("bi-toggle-on");
-        btn_status_icon.classList.toggle("bi-toggle-off");
-        const newStatus = currentStatus === "enabled" ? "disabled" : "enabled";
-        element.setAttribute("data-status", newStatus);
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.result) {
+        const icon = button.querySelector(".btn_status_icon");
+        icon.classList.toggle("bi-toggle-on");
+        icon.classList.toggle("bi-toggle-off");
+        icon.classList.toggle("text-primary");
+        icon.classList.toggle("text-danger");
+
+        // Update the data attribute for toggling
+        button.setAttribute(
+          "onclick",
+          `toggleUserStatus(this, ${userId}, ${!isDisabled})`
+        );
       } else {
-        console.error("Failed to update user status.");
+        alert("Failed to toggle user status: " + response.message);
       }
     })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again.");
-    });
+    .catch((error) => console.error("Error toggling user status:", error));
 }
 
 window.toggleUserStatus = toggleUserStatus;
-
-window.onload = function () {
-  document.querySelectorAll(".user-toggle-btn").forEach((element) => {
-    const userId = element.getAttribute("data-user-id");
-    updateUserStatusIcon(element, userId); // Load initial status on page load
-  });
-};
 
 // ==============================promote user ==========================
 
