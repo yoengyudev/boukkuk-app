@@ -1,22 +1,24 @@
-let user_item = document.querySelector('.user-item');
-let category_item = document.querySelector('.category-item');
-let service_item = document.querySelector('.service-item');
-let order_item = document.querySelector('.order-item');
-let roleid = localStorage.getItem('UserRole');
-import { AdminToken, UserToken } from './tokens.js';
+let user_item = document.querySelector(".user-item");
+let category_item = document.querySelector(".category-item");
+let service_item = document.querySelector(".service-item");
+let provider_item = document.querySelector(".provider-item");
+let order_item = document.querySelector(".order-item");
+let roleid = localStorage.getItem("UserRole");
+import { AdminToken, UserToken } from "./tokens.js";
 console.log(roleid);
 console.log(AdminToken);
 
 if (!AdminToken) {
-    const currentPath = window.location.href;
-    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-    location.href = `${basePath}src/views/auth/login.html`;
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}src/views/auth/login.html`;
 }
 
 if (roleid == 3) {
-    user_item.style.display = 'none';
-    category_item.style.display = 'none';
+  user_item.style.display = "none";
+  category_item.style.display = "none";
+  provider_item.style.display = "none";
 } else if (roleid == 2) {
-    service_item.style.display = 'none';
-    order_item.style.display = 'none';
+  service_item.style.display = "none";
+  order_item.style.display = "none";
 }

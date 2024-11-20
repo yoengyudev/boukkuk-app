@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Category</title>
+    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
     <link rel="stylesheet" href="../../../../assets/css/style.css" />
     <link rel="stylesheet" href="../../../../assets/css/main.css" />
     <link rel="stylesheet" href="../../../../assets/css/long.css" />
     <link
       rel="stylesheet"
       href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
@@ -57,7 +53,6 @@
               <span class="title">User</span>
             </a>
           </li>
-
           <li class="service-item">
             <a href="../page/service.html">
               <span class="icon">
@@ -76,7 +71,7 @@
             </a>
           </li>
 
-          <li class="category-item active">
+          <li class="category-item">
             <a href="../page/category.html">
               <span class="icon">
                 <i class="bi bi-folder"></i>
@@ -85,7 +80,7 @@
             </a>
           </li>
 
-          <li class="provider-item">
+          <li class="provider-item active">
             <a href="../page/provider.html">
               <span class="icon">
                 <i class="bi bi-person-gear"></i>
@@ -111,6 +106,7 @@
           <div class="toggle">
             <i class="bi bi-list"></i>
           </div>
+
           <div class="global-profile-menu">
             <div class="img-box">
               <img
@@ -137,133 +133,40 @@
           </div>
         </div>
         <div class="p-4">
-          <button
-            type="button"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="modal"
-            data-bs-target="#addCategoryModal"
-          >
-            <i class="bi bi-plus-circle"></i>
-            Add New
-          </button>
           <table
-            id="categoriesTable"
+            id="providerTabel"
             class="table table-striped"
             style="width: 100%"
           >
-            <thead>
+            <thead class="text-start">
               <tr>
                 <th class="text-start">ID</th>
+                <th>Profile</th>
                 <th>Name</th>
+                <th>Email</th>
+                <th class="text-start">Phone</th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="table_body">
-              <tr></tr>
-            </tbody>
+            <tbody id="table_body" class="text-start"></tbody>
           </table>
         </div>
       </div>
     </div>
-
-    <!-- Add Category Modal -->
-    <div
-      class="modal fade"
-      id="addCategoryModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <input
-              type="text"
-              id="categoryName"
-              class="form-control"
-              placeholder="Category Name"
-            />
-            <div id="error-message" class="text-danger mt-2"></div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-secondary text-black"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="addCategory()"
-            >
-              Save Category
-            </button>
-          </div>
-        </div>
+<!-- Add Provider Detail Modal -->
+<div class="modal fade" id="providerDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Provider Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="providerDetailContent">
+        <!-- Provider details will be injected here -->
       </div>
     </div>
-
-    <!-- Update Category Modal -->
-    <div
-      class="modal fade"
-      id="updateCategoryModal"
-      tabindex="-1"
-      aria-labelledby="updateCategoryLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="updateCategoryLabel">
-              Update Category
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <input type="hidden" id="updateCategoryId" />
-            <input
-              type="text"
-              id="updateCategoryName"
-              class="form-control"
-              placeholder="Category Name"
-            />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-secondary text-black"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="updateCategory()"
-            >
-              Save Changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  </div>
+</div>
     <!-- Add this before the Scripts section -->
     <div
       class="modal fade global-profile-modal"
@@ -288,17 +191,26 @@
         </div>
       </div>
     </div>
-    <!-- =========== Scripts src =========  -->
+    <!-- =========== Scripts =========  -->
+    <script>
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
 
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
+    </script>
     <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
     <script
-      type="module"
-      src="../../../../assets/js/updateUserInfo.js"
+    type="module"
+    src="../../../../assets/js/updateUserInfo.js"
     ></script>
-    <script type="module" src="../../../../assets/js/category.js"></script>
+    <script type="module" src="../../../../assets/js/provider.js"></script>
     <script type="module" src="../../../../assets/js/sidebar.js"></script>
     <script type="module" src="../../../../assets/js/logout.js"></script>
+    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
     <script src="../../../../vender/datatable/js/dataTables.js"></script>
     <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
     <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
