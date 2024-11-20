@@ -350,16 +350,17 @@ function getUserForUpdate(userId) {
   })
     .then((response) => response.json())
     .then((userData) => {
+      console.log(userData.data);
+      
       document.getElementById("editUserId").value = userData.data.id;
       document.getElementById("editUserName").value = userData.data.name;
       document.getElementById("editUserEmail").value = userData.data.email;
       document.getElementById("editUserPhone").value = userData.data.phone;
-      document.getElementById("editUserLocation").value =
-        userData.data.google_map_url;
-      document.getElementById("editUserPass").value = userData.data.pass;
-      document.getElementById("editUserConfirmPass").value =userData.data.confirm_pass;
+      document.getElementById("editUserLocation").value = userData.data.google_map_url;
+      // encrypt the password
       document.getElementById("latitude").value =  userData.data.latitude;
       document.getElementById("longitude").value = userData.data.longitude;
+
       console.log(userData.data.roles);
       const roleId = userData.data.roles[0]
         ? userData.data.roles[0].id
@@ -395,9 +396,9 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
   let editPhone = document.getElementById("editUserPhone").value.trim();
   let editLocation = document.getElementById("editUserLocation").value;
   let editPass = document.getElementById("editUserPass").value.trim();
-  let editConfirm_pass = document
-    .getElementById("editUserConfirmPass")
-    .value.trim();
+  let editConfirm_pass = document.getElementById("editUserConfirmPass").value.trim();
+  let latitude = document.getElementById("latitude").value;
+  let longitude = document.getElementById("longitude").value;
   let editImage = document.getElementById("editUserImage").files[0];
   let editRole = document.querySelector(
     'input[name="editUserRole"]:checked'
@@ -406,23 +407,27 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
   console.log(editConfirm_pass);
   console.log(editPass);
 
+  let isPass = true;
   let formData = new FormData();
-  if (editName) formData.append("name", editName);
-  if (editEmail) formData.append("email", editEmail);
-  if (editPhone) formData.append("phone", editPhone);
-  if (editLocation) formData.append("google_map_url", editLocation);
   if (editPass && editConfirm_pass) {
     if (editPass === editConfirm_pass) {
       formData.append("password", editPass);
       formData.append("password_confirmation", editConfirm_pass);
     } else {
-      document.getElementById(
-        "err_pass"
-      ).innerHTML = `<i class="bi bi-info-circle"></i> Passwords do not match!`;
-      isValid = false;
+      document.getElementById("err_pass").innerHTML = `<i class="bi bi-info-circle"></i> Passwords do not match!`;
+      isPass = false;
     }
+  } else if (editPass || editConfirm_pass) {
+    document.getElementById("err_pass").innerHTML = `<i class="bi bi-info-circle"></i> Both password fields must be filled out!`;
+    isPass = false;
   }
 
+  if (editName) formData.append("name", editName);
+  if (editEmail) formData.append("email", editEmail);
+  if (editPhone) formData.append("phone", editPhone);
+  if (editLocation) formData.append("google_map_url", editLocation);
+  formData.append("latitude",latitude);
+  formData.append("longitude", longitude);
   formData.append("role_id", editRole);
   if (editImage) {
     formData.append("avatar", editImage);
@@ -456,7 +461,7 @@ document.getElementById("updateForm").addEventListener("submit", function (e) {
     updateUserButton.disabled = true;
     spinner.style.display = "inline-block";
     buttonText.textContent = "Updating...";
-
+    
     fetch(`${baseUrl}/api/users/${userId}`, {
       method: "POST",
       headers: {
@@ -528,6 +533,7 @@ function updateUserStatusIcon(element, userId) {
 }
 
 window.updateUserStatusIcon = updateUserStatusIcon;
+
 // Function to toggle the user status when the icon is clicked
 function toggleUserStatus(element, userId) {
   const btn_status_icon = element.querySelector(".btn_status_icon");

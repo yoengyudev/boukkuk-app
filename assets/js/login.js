@@ -1,5 +1,8 @@
 import { baseUrl } from "./baseUrl.js";
 //============================================== end of login ========================
+const currentPath = window.location.href;
+const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+
 
 function togglePasswordVisibility() {
   const passwordInput = document.getElementById("password");
@@ -87,8 +90,7 @@ login.addEventListener("submit", (event) => {
       const roleid = json.data.roles[0].id;
       localStorage.setItem('UserRole', roleid);
 
-      const currentPath = window.location.href;
-      const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+   
 
       if (roleid == 1) {
         localStorage.setItem('UserToken', token);
@@ -113,3 +115,4 @@ login.addEventListener("submit", (event) => {
       buttonText.textContent = 'ចូលប្រើប្រាស់គណនី';
     });
 });
+

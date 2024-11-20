@@ -933,11 +933,6 @@ input[type="range"]::-moz-range-thumb {
   border-bottom: none;
 }
 
-.details .recentOrders table tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-
 .details .recentOrders table tr td {
   padding: 10px;
 }
@@ -1030,14 +1025,6 @@ input[type="range"]::-moz-range-thumb {
   color: var(--black2);
 }
 
-.recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-
-.recentCustomers table tr:hover td h4 span {
-  color: var(--white);
-}
 
 .search-icon {
   transform: translateY(10px);
