@@ -49,7 +49,7 @@ fetch(`${baseUrl}/api/users`, {
 
                 <td>
                     <a href="javascript:void(0)" onclick="toggleUserStatus(this, ${e.id}, ${isDisabled})" class="btn_status p-0 text-decoration-none">
-                        <i class="bi bi-toggle-${isDisabled ? 'off' : 'on'} text-${isDisabled ? 'danger' : 'primary'} btn_status_icon fs-4"></i>
+                        <i class="bi bi-toggle-${isDisabled ? 'off' : 'on'} text-${isDisabled ? 'dark' : 'primary'} btn_status_icon fs-4"></i>
                     </a>
                 </td>
                 <td>
