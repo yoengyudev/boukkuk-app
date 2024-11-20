@@ -1,6 +1,13 @@
 import { AdminToken, UserToken } from "./tokens.js";
 import { baseUrl } from "./baseUrl.js";
-import { modalContent, togglePasswordVisibility, initInformationForm, adminModalContent, initAdminInformationForm, initPasswordForm } from './updateUserInfo.js';
+import {
+  modalContent,
+  togglePasswordVisibility,
+  initInformationForm,
+  adminModalContent,
+  initAdminInformationForm,
+  initPasswordForm,
+} from "./updateUserInfo.js";
 
 // Make togglePasswordVisibility available globally
 window.togglePasswordVisibility = togglePasswordVisibility;
@@ -25,7 +32,7 @@ function DisplayServices() {
 
   fetch(
     `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=` +
-    ProviderID,
+      ProviderID,
     {
       method: "GET",
       headers: {
@@ -57,7 +64,7 @@ function DisplayServices() {
           {
             data: "price",
             render: function (data, type, row) {
-              return `$${data}`;
+              return `<div class="text-start">$${data}</div>`; // Add text-start class here
             },
           },
           {
@@ -66,11 +73,11 @@ function DisplayServices() {
               return `
                   <div class="action-buttons">
                     <button  data-bs-toggle="modal" data-bs-target="#detailModal" class="btn btn-info btn-sm" onclick="viewDetails(${JSON.stringify(
-                row
-              ).replace(/"/g, "&quot;")})">
+                      row
+                    ).replace(/"/g, "&quot;")})">
                       <i class="bi bi-eye"></i>
                     </button>
-                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editService(this)">
+                    <button class="btn btn-warning btn-sm my-2 my-md-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editService(this)">
                       <i class="bi bi-pencil"></i>
                     </button>
                     <button onclick="deleteService(this)" class="btn btn-danger btn-sm">
@@ -102,6 +109,9 @@ function DisplayServices() {
       });
     });
 }
+$("#servicesTable").DataTable({
+  responsive: true,
+});
 $(document).ready(function () {
   DisplayServices();
 });
@@ -217,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update modal content
       const modalTitle = document.getElementById("profileModalTitle");
       const modalBody = document.querySelector("#profileModal .modal-body");
-      const isAdmin = localStorage.getItem('UserRole') === '2';
+      const isAdmin = localStorage.getItem("UserRole") === "2";
 
       // Use admin modal content for admin users
       const modalConfig = isAdmin ? adminModalContent : modalContent;
@@ -236,9 +246,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: formData,
       })
-        .then(res => {
+        .then((res) => {
           if (!res.ok) {
-            return res.json().then(errorData => {
+            return res.json().then((errorData) => {
               throw new Error(JSON.stringify(errorData));
             });
           }
@@ -248,13 +258,15 @@ document.addEventListener("DOMContentLoaded", () => {
           }, 500);
           return res.json();
         })
-        .then(data => {
+        .then((data) => {
           // Your existing success handling code
           DisplayServices();
           form.reset();
-          bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
+          bootstrap.Modal.getInstance(
+            document.getElementById("addServiceModal")
+          ).hide();
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error adding service:", error);
           alert("Failed to add service. Please try again.");
         });
@@ -385,8 +397,6 @@ function displayFileName(event) {
 
 window.displayFileName = displayFileName;
 
-
-
 function fetchCategories() {
   fetch(`${baseUrl}/api/categories`)
     .then((res) => res.json())
@@ -415,4 +425,3 @@ $(document).ready(function () {
   fetchCategories();
   DisplayServices();
 });
-

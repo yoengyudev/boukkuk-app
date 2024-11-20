@@ -6,12 +6,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ការទូទាត់ប្រាក់</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../../../assets/css/long.css" />
+  <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="../../../assets/css/style.css" />
 </head>
 
 <body class="payment-body">
+  <header class="fixed-header">
+    <nav class="py-3">
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-auto order-0">
+            <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
+          </div>
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+            <div class="row d-flex under-logo">
+              <div
+                class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
+                <input class="form-control border-0 shadow-none w-100 bg-transparent py-1 px-3 get_vlue_by_search"
+                  type="text" placeholder="ស្វែងរក" aria-label="search" onkeydown="handleKeyDown(event)">
+
+                <button type="submit" class="btn btn-serch bg-primary gap-2" onclick="searchAndRedirect()">
+                  <i class="bi bi-search text-white"></i>
+                </button>
+              </div>
+              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
+                  onclick="findNearbyLocations()">
+                  <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px);"></i>
+                  ហាងនៅក្បែ
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto ms-auto p-0 order-1 order-xl-2">
+            <div class="d-flex w-100 align-items-center justify-content-end">
+              <div class="dropdown rounded-2">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile_header bg-instead rounded-circle">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <span>គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                  style="width:300px;">
+                  <li class="mb-3" id="signup-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      បង្កើតគណនី
+                    </a>
+                  </li>
+                  <li class="mb-3" id="login-list">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="../../../src/views/auth/login.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ចូលប្រើប្រាស់
+                    </a>
+                  </li>
+                  <li class="mb-3" id="pro-setting">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="../../../src/views/page/profile.html">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                      ប្រវត្តិរូបរបស់ខ្ញុំ
+                    </a>
+                  </li>
+                  <li id="logout-list">
+                    <hr style="color: #ddd;">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="">
+                      <div class="profile_header bg-instead rounded-circle">
+                        <i class="bi bi-power"></i>
+                      </div>
+                      ចាកចេញពីគណនី
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="dropdown">
+                <!-- Notification Icon -->
+                <a href="#"
+                  class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
+                  role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile_header bg-instead rounded-circle">
+                    <i class="bi bi-bell-fill fs-18"></i>
+                  </div>
+                  <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                </a>
+
+                <!-- Dropdown Notification Menu -->
+                <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="notificationDropdown"
+                  style="width: 300px; max-height: 400px; overflow-y: auto;">
+                  <!-- Notification Header -->
+                  <h6 class="dropdown-header">Notifications</h6>
+
+                  <!-- Notification Item -->
+                  <div class="notification-item d-flex align-items-start mb-2">
+                    <div
+                      class="notification-icon bg-primary rounded-circle d-flex justify-content-center align-items-center"
+                      style="width: 40px; height: 40px;">
+                      <i class="bi bi-info-circle text-white"></i>
+                    </div>
+                    <div class="ms-2">
+                      <p class="mb-0 fw-bold">New Comment</p>
+                      <small class="text-muted">Someone commented on your post.</small>
+                      <small class="text-muted d-block">2 mins ago</small>
+                    </div>
+                  </div>
+
+                  <!-- Another Notification Item -->
+                  <div class="notification-item d-flex align-items-start mb-2">
+                    <div
+                      class="notification-icon bg-success rounded-circle d-flex justify-content-center align-items-center"
+                      style="width: 40px; height: 40px;">
+                      <i class="bi bi-check-circle text-white"></i>
+                    </div>
+                    <div class="ms-2">
+                      <p class="mb-0 fw-bold">Order Completed</p>
+                      <small class="text-muted">Your recent order has been completed.</small>
+                      <small class="text-muted d-block">10 mins ago</small>
+                    </div>
+                  </div>
+
+                  <!-- See All Notifications Link -->
+                  <div class="text-center mt-2">
+                    <a href="#" class="text-decoration-none">See all notifications</a>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" onclick="wishlist()"
+                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
+                <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
+                <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
+                  0
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
   <div class="floating-elements">
     <div class="floating-element"></div>
     <div class="floating-element"></div>
@@ -229,6 +373,11 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../../../assets/js/footer.js"></script>
+  <script type="module" src="../../../assets/js/header.js"></script>
+  <script type="module" src="../../../assets/js/logout.js"></script>
+  <script type="module" src="../../../assets/js/search.js"></script>
+  <script type="module" src="../../../assets/js/nearest.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     document

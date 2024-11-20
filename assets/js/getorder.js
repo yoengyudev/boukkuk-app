@@ -1,5 +1,10 @@
 import { AdminToken, UserToken } from './tokens.js';
 import { baseUrl } from './baseUrl.js';
+import { modalContent, togglePasswordVisibility, initInformationForm, adminModalContent, initAdminInformationForm, initPasswordForm } from './updateUserInfo.js';
+
+// Make functions available globally
+window.togglePasswordVisibility = togglePasswordVisibility;
+window.initInformationForm = initInformationForm;
 
 document.addEventListener('DOMContentLoaded', fetchOrders);
 
