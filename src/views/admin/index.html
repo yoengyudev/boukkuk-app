@@ -116,7 +116,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers" id="all_service"></div>
-                        <div class="cardName">Services</div>
+                        <div class="cardName" id="admin_Provider">Services</div>
                     </div>
 
                     <div class="iconBx">
@@ -127,7 +127,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers" id="booking"></div>
-                        <div class="cardName">Booking</div>
+                        <div class="cardName" id="admin_user">Booking</div>
                     </div>
 
                     <div class="iconBx">
@@ -138,7 +138,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers" id="customers"></div>
-                        <div class="cardName">Customers</div>
+                        <div class="cardName" id="adminCategory">Customers</div>
                     </div>
 
                     <div class="iconBx">
@@ -148,8 +148,8 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers" id="total">$</div>
-                        <div class="cardName">Earning</div>
+                        <div class="numbers" id="total"></div>
+                        <div class="cardName" id="adminService">Earning</div>
                     </div>
 
                     <div class="iconBx">
@@ -162,15 +162,15 @@
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-                        <h2>Recent Orders</h2>
-                        <a href="page/getorder.html" class="btn">View All</a>
+                        <h2 id="adminUserTitle">Recent Orders</h2>
+                        <a id="link_in" class="btn">View All</a>
                     </div>
                     <table>
                         <thead>
                             <tr>
                                 <td>Name</td>
                                 <td class="text-start">Total</td>
-                                <td class="text-start">Payment</td>
+                                <td class="text-start" id="admin_payment">Payment</td>
                                 <td>Status</td>
                             </tr>
                         </thead>
@@ -182,7 +182,7 @@
                 </div>
                 <div class="recentCustomers">
                     <div class="cardHeader">
-                        <h2>Recent Customers</h2>
+                        <h2 id="adminProvider">Recent Customers</h2>
                     </div>
 
                     <table id="getRecentUser">

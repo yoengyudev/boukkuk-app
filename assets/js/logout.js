@@ -9,6 +9,7 @@ console.log(logout);
 if (logoutAdmin) {
     logoutAdmin.addEventListener('click', () => {
         localStorage.removeItem('AdminToken');
+        localStorage.removeItem('ProviderID');
         fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {
