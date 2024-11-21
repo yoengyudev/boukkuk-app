@@ -210,6 +210,8 @@ if(Provider){
     document.querySelector('#adminUserTitle').innerHTML = "All Users";
     document.querySelector('#adminProvider').innerHTML = "Service Provider";
     document.querySelector('#adminService').innerHTML = "All Services";
+    document.querySelector('#admin_email').innerHTML = "Email";
+    document.querySelector('#admin_phone').innerHTML = "Phone Number";
     document.getElementById('admin_payment').style.display = "none";
     document.getElementById('link_in').href= "page/user.html";  
     function countServiceProviceder() {
@@ -317,11 +319,7 @@ if(Provider){
             tr += `<tr>
                         <td>${e.name}</td>
                         <td class="text-start text-primary">${e.email}</td>
-                        <td class="d-flex justify-content-center">
-                            <span class="btn_status p-0 text-decoration-none">
-                                <i class="bi bi-toggle-on text-primary btn_status_icon fs-4"></i>
-                            </span>
-                        </td>
+                        <td class="text-end">${e.phone}</td>
                   </tr>`;
           });
           document.getElementById("recentOrder").innerHTML = tr;

@@ -30,7 +30,7 @@ function displayProvider() {
                       <td class='align-middle'>${provider.email}</td>
                       <td class='align-middle text-start'>${provider.phone}</td>
                       <td class='align-middle '>
-                        <button class="btn btn-info btn-sm" onclick="viewProviderDetails(${provider.id})" data-bs-toggle="modal" data-bs-target="#providerDetailModal">
+                        <button class="btn btn-primary py-1 px-3" onclick="viewProviderDetails(${provider.id})" data-bs-toggle="modal" data-bs-target="#providerDetailModal">
                           <i class="bi bi-eye"></i>
                         </button>
                       </td>
