@@ -31,13 +31,8 @@ function DisplayServices() {
   console.log("Hello " + ProviderID);
 
   fetch(
-<<<<<<< HEAD
     `${baseUrl}/api/services?page=1&per_page=20&search=&category=&price_start=0&price_end=99999&creator=` +
       ProviderID,
-=======
-    `${baseUrl}/api/services?page=1&per_page=20&search=&category=&creator=` +
-      serviceId,
->>>>>>> vit
     {
       method: "GET",
       headers: {
@@ -155,13 +150,7 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
-<<<<<<< HEAD
-
 window.viewDetails = viewDetails;
-
-=======
-window.viewDetails = viewDetails;
->>>>>>> vit
 // ===============================
 
 // Validation functions using regex
@@ -314,13 +303,7 @@ function editService(button) {
     document.getElementById("fileName").textContent = "No file chosen";
   }
 }
-<<<<<<< HEAD
-
 window.editService = editService;
-
-=======
-window.editService = editService;
->>>>>>> vit
 document.getElementById("editForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
