@@ -47,3 +47,18 @@ function updateWishlistCounter() {
 }
 updateWishlistCounter();
 window.updateWishlistCounter = updateWishlistCounter;
+
+
+function wishlist() {
+  if (UserToken) {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/page/wishlist.html`;
+  } else {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
+  }
+}
+
+window.wishlist = wishlist;

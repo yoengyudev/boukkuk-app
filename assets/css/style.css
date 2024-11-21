@@ -933,11 +933,6 @@ input[type="range"]::-moz-range-thumb {
   border-bottom: none;
 }
 
-.details .recentOrders table tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-
 .details .recentOrders table tr td {
   padding: 10px;
 }
@@ -1030,14 +1025,6 @@ input[type="range"]::-moz-range-thumb {
   color: var(--black2);
 }
 
-.recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-
-.recentCustomers table tr:hover td h4 span {
-  color: var(--white);
-}
 
 .search-icon {
   transform: translateY(10px);
@@ -3609,4 +3596,45 @@ select {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+/* Pagination styling */
+.pagination .page-link {
+  border: none;
+  margin: 0 5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+  background: #4361ee; /* Change to your primary blue color */
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Active page styling */
+.pagination .active .page-link,
+.pagination .page-link.active {
+  background: #4361ee !important; /* Change to your primary blue color */
+  color: white !important;
+  border-color: #4361ee !important; /* Change to your primary blue color */
+}
+
+/* Previous/Next buttons */
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+  background: transparent;
+  border: none;
+}
+
+.pagination .page-item:first-child .page-link:hover,
+.pagination .page-item:last-child .page-link:hover {
+  background: #f8f9fa;
+  color: #4361ee; /* Change to your primary blue color */
+  transform: scale(1.1);
 }

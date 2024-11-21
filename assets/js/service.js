@@ -150,9 +150,7 @@ function viewDetails(service) {
         service.creator.google_map_url;
     });
 }
-
 window.viewDetails = viewDetails;
-
 // ===============================
 
 // Validation functions using regex
@@ -305,9 +303,7 @@ function editService(button) {
     document.getElementById("fileName").textContent = "No file chosen";
   }
 }
-
 window.editService = editService;
-
 document.getElementById("editForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);

@@ -1,21 +1,16 @@
 import { baseUrl } from "./baseUrl.js";
 import { AdminToken, UserToken } from "./tokens.js";
 
-function wishlist() {
-  if (UserToken) {
-    location.href = "./src/views/auth/wishlist.html";
-  } else {
-    location.href = "../../src/views/auth/login.html";
-  }
-}
 
-window.wishlist = wishlist;
 
 let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
   if (!UserToken) {
-    location.href = '../../src/views/auth/login.html';
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
+    return;
   }
 
   fetch(`${baseUrl}/api/wishlists`, {
