@@ -44,8 +44,8 @@ function fetchCategories() {
                 <td class='text-start'>${e.id}</td>
                 <td>${e.name}</td>
                 <td> 
-                      <button class="btn btn-primary btn-edit" onClick="openUpdateModal(${e.id}, '${e.name}')"><i class="bi bi-pencil-square"></i></button>
-                      <button class="btn btn-danger btn-delete" onClick="deleteCategory(${e.id})" data-id="${e.id}"><i class="bi bi-trash"></i></button>
+                      <button class="btn p-0 text-white px-2 bg-primary btn-edit" onClick="openUpdateModal(${e.id}, '${e.name}')"><i class="bi bi-pencil-square"></i></button>
+                      <button class="btn p-0 btn-delete bg-danger px-2 text-white ms-3" onClick="deleteCategory(${e.id})" data-id="${e.id}"><i class="bi bi-trash"></i></button>
                 </td>
 
             </tr>`;

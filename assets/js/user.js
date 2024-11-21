@@ -14,77 +14,97 @@ fetch(`${baseUrl}/api/users`, {
   .then((json) => {
     let tr = "";
     const users = json.data;
-    users.forEach((e) => {
-      const isDisabled = e.is_disabled === 1;
-      tr += `<tr>
-                <td class='text-start'>${e.id}</td>
-                <td>${e.name}</td>
-                <td>${e.email}</td>
-               <td>
-                    <div class="btn-group dropstart p-0">
-                        <button type="button" class="btn p-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-fill"></i>
-                            <i class="bi bi-arrow-up-short"></i>
-                        </button>
-                        <ul class="dropdown-menu" style="width:200px">
-                            <li>
-                                <button type="button" class="btn" onclick="promoteUser(1, ${e.id})">
-                                    <i class="bi bi-person-fill text-success"></i> User
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn" onclick="promoteUser(3, ${e.id})">
-                                    <i class="bi bi-briefcase-fill text-info"></i> Provider
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn" onclick="promoteUser(2, ${e.id})">
-                                    <i class="bi bi-shield-lock-fill text-primary"></i> Admin
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
 
-
-                <td>
-                    <a href="javascript:void(0)" onclick="toggleUserStatus(this, ${e.id}, ${isDisabled})" class="btn_status p-0 text-decoration-none">
-                        <i class="bi bi-toggle-${isDisabled ? 'off' : 'on'} text-${isDisabled ? 'dark' : 'primary'} btn_status_icon fs-4"></i>
-                    </a>
-                </td>
-                <td>
-                    <div class="btn-group dropstart">
-                        <button type="button" class="btn border-0 p-0" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#updateUser" onclick="getUserForUpdate(${e.id})">
-                                <i class="bi bi-pencil-square text-warning"></i> Edit
-                            </button>
-                            </li>
-                            <li>
-                                <button type="button" onclick="deleteUser(${e.id})" class="btn">
-                                    <i class="bi bi-trash text-danger"></i> Delete
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" onclick="viewDetails(${e.id})" class="btn" data-bs-toggle="modal" data-bs-target="#getDetail">
-                                    <i class="bi bi-eye text-primary"></i> View Details
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
+    if (!users || users.length === 0) {
+      // Display a message if no data is available
+      tr = `<tr>
+              <td colspan="6" class="text-center text-muted">
+                No data available
+              </td>
             </tr>`;
-    });
+    } else {
+      users.forEach((e) => {
+        const isDisabled = e.is_disabled === 1;
+        tr += `<tr>
+                  <td class='text-start'>${e.id}</td>
+                  <td>${e.name}</td>
+                  <td>${e.email}</td>
+                  <td>
+                      <div class="btn-group dropstart p-0">
+                          <button type="button" class="btn p-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-person-fill"></i>
+                              <i class="bi bi-arrow-up-short"></i>
+                          </button>
+                          <ul class="dropdown-menu" style="width:200px">
+                              <li>
+                                  <button type="button" class="btn" onclick="promoteUser(1, ${e.id})">
+                                      <i class="bi bi-person-fill text-success"></i> User
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn" onclick="promoteUser(3, ${e.id})">
+                                      <i class="bi bi-briefcase-fill text-info"></i> Provider
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn" onclick="promoteUser(2, ${e.id})">
+                                      <i class="bi bi-shield-lock-fill text-primary"></i> Admin
+                                  </button>
+                              </li>
+                          </ul>
+                      </div>
+                  </td>
+                  <td>
+                      <a href="javascript:void(0)" onclick="toggleUserStatus(this, ${e.id}, ${isDisabled})" class="btn_status p-0 text-decoration-none">
+                          <i class="bi bi-toggle-${isDisabled ? 'off' : 'on'} text-${isDisabled ? 'dark' : 'primary'} btn_status_icon fs-4"></i>
+                      </a>
+                  </td>
+                  <td>
+                      <div class="btn-group dropstart">
+                          <button type="button" class="btn border-0 p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                              <li>
+                              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#updateUser" onclick="getUserForUpdate(${e.id})">
+                                  <i class="bi bi-pencil-square text-warning"></i> Edit
+                              </button>
+                              </li>
+                              <li>
+                                  <button type="button" onclick="deleteUser(${e.id})" class="btn">
+                                      <i class="bi bi-trash text-danger"></i> Delete
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" onclick="viewDetails(${e.id})" class="btn" data-bs-toggle="modal" data-bs-target="#getDetail">
+                                      <i class="bi bi-eye text-primary"></i> View Details
+                                  </button>
+                              </li>
+                          </ul>
+                      </div>
+                  </td>
+              </tr>`;
+      });
+    }
+
     document.getElementById("table_body").innerHTML = tr;
 
-    $("#userTabel").DataTable({
-      responsive: true,
-    });
+    if (users && users.length > 0) {
+      $("#userTabel").DataTable({
+        responsive: true,
+      });
+    }
   })
-  .catch((error) => console.error("Error fetching data:", error));
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+    document.getElementById("table_body").innerHTML = `
+      <tr>
+        <td colspan="6" class="text-center text-danger">
+          Failed to fetch data. Please try again later.
+        </td>
+      </tr>`;
+  });
+
 
 // ======================  add new users ======================================
 
