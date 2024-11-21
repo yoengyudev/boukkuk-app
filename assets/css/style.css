@@ -2179,24 +2179,24 @@ body {
 }
 
 .payment .status-chip {
-  background: linear-gradient(
-    135deg,
-    #4caf50,
-    #81c784
-  ); /* Gradient background */
-  padding: 0.6rem 1.2rem; /* Maintain padding */
-  border-radius: 12px; /* Rounded corners */
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px; 
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-  font-weight: 600; /* Bold text for emphasis */
-  color: white; /* White text for contrast */
-  transition: transform 0.3s; /* Smooth hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: 600; 
+  color: white; 
+  transition: transform 0.3s; 
 }
 
 .payment .status-chip:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  transform: scale(1.05); 
+}
+
+.total-checkout-amount {
+  padding-bottom: 20px;
+  border-bottom: 2.5px dashed var(--black2);
 }
 
 .qr-section {

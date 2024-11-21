@@ -156,7 +156,7 @@ function wishlistCard(serviceId, heartButton) {
 window.wishlistCard = wishlistCard;
 
 function getStore(creatorID, creatorAvatar) {
-  localStorage.setItem("creator_id", creatorID);
+  sessionStorage.setItem("creator_id", creatorID);
   localStorage.setItem("store_profile", creatorAvatar);
   const currentPath = window.location.href;
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);

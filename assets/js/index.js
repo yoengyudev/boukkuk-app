@@ -62,7 +62,7 @@ function getCategory(value = 0) {
   const url =
     value === 0
       ? `${baseUrl}/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
-      : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=2`;
+      : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=`;
 
   fetch(url)
     .then((res) => res.json())
@@ -113,7 +113,7 @@ function getCategory(value = 0) {
 }
 
 function getStore(creatorID, creatorAvatar) {
-  let creator_ID = localStorage.setItem("creator_id", creatorID);
+  let creator_ID = sessionStorage.setItem("creator_id", creatorID);
   console.log(localStorage.getItem("creator_id"));
   let profile_img = localStorage.setItem("store_profile", creatorAvatar);
   const currentPath = window.location.href;

@@ -1,119 +1,111 @@
-import { baseUrl } from './baseUrl.js';
-import { UserToken } from './tokens.js'
-  const cartItemsDiv = document.getElementById("cart-items");
-  const serviceCards = document.querySelectorAll(".service-card");
-  const totalPriceDiv = document.getElementById("total-price");
-  const checkoutButton = document.getElementById("checkout-button");
-  const tabs = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll(".service-section");
-  let getCreatorId = localStorage.getItem("creator_id");
-  let localCart = [];
+import { baseUrl } from "./baseUrl.js";
+import { UserToken } from "./tokens.js";
+const cartItemsDiv = document.getElementById("cart-items");
+const serviceCards = document.querySelectorAll(".service-card");
+const totalPriceDiv = document.getElementById("total-price");
+const checkoutButton = document.getElementById("checkout-button");
+const tabs = document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll(".service-section");
+let getCreatorId = sessionStorage.getItem("creator_id");
+let localCart = [];
 
-  if (!getCreatorId) {
-    console.log("Hello world");
-    const currentPath = window.location.href;
-    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-    location.href = `${basePath}index.html`;
-  
-    throw new Error("Redirecting to index.html");
-  }
-  
-  
+if (!getCreatorId) {
+  console.log("Hello world");
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}index.html`;
+  throw new Error("Redirecting to index.html");
+}
 
-  // Improved Intersection Observer options
-  const observerOptions = {
-    root: null,
-    rootMargin: "-150% 0px -82% 0px",
-    threshold: 0.1,
-  };
+// Improved Intersection Observer options
+const observerOptions = {
+  root: null,
+  rootMargin: "-150% 0px -82% 0px",
+  threshold: 0.1,
+};
 
-  let currentActiveSection = null;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        if (id !== currentActiveSection) {
-          currentActiveSection = id;
-          updateActiveTab(id);
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Observe all sections
-  sections.forEach((section) => {
-    observer.observe(section);
-  });
-
-  function updateActiveTab(sectionId) {
-    tabs.forEach((tab) => {
-      const href = tab.getAttribute("href");
-      if (href === `#${sectionId}`) {
-        tab.classList.add("active");
-      } else {
-        tab.classList.remove("active");
-      }
-    });
-  }
-
-  // Add scroll event listener for more responsive tab updates
-  window.addEventListener(
-    "scroll",
-    debounce(() => {
-      let closestSection = null;
-      let closestDistance = Infinity;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
-        if (distance < closestDistance) {
-          closestSection = section;
-          closestDistance = distance;
-        }
-      });
-
-      if (closestSection) {
-        const id = closestSection.getAttribute("id");
+let currentActiveSection = null;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute("id");
+      if (id !== currentActiveSection) {
+        currentActiveSection = id;
         updateActiveTab(id);
       }
-    }, 10)
-  );
-
-
-  // Smooth scroll with offset correction
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href").substring(1);
-      const targetSection = document.getElementById(targetId);
-      const offset = 100;
-      const targetPosition =
-        targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
-
-      updateActiveTab(targetId);
-    });
+    }
   });
+}, observerOptions);
 
+// Observe all sections
+sections.forEach((section) => {
+  observer.observe(section);
+});
 
+function updateActiveTab(sectionId) {
+  tabs.forEach((tab) => {
+    const href = tab.getAttribute("href");
+    if (href === `#${sectionId}`) {
+      tab.classList.add("active");
+    } else {
+      tab.classList.remove("active");
+    }
+  });
+}
 
+// Add scroll event listener for more responsive tab updates
+window.addEventListener(
+  "scroll",
+  debounce(() => {
+    let closestSection = null;
+    let closestDistance = Infinity;
 
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const distance = Math.abs(rect.top);
+      if (distance < closestDistance) {
+        closestSection = section;
+        closestDistance = distance;
+      }
+    });
+
+    if (closestSection) {
+      const id = closestSection.getAttribute("id");
+      updateActiveTab(id);
+    }
+  }, 10)
+);
+
+// Smooth scroll with offset correction
+tabs.forEach((tab) => {
+  tab.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+    const offset = 100;
+    const targetPosition =
+      targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+
+    updateActiveTab(targetId);
+  });
+});
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
       clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+      func(...args);
     };
-  }
-
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 // price range ui code
 
@@ -171,7 +163,7 @@ function getCategory(value = 0, search = "") {
   let start_pri = document.querySelector(".input-min").value;
   let end_pri = document.querySelector(".input-max").value;
   console.log(getCreatorId);
-  
+
   const url = `${baseUrl}/api/services?page=1&per_page=20&search=${search}&category=${
     value !== 0 ? value : ""
   }&price_start=${start_pri}&price_end=${end_pri}&creator=${getCreatorId}`;
@@ -217,7 +209,7 @@ function getCategory(value = 0, search = "") {
                           "Description of the dish goes here."
                         }
                       </p>
-                      <button class="add-to-cart-btn">
+                      <button onclick='AddToCart(this)' class="add-to-cart-btn">
                         <i class="bi bi-cart-plus"></i> បន្ថែម
                       </button>
                     </div>
@@ -333,10 +325,8 @@ document
   .getElementById("searchInput")
   .addEventListener("keyup", searchServices);
 
-
-
 // -------------- add to cart -------------
-document.addEventListener("click", function (e) {
+function AddToCart(button) {
   if (!UserToken) {
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
@@ -344,53 +334,93 @@ document.addEventListener("click", function (e) {
     return;
   }
 
+  const card = button.closest(".service-card");
+  const serviceId = card.dataset.serviceId;
+  const newCreatorId = getCreatorId;
 
-  const button = e.target.closest(".add-to-cart-btn");
-  if (button) {
-    const card = button.closest(".service-card");
-    const serviceId = card.dataset.serviceId;
+  console.log("Adding to cart:", serviceId);
 
-    console.log("Adding to cart:", serviceId);
+  const formData = new FormData();
+  formData.append("service_id", serviceId);
+  formData.append("qty", 1);
 
+  const originalText = '<i class="bi bi-cart-plus"></i> បន្ថែម';
+  button.innerHTML = "កំពុងបន្ថែម...";
+  button.disabled = true;
 
-    const formData = new FormData();
-    formData.append("service_id", serviceId);
-    formData.append("qty", 1);
-
-    const originalText = '<i class="bi bi-cart-plus"></i> បន្ថែម'; 
-    button.textContent = "កំពុងបន្ថែម...";
-    button.disabled = true; 
-
-    fetch(`${baseUrl}/api/carts`, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${UserToken}`
-      },
-      body: formData, 
+  // Fetch the current cart to check the creator
+  fetch(`${baseUrl}/api/profile/carts`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${UserToken}`,
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch cart.");
+      }
+      return response.json();
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to add to cart.");
+    .then(async (cartData) => {
+      const currentCart = cartData.data.items;
+
+      // If the cart is not empty, check the creator ID
+      if (currentCart.length > 0) {
+        const existingCreatorId = currentCart[0].service.creator.id;
+
+        if (existingCreatorId === parseInt(newCreatorId)) {
+          console.log("Creator ID matches. Adding new item to cart.");
+        } else {
+          console.log(
+            "Creator ID differs. Clearing cart before adding new item."
+          );
+          for (const item of currentCart) {
+            await fetch(`${baseUrl}/api/carts/${item.id}`, {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${UserToken}`,
+                Accept: "application/json",
+              },
+            });
+          }
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        summaryCart();
-        console.log("Add to cart successful:", data);
-      })
-      .catch((error) => {
-        console.error("Error adding to cart:", error);
-        alert("Failed to add item to cart. Please try again.");
-      })
-      .finally(() => {
-        // Restore button state
-        button.innerHTML = originalText;
-        button.disabled = false;
+      }
+
+      // Add the new service to the cart
+      return fetch(`${baseUrl}/api/carts`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${UserToken}`,
+        },
+        body: formData,
       });
-  }
-});
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to add to cart.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Add to cart successful:", data);
+      summaryCart();
+    })
+    .catch((error) => {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add item to cart. Please try again.");
+    })
+    .finally(() => {
+      // Restore button state
+      button.innerHTML = originalText;
+      button.disabled = false;
+    });
+}
+
+
+
+window.AddToCart = AddToCart;
 
 // ---------------- summary cart -------------------------------
 
@@ -400,9 +430,9 @@ async function summaryCart() {
     const response = await fetch(`${baseUrl}/api/profile/carts`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${UserToken}`,
-        "Accept": "application/json"
-      }
+        Authorization: `Bearer ${UserToken}`,
+        Accept: "application/json",
+      },
     });
 
     if (!response.ok) {
@@ -410,19 +440,18 @@ async function summaryCart() {
     }
 
     const data = await response.json();
-    localCart = data.data.items.map(item => ({
+    localCart = data.data.items.map((item) => ({
       id: item.id,
       serviceId: item.service.id,
       name: item.service.name,
       price: Number(item.price),
       qty: Number(item.qty),
-      image: item.service.image
+      image: item.service.image,
     }));
 
     renderCart();
   } catch (error) {
     console.error("Error fetching cart items:", error);
-    alert("Failed to load cart. Please try again.");
   }
 }
 
@@ -452,7 +481,9 @@ function renderCart() {
     itemDiv.innerHTML = `
       <div class="d-flex justify-content-between w-100 align-items-center gap-2">
         <div class="cart-item-image" style="width: 50px; height: 50px; min-width: 50px;">
-          <img src="${item.image}" alt="${item.name}" class="rounded w-100 h-100 object-fit-cover">
+          <img src="${item.image}" alt="${
+      item.name
+    }" class="rounded w-100 h-100 object-fit-cover">
         </div>
         <div class="d-flex flex-column flex-grow-1">
           <div class="d-flex justify-content-between align-items-center w-100">
@@ -461,7 +492,9 @@ function renderCart() {
               <div>$${item.price.toFixed(2)}</div>
             </div>
             <div class="d-flex align-items-center gap-2">
-              <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" ${item.qty === 1 ? "disabled" : ""}>-</button>
+              <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" ${
+                item.qty === 1 ? "disabled" : ""
+              }>-</button>
               <span class="quantity cart-quantity">${item.qty}</span>
               <button class="increase-cart btn btn-sm btn-outline-primary rounded-circle increase-btn">+</button>
               <button class="btn btn-link text-danger ps-2 fs-5 p-0 delete-btn">
@@ -494,28 +527,29 @@ function renderCart() {
 
     deleteBtn.addEventListener("click", async () => {
       console.log("Removing item...");
-    
+
       // Save the original icon HTML
       const originalIcon = deleteBtn.innerHTML;
-    
+
       // Replace the icon with the spinner
-      deleteBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>';
-      deleteBtn.disabled = true; 
-    
+      deleteBtn.innerHTML =
+        '<span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>';
+      deleteBtn.disabled = true;
+
       try {
         // Send DELETE request to the server
         const response = await fetch(`${baseUrl}/api/carts/${item.id}`, {
           method: "DELETE",
           headers: {
-            "Authorization": `Bearer ${UserToken}`,
-            "Accept": "application/json",
+            Authorization: `Bearer ${UserToken}`,
+            Accept: "application/json",
           },
         });
-    
+
         if (!response.ok) {
           throw new Error("Failed to remove item from the server.");
         }
-    
+
         // Remove item from the localCart array
         localCart.splice(index, 1);
         renderCart();
@@ -527,7 +561,6 @@ function renderCart() {
         deleteBtn.disabled = false;
       }
     });
-    
 
     cartItemsDiv.appendChild(itemDiv);
   });
@@ -536,23 +569,20 @@ function renderCart() {
   checkoutButton.disabled = false;
 }
 
-
 async function updateCartOnServer() {
   const updateButton = document.getElementById("updateCartButton");
-  const originalText = updateButton.textContent; 
+  const originalText = updateButton.textContent;
 
-  // Show text spinner and disable update button
   updateButton.textContent = "កំពុងកែប្រែ...";
   updateButton.disabled = true;
 
   try {
-    // Remove all items from the server
     for (const item of localCart) {
       await fetch(`${baseUrl}/api/carts/${item.id}`, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${UserToken}`,
-          "Accept": "application/json",
+          Authorization: `Bearer ${UserToken}`,
+          Accept: "application/json",
         },
       });
     }
@@ -566,15 +596,14 @@ async function updateCartOnServer() {
       await fetch(`${baseUrl}/api/carts`, {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${UserToken}`,
-          "Accept": "application/json",
+          Authorization: `Bearer ${UserToken}`,
+          Accept: "application/json",
         },
         body: formData,
       });
     }
 
-    await summaryCart(); 
-    alert("Cart updated successfully!");
+    await summaryCart();
   } catch (error) {
     console.error("Failed to update cart:", error);
     alert("Failed to update cart. Please try again.");
@@ -585,9 +614,13 @@ async function updateCartOnServer() {
   }
 }
 
-
 summaryCart();
 
 updateCartButton.addEventListener("click", updateCartOnServer);
 
 
+checkoutButton.addEventListener("click", () => {
+  const currentPath = window.location.href;
+  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+  location.href = `${basePath}src/views/page/payment.html`;
+});

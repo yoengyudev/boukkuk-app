@@ -89,8 +89,8 @@ login.addEventListener("submit", (event) => {
       const token = json.data.token;
       const roleid = json.data.roles[0].id;
       localStorage.setItem('UserRole', roleid);
-
-   
+      
+      localStorage.setItem('UserName', json.data.name);
 
       if (roleid == 1) {
         localStorage.setItem('UserToken', token);

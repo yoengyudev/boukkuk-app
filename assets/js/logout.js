@@ -29,7 +29,7 @@ if (logoutAdmin) {
 if (logout) {
     logout.addEventListener('click', () => {
         localStorage.removeItem('UserToken');
-        localStorage.removeItem('creator_id');
+        sessionStorage.removeItem('creator_id');
         fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {
