@@ -71,9 +71,9 @@ function getCategory(value = 0) {
       json.data.forEach((element) => {
         col_3 += `
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
+            <div class="card bg-transparent border-0 h-100">
               <p class='id' style="display: none;">${element.id}</p>
-              <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
+              <div class="mb-3 position-relative card-img-wrapper border rounded-2">
                 <button type="submit" 
                         onclick="wishlistCard(${element.id}, this)" 
                         class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
