@@ -70,14 +70,15 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
     let saveButton = document.getElementById('otpVerifi');
     let spinner = document.getElementById('spinner');
     let buttonText = document.getElementById('buttonText');
+    let otpMessageBox = document.getElementById('otpMessageBox'); // Ensure you have this element
     otpMessageBox.style.display = 'none';
 
     saveButton.disabled = true;
     spinner.style.display = 'inline-block';
     buttonText.textContent = 'កំណត់ពាក្យសម្ងាត់...';
 
-    const otpValue = Array.from(otpInputs).map(input => input.value).join('');
-    
+    const otpValue = Array.from(document.querySelectorAll('.otp-input')).map(input => input.value).join('');
+
     try {
         const response = await fetch(`${baseUrl}/api/forgot/verify-otp`, {
             method: 'POST',
@@ -86,30 +87,30 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ otp: otpValue, email: localStorage.getItem('otpEmail') })
-        })
-            .finally(() => {
-                saveButton.disabled = false;
-                spinner.style.display = 'none';
-                buttonText.textContent = 'កំណត់ពាក្យសម្ងាត់';
-            });
+        });
 
-        if (response.ok) {
+        const json = await response.json(); // Parse JSON response
+
+        if (response.ok && json.result === true) {
             otpMessageBox.style.display = 'block';
             otpMessageBox.style.color = 'green';
             otpMessageBox.textContent = 'OTP ត្រឹមត្រូវ! កំពុងបន្ត...';
-            console.log(otpValue);
-            localStorage.setItem('getOtp',otpValue);
+            localStorage.setItem('getOtp', otpValue);
             setTimeout(() => {
                 location.href = 're-password.html';
             }, 1000);
         } else {
             otpMessageBox.style.display = 'block';
             otpMessageBox.style.color = 'red';
-            otpMessageBox.innerHTML = `<i class="bi bi-exclamation-circle"></i> កូដ OTP មិនត្រឹមត្រូវទេ`;
+            otpMessageBox.innerHTML = `<i class="bi bi-exclamation-circle"></i> ${json.message || 'កូដ OTP មិនត្រឹមត្រូវទេ'}`;
         }
     } catch (error) {
         otpMessageBox.style.display = 'block';
         otpMessageBox.style.color = 'red';
         otpMessageBox.textContent = 'កំហុសក្នុងការផ្ទៀងផ្ទាត់';
+    } finally {
+        saveButton.disabled = false;
+        spinner.style.display = 'none';
+        buttonText.textContent = 'កំណត់ពាក្យសម្ងាត់';
     }
 });
