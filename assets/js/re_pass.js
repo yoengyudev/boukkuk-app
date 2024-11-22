@@ -1,51 +1,77 @@
-import { baseUrl } from './baseUrl.js';
-lucide.createIcons();
+import { baseUrl } from "./baseUrl.js";
 
+// Initialize lucide icons after DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+});
+
+// Function to toggle password visibility
 function togglePassword(inputId, iconId) {
   const input = document.getElementById(inputId);
   const icon = document.getElementById(iconId);
-  const isPassword = input.type === "password";
-
-  input.type = isPassword ? "text" : "password";
-  icon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
-  lucide.createIcons();
+  
+  if (input && icon) {
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+    icon.setAttribute("data-lucide", isPassword ? "eye-off" : "eye");
+    lucide.createIcons(); // Refresh icons after toggle
+  } else {
+    console.error("Toggle Password: Element not found.");
+  }
 }
+
+window.togglePassword = togglePassword;
 
 // Function to display error message
 function showError(inputId, message) {
   const errorElement = document.getElementById(`error${inputId}`);
-  errorElement.textContent = message;
-  errorElement.style.color = "red"; // Style the error message
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.color = "red"; // Optional: Style the error message
+  }
 }
 
 // Function to clear error message
 function clearError(inputId) {
   const errorElement = document.getElementById(`error${inputId}`);
-  errorElement.textContent = "";
+  if (errorElement) {
+    errorElement.textContent = "";
+  }
 }
 
 // Password validation function
 function validatePassword(password) {
-  const hasMinLength = password.length >= 6;
-  const isAtLeastSixLength = /^[a-zA-Z0-9]{6,}$/.test(password);
-  return "";
+  if (password.length < 6) {
+    return "ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ 6 តួអក្សរ";
+  }
+  if (!/^[a-zA-Z0-9]+$/.test(password)) {
+    return "ពាក្យសម្ងាត់ត្រូវមានតែអក្សរ និង លេខ";
+  }
+  return ""; // No error
 }
 
+// Form submission handler
 document.getElementById("resetForm").addEventListener("submit", function (e) {
   e.preventDefault();
+
+
+  
+  console.log("Hello world");
+  
 
   const pass1 = document.getElementById("Password1").value.trim();
   const pass2 = document.getElementById("Password2").value.trim();
   const email = localStorage.getItem("otpEmail");
   const otp = localStorage.getItem("getOtp");
 
+  console.log(email);
+  console.log(otp);
+  
+  
+
   // Clear previous errors
   clearError("Password1");
   clearError("Password2");
-
-  // Check localStorage values
-  console.log("Email:", email);
-  console.log("OTP:", otp);
 
   // Validate input fields
   const validationError = validatePassword(pass1);
@@ -66,6 +92,9 @@ document.getElementById("resetForm").addEventListener("submit", function (e) {
     return;
   }
 
+  // Show spinner
+  document.getElementById("forget_spinner").style.display = "inline-block";
+
   // API request
   fetch(`${baseUrl}/api/reset/pass`, {
     method: "POST",
@@ -82,11 +111,13 @@ document.getElementById("resetForm").addEventListener("submit", function (e) {
   })
     .then((res) => res.json())
     .then((json) => {
-      console.log("API Response:", json);
-    
+      // Hide spinner
+      document.getElementById("forget_spinner").style.display = "none";
+      console.log(json);
+      
       // Check API response using result and code
       if (json.result === true && json.code === 1) {
-        // Success - Redirect to login page without showing any message
+        // Success - Redirect to login page
         window.location.href = "login.html";
       } else {
         // Show error message if not successful
