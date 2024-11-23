@@ -3640,3 +3640,42 @@ select {
   color: #4361ee; /* Change to your primary blue color */
   transform: scale(1.1);
 }
+
+/* ===== hor ==== */
+
+.error-m-p .invalid-feedback{
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.error-m-p .invalid-feedback{
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.is-invalid::after {
+  display: none !important; /* Hide pseudo-elements related to invalid inputs */
+}
+
+.error-icon { /* Replace 'error-icon' with the actual class or ID */
+  display: none !important;
+}
+
+
+/* Remove Bootstrap's validation icons */
+.form-control.is-invalid {
+  background-image: none !important;
+  padding-right: 0.75rem !important;  /* Reset the padding */
+}
+
+.was-validated .form-control:invalid {
+  background-image: none !important;
+  padding-right: 0.75rem !important;
+}
+
+/* Additional selectors to ensure icons are hidden */
+.form-control:invalid,
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-image: none !important;
+}
