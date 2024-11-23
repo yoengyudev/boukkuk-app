@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ទំព័រដើម</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="vender/bootstrap-icon/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -20,14 +20,14 @@
             </div>
         </div>
     </div>
-    <header class="fixed-header">
+    <header class="fixed-header w-100">
         <nav class="py-3">
             <div class="container">
                 <div class="row gy-4 align-items-center">
                     <div class="col-auto order-0">
                         <a href="index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
                     </div>
-                    <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+                    <div class="col-xl-6 col-12 order-2 order-xl-1 ms-0 ms-md-3">
                         <div class="row d-flex under-logo">
                             <div
                                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
@@ -42,7 +42,7 @@
                                 </button>
                             </div>
                             <div
-                                class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                                class="col-5 col-md-3 col-xl-4 px-md-3 p-0 d-flex justify-content-end justify-content-xl-start">
                                 <button
                                     class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
                                     onclick="findNearbyLocations()">
@@ -53,18 +53,18 @@
                         </div>
                     </div>
                     <div class="col-auto ms-auto p-0 order-1 order-xl-2">
-                        <div class="d-flex w-100 align-items-center justify-content-end">
-                            <div class="dropdown rounded-2">
-                                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="dropdown rounded-2 order-2 order-md-0">
+                                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-0 px-md-3 py-2 d-flex align-items-center gap-1"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="profile_header bg-instead rounded-circle">
                                         <i class="bi bi-person-circle"></i>
                                     </div>
-                                    <span>គណនី</span>
-                                    <i class="bi bi-chevron-down fw-bold"></i>
+                                    <span class="d-none d-md-block">គណនី</span>
+                                    <i class="bi bi-chevron-down fw-bold d-none d-md-block"></i>
                                 </a>
 
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
+                                <ul class="dropdown-menu dropdown-menu-center dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
                                     style="width:300px;">
                                     <li class="mb-3" id="signup-list">
                                         <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
@@ -106,10 +106,10 @@
                                 </ul>
                             </div>
 
-                            <div class="dropdown">
+                            <div class="dropdown order-1 order-md-1">
                                 <!-- Notification Icon -->
                                 <a href="#"
-                                   class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
+                                   class="hover-nav d-flex align-items-center gap-2 me-0 me-md-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
                                    role="button"
                                    id="notificationDropdown"
                                    data-bs-toggle="dropdown"
@@ -117,7 +117,7 @@
                                     <div class="profile_header bg-instead rounded-circle">
                                         <i class="bi bi-bell-fill fs-18"></i>
                                     </div>
-                                    <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                                    <span class="d-none d-md-block">ការជូនដំណឹង</span>
                                 </a>
                             
                                 <!-- Dropdown Notification Menu -->
@@ -157,7 +157,7 @@
                             </div>
                             
                             <button type="submit" onclick="wishlist(1,this)"
-                                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
+                                class="hover-nav order-0 order-md-2 border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
                                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px);"></i>
                                 <span
                                     class="position-absolute top-0  translate-middle badge rounded-pill bg-danger wishlist-counter">
@@ -224,7 +224,7 @@
         <section class="mb-5">
             <div class="container">
                 <div class="row py-4 px-3">
-                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0 p-0">
                         <div class="d-flex align-items-center gap-2">
                             <div class="rounded-3">
                                 <i class="bi bi-shop fs-3 fs-md-2 text-dark-emphasis"></i>
@@ -232,10 +232,10 @@
                             <h4 class="text-dark mb-0 fs-5 fs-md-4">ហាងបោគអ៊ុតក្នុងទីក្រុងភ្នំពេញ</h4>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 col-xl-4 ms-0 ms-md-auto">
                         <div class="mb-3 d-flex align-items-center gap-3 justify-content-end">
-                            <label for="addCategoryId" class="form-label mt-2">ប្រភេទ</label>
-                            <select class="form-control" style="width: 300px;" id="addCategoryId" name="category_id"
+                            <label for="addCategoryId" class="form-label fs-18 mt-2">ប្រភេទ</label>
+                            <select class="form-select" id="addCategoryId" name="category_id"
                                 required>
                                 <!-- Options will be populated here -->
                             </select>

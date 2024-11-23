@@ -323,96 +323,87 @@ function fetchPurchased(status = "all") {
       });
 
       console.log("Filtered Data:", filteredData); // Debug log
+      filteredData.forEach((e) => {
+        let statusText;
+        let statusClass;
 
-      if (filteredData.length === 0) {
-        tableBody.innerHTML = `
+        switch (parseInt(e.payment_status)) {
+          case 1:
+            statusText = "Pending";
+            statusClass = "text-warning";
+            break;
+          case 2:
+            statusText = "Approved";
+            statusClass = "text-success";
+            break;
+          case 3:
+            statusText = "Rejected";
+            statusClass = "text-danger";
+            break;
+          default:
+            statusText = "Unknown";
+            statusClass = "text-secondary";
+        }
+
+        tr += `
           <tr>
-            <td colspan="4" class="text-center">No orders found</td>
+            <td class="text-start">
+              <div class="d-flex align-items-center gap-3">
+                <div class="service_img rounded overflow-hidden" style="width: 55px; height: 55px;"> 
+                  <img src="${e.service.image
+          }" class="w-100 h-100 object-fit-cover" alt="Service">
+                </div>
+                <div class="d-flex flex-column">
+                  <span class="fw-medium text-start">${e.service?.name || "N/A"
+          }</span>
+                  <span class="text-muted small">Qty: ${e.qty || 0}</span>
+                </div>
+              </div>
+            </td>
+            <td class="text-start align-middle">
+              <span class="${statusClass} fw-medium">
+                ${statusText}
+              </span>
+            </td>
+            <td class="text-start align-middle">
+              ${e.service.price || "0.00"}៛
+            </td>
+            <td class="text-center align-middle">
+              <button type="button" 
+                class="btn btn-primary btn-sm px-3 py-1" 
+                data-bs-toggle="modal" 
+                data-bs-target="#orderModal"
+                onclick='showOrderDetails(${JSON.stringify({
+            service: {
+              name: e.service?.name || "N/A",
+              description: e.service?.description || "N/A",
+              serviceType: e.service?.category?.name || "N/A",
+              image: e.service?.image || "",
+              status: e.service_status || e.status || null,
+            },
+            creator: {
+              name: e.service?.creator?.name || "N/A",
+              email: e.service?.creator?.email || "N/A",
+              phone: e.service?.creator?.phone || "N/A",
+              google_map_url: e.service?.creator?.google_map_url || "#",
+              avatar: e.service?.creator?.avatar || "",
+            },
+            order: {
+              orderDate: e.created_at || "N/A",
+              status: statusText,
+              qty: e.qty || 0,
+              total: e.price || "0.00៛",
+            },
+          })})'
+                title="View Details">
+                <i class="bi bi-eye fs-5"></i>
+              </button>
+            </td>
           </tr>
         `;
-      } else {
-        filteredData.forEach((e) => {
-          let statusText;
-          let statusClass;
+      });
 
-          switch (parseInt(e.payment_status)) {
-            case 1:
-              statusText = "Pending";
-              statusClass = "text-warning";
-              break;
-            case 2:
-              statusText = "Approved";
-              statusClass = "text-success";
-              break;
-            case 3:
-              statusText = "Rejected";
-              statusClass = "text-danger";
-              break;
-            default:
-              statusText = "Unknown";
-              statusClass = "text-secondary";
-          }
-
-          tr += `
-            <tr>
-              <td class="text-start">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="service_img rounded overflow-hidden" style="width: 55px; height: 55px;"> 
-                    <img src="${e.service.image
-            }" class="w-100 h-100 object-fit-cover" alt="Service">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <span class="fw-medium text-start">${e.service?.name || "N/A"
-            }</span>
-                    <span class="text-muted small">Qty: ${e.qty || 0}</span>
-                  </div>
-                </div>
-              </td>
-              <td class="text-start align-middle">
-                <span class="${statusClass} fw-medium">
-                  ${statusText}
-                </span>
-              </td>
-              <td class="text-start align-middle">
-                $${e.service.price || "0.00"}
-              </td>
-              <td class="text-center align-middle">
-                <button type="button" 
-                  class="btn btn-primary px-3 py-2" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#orderModal"
-                  onclick='showOrderDetails(${JSON.stringify({
-              service: {
-                name: e.service?.name || "N/A",
-                description: e.service?.description || "N/A",
-                serviceType: e.service?.category?.name || "N/A",
-                image: e.service?.image || "",
-                status: e.service_status || e.status || null,
-              },
-              creator: {
-                name: e.service?.creator?.name || "N/A",
-                email: e.service?.creator?.email || "N/A",
-                phone: e.service?.creator?.phone || "N/A",
-                google_map_url: e.service?.creator?.google_map_url || "#",
-                avatar: e.service?.creator?.avatar || "",
-              },
-              order: {
-                orderDate: e.created_at || "N/A",
-                status: statusText,
-                qty: e.qty || 0,
-                total: e.price || "$0.00",
-              },
-            })})'
-                  title="View Details">
-                  <i class="bi bi-eye fs-5"></i>
-                </button>
-              </td>
-            </tr>
-          `;
-        });
-
-        tableBody.innerHTML = tr;
-      }
+      tableBody.innerHTML = tr;
 
       // Initialize DataTable with configuration
       $("#purchasedTable").DataTable({
@@ -428,14 +419,12 @@ function fetchPurchased(status = "all") {
         language: {
           lengthMenu: `
             <div class="d-flex align-items-center gap-2">
-              <label class="mb-0">Show</label>
               <select class="form-select mt-0 form-select-sm" aria-label="entries">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="-1">All</option>
               </select>
-              <label class="mb-0">entries</label>
             </div>
           `,
           search: "_INPUT_",
@@ -443,7 +432,7 @@ function fetchPurchased(status = "all") {
         },
         classes: {
           sWrapper: "dataTables_wrapper dt-bootstrap5",
-          sFilterInput: "form-control form-control-sm ms-2",
+          sFilterInput: "form-control form-control-sm",
           sLengthSelect: "form-select form-select-sm",
         },
       });
@@ -550,12 +539,12 @@ function showOrderDetails(details) {
 
                 <div class="list-group-item border-0 px-0 py-2">
                   <div class="d-flex align-items-center">
-                    <div class="profile-icon-info bg-primary bg-opacity-10 p-2 me-3">
-                      <i class="bi bi-currency-dollar text-primary"></i>
+                    <div class="profile-icon-info bg-primary text-primary bg-opacity-10 p-2 me-3">
+                      ៛
                     </div>
                     <div>
                       <small class="text-muted d-block">Total Amount</small>
-                      <span class="fw-medium">$${details.order.total}</span>
+                      <span class="fw-medium">${details.order.total}៛</span>
                     </div>
                   </div>
                 </div>

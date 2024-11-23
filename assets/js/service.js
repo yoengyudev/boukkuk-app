@@ -64,7 +64,7 @@ function DisplayServices() {
           {
             data: "price",
             render: function (data, type, row) {
-              return `<div class="text-start">$${data}</div>`; // Add text-start class here
+              return `<div class="text-start">${data}៛</div>`; // Add text-start class here
             },
           },
           {
@@ -99,12 +99,6 @@ function DisplayServices() {
           search: "Search:",
           lengthMenu: "Show _MENU_ entries",
           info: "Showing _START_ to _END_ of _TOTAL_ entries",
-          paginate: {
-            first: "First",
-            last: "Last",
-            next: "Next",
-            previous: "Previous",
-          },
         },
       });
     });
@@ -235,7 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       localStorage.setItem("category_id", categoryId);
       formData.set("category_id", categoryId);
-
       fetch(`${baseUrl}/api/services`, {
         method: "POST",
         headers: {

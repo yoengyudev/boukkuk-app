@@ -34,16 +34,6 @@ function fetchOrders() {
                 $('#getorder_table').DataTable().destroy();
             }
 
-            // Check if data.result is falsy or data.data is null/undefined or not an array
-            if (!data.result || !Array.isArray(data.data) || data.data.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="text-center text-warning">No orders found. Please try again later.</td>
-                    </tr>
-                `;
-                return;
-            }
-
             const statusMapping = {
                 1: { text: 'Pending', class: 'text-warning' },
                 2: { text: 'Approved', class: 'text-success' },
@@ -80,9 +70,9 @@ function fetchOrders() {
                     <td class="text-start">
                         <span class="${status.class}">${status.text}</span>
                     </td>
-                    <td class="text-start">$${order.price ? order.price.toFixed(2) : '0.00'}</td>
+                    <td class="text-start">${order.price ? order.price.toFixed(2) : '0.00'}៛</td>
                     <td class="text-end">
-                        <button class="btn btn-success btn-sm px-3 py-1 payment-details-btn" onclick="PaymentDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#detailPayment">
+                        <button class="btn btn-primary btn-sm px-3 py-1 payment-details-btn" onclick="PaymentDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#detailPayment">
                             <i class="bi bi-eye"></i>
                         </button>
                     </td>
@@ -97,14 +87,6 @@ function fetchOrders() {
         })
         .catch((error) => {
             console.error('Error fetching orders:', error);
-            const tableBody = document.getElementById('order_table');
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="5" class="text-center text-danger">
-                        Error loading orders: ${error.message}
-                    </td>
-                </tr>
-            `;
         });
 }
 
@@ -171,12 +153,10 @@ function PaymentDetails(orderId) {
         })
         .then((data) => {
             console.log('Payment Details:', data);
-            // Preselect Payment Status
             document.querySelectorAll("input[name='paymentStatus']").forEach(input => {
                 input.checked = parseInt(input.value) === data.data.payment_status;
             });
 
-            // Preselect Service Status
             document.querySelectorAll("input[name='serviceStatus']").forEach(input => {
                 input.checked = parseInt(input.value) === data.data.service_status;
             });
@@ -221,12 +201,12 @@ function PaymentDetails(orderId) {
             ser_dec.innerHTML = data.data.service.description;
             ser_name.innerHTML = data.data.service.name;
             ser_categ.innerHTML = data.data.service.category.name;
-            ser_price.innerHTML = '$' + data.data.service.price;
+            ser_price.innerHTML = data.data.service.price + '៛';
             ser_dis.innerHTML = data.data.service.discount ? `$${data.data.service.discount}` : 'No Discount';
 
             document.getElementById('order_id').innerHTML = data.data.id;
             document.getElementById('order_Qty').innerHTML = data.data.qty;
-            document.getElementById('total_price').innerHTML = data.data.qty * data.data.price;
+            document.getElementById('total_price').innerHTML = data.data.qty * data.data.price + '៛';
             document.getElementById('order_date').innerHTML = new Date(data.data.created_at).toLocaleString();
 
             document.getElementById('tran_img').src = data.data.transaction_file;

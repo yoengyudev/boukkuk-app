@@ -304,7 +304,7 @@
           <div class="col-auto order-0">
             <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
           </div>
-          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-0 ms-xl-3">
             <div class="row d-flex under-logo">
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
@@ -315,7 +315,7 @@
                   <i class="bi bi-search text-white"></i>
                 </button>
               </div>
-              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
+              <div class="col-5 col-md-3 col-xl-4 p-0 px-md-3 d-flex justify-content-end justify-content-xl-start">
                 <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
                   onclick="findNearbyLocations()">
                   <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
@@ -326,14 +326,14 @@
           </div>
           <div class="col-auto ms-auto p-0 order-1 order-xl-2">
             <div class="d-flex w-100 align-items-center justify-content-end">
-              <div class="dropdown rounded-2">
-                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+              <div class="dropdown rounded-2 order-2 order-md-0">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-0 px-md-3 py-2 d-flex align-items-center gap-1"
                   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile_header bg-instead rounded-circle">
                     <i class="bi bi-person-circle"></i>
                   </div>
-                  <span>គណនី</span>
-                  <i class="bi bi-chevron-down fw-bold"></i>
+                  <span class="d-none d-md-block">គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold d-none d-md-block"></i>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
@@ -377,15 +377,15 @@
                 </ul>
               </div>
 
-              <div class="dropdown">
+              <div class="dropdown order-1 order-md-1">
                 <!-- Notification Icon -->
                 <a href="#"
-                  class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
+                  class="hover-nav d-flex align-items-center gap-2 me-0 me-md-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
                   role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile_header bg-instead rounded-circle">
                     <i class="bi bi-bell-fill fs-18"></i>
                   </div>
-                  <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                  <span class="d-none d-md-block">ការជូនដំណឹង</span>
                 </a>
 
                 <!-- Dropdown Notification Menu -->
@@ -429,7 +429,7 @@
                 </div>
               </div>
               <a type="submit" href="wishlist.html"
-                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
+                class="hover-nav order-md-2 border-0 border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
                 <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger wishlist-counter">
                   0
@@ -441,14 +441,17 @@
       </div>
     </nav>
   </header>
+  
+  
+
   <main>
-    <section class="bg-store">
+    <section class="bg-store d-none d-md-block">
       <div class="bg-overlay"></div>
     </section>
     <section class="about-store">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-lg-3">
+          <div class="col-12 col-md-8 col-lg-3">
             <div class="card logo-store border-5 box-shadow border-white overflow-hidden">
               <img id="profile_img" class="card-img" alt="" />
             </div>
@@ -511,25 +514,20 @@
       </div>
     </section>
     <section class="mb-5">
-      <div class="sticky-top bg-white z-3" style="
-            top: 87px;
-            padding-top: 10px;
-            padding-left: 110px;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 28px 24px;
-          ">
-        <div class="container p-0 m-0">
-          <div class="d-flex align-items-end">
+      <div>
+        <div class="container">
+          <div class="row">
             <!-- Search Input -->
-            <div class="mb-3">
-              <input type="text" class="form-control" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម" />
+            <div class="mb-3 col-12 col-md-3 ">
+              <input type="text" class="form-control h-100 py-3" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម" />
             </div>
 
             <!-- Tab Navigation -->
-            <div class="d-flex flex-row mb-3 ms-3">
+            <div class="d-flex flex-row mb-3 ms-xl-3 ms-0 col-12 col-md-auto">
               <ul class="nav nav-tabs flex-nowrap" id="categoryNav" role="tablist"></ul>
             </div>
             <!-- price range -->
-            <div class="wrapper ms-auto mb-3">
+            <div class="col-12 col-xl-3 ms-auto mb-3 mt-3 mt-xl-0">
               <div class="price-input">
                 <div class="field">
                   <input type="number" class="input-min border-0 bg-transparent" value="0" disabled />
@@ -556,18 +554,18 @@
         <h3 class="mt-5">សេវាកម្មរបស់ហាងយើងខ្ញុំ</h3>
         <hr style="color: #ddd" />
 
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-8 service-section-store">
+        <div class="row gy-5">
+          <div class="col-12 col-xl-8 service-section-store">
             <!-- Service Sections -->
             <div id="all" class="row g-4" data-category="បោក"></div>
           </div>
-          <div class="col-12 col-sm-12 col-md-4">
+          <div class="col-12 col-xl-4">
             <div class="card cart">
               <h2>Cart</h2>
               <div id="cart-items" class="overflow-auto" style="height: 538px"></div>
               <div class="check-out-store py-3 bg-white z-3 bottom-0 w-100 text-end">
-                <span id="total-price" class="fs-4 mb-3 fw-semibold">$0.00</span>
-                <div>
+                <span id="total-price" class="fs-4 mb-3 fw-semibold">0.00៛</span>
+                <div class="mt-2">
                   <button class="btn btn-primary" id="updateCartButton">កែប្រែកន្ត្រាក់</button>
                   <button id="checkout-button" class="btn btn-primary" disabled>
                     បញ្ជាក់ការទូទាត់

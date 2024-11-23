@@ -103,7 +103,7 @@
 /* not merge */
 
 .fixed-header {
-  position: sticky;
+  position:sticky!important;
   top: 0;
   width: 100%;
   background-color: rgb(255, 255, 255);
@@ -160,7 +160,7 @@
 
 /* =============== */
 
-.dropdown-menu {
+/* .dropdown-menu {
   display: block;
   visibility: hidden;
   opacity: 0;
@@ -177,7 +177,7 @@
 .dropdown {
   position: relative;
   z-index: 1001;
-}
+} */
 
 #location:focus {
   outline: none;
@@ -323,7 +323,7 @@
 
 /* price range */
 .wrapper {
-  width: 350px;
+  width: 300px;
   /* padding: 0px 40px; */
 }
 
@@ -1549,9 +1549,7 @@ body {
   background-color: var(--background);
   color: var(--text);
 }
-.profile {
-  margin-top: 20px;
-}
+
 .profile .spinner-border {
   width: 1rem; /* Adjust size */
   height: 1rem; /* Adjust size */
@@ -1833,16 +1831,8 @@ body {
   .form-control {
     font-size: 0.9rem; /* Slightly smaller font on mobile */
   }
-  .profile {
-    margin-top: 170px !important;
-  }
   .profile .btn-primary {
     width: 100%; /* Full width button on mobile */
-  }
-}
-@media (max-width: 576px) {
-  .profile {
-    margin-top: 180px !important;
   }
 }
 
@@ -2820,6 +2810,18 @@ body {
     padding: 1.5rem; /* Reduced padding on mobile */
   }
 }
+
+@media (max-width:768px) {
+  .about-store{
+    top: 0!important;
+  }
+
+  .logo-store{
+    top:10px!important;
+    margin-bottom: 50px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .payment .time-chip-pay {
     position: relative !important;
@@ -3042,6 +3044,7 @@ body {
     transform: scale(1);
   }
 }
+
 
 @media (max-width: 576px) {
   .contact-us .nav-tabs .nav-link {

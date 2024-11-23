@@ -202,8 +202,8 @@ function getCategory(value = 0, search = "") {
                     </div>
                     <div class="card-content">
                       <h5 class="card-title">${element.name}</h5>
-                      <p class="card-price">$${element.price}</p>
-                      <p class="card-description">
+                      <p class="card-price">${element.price}៛</p>
+                      <p class="card-description text-truncate">
                         ${
                           element.description ||
                           "Description of the dish goes here."
@@ -468,7 +468,7 @@ function renderCart() {
           <p class="mt-2">សូមបន្ថែមសេវាកម្មទៅកាន់កន្ត្រាក់របស់អ្នក!</p>
         </div>
       </div>`;
-    totalPriceDiv.textContent = "Total: $0.00";
+    totalPriceDiv.textContent = "Total: 0.00៛";
     checkoutButton.disabled = true;
     return;
   }
@@ -489,7 +489,7 @@ function renderCart() {
           <div class="d-flex justify-content-between align-items-center w-100">
             <div class="text-truncate d-flex flex-column align-items-center pe-2 ps-3" style="max-width: 150px;">
               <div>${item.name}</div>
-              <div>$${item.price.toFixed(2)}</div>
+              <div>${item.price.toFixed(2)}៛</div>
             </div>
             <div class="d-flex align-items-center gap-2">
               <button class="decrease-cart btn btn-sm btn-primary rounded-circle decrease-btn" ${
@@ -565,7 +565,7 @@ function renderCart() {
     cartItemsDiv.appendChild(itemDiv);
   });
 
-  totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
+  totalPriceDiv.textContent = `Total: ${total.toFixed(2)}៛`;
   checkoutButton.disabled = false;
 }
 
