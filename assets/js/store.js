@@ -9,13 +9,6 @@ const sections = document.querySelectorAll(".service-section");
 let getCreatorId = sessionStorage.getItem("creator_id");
 let localCart = [];
 
-if (!getCreatorId) {
-  console.log("Hello world");
-  const currentPath = window.location.href;
-  const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-  location.href = `${basePath}index.html`;
-  throw new Error("Redirecting to index.html");
-}
 
 // Improved Intersection Observer options
 const observerOptions = {
