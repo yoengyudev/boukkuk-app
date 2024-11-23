@@ -3339,7 +3339,6 @@ input,
 textarea,
 select {
   box-shadow: none !important; /* Remove box shadow */
-  border: 1px solid #ced4da; /* Optional: Set a default border color */
 }
 
 /* Update Wishlist styles */
