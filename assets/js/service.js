@@ -184,51 +184,94 @@ const validateField = (name, value) => {
   return validators[name].regex.test(value);
 };
 
-// Main form validation and submission handler
+
 document.addEventListener("DOMContentLoaded", () => {
-  DisplayServices();
+  const form = document.getElementById("addServiceForm");
+  const inputs = form.querySelectorAll("input, textarea, select");
 
-  // Add profile dropdown functionality
-  const profile = document.querySelector(".profile");
-  const menu = document.querySelector(".menu");
+  // Real-time validation
+  inputs.forEach((input) => {
+    input.addEventListener("input", function () {
+      const isValid = validateField(this.name, this.value);
 
-  if (profile && menu) {
-    // Toggle menu on profile click
-    profile.addEventListener("click", function (e) {
-      e.stopPropagation(); // Prevent event bubbling
-      menu.classList.toggle("active");
+      if (!isValid) {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+
+        // Show error message
+        const feedbackDiv = this.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            validators[this.name]?.message || "This field is required";
+        }
+      } else {
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+      }
     });
+  });
 
-    // Close menu when clicking outside
-    document.addEventListener("click", function (e) {
-      if (!profile.contains(e.target)) {
-        menu.classList.remove("active");
+  // Form submission handler
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let isValid = true;
+    const formData = new FormData(form);
+
+    // Validate all fields before submission
+    inputs.forEach((input) => {
+      const value = formData.get(input.name);
+      if (!validateField(input.name, value)) {
+        isValid = false;
+        input.classList.add("is-invalid");
+
+        // Show error message
+        const feedbackDiv = input.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            validators[input.name]?.message || "This field is required";
+        }
       }
     });
 
-    // Handle menu item clicks
-    menu.addEventListener("click", function (e) {
-      const link = e.target.closest("a");
-      if (!link) return;
+    // File validation
+    const imageInput = document.getElementById("addImage");
+    if (imageInput.files.length > 0) {
+      const file = imageInput.files[0];
+      const validTypes = ["image/jpeg", "image/png", "image/gif"];
+      const maxSize = 5 * 1024 * 1024; // 5MB
 
-      e.preventDefault();
-      const type = link.textContent.trim().toLowerCase().includes("password")
-        ? "password"
-        : "information";
+      if (!validTypes.includes(file.type)) {
+        isValid = false;
+        imageInput.classList.add("is-invalid");
+        const feedbackDiv = imageInput.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent =
+            "Please upload a valid image file (JPEG, PNG, or GIF)";
+        }
+      } else if (file.size > maxSize) {
+        isValid = false;
+        imageInput.classList.add("is-invalid");
+        const feedbackDiv = imageInput.nextElementSibling;
+        if (feedbackDiv && feedbackDiv.classList.contains("invalid-feedback")) {
+          feedbackDiv.textContent = "Image size should be less than 5MB";
+        }
+      }
+    }
 
-      // Update modal content
-      const modalTitle = document.getElementById("profileModalTitle");
-      const modalBody = document.querySelector("#profileModal .modal-body");
-      const isAdmin = localStorage.getItem("UserRole") === "2";
+    if (isValid) {
+      // If all validations pass, proceed with your existing addService logic
+      const formData = new FormData(form);
+      const categoryId = parseInt(formData.get("category_id"), 10);
 
-      // Use admin modal content for admin users
-      const modalConfig = isAdmin ? adminModalContent : modalContent;
-
-      modalTitle.textContent = modalConfig[type].title;
-      modalBody.innerHTML = modalConfig[type].content;
+      if (!categoryId || isNaN(categoryId)) {
+        alert("Please enter a valid Category ID.");
+        return;
+      }
 
       localStorage.setItem("category_id", categoryId);
       formData.set("category_id", categoryId);
+
       fetch(`${baseUrl}/api/services`, {
         method: "POST",
         headers: {
@@ -237,32 +280,30 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: formData,
       })
-        .then((res) => {
-          if (!res.ok) {
-            return res.json().then((errorData) => {
-              throw new Error(JSON.stringify(errorData));
-            });
-          }
-          // Refresh the page after closing the modal
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
-          return res.json();
-        })
-        .then((data) => {
-          // Your existing success handling code
-          DisplayServices();
-          form.reset();
-          bootstrap.Modal.getInstance(
-            document.getElementById("addServiceModal")
-          ).hide();
-        })
-        .catch((error) => {
-          console.error("Error adding service:", error);
-          alert("Failed to add service. Please try again.");
-        });
-    });
-  }
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(errorData => {
+            throw new Error(JSON.stringify(errorData));
+          });
+        }
+        // Refresh the page after closing the modal
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        return res.json();
+      })
+      .then(data => {
+        // Your existing success handling code
+        DisplayServices();
+        form.reset();
+        bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
+      })
+      .catch(error => {
+        console.error("Error adding service:", error);
+        alert("Failed to add service. Please try again.");
+      });
+    }
+  });
 });
 
 // ========================
