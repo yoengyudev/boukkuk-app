@@ -2,18 +2,28 @@ import { AdminToken } from "./tokens.js";
 import { baseUrl } from "./baseUrl.js";
 
 // Add this near the top of the file
-window.previewImage = function(input) {
-  const preview = document.getElementById('avatarPreview');
+window.previewImage = function (input) {
+  const preview = document.getElementById("avatarPreview");
   if (input.files && input.files[0]) {
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       preview.src = e.target.result;
-      preview.style.display = 'block';
+      preview.style.display = "block";
     };
     reader.readAsDataURL(input.files[0]);
   }
 };
-
+fetch(`${baseUrl}/api/me`, {
+  headers: {
+    Accept: "application/json",
+    Authorization: "Bearer " + AdminToken,
+  },
+})
+  .then((res) => res.json())
+  .then((data) => {
+    const profileImage = document.getElementById("profileImage");
+    profileImage.src = data.data.avatar || "";
+  });
 // Modal content definitions
 export const modalContent = {
   information: {
@@ -132,7 +142,7 @@ export const adminModalContent = {
       </form>
     `,
   },
-  password: modalContent.password // Reuse the password modal content
+  password: modalContent.password, // Reuse the password modal content
 };
 
 // Password visibility toggle function
@@ -164,9 +174,12 @@ export function initInformationForm() {
       document.getElementById("profileName").value = data.data.name || "";
       document.getElementById("profileEmail").value = data.data.email || "";
       document.getElementById("profilePhone").value = data.data.phone || "";
-      document.getElementById("profileLongitude").value = data.data.longitude || "";
-      document.getElementById("profileLatitude").value = data.data.latitude || "";
-      document.getElementById("profileGoogleMap").value = data.data.google_map_url || "";
+      document.getElementById("profileLongitude").value =
+        data.data.longitude || "";
+      document.getElementById("profileLatitude").value =
+        data.data.latitude || "";
+      document.getElementById("profileGoogleMap").value =
+        data.data.google_map_url || "";
 
       // Show current avatar if exists
       const preview = document.getElementById("avatarPreview");
@@ -224,7 +237,9 @@ export function initInformationForm() {
         return null;
       })
       .then((data) => {
-        bootstrap.Modal.getInstance(document.getElementById("profileModal")).hide();
+        bootstrap.Modal.getInstance(
+          document.getElementById("profileModal")
+        ).hide();
         window.location.reload();
       })
       .catch((error) => {
@@ -300,7 +315,9 @@ export function initAdminInformationForm() {
         return null;
       })
       .then((data) => {
-        bootstrap.Modal.getInstance(document.getElementById("profileModal")).hide();
+        bootstrap.Modal.getInstance(
+          document.getElementById("profileModal")
+        ).hide();
         window.location.reload();
       })
       .catch((error) => {
@@ -342,7 +359,9 @@ export function initPasswordForm() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        bootstrap.Modal.getInstance(document.getElementById("profileModal")).hide();
+        bootstrap.Modal.getInstance(
+          document.getElementById("profileModal")
+        ).hide();
         form.reset();
       })
       .catch((error) => {
@@ -354,13 +373,15 @@ export function initPasswordForm() {
 document.addEventListener("DOMContentLoaded", function () {
   const profile = document.querySelector(".global-profile-menu");
   const menu = profile?.querySelector(".dropdown-menu");
-  const profileModal = new bootstrap.Modal(document.getElementById("profileModal"));
-  const roleId = localStorage.getItem('UserRole');
-  const isAdmin = roleId === '2';
-  
+  const profileModal = new bootstrap.Modal(
+    document.getElementById("profileModal")
+  );
+  const roleId = localStorage.getItem("UserRole");
+  const isAdmin = roleId === "2";
+
   console.log("Profile element:", profile); // Debug log
   console.log("Menu element:", menu); // Debug log
-  
+
   if (profile && menu) {
     // Toggle menu on profile click
     profile.addEventListener("click", function (e) {
@@ -391,12 +412,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const modalBody = document.querySelector("#profileModal .modal-body");
 
       const modalConfig = isAdmin ? adminModalContent : modalContent;
-      
+
       modalTitle.textContent = modalConfig[type].title;
       modalBody.innerHTML = modalConfig[type].content;
 
       window.togglePasswordVisibility = togglePasswordVisibility;
-      
+
       if (type === "information") {
         setTimeout(() => {
           isAdmin ? initAdminInformationForm() : initInformationForm();

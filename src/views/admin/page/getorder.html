@@ -90,7 +90,7 @@
 
           <div class="global-profile-menu">
             <div class="img-box">
-              <img src="/assets/image/service-provider/profile-service-provider.jpeg" alt="" />
+              <img id="profileImage" src="" alt="" />
             </div>
 
             <div class="dropdown-menu">
@@ -169,81 +169,88 @@
                     <!-- Save Button with Spinner -->
                     <button type="button" id="approveBtn" class=" btn  btn-success mt-3 px-4 py-1">
                       <span id="approveText">Approve</span>
-                      <span id="approveSpinner" class="spinner-border spinner-border-sm text-light" style="display: none;"></span>
-                  </button>
+                      <span id="approveSpinner" class="spinner-border spinner-border-sm text-light"
+                        style="display: none;"></span>
+                    </button>
                     <button type="button" id="rejectBtn" class="btn  btn-danger mt-3 px-4 py-1">
                       <span id="rejectText">Reject</span>
-                      <span id="rejectSpinner" class="spinner-border spinner-border-sm text-light" style="display: none;"></span>
-                  </button>
+                      <span id="rejectSpinner" class="spinner-border spinner-border-sm text-light"
+                        style="display: none;"></span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="card h-100 border-0">
+                <div>
+                  <h5 class="mb-4">Service Status</h5>
                   <div>
-                      <h5 class="mb-4">Service Status</h5>
-                      <div>
-                          <form action="" method="get">
-                              <div class="d-flex gap-3 flex-wrap">
-                                  <!-- Radio Buttons for Service Status -->
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="placedOrder" value="1">
-                                      <label class="form-check-label" for="placedOrder">Placed Order</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="laundryPickUp" value="2">
-                                      <label class="form-check-label" for="laundryPickUp">Laundry Pick Up</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="inProcess" value="3">
-                                      <label class="form-check-label" for="inProcess">In Process</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="processToIron" value="4">
-                                      <label class="form-check-label" for="processToIron">Process to Iron</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="ironing" value="5">
-                                      <label class="form-check-label" for="ironing">Ironing</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="readyForDelivery" value="6">
-                                      <label class="form-check-label" for="readyForDelivery">Ready for Delivery</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="outForDelivery" value="7">
-                                      <label class="form-check-label" for="outForDelivery">Out for Delivery</label>
-                                  </div>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="serviceStatus" id="delivered" value="8">
-                                      <label class="form-check-label" for="delivered">Delivered</label>
-                                  </div>
-                              </div>
-                          </form>
-                          <button type="button" id="upStateBtn" class="btn  btn-primary mt-3 px-4 py-1">
-                            <span id="upStateText">Update Status Service</span>
-                            <span id="upStateSpinner" class="spinner-border spinner-border-sm text-light" style="display: none;"></span>
-                        </button>
+                    <form action="" method="get">
+                      <div class="d-flex gap-3 flex-wrap">
+                        <!-- Radio Buttons for Service Status -->
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="placedOrder" value="1">
+                          <label class="form-check-label" for="placedOrder">Placed Order</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="laundryPickUp"
+                            value="2">
+                          <label class="form-check-label" for="laundryPickUp">Laundry Pick Up</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="inProcess" value="3">
+                          <label class="form-check-label" for="inProcess">In Process</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="processToIron"
+                            value="4">
+                          <label class="form-check-label" for="processToIron">Process to Iron</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="ironing" value="5">
+                          <label class="form-check-label" for="ironing">Ironing</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="readyForDelivery"
+                            value="6">
+                          <label class="form-check-label" for="readyForDelivery">Ready for Delivery</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="outForDelivery"
+                            value="7">
+                          <label class="form-check-label" for="outForDelivery">Out for Delivery</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="serviceStatus" id="delivered" value="8">
+                          <label class="form-check-label" for="delivered">Delivered</label>
+                        </div>
                       </div>
+                    </form>
+                    <button type="button" id="upStateBtn" class="btn  btn-primary mt-3 px-4 py-1">
+                      <span id="upStateText">Update Status Service</span>
+                      <span id="upStateSpinner" class="spinner-border spinner-border-sm text-light"
+                        style="display: none;"></span>
+                    </button>
                   </div>
+                </div>
               </div>
-          </div>
-          
+            </div>
+
             <div class="col-12 col-xl-7">
               <div class="card h-100 border-0">
                 <h5 class="mb-4">Schedule Pickup</h5>
                 <form action="" method="post">
                   <div>
                     <label for="datePickup" class="form-label">Select Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="datePickup" name="datetime"
-                      value="">
+                    <input type="datetime-local" class="form-control" id="datePickup" name="datetime" value="">
                   </div>
                 </form>
                 <div>
                   <button type="button" id="updPickupBtn" class="btn btn-primary mt-3 px-4 py-1">
                     <span id="upPickupText">Update Pickup Schedule</span>
-                            <span id="upPickupSpinner" class="spinner-border spinner-border-sm text-light" style="display: none;"></span>
+                    <span id="upPickupSpinner" class="spinner-border spinner-border-sm text-light"
+                      style="display: none;"></span>
                   </button>
                 </div>
               </div>

@@ -1,218 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
-    <link rel="stylesheet" href="../../../../assets/css/style.css" />
-    <link rel="stylesheet" href="../../../../assets/css/main.css" />
-    <link
-      rel="stylesheet"
-      href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../../vender/datatable/css/dataTables.bootstrap5.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../../vender/datatable/css/responsive.bootstrap5.css"
-    />
-  </head>
 
-  <body>
-    <!-- =============== Navigation ================ -->
-    <div class="container-fluid p-0 position-relative w-100">
-      <div class="navigation">
-        <ul class="p-0">
-          <li>
-            <a href="../index.html">
-              <span class="icon">
-                <i class="bi bi-droplet"></i>
-              </span>
-              <span class="title">Boakuk</span>
-            </a>
-          </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+  <link rel="stylesheet" href="../../../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css" />
+  <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css" />
+</head>
 
-          <li>
-            <a href="../index.html">
-              <span class="icon">
-                <i class="bi bi-grid"></i>
-              </span>
-              <span class="title">Dashboard</span>
-            </a>
-          </li>
+<body>
+  <!-- =============== Navigation ================ -->
+  <div class="container-fluid p-0 position-relative w-100">
+    <div class="navigation">
+      <ul class="p-0">
+        <li>
+          <a href="../index.html">
+            <span class="icon">
+              <i class="bi bi-droplet"></i>
+            </span>
+            <span class="title">Boakuk</span>
+          </a>
+        </li>
 
-          <li class="user-item">
-            <a href="../page/user.html">
-              <span class="icon">
-                <i class="bi bi-people"></i>
-              </span>
-              <span class="title">User</span>
-            </a>
-          </li>
-          <li class="service-item">
-            <a href="../page/service.html">
-              <span class="icon">
-                <i class="bi bi-bag"></i>
-              </span>
-              <span class="title">Services</span>
-            </a>
-          </li>
+        <li>
+          <a href="../index.html">
+            <span class="icon">
+              <i class="bi bi-grid"></i>
+            </span>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
 
-          <li class="order-item">
-            <a href="../page/getorder.html">
-              <span class="icon">
-                <i class="bi bi-bag"></i>
-              </span>
-              <span class="title">Orders</span>
-            </a>
-          </li>
+        <li class="user-item">
+          <a href="../page/user.html">
+            <span class="icon">
+              <i class="bi bi-people"></i>
+            </span>
+            <span class="title">User</span>
+          </a>
+        </li>
+        <li class="service-item">
+          <a href="../page/service.html">
+            <span class="icon">
+              <i class="bi bi-bag"></i>
+            </span>
+            <span class="title">Services</span>
+          </a>
+        </li>
 
-          <li class="category-item">
-            <a href="../page/category.html">
-              <span class="icon">
-                <i class="bi bi-folder"></i>
-              </span>
-              <span class="title">Category</span>
-            </a>
-          </li>
+        <li class="order-item">
+          <a href="../page/getorder.html">
+            <span class="icon">
+              <i class="bi bi-bag"></i>
+            </span>
+            <span class="title">Orders</span>
+          </a>
+        </li>
 
-          <li class="provider-item active">
-            <a href="../page/provider.html">
-              <span class="icon">
-                <i class="bi bi-person-gear"></i>
-              </span>
-              <span class="title">Providers</span>
-            </a>
-          </li>
+        <li class="category-item">
+          <a href="../page/category.html">
+            <span class="icon">
+              <i class="bi bi-folder"></i>
+            </span>
+            <span class="title">Category</span>
+          </a>
+        </li>
 
-          <li id="logout-admin">
-            <a href="">
-              <span class="icon">
-                <i class="bi bi-box-arrow-right"></i>
-              </span>
-              <span class="title">Sign Out</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <li class="provider-item active">
+          <a href="../page/provider.html">
+            <span class="icon">
+              <i class="bi bi-person-gear"></i>
+            </span>
+            <span class="title">Providers</span>
+          </a>
+        </li>
 
-      <!-- ========================= Main ==================== -->
-      <div class="main">
-        <div class="topbar">
-          <div class="toggle">
-            <i class="bi bi-list"></i>
-          </div>
-
-          <div class="global-profile-menu">
-            <div class="img-box">
-              <img
-                src="../../../../assets/image/service-provider/profile-service-provider.jpeg"
-                alt=""
-              />
-            </div>
-            <div class="dropdown-menu">
-              <ul>
-                <li>
-                  <a href="#">
-                    <i class="bi bi-person"></i>
-                    Account
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="bi bi-key"></i>
-                    Password
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="p-4">
-          <table
-            id="providerTabel"
-            class="table table-striped"
-            style="width: 100%"
-          >
-            <thead class="text-start">
-              <tr>
-                <th class="text-start">ID</th>
-                <th>Profile</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th class="text-start">Phone</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="table_body" class="text-start"></tbody>
-          </table>
-        </div>
-      </div>
+        <li id="logout-admin">
+          <a href="">
+            <span class="icon">
+              <i class="bi bi-box-arrow-right"></i>
+            </span>
+            <span class="title">Sign Out</span>
+          </a>
+        </li>
+      </ul>
     </div>
-<!-- Add Provider Detail Modal -->
-<div class="modal fade" id="providerDetailModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Provider Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle">
+          <i class="bi bi-list"></i>
+        </div>
+
+        <div class="global-profile-menu">
+          <div class="img-box">
+            <img id="profileImage" src="" alt="" />
+          </div>
+          <div class="dropdown-menu">
+            <ul>
+              <li>
+                <a href="#">
+                  <i class="bi bi-person"></i>
+                  Account
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="bi bi-key"></i>
+                  Password
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="modal-body" id="providerDetailContent">
-        <!-- Provider details will be injected here -->
+      <div class="p-4">
+        <table id="providerTabel" class="table table-striped" style="width: 100%">
+          <thead class="text-start">
+            <tr>
+              <th class="text-start">ID</th>
+              <th>Profile</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th class="text-start">Phone</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table_body" class="text-start"></tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
-    <!-- Add this before the Scripts section -->
-    <div
-      class="modal fade global-profile-modal"
-      id="profileModal"
-      tabindex="-1"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="profileModalTitle">
-              <!-- Dynamic Title -->
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!-- Forms will be injected here -->
-          </div>
+  <!-- Add Provider Detail Modal -->
+  <div class="modal fade" id="providerDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Provider Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="providerDetailContent">
+          <!-- Provider details will be injected here -->
         </div>
       </div>
     </div>
-    <!-- =========== Scripts =========  -->
-    <script>
-      let toggle = document.querySelector(".toggle");
-      let navigation = document.querySelector(".navigation");
-      let main = document.querySelector(".main");
+  </div>
+  <!-- Add this before the Scripts section -->
+  <div class="modal fade global-profile-modal" id="profileModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileModalTitle">
+            <!-- Dynamic Title -->
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Forms will be injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- =========== Scripts =========  -->
+  <script>
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
 
-      toggle.onclick = function () {
-        navigation.classList.toggle("active");
-        main.classList.toggle("active");
-      };
-    </script>
-    <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script
-    type="module"
-    src="../../../../assets/js/updateUserInfo.js"
-    ></script>
-    <script type="module" src="../../../../assets/js/provider.js"></script>
-    <script type="module" src="../../../../assets/js/sidebar.js"></script>
-    <script type="module" src="../../../../assets/js/logout.js"></script>
-    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
-    <script src="../../../../vender/datatable/js/dataTables.js"></script>
-    <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
-    <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
-  </body>
+    toggle.onclick = function () {
+      navigation.classList.toggle("active");
+      main.classList.toggle("active");
+    };
+  </script>
+  <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../../../../assets/js/updateUserInfo.js"></script>
+  <script type="module" src="../../../../assets/js/provider.js"></script>
+  <script type="module" src="../../../../assets/js/sidebar.js"></script>
+  <script type="module" src="../../../../assets/js/logout.js"></script>
+  <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+  <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+  <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
+</body>
+
 </html>
