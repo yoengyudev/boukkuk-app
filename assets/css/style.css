@@ -3049,9 +3049,14 @@ body {
 @media (max-width: 576px) {
   .contact-us .nav-tabs .nav-link {
     padding: 0.5rem 1rem;
-    /* Adjust padding for smaller screens */
     font-size: 0.9rem;
-    /* Adjust font size for better readability */
+  }
+
+  .cart_pro{
+    border: 1px solid #ddd;
+    border-radius:10px;
+    margin-bottom:30px;
+    padding-bottom:5px;
   }
 }
 /* ============ End of Contact ============= */
@@ -3167,6 +3172,11 @@ body {
 
   .wishList h1 {
     font-size: 2rem;
+  }
+
+  .btn-cart{
+    width:25px!important;
+    height: 25px!important;
   }
 }
 /* ============= End Wish List ================= */
@@ -3678,4 +3688,30 @@ select {
 .was-validated .form-control:invalid,
 .form-control.is-invalid {
   background-image: none !important;
+}
+
+
+
+/* store style */
+.cart_pro{
+  border-bottom:1px solid #ddd;
+}
+
+.btn-cart{
+  width:30px;
+  height:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #4762e6;
+  border-radius: 50%;
+}
+
+.btn-cart:hover{
+  background-color: #4762e6;
+  color: #fff;
+}
+
+.delete-btn{
+  transform: translateY(3px);
 }

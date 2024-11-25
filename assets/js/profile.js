@@ -885,3 +885,12 @@ document
   .addEventListener("click", function () {
     togglePasswordVisibility("confirmPassword", "toggleConfirmPassword");
   });
+
+
+
+// render to cart
+// ---------------- summary cart -------------------------------
+
+
+
+

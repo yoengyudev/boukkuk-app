@@ -367,7 +367,7 @@
           <div class="col-12 col-lg-4">
             <div class="sidebar card">
               <div class="avatar-container mb-4" id="avatarContainer">
-                <img src="assets/img/AboutUs-review3avif.avif" alt="User Avatar" class="avatar" id="userAvatar" />
+                <img alt="User Avatar" class="avatar" id="userAvatar" />
                 <div class="dropdown">
                   <button class="camera-icon z-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-camera"></i>
@@ -392,22 +392,11 @@
                 <i class="fas fa-user"></i>
                 <span>ព័ត៌មានផ្ទាល់ខ្លួន</span>
               </div>
-              <div class="sidebar-item btn" data-section="laundry-preferences">
-                <i class="fas fa-tshirt"></i>
-                <span>ចំណូលចិត្តការបោកគក់</span>
-              </div>
               <div class="sidebar-item btn" data-section="order-history">
                 <i class="fas fa-history"></i>
                 <span>ប្រវត្តិការបញ្ជាទិញ</span>
               </div>
-              <div class="sidebar-item btn" data-section="payment-methods">
-                <i class="fas fa-credit-card"></i>
-                <span>វិធីទូទាត់ប្រាក់</span>
-              </div>
-              <div class="sidebar-item btn" data-section="notifications">
-                <i class="fas fa-bell"></i>
-                <span>ការជូនដំណឹង</span>
-              </div>
+              
               <div class="sidebar-item btn" data-section="change-password">
                 <i class="fas fa-lock"></i>
                 <span>ផ្លាស់ប្តូរពាក្យសម្ងាត់</span>
@@ -451,43 +440,6 @@
                   </button>
                 </form>
               </div>
-              <div id="laundry-preferences" class="content-section d-none">
-                <h3 class="section-title text-primary mb-5">
-                  ចំណូលចិត្តការបោកគក់
-                </h3>
-                <p class="text-muted mb-4">
-                  កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
-                </p>
-                <form>
-                  <div class="mb-4">
-                    <label for="detergent" class="form-label">សាប៊ូដែលចូលចិត្ត</label>
-                    <select class="form-select form-control" id="detergent">
-                      <option selected>ជ្រើសរើសសាប៊ូដែលអ្នកចូលចិត្ត</option>
-                      <option value="regular">ធម្មតា</option>
-                      <option value="sensitive">សម្រាប់ស្បែកស្រទន់</option>
-                      <option value="eco-friendly">មិនប៉ះពាល់បរិស្ថាន</option>
-                      <option value="fragrance-free">គ្មានក្លិន</option>
-                    </select>
-                  </div>
-                  <div class="mb-4">
-                    <label for="fabric-softener" class="form-label">ទឹកក្រអូបសម្លៀកបំពាក់</label>
-                    <select class="form-select form-control" id="fabric-softener">
-                      <option selected>ជ្រើសរើសចំណូលចិត្តទឹកក្រអ���ប</option>
-                      <option value="yes">បាទ/ចាស ប្រើទឹកក្រអូប</option>
-                      <option value="no">មិនប្រើទឹកក្រអូប</option>
-                    </select>
-                  </div>
-
-                  <div class="mb-4">
-                    <label for="special-instructions" class="form-label">ការណែនាំពិសេស</label>
-                    <textarea class="form-control" id="special-instructions" rows="4"
-                      placeholder="សរសេរការណែនាំពិសេសសម្រាប់សម្លៀកបំពាក់របស់អ្នក"></textarea>
-                  </div>
-                  <button type="submit" class="btn w-100 btn-save btn-primary">
-                    រក្សាទុកចំណូលចិត្ត
-                  </button>
-                </form>
-              </div>
               <div id="order-history" class="content-section d-none">
                 <h3 class="section-title text-primary mb-5">
                   ប្រវត្តិការបញ្ជាទិញ
@@ -522,65 +474,6 @@
                     <!-- Dynamic rows will be inserted here -->
                   </tbody>
                 </table>
-              </div>
-              <div id="payment-methods" class="content-section d-none">
-                <h3 class="section-title text-primary mb-5">វិធីទូទាត់ប្រាក់</h3>
-                <p class="text-muted mb-4">
-                  គ្រប់គ្រងការទូទាត់ប្រាក់របស់អ្នក។
-                </p>
-                <div class="mb-4">
-                  <h3 class="h5">វិធីទូទាត់ប្រាក់ដែលបានរក្សាទុក</h3>
-                  <div id="payment-methods-list">
-                    <div class="card mb-2">
-                      <div class="card-body d-flex justify-content-between align-items-center">
-                        <div>
-                          <i class="fab fa-cc-visa me-2"></i>
-                          <span>Visa បញ្ចប់ដោយលេខ 1234</span>
-                        </div>
-                        <button class="btn btn-sm py-1 px-2 btn-outline-danger remove-payment">
-                          លុប
-                        </button>
-                      </div>
-                    </div>
-                    <div class="card mb-2">
-                      <div class="card-body d-flex justify-content-between align-items-center">
-                        <div>
-                          <i class="fab fa-cc-mastercard me-2"></i>
-                          <span>Mastercard បញ្ចប់ដោយលេខ 5678</span>
-                        </div>
-                        <button class="btn btn-sm py-1 px-2 btn-outline-danger remove-payment">
-                          លុប
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button class="btn w-100 btn-save btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
-                  បន្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-                </button>
-              </div>
-              <div id="notifications" class="content-section d-none">
-                <h3 class="section-title text-primary mb-5">ការជូនដំណឹង</h3>
-                <p class="text-muted mb-4">
-                  គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
-                </p>
-                <form>
-                  <div class="mb-3 form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="emailNotifications" checked />
-                    <label class="form-check-label" for="emailNotifications">ការជូនដំណឹងតាមអ៊ីមែល</label>
-                  </div>
-                  <div class="mb-3 form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="smsNotifications" />
-                    <label class="form-check-label" for="smsNotifications">ការជូនដំណឹងតាម SMS</label>
-                  </div>
-                  <div class="mb-3 form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="pushNotifications" checked />
-                    <label class="form-check-label" for="pushNotifications">ការជូនដំណឹងតាមកម្មវិធី</label>
-                  </div>
-                  <button type="submit" class="btn w-100 btn-save btn-primary">
-                    រក្សាទុកការំណត់ការជូនដំណឹង
-                  </button>
-                </form>
               </div>
               <div id="change-password" class="content-section d-none">
                 <h3 class="section-title text-primary mb-5">
@@ -642,112 +535,15 @@
               </div>
               <div id="cart-items" class="content-section d-none">
                 <h3 class="section-title text-primary mb-5">ទំនិញក្នុងកន្ត្រក</h3>
-                <p class="text-muted mb-4">
-                  រាល់សេវាកម្មដែលបានបញ្ចូលក្នុងកន្ត្រក តែមិនទាន់បានទូទាត់។
-                </p>
-
-                <div class="row g-4">
-                  <!-- Cart Item Card -->
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-md-2 col-12 col-4 mb-3 mb-md-0">
-                            <img src="../../../assets/image/service-icon/shirt.png" width="130px" class="img-fluid rounded" alt="Service Image" />
-                          </div>
-                          <div class="col-12 col-sm-6 col-md-6 mb-3 mb-md-0">
-                            <h5 class="card-title mb-1">ហាង ABC Laundry</h5>
-                            <p class="card-text text-muted mb-1">
-                              <i class="fas fa-map-marker-alt text-primary me-2"></i>
-                              ផ្លូវ ១២៣, សង្កាត់បឹងកេងកង
-                            </p>
-                            <p class="card-text">
-                              <i class="fas fa-clock text-primary me-2"></i>
-                              បានបញ្ចូល: ១៥ មីនា ២០២៤
-                            </p>
-                          </div>
-                          <div class="col-md-3 col-sm-6 col-12">
-                            <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
-                            <ul class="list-unstyled">
-                              <li>
-                                <i class="fas fa-check text-success me-2"></i>បោកគក់ធម្មតា
-                              </li>
-                              <li>
-                                <i class="fas fa-check text-success me-2"></i>បោកស្ងួត
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-12 text-md-end">
-                            <h5 class="text-primary mb-3">25.00៛</h5>
-                            <div class="d-flex gap-3 justify-content-end">
-                              <button class="btn btn-outline-danger  d-flex align-items-center justify-content-center gap-2">
-                                <i class="fas fa-trash"></i> លុប
-                              </button>
-                              <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-credit-card me-1"></i>បង់ប្រាក់
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Another Cart Item -->
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-md-2 col-12 mb-3 mb-md-0">
-                            <img src="../../../assets/image/service-icon/wash.png" width="130px" class="img-fluid rounded" alt="Service Image" />
-                          </div>
-                          <div class="col-md-4 col-12 col-sm-6  mb-3 mb-md-0">
-                            <h5 class="card-title mb-1">ហាង XYZ Cleaning</h5>
-                            <p class="card-text text-muted mb-1">
-                              <i class="fas fa-map-marker-alt text-primary me-2"></i>
-                              ផ្លូវ ៤៥៦, សង្កាត់ទួលស្វាយព្រៃ
-                            </p>
-                            <p class="card-text">
-                              <i class="fas fa-clock text-primary me-2"></i>
-                              បានបញ្ចូល: ១៤ មីនា ២០២៤
-                            </p>
-                          </div>
-                          <div class="col-md-3 col-sm-6 col-12">
-                            <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
-                            <ul class="list-unstyled">
-                              <li>
-                                <i class="fas fa-check text-success me-2"></i>បោកគក់ពិសេស
-                              </li>
-                              <li>
-                                <i class="fas fa-check text-success me-2"></i>អ៊ុតសម្លៀកបំពាក់
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="col-12 text-md-end">
-                            <h5 class="text-primary mb-3">25.00៛</h5>
-                            <div class="d-flex gap-3 justify-content-end">
-                              <button class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2">
-                                <i class="fas fa-trash"></i> លុប
-                              </button>
-                              <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-credit-card n"></i>បង់ប្រាក់
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Empty Cart Message -->
-                  <div class="col-12 d-none">
-                    <div class="text-center py-5">
-                      <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
-                      <h5 class="text-muted">មិនមានទំនិញក្នុងកន្ត្រកទេ</h5>
-                      <a href="../../index.html" class="btn btn-primary mt-3">
-                        <i class="fas fa-shopping-bag me-2"></i>រកមើលសេវាកម្ម
-                      </a>
-                    </div>
+                <div id="cart_profile">
+                </div>
+                <div class="check-out-store py-3 bg-white z-3 bottom-0 w-100 text-end">
+                  <span id="total-price" class="fs-4 mb-3 fw-semibold">0.00៛</span>
+                  <div class="mt-3">
+                    <button class="btn btn-primary mb-3" id="updateCartButton">កែប្រែកន្ត្រាក់</button>
+                    <button id="checkout-button" class="btn btn-primary mb-3 " disabled>
+                      បញ្ជាក់ការទូទាត់
+                    </button>
                   </div>
                 </div>
               </div>
@@ -756,53 +552,6 @@
         </div>
       </div>
     </section>
-    <!-- Modal for Adding Payment Method -->
-    <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-labelledby="addPaymentModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addPaymentModalLabel">
-              ប្ថែមវិធីទូទាត់ប្រាក់ថ្មី
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="add-payment-form">
-              <div class="mb-3 form-floating">
-                <select class="form-select ps-0 form-control" id="paymentType" required>
-                  <option value disabled selected>
-                    ជ្រើសរើសប្រភេទការទូទាត់
-                  </option>
-                  <option value="visa">Visa</option>
-                  <option value="mastercard">Mastercard</option>
-                  <option value="amex">American Express</option>
-                  <option value="discover">Discover</option>
-                </select>
-                <label class="ps-0" for="paymentType">ប្រភេទការទូទាត់</label>
-              </div>
-              <div class="mb-3 form-floating">
-                <input type="text" class="form-control" id="cardNumber" placeholder="លេខកាត" required maxlength="19" />
-                <label class="ps-0 ms-0" for="cardNumber">លេខកាត</label>
-                <small class="form-text text-muted">ទម្រង់: 1234 5678 9012 3456</small>
-              </div>
-              <div class="mb-3 form-floating">
-                <input type="text" class="form-control" id="expiryDate" placeholder="ខែ/ឆ្នាំ" required maxlength="5" />
-                <label class="ps-0 ms-0" for="expiryDate">កាលបរិច្ឆេទផុតកំណត់</label>
-                <small class="form-text text-muted">ទម្រង់: ខែ/ឆ្នាំ</small>
-              </div>
-              <div class="mb-3 form-floating">
-                <input type="text" class="form-control" id="cvv" placeholder="CVV" required maxlength="3" />
-                <label class="ps-0 ms-0" for="cvv">CVV</label>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                បន្ថែមវិធីទូទាត់
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <footer class="footer mt-70">
@@ -911,77 +660,6 @@
         <div class="modal-body p-4">
           <div class="row">
             <!-- Service Info -->
-            <div class="col-md-6 mb-4">
-              <div class="service-details p-3 bg-light rounded-3">
-                <h6 class="text-primary mb-3">ព័ត៌មានសេវាកម្ម</h6>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="service-img rounded-3 overflow-hidden" style="width: 80px; height: 80px">
-                    <img src="${details.service.image}" class="w-100 h-100 object-fit-cover" alt="Service" />
-                  </div>
-                  <div>
-                    <h6 class="mb-1">${details.service.name}</h6>
-                    <p class="text-muted small mb-1">
-                      ${details.service.serviceType}
-                    </p>
-                    <p class="text-muted small mb-0">
-                      ${details.service.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Order Info -->
-            <div class="col-md-6 mb-4">
-              <div class="order-details p-3 bg-light rounded-3">
-                <h6 class="text-primary mb-3">ព័ត៌មានការបញ្ជាទិញ</h6>
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-2">
-                    <i class="bi bi-calendar3 text-primary me-2"></i>
-                    <span class="text-muted">កាលបរិច្ឆេទ:</span>
-                    <span class="fw-medium">${new
-                      Date(details.order.orderDate).toLocaleDateString()}</span>
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-tag text-primary me-2"></i>
-                    <span class="text-muted">ចំនួន:</span>
-                    <span class="fw-medium">${details.order.qty} ឯកតា</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-cash text-primary me-2"></i>
-                    <span class="text-muted">តម្លៃសរុប:</span>
-                    <span class="fw-medium">$${details.order.total}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Creator Info -->
-            <div class="col-12">
-              <div class="creator-details p-3 bg-light rounded-3">
-                <h6 class="text-primary mb-3">ព័ត៌មានអ្នកផ្តល់សេវាកម្ម</h6>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="creator-avatar rounded-circle overflow-hidden" style="width: 50px; height: 50px">
-                    <img src="${details.creator.avatar}" class="w-100 h-100 object-fit-cover" alt="Creator" />
-                  </div>
-                  <div>
-                    <h6 class="mb-1">${details.creator.name}</h6>
-                    <p class="text-muted small mb-0">អ្នកផ្តល់សេវាកម្ម</p>
-                  </div>
-                </div>
-                <div class="contact-info ms-2">
-                  <p class="mb-2">
-                    <i class="bi bi-envelope text-primary me-2"></i>${details.creator.email}
-                  </p>
-                  <p class="mb-2">
-                    <i class="bi bi-telephone text-primary me-2"></i>${details.creator.phone}
-                  </p>
-                  <a href="${details.creator.google_map_url}" target="_blank" class="btn btn-outline-primary btn-sm">
-                    <i class="bi bi-geo-alt me-2"></i>មើលទីតាំងលើផែនទី
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="modal-footer border-0 bg-light">
@@ -992,6 +670,7 @@
       </div>
     </div>
   </div>
+         
   <script src="../../../assets/js/footer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script type="module" src="../../../assets/js/header.js"></script>
@@ -999,6 +678,7 @@
   <script type="module" src="../../../assets/js/footer.js"></script>
   <script type="module" src="../../../assets/js/search.js"></script>
   <script type="module" src="../../../assets/js/nearest.js"></script>
+  <script type="module" src="../../../assets/js/getCart_profile.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
   <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
   <script src="../../../../vender/datatable/js/dataTables.js"></script>
