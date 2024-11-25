@@ -108,7 +108,7 @@ function displayResult(message) {
         } else {
             message.forEach(provider => {
                 const cardHtml = `
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                             <p class='id' style="display: none;">${provider.id}</p>
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">

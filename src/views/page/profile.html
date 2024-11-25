@@ -220,7 +220,7 @@
           <div class="col-auto order-0">
             <a href="../../../index.html" class="navbar-brand text-primary fs-3 fw-bold">Boakuk</a>
           </div>
-          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-3">
+          <div class="col-xl-6 col-12 order-2 order-xl-1 ms-0 ms-xl-3">
             <div class="row d-flex under-logo">
               <div
                 class="col-7 col-md-9 col-xl-8 d-flex align-items-center overflow-hidden justify-content-between p-0 bg-instead border rounded-5">
@@ -231,8 +231,9 @@
                   <i class="bi bi-search text-white"></i>
                 </button>
               </div>
-              <div class="col-5 col-md-3 col-xl-4 px-md-3 d-flex justify-content-end justify-content-xl-start">
-                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis">
+              <div class="col-5 col-md-3 col-xl-4 p-0 px-md-3 d-flex justify-content-end justify-content-xl-start">
+                <button class="btn btn-location d-flex gap-2 bg-instead rounded-5 fs-18 text-dark-emphasis"
+                  onclick="findNearbyLocations()">
                   <i class="bi bi-crosshair2 fs-18" style="transform: translateY(1px)"></i>
                   ហាងនៅក្បែ
                 </button>
@@ -241,20 +242,21 @@
           </div>
           <div class="col-auto ms-auto p-0 order-1 order-xl-2">
             <div class="d-flex w-100 align-items-center justify-content-end">
-              <div class="dropdown rounded-2">
-                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-3 py-2 d-flex align-items-center gap-1"
+              <div class="dropdown rounded-2 order-2 order-md-0">
+                <a class="text-decoration-none hover-nav fs-18 rounded-2 px-0 px-md-3 py-2 d-flex align-items-center gap-1"
                   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile_header bg-instead rounded-circle">
                     <i class="bi bi-person-circle"></i>
                   </div>
-                  <span>គណនី</span>
-                  <i class="bi bi-chevron-down fw-bold"></i>
+                  <span class="d-none d-md-block">គណនី</span>
+                  <i class="bi bi-chevron-down fw-bold d-none d-md-block"></i>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 p-3 border-0 dropdown-shdow"
                   style="width: 300px">
                   <li class="mb-3" id="signup-list">
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="#">
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
+                      href="../../../src/views/auth/signup.html">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
                       </div>
@@ -272,7 +274,7 @@
                   </li>
                   <li class="mb-3" id="pro-setting">
                     <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18"
-                      href="profile.html">
+                      href="../../../src/views/page/profile.html">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-person-circle"></i>
                       </div>
@@ -281,7 +283,7 @@
                   </li>
                   <li id="logout-list">
                     <hr style="color: #ddd" />
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href>
+                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18" href="">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-power"></i>
                       </div>
@@ -291,15 +293,15 @@
                 </ul>
               </div>
 
-              <div class="dropdown">
+              <div class="dropdown order-1 order-md-1">
                 <!-- Notification Icon -->
                 <a href="#"
-                  class="hover-nav d-flex align-items-center gap-2 me-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
+                  class="hover-nav d-flex align-items-center gap-2 me-0 me-md-2 fs-18 text-decoration-none px-3 py-2 rounded-2"
                   role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile_header bg-instead rounded-circle">
                     <i class="bi bi-bell-fill fs-18"></i>
                   </div>
-                  <span class="d-none d-sm-block">ការជូនដំណឹង</span>
+                  <span class="d-none d-md-block">ការជូនដំណឹង</span>
                 </a>
 
                 <!-- Dropdown Notification Menu -->
@@ -342,10 +344,13 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" onclick="wishlist()"
-                class="hover-nav border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+              <a type="submit" href="wishlist.html"
+                class="hover-nav order-md-2 border-0 border-0 profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle position-relative">
                 <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
-              </button>
+                <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger wishlist-counter">
+                  0
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -354,12 +359,12 @@
   </header>
 
   <main>
-    <section class="profile" style="margin-top: 100px">
+    <section class="profile">
       <div class="container my-5">
-        <h2 class="section-title text-primary">ការកំណត់ទម្រង់</h2>
+        <h3 class="section-title text-primary mb-5">ការកំណត់ទម្រង់</h3>
 
         <div class="row g-4">
-          <div class="col-md-4 col-lg-3">
+          <div class="col-12 col-lg-4">
             <div class="sidebar card">
               <div class="avatar-container mb-4" id="avatarContainer">
                 <img src="assets/img/AboutUs-review3avif.avif" alt="User Avatar" class="avatar" id="userAvatar" />
@@ -413,10 +418,10 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8 col-lg-9">
+          <div class="col-12 col-lg-8">
             <div class="main-content card">
               <div id="personal-info" class="content-section">
-                <h2 class="section-title text-primary">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
+                <h3 class="section-title text-primary mb-5">ព័ត៌មានផ្ទាល់ខ្លួន</h3>
                 <p class="text-muted mb-4">
                   ធ្វើបច្ចុប្បន្នភាពព័ត៌មានផ្ទាល់ខ្លួនរបស់អនកនៅទីនេះ។
                 </p>
@@ -447,9 +452,9 @@
                 </form>
               </div>
               <div id="laundry-preferences" class="content-section d-none">
-                <h2 class="section-title text-primary">
+                <h3 class="section-title text-primary mb-5">
                   ចំណូលចិត្តការបោកគក់
-                </h2>
+                </h3>
                 <p class="text-muted mb-4">
                   កែសម្រួលបទពិសោធន៍សេវាកម្មបោកគក់របស់អ្នក។
                 </p>
@@ -484,9 +489,9 @@
                 </form>
               </div>
               <div id="order-history" class="content-section d-none">
-                <h2 class="section-title text-primary">
+                <h3 class="section-title text-primary mb-5">
                   ប្រវត្តិការបញ្ជាទិញ
-                </h2>
+                </h3>
                 <p class="text-muted mb-4">
                   មើលការប្ជាទិញបោកគក់កន្លងមករបស់អ្នក។
                 </p>
@@ -519,7 +524,7 @@
                 </table>
               </div>
               <div id="payment-methods" class="content-section d-none">
-                <h2 class="section-title text-primary">វិធីទូទាត់ប្រាក់</h2>
+                <h3 class="section-title text-primary mb-5">វិធីទូទាត់ប្រាក់</h3>
                 <p class="text-muted mb-4">
                   គ្រប់គ្រងការទូទាត់ប្រាក់របស់អ្នក។
                 </p>
@@ -532,7 +537,7 @@
                           <i class="fab fa-cc-visa me-2"></i>
                           <span>Visa បញ្ចប់ដោយលេខ 1234</span>
                         </div>
-                        <button class="btn btn-sm btn-outline-danger remove-payment">
+                        <button class="btn btn-sm py-1 px-2 btn-outline-danger remove-payment">
                           លុប
                         </button>
                       </div>
@@ -543,7 +548,7 @@
                           <i class="fab fa-cc-mastercard me-2"></i>
                           <span>Mastercard បញ្ចប់ដោយលេខ 5678</span>
                         </div>
-                        <button class="btn btn-sm btn-outline-danger remove-payment">
+                        <button class="btn btn-sm py-1 px-2 btn-outline-danger remove-payment">
                           លុប
                         </button>
                       </div>
@@ -555,7 +560,7 @@
                 </button>
               </div>
               <div id="notifications" class="content-section d-none">
-                <h2 class="section-title text-primary">ការជូនដំណឹង</h2>
+                <h3 class="section-title text-primary mb-5">ការជូនដំណឹង</h3>
                 <p class="text-muted mb-4">
                   គ្រប់គ្រងចំណូលចិត្តនៃការជូនដំណឹងរបស់អ្នក។
                 </p>
@@ -578,9 +583,9 @@
                 </form>
               </div>
               <div id="change-password" class="content-section d-none">
-                <h2 class="section-title text-primary">
+                <h3 class="section-title text-primary mb-5">
                   ផ្លាស់ប្តូរពាក្យសម្ងាត់
-                </h2>
+                </h3>
                 <form>
                   <div class="mb-4 position-relative">
                     <div class="form-floating">
@@ -636,7 +641,7 @@
                 </form>
               </div>
               <div id="cart-items" class="content-section d-none">
-                <h2 class="section-title text-primary">ទំនិញក្នុងកន្ត្រក</h2>
+                <h3 class="section-title text-primary mb-5">ទំនិញក្នុងកន្ត្រក</h3>
                 <p class="text-muted mb-4">
                   រាល់សេវាកម្មដែលបានបញ្ចូលក្នុងកន្ត្រក តែមិនទាន់បានទូទាត់។
                 </p>
@@ -647,10 +652,10 @@
                     <div class="card">
                       <div class="card-body">
                         <div class="row align-items-center">
-                          <div class="col-md-2 col-4 mb-3 mb-md-0">
-                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image" />
+                          <div class="col-md-2 col-12 col-4 mb-3 mb-md-0">
+                            <img src="../../../assets/image/service-icon/shirt.png" width="130px" class="img-fluid rounded" alt="Service Image" />
                           </div>
-                          <div class="col-md-4 col-8 mb-3 mb-md-0">
+                          <div class="col-12 col-sm-6 col-md-6 mb-3 mb-md-0">
                             <h5 class="card-title mb-1">ហាង ABC Laundry</h5>
                             <p class="card-text text-muted mb-1">
                               <i class="fas fa-map-marker-alt text-primary me-2"></i>
@@ -661,7 +666,7 @@
                               បានបញ្ចូល: ១៥ មីនា ២០២៤
                             </p>
                           </div>
-                          <div class="col-md-3 col-6">
+                          <div class="col-md-3 col-sm-6 col-12">
                             <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
                             <ul class="list-unstyled">
                               <li>
@@ -672,11 +677,11 @@
                               </li>
                             </ul>
                           </div>
-                          <div class="col-md-3 col-6 text-md-end">
-                            <h5 class="text-primary mb-3">$25.00</h5>
-                            <div class="d-flex gap-2 justify-content-md-end">
-                              <button class="btn btn-outline-danger btn-sm">
-                                <i class="fas fa-trash me-1"></i>លុប
+                          <div class="col-12 text-md-end">
+                            <h5 class="text-primary mb-3">25.00៛</h5>
+                            <div class="d-flex gap-3 justify-content-end">
+                              <button class="btn btn-outline-danger  d-flex align-items-center justify-content-center gap-2">
+                                <i class="fas fa-trash"></i> លុប
                               </button>
                               <button class="btn btn-primary btn-sm">
                                 <i class="fas fa-credit-card me-1"></i>បង់ប្រាក់
@@ -693,10 +698,10 @@
                     <div class="card">
                       <div class="card-body">
                         <div class="row align-items-center">
-                          <div class="col-md-2 col-4 mb-3 mb-md-0">
-                            <img src="path/to/service-image.jpg" class="img-fluid rounded" alt="Service Image" />
+                          <div class="col-md-2 col-12 mb-3 mb-md-0">
+                            <img src="../../../assets/image/service-icon/wash.png" width="130px" class="img-fluid rounded" alt="Service Image" />
                           </div>
-                          <div class="col-md-4 col-8 mb-3 mb-md-0">
+                          <div class="col-md-4 col-12 col-sm-6  mb-3 mb-md-0">
                             <h5 class="card-title mb-1">ហាង XYZ Cleaning</h5>
                             <p class="card-text text-muted mb-1">
                               <i class="fas fa-map-marker-alt text-primary me-2"></i>
@@ -707,7 +712,7 @@
                               បានបញ្ចូល: ១៤ មីនា ២០២៤
                             </p>
                           </div>
-                          <div class="col-md-3 col-6">
+                          <div class="col-md-3 col-sm-6 col-12">
                             <h6 class="mb-2">សេវាកម្មជ្រើសរើស:</h6>
                             <ul class="list-unstyled">
                               <li>
@@ -718,14 +723,14 @@
                               </li>
                             </ul>
                           </div>
-                          <div class="col-md-3 col-6 text-md-end">
-                            <h5 class="text-primary mb-3">$35.00</h5>
-                            <div class="d-flex gap-2 justify-content-md-end">
-                              <button class="btn btn-outline-danger btn-sm">
-                                <i class="fas fa-trash me-1"></i>លុប
+                          <div class="col-12 text-md-end">
+                            <h5 class="text-primary mb-3">25.00៛</h5>
+                            <div class="d-flex gap-3 justify-content-end">
+                              <button class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2">
+                                <i class="fas fa-trash"></i> លុប
                               </button>
                               <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-credit-card me-1"></i>បង់ប្រាក់
+                                <i class="fas fa-credit-card n"></i>បង់ប្រាក់
                               </button>
                             </div>
                           </div>
