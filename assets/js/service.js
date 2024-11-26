@@ -99,10 +99,6 @@ function DisplayServices() {
           search: "Search:",
           lengthMenu: "Show _MENU_ entries",
           info: "Showing _START_ to _END_ of _TOTAL_ entries",
-<<<<<<< HEAD
-        
-=======
->>>>>>> f85e6c4d159ec5495f22e2939bcd28f49679556f
         },
       });
     });
@@ -187,7 +183,6 @@ const validateField = (name, value) => {
 
   return validators[name].regex.test(value);
 };
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("addServiceForm");
@@ -284,28 +279,30 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: formData,
       })
-      .then(res => {
-        if (!res.ok) {
-          return res.json().then(errorData => {
-            throw new Error(JSON.stringify(errorData));
-          });
-        }
-        // Refresh the page after closing the modal
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
-        return res.json();
-      })
-      .then(data => {
-        // Your existing success handling code
-        DisplayServices();
-        form.reset();
-        bootstrap.Modal.getInstance(document.getElementById("addServiceModal")).hide();
-      })
-      .catch(error => {
-        console.error("Error adding service:", error);
-        alert("Failed to add service. Please try again.");
-      });
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((errorData) => {
+              throw new Error(JSON.stringify(errorData));
+            });
+          }
+          // Refresh the page after closing the modal
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+          return res.json();
+        })
+        .then((data) => {
+          // Your existing success handling code
+          DisplayServices();
+          form.reset();
+          bootstrap.Modal.getInstance(
+            document.getElementById("addServiceModal")
+          ).hide();
+        })
+        .catch((error) => {
+          console.error("Error adding service:", error);
+          alert("Failed to add service. Please try again.");
+        });
     }
   });
 });
@@ -455,7 +452,5 @@ function fetchCategories() {
     .catch((error) => console.error("Error fetching categories:", error));
 }
 // Call fetchCategories when the document is ready
-$(document).ready(function () {
-  fetchCategories();
-  DisplayServices();
-});
+fetchCategories();
+DisplayServices();
