@@ -125,19 +125,19 @@ function validateForm() {
   }
 
   // Validate phone
-  let phoneInput = document.getElementById("userPhone");
-  if (
-    !phonePattern.test(phoneInput.value.trim()) ||
-    phoneInput.value.trim() === ""
-  ) {
-    phoneInput.classList.add("is-invalid");
-    phoneInput.nextElementSibling.textContent =
-      "Please enter a valid phone number.";
-    isValid = false;
-  } else {
-    phoneInput.classList.remove("is-invalid");
-    phoneInput.nextElementSibling.textContent = "";
-  }
+  // let phoneInput = document.getElementById("userPhone");
+  // if (
+  //   !phonePattern.test(phoneInput.value.trim()) ||
+  //   phoneInput.value.trim() === ""
+  // ) {
+  //   phoneInput.classList.add("is-invalid");
+  //   phoneInput.nextElementSibling.textContent =
+  //     "Please enter a valid phone number.";
+  //   isValid = false;
+  // } else {
+  //   phoneInput.classList.remove("is-invalid");
+  //   phoneInput.nextElementSibling.textContent = "";
+  // }
 
   // Validate password
   let passwordInput = document.getElementById("userPass");
@@ -214,10 +214,6 @@ document.getElementById("addUserForm").addEventListener("submit", function (e) {
     spinner.style.display = "inline-block";
     buttonText.textContent = "Creating...";
 
-    if (!getToken) {
-      alert("No authentication token found. Please log in.");
-      return;
-    }
 
     // Get values from form inputs
     let userName = document.getElementById("userName").value;
@@ -248,7 +244,7 @@ document.getElementById("addUserForm").addEventListener("submit", function (e) {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${getToken}`,
+        Authorization: `Bearer ${AdminToken}`,
       },
       body: formData,
     })

@@ -76,7 +76,7 @@ function renderWishlist(items) {
     itemElement.innerHTML = `
       <div class="wishlist-item h-100" onclick="getStore('${item.service.creator.id}')">
         <div class="heart-icon" onclick="removeItem(${item.id}); event.stopPropagation();">
-          <i class="bi bi-heart-fill"></i>
+          <i class="bi bi-heart-fill" style="transform:translateY(3px);"></i>
         </div>
         <div class="shop-info mb-2">
           <h5 class="shop-name">${item.service.creator.name}</h5>
