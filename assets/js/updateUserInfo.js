@@ -215,6 +215,12 @@ export function initInformationForm() {
       .then((data) => {
         console.log("Profile update data:", data);
 
+        if (data.data && data.data.phone && data.data.phone.includes("The phone has already been taken.")) {
+          alert('លេខទូរស័ព្ទ​ត្រូវបានគេប្រើ​​ហើយ។');
+        } else if (data.message) {
+          alert(data.message); // Handle other general error messages
+        }
+
         // Check if there's an avatar to update
         const avatarInput = document.getElementById("profileAvatar");
         if (avatarInput.files.length > 0) {
