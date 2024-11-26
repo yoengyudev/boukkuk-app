@@ -89,10 +89,11 @@ login.addEventListener("submit", (event) => {
       const token = json.data.token;
       const roleid = json.data.roles[0].id;
       
-      localStorage.setItem('UserName', json.data.name);
       
       if (roleid == 1) {
+        localStorage.setItem('UserName', json.data.name);
         localStorage.setItem('UserToken', token);
+        localStorage.setItem('PhoneNumber', json.data.phone)
         localStorage.setItem('UserRole', roleid);
         location.href = `${basePath}index.html`;
       }

@@ -102,7 +102,7 @@ function initializeTable(data) {
       },
     ],
     responsive: true,
-    order: [[5, "desc"]], // Sort by date descending
+    order: [[5, "desc"]], 
     dom: "Bfrtip",
     buttons: [
       {

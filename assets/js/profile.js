@@ -286,7 +286,7 @@ const fetchOrders = async (status = "all") => {
   try {
     const response = await fetch(apiUrl + status);
     const data = await response.json();
-    populateOrders(data.orders); // Assuming 'orders' is the key for the list of orders
+    populateOrders(data.orders); 
   } catch (error) {
     console.error("Error fetching orders:", error);
   }
@@ -318,11 +318,10 @@ function fetchPurchased(status = "all") {
       // Filter data based on status
       const filteredData = json.data.filter((order) => {
         if (status === "all") return true;
-        // Make sure to convert both to same type for comparison
         return order.payment_status === parseInt(status);
       });
 
-      console.log("Filtered Data:", filteredData); // Debug log
+      console.log("Filtered Data:", filteredData); 
       filteredData.forEach((e) => {
         let statusText;
         let statusClass;
@@ -729,7 +728,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Get status from data-filter attribute
       const status = this.getAttribute("data-filter");
-      console.log("Clicked status:", status); // Debug log
+      console.log("Clicked status:", status);
       fetchPurchased(status);
     });
   });
