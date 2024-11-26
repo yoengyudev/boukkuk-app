@@ -62,7 +62,7 @@ async function fetchAndDisplayCartData() {
     let firstCreatorName = cartData.data.items[0]?.service?.creator?.name || '';
     document.getElementById('seller').value = firstCreatorName;
     console.log(document.getElementById('seller').value);
-    
+
 
 
     serviceList.innerHTML = cartData.data.items
@@ -159,6 +159,9 @@ document
         return;
       }
 
+
+
+
       // Get current date and time from the user's local computer
       const now = new Date();
       const currentDate = now.toLocaleDateString("km-KH", {
@@ -173,12 +176,22 @@ document
       });
 
       let seller = document.getElementById("seller").value;
-      
-    
+
+
       const summaryData = {
         serviceProvider: seller,
         customerName: UserName,
       };
+
+      let totalAmount = document.getElementById('totalAmount').textContent;
+      const message = `
+        ឈ្មោះអតិថិជន: ${summaryData.customerName}
+        ថ្ងៃខែ: ${currentDate}
+        ម៉ោង: ${currentTime}
+        ចំណាយសរុប: $${totalAmount}
+      `;
+
+      Send(message);
 
       // Update modal content with summary data
       const summaryDetails = document.getElementById("summaryDetails");
@@ -244,3 +257,26 @@ document.getElementById("downloadBtn").addEventListener("click", async function 
   }
 });
 
+const BOT_TOKEN = '7296419820:AAGJANUD8o1S2aups0ub3YsY2JdDmEtb2jo';
+const CHAT_ID = '-4280979190';
+
+
+function Send(message) {
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message,
+    }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Message sent:', data);
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+    });
+}
