@@ -70,7 +70,14 @@
               <span class="title">Category</span>
             </a>
           </li>
-
+          <li class="report-item">
+            <a href="../page/report_order.html">
+              <span class="icon">
+                <i class="bi bi-file-earmark-text"></i>
+              </span>
+              <span class="title">Order Report</span>
+            </a>
+          </li>
           <li id="logout-admin">
             <a href="">
               <span class="icon">
@@ -376,7 +383,16 @@
     </div>
   </div>
 
+  <script>
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
 
+    toggle.onclick = function () {
+      navigation.classList.toggle("active");
+      main.classList.toggle("active");
+    };
+  </script>
   <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
   <script src="../../../../vender/datatable/js/dataTables.js"></script>

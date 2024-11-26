@@ -157,158 +157,228 @@
       </div>
     </nav>
   </header>
-  <div class="floating-elements">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-  </div>
+  <main>
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
 
-  <section class="payment">
-    <div class="payment-container">
-      <!-- Header -->
-      <div class="page-header d-flex justify-content-between align-items-center">
-        <h1 class="h2 fw-bold mb-0">ការទូទាត់ប្រាក់</h1>
-      </div>
+    <section class="payment">
+      <div class="payment-container">
+        <!-- Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+          <h1 class="h2 fw-bold mb-0">ការទូទាត់ប្រាក់</h1>
+        </div>
 
-      <div class="row g-4">
-        <!-- Left Column -->
-        <div class="col-lg-8">
-          <!-- Amount Display -->
-          <div class="amount-card mb-4">
-            <div class="row align-items-center position-relative">
-              <div class="col-md-11">
-                <div class="amount-details mb-2">ចំនួនទឹកប្រាក់សរុប</div>
-                <div class="amount-value">
-                  <span id="totalAmount"></span>
+        <div class="row g-4">
+          <!-- Left Column -->
+          <div class="col-lg-8">
+            <!-- Amount Display -->
+            <div class="amount-card mb-4">
+              <div class="row align-items-center position-relative">
+                <div class="col-md-11">
+                  <div class="amount-details mb-2">ចំនួនទឹកប្រាក់សរុប</div>
+                  <div class="amount-value">
+                    <span id="totalAmount"></span>
+                  </div>
+
+                  <!-- Direct Orders Section -->
+                  <div class="direct-orders mt-3">
+                    <h5 class="fw-bold">សេវាកម្ម</h5>
+                    <div id="serviceList" class="row"></div>
+                  </div>
                 </div>
-
-                <!-- Direct Orders Section -->
-                <div class="direct-orders mt-3">
-                  <h5 class="fw-bold">សេវាកម្ម</h5>
-                  <div id="serviceList" class="row"></div>
+                <div class="col-md-4 time-chip-pay text-md-end mt-4 mt-md-0">
+                  <div class="status-chip bg-primary">
+                    <i class="fas fa-clock"></i>
+                    រង់ចាំការទូទាត់
+                  </div>
                 </div>
               </div>
-              <div class="col-md-4 time-chip-pay text-md-end mt-4 mt-md-0">
-                <div class="status-chip bg-primary">
-                  <i class="fas fa-clock"></i>
-                  រង់ចាំការទូទាត់
+            </div>
+
+            <!-- QR Section -->
+            <div class="qr-section">
+              <div class="khqr-logo">
+                <img
+                  src="https://bredcambodia.com.kh/wp-content/uploads/2022/12/KHQR-available-here-logo-with-bg-1024x422.png"
+                  alt="KHQR" style="width: 50px; height: auto" />
+              </div>
+
+              <h5 class="text-center mb-4">
+                <i class="fas fa-qrcode me-2 text-primary"></i>
+                ស្កេន QR ដើម្បីទូទាត់ប្រាក់
+              </h5>
+
+              <div class="qr-container">
+                <div class="scan-line"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  alt="Payment QR Code" />
+              </div>
+
+              <div class="text-center mt-4">
+                <p class="text-muted mb-0">
+                  <i class="fas fa-info-circle me-2"></i>
+                  អាចប្រើបានជាមួគ្រប់កម្មវិធីធនាគារក្នុងប្រទេសកម្ពុជា
+                </p>
+                <div class="upload-container mt-3">
+                  <input type="file" id="receiptUpload" class="form-control-file" accept="image/*" />
+                  <label for="receiptUpload" class="upload-label">
+                    <i class="fas fa-upload"></i> បញ្ចូលវិក័យប័ត្រ
+                  </label>
+                  <div id="uploadStatus" class="upload-status mt-2" style="display: none">
+                    <i class="fas fa-spinner fa-spin"></i> កំពុងដំណើរការ...
+                  </div>
+                  <div id="successIcon" class="success-icon mt-2" style="display: none">
+                    <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.5rem"></i>
+                    <span class="ms-2" style="font-size: 1.2rem; color: #2c3e50">វិក័យប័ត្របានបញ្ចូលដោយជោគជ័យ!</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- QR Section -->
-          <div class="qr-section">
-            <div class="khqr-logo">
-              <img
-                src="https://bredcambodia.com.kh/wp-content/uploads/2022/12/KHQR-available-here-logo-with-bg-1024x422.png"
-                alt="KHQR" style="width: 50px; height: auto" />
-            </div>
+          <!-- Right Column -->
+          <div class="col-lg-4">
+            <div class="instruction-card">
+              <h5 class="card-title mb-4">
+                <i class="fas fa-info-circle me-2 text-primary"></i>
+                របៀបទូទាត់
+              </h5>
 
-            <h5 class="text-center mb-4">
-              <i class="fas fa-qrcode me-2 text-primary"></i>
-              ស្កេន QR ដើម្បីទូទាត់ប្រាក់
-            </h5>
-
-            <div class="qr-container">
-              <div class="scan-line"></div>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
-                alt="Payment QR Code" />
-            </div>
-
-            <div class="text-center mt-4">
-              <p class="text-muted mb-0">
-                <i class="fas fa-info-circle me-2"></i>
-                អាចប្រើបានជាមួគ្រប់កម្មវិធីធនាគារក្នុងប្រទេសកម្ពុជា
-              </p>
-              <div class="upload-container mt-3">
-                <input type="file" id="receiptUpload" class="form-control-file" accept="image/*" />
-                <label for="receiptUpload" class="upload-label">
-                  <i class="fas fa-upload"></i> បញ្ចូលវិក័យប័ត្រ
-                </label>
-                <div id="uploadStatus" class="upload-status mt-2" style="display: none">
-                  <i class="fas fa-spinner fa-spin"></i> កំពុងដំណើរការ...
-                </div>
-                <div id="successIcon" class="success-icon mt-2" style="display: none">
-                  <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.5rem"></i>
-                  <span class="ms-2" style="font-size: 1.2rem; color: #2c3e50">វិក័យប័ត្របានបញ្ចូលដោយជោគជ័យ!</span>
-                </div>
+              <div class="step-item">
+                <p class="mb-1 fw-medium">បើកកម្មវិធីធនាគាររបស់អ្នក</p>
+                <small class="text-muted">ជ្រើសរើសកម្មវិធីធនាគារដែលអ្នកប្រើប្រាស់</small>
               </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">ចុចប៊ូតុងស្កេន</p>
+                <small class="text-muted">ស្វែងរកប៊ូតុងស្កេន QR នៅក្នុងកម្មវិធី</small>
+              </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">ស្កេន KHQR</p>
+                <small class="text-muted">ដាក់ QR code នៅចំកណ្តាលកាមេរ៉ា</small>
+              </div>
+
+              <div class="step-item">
+                <p class="mb-1 fw-medium">បញ្ជារការទូទាត់</p>
+                <small class="text-muted">ផ្ទៀងផ្ទាត់និងបញ្ជាក់ការទូទាត់</small>
+              </div>
+
+              <button id="confirmPayment" class="confirm-button mt-4">
+                <i class="fas fa-check-circle me-2"></i>
+                បញ្ជាក់ការទូទាត់
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <!-- Right Column -->
-        <div class="col-lg-4">
-          <div class="instruction-card">
-            <h5 class="card-title mb-4">
-              <i class="fas fa-info-circle me-2 text-primary"></i>
-              របៀបទូទាត់
-            </h5>
+  <footer class="footer mt-70">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">Boukuk</h5>
+          <p class="fs-18">
+            យើងផ្តល់ជូនសេវាបោកគក់គ្រប់ប្រភេទ
+            និង​ដឹកជញ្ជូនគ្រប់ទីកន្លែងក្នុងក្រុងភ្នំពេញ
+            ដោយធានាបាននូវភាពងាយស្រួល​ និងគុណភាពដល់អ្នកប្រើប្រាស់។
+          </p>
+          <div class="social-icons">
+            <a href="#" style="background-color: #4267b2"><i class="bi bi-facebook"></i></a>
+            <a href="#" style="background-color: #0088cc"><i class="bi bi-telegram"></i></a>
+            <a href="#" style="
+                  background: linear-gradient(
+                    45deg,
+                    #feda75,
+                    #fa7e1e,
+                    #d62976,
+                    #962fbf,
+                    #4f5bd5
+                  );
+                "><i class="bi bi-instagram"></i></a>
+            <a href="#" class="bg-dark"><i class="bi bi-twitter-x text-white"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 ms-auto">
+          <h5 class="text-primary">តំណភ្ជាប់រហ័ស</h5>
+          <ul>
+            <li>
+              <a href="../../../index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a>
+            </li>
+            <li>
+              <a href class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a>
+            </li>
+            <li>
+              <a href="../../../src/views/page/aboutUs.html" class="fs-18"><i
+                  class="bi bi-info-circle me-2"></i>អំពីយើង</a>
+            </li>
+            <li id="order-history">
+              <a type="button" onclick="profile_headerMe()" class="border-0 p-0 bg-transparent fs-18">
+                <i class="bi bi-person-circle me-2"></i>ប្រវត្តិរូបរបស់ខ្ញុំ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="text-primary">ទំនាក់ទំនង</h5>
+          <ul>
+            <li>
+              <a href="tel:+1234567890"><i class="bi bi-telephone me-2"></i>123-456-7890</a>
+            </li>
+            <li>
+              <a href="mailto:boukuk@gmail.com" class="fs-18">
+                <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" />
+      <div class="d-flex justify-content-between">
+        <div>
+          <span><i class="bi bi-c-circle"></i> 2024 Boakuk ANT-GROUP9</span>
+        </div>
+        <div>
+          <span>ឯកជនភាព &amp; គោលការឯកជនភាព</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-            <div class="step-item">
-              <p class="mb-1 fw-medium">បើកកម្មវិធីធនាគាររបស់អ្នក</p>
-              <small class="text-muted">ជ្រើសរើសកម្មវិធីធនាគារដែលអ្នកប្រើប្រាស់</small>
+  <!-- Success Modal -->
+  <div class="modal fade success-modal" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center p-5">
+          <div class="success-animation">
+            <div class="mb-4">
+              <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary)"></i>
             </div>
-
-            <div class="step-item">
-              <p class="mb-1 fw-medium">ចុចប៊ូតុងស្កេន</p>
-              <small class="text-muted">ស្វែងរកប៊ូតុងស្កេន QR នៅក្នុងកម្មវិធី</small>
+            <div>
+              <h4 class="mb-2 fw-bold">ការទូទាត់បានជោគជ័យ!</h4>
+              <p class="text-muted mb-3 m-0">ការទូទាត់របស់អ្នកបានបញ្ចប់ដោយជោគជ័យ</p>
             </div>
-
-            <div class="step-item">
-              <p class="mb-1 fw-medium">ស្កេន KHQR</p>
-              <small class="text-muted">ដាក់ QR code នៅចំកណ្តាលកាមេរ៉ា</small>
+            <div class="total-checkout-amount">
+              <p class="m-0">ចំណាយសរុប</p>
+              <h2 id="total-checkout" class="fw-semibold m-0"></h2>
             </div>
+            <input type="hidden" id="seller">
+            <div id="summaryDetails" class="text-start my-4">
 
-            <div class="step-item">
-              <p class="mb-1 fw-medium">បញ្ជារការទូទាត់</p>
-              <small class="text-muted">ផ្ទៀងផ្ទាត់និងបញ្ជាក់ការទូទាត់</small>
             </div>
-
-            <button id="confirmPayment" class="confirm-button mt-4">
-              <i class="fas fa-check-circle me-2"></i>
-              បញ្ជាក់ការទូទាត់
+            <button id="downloadBtn" class="btn btn-primary px-4 py-2">
+              <i class="bi bi-download"></i> ទាញយក
             </button>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-
-<!-- Success Modal -->
-<div class="modal fade success-modal" id="successModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body text-center p-5">
-        <div class="success-animation">
-          <div class="mb-4">
-            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary)"></i>
-          </div>
-          <div>
-            <h4 class="mb-2 fw-bold">ការទូទាត់បានជោគជ័យ!</h4>
-            <p class="text-muted mb-3 m-0">ការទូទាត់របស់អ្នកបានបញ្ចប់ដោយជោគជ័យ</p>
-          </div>
-          <div class="total-checkout-amount">
-            <p class="m-0">ចំណាយសរុប</p>
-            <h2 id="total-checkout" class="fw-semibold m-0"></h2>
-          </div>
-          <input type="hidden" id="seller">
-          <div id="summaryDetails" class="text-start my-4">
-            
-          </div>
-          <button id="downloadBtn" class="btn btn-primary px-4 py-2">
-            <i class="bi bi-download"></i> ទាញយក
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
 
-
-  
   <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="module" src="../../../assets/js/footer.js"></script>
   <script type="module" src="../../../assets/js/header.js"></script>

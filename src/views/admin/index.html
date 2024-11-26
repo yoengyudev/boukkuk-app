@@ -1,234 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../assets/css/main.css">
-    <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../../assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="../../../vender/bootstrap-icon/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../../assets/css/style.css" />
     <title>Admin Dashboard</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- =============== Navigation ================ -->
     <div class="container-fluid p-0 position-relative w-100">
-        <div class="navigation">
-            <ul class="p-0">
+      <div class="navigation">
+        <ul class="p-0">
+          <li>
+            <a href="index.html">
+              <span class="icon">
+                <i class="bi bi-droplet"></i>
+              </span>
+              <span class="title">Boakuk</span>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="index.html">
+              <span class="icon">
+                <i class="bi bi-grid"></i>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="user-item">
+            <a href="page/user.html">
+              <span class="icon">
+                <i class="bi bi-people"></i>
+              </span>
+              <span class="title">User</span>
+            </a>
+          </li>
+
+          <li class="service-item">
+            <a href="page/service.html">
+              <span class="icon">
+                <i class="bi bi-bag"></i>
+              </span>
+              <span class="title">Services</span>
+            </a>
+          </li>
+
+          <li class="order-item about-her">
+            <a href="page/getorder.html">
+              <span class="icon">
+                <i class="bi bi-bag"></i>
+              </span>
+              <span class="title">Orders</span>
+            </a>
+          </li>
+
+          <li class="category-item">
+            <a href="page/category.html">
+              <span class="icon">
+                <i class="bi bi-folder"></i>
+              </span>
+              <span class="title">Category</span>
+            </a>
+          </li>
+
+          <li class="provider-item">
+            <a href="page/provider.html">
+              <span class="icon">
+                <i class="bi bi-person-gear"></i>
+              </span>
+              <span class="title">Providers</span>
+            </a>
+          </li>
+          <li class="report-item">
+            <a href="page/report_order.html">
+              <span class="icon">
+                <i class="bi bi-file-earmark-text"></i>
+              </span>
+              <span class="title">Order Report</span>
+            </a>
+          </li>
+          <li id="logout-admin">
+            <a href="">
+              <span class="icon">
+                <i class="bi bi-box-arrow-right"></i>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <i class="bi bi-list"></i>
+          </div>
+          <div class="global-profile-menu">
+            <div class="img-box">
+              <img id="profileImage" src="" alt="" />
+            </div>
+            <div class="dropdown-menu">
+              <ul>
                 <li>
-                    <a href="index.html">
-                        <span class="icon">
-                            <i class="bi bi-droplet"></i>
-                        </span>
-                        <span class="title">Boakuk</span>
-                    </a>
+                  <a href="#">
+                    <i class="bi bi-person"></i>
+                    Account
+                  </a>
                 </li>
-
-                <li class="active">
-                    <a href="index.html">
-                        <span class="icon">
-                            <i class="bi bi-grid"></i>
-                        </span>
-                        <span class="title">Dashboard</span>
-                    </a>
+                <li>
+                  <a href="#">
+                    <i class="bi bi-key"></i>
+                    Password
+                  </a>
                 </li>
-
-                <li class="user-item">
-                    <a href="page/user.html">
-                        <span class="icon">
-                            <i class="bi bi-people"></i>
-                        </span>
-                        <span class="title">User</span>
-                    </a>
-                </li>
-
-                <li class="service-item">
-                    <a href="page/service.html">
-                        <span class="icon">
-                            <i class="bi bi-bag"></i>
-                        </span>
-                        <span class="title">Services</span>
-                    </a>
-                </li>
-
-                <li class="order-item about-her">
-                    <a href="page/getorder.html">
-                        <span class="icon">
-                            <i class="bi bi-bag"></i>
-                        </span>
-                        <span class="title">Orders</span>
-                    </a>
-                </li>
-
-                <li class="category-item">
-                    <a href="page/category.html">
-                        <span class="icon">
-                            <i class="bi bi-folder"></i>
-                        </span>
-                        <span class="title">Category</span>
-                    </a>
-                </li>
-
-                <li class="provider-item">
-                    <a href="page/provider.html">
-                        <span class="icon">
-                            <i class="bi bi-person-gear"></i>
-                        </span>
-                        <span class="title">Providers</span>
-                    </a>
-                </li>
-
-                <li id="logout-admin">
-                    <a href="">
-                        <span class="icon">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
-            </ul>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <!-- ========================= Main ==================== -->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <i class="bi bi-list"></i>
-                </div>
-                <div class="global-profile-menu">
-                    <div class="img-box">
-                        <img id="profileImage" src="" alt="" />
-                    </div>
-                    <div class="dropdown-menu">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="bi bi-person"></i>
-                                    Account
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="bi bi-key"></i>
-                                    Password
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- ======================= Cards ================== -->
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers" id="all_service"></div>
+              <div class="cardName" id="admin_Provider">Services</div>
             </div>
 
-            <!-- ======================= Cards ================== -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers" id="all_service"></div>
-                        <div class="cardName" id="admin_Provider">Services</div>
-                    </div>
+            <div class="iconBx">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+          </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers" id="booking"></div>
-                        <div class="cardName" id="admin_user">Booking</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers" id="customers"></div>
-                        <div class="cardName" id="adminCategory">Customers</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers" id="total"></div>
-                        <div class="cardName" id="adminService">Earning</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
-                </div>
+          <div class="card">
+            <div>
+              <div class="numbers" id="booking"></div>
+              <div class="cardName" id="admin_user">Booking</div>
             </div>
 
-            <!-- ================ Order Details List ================= -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2 id="adminUserTitle">Recent Orders</h2>
-                        <a id="link_in" class="btn">View All</a>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td class="text-start" id="admin_email">Total</td>
-                                <td class="text-start" id="admin_payment">Payment</td>
-                                <td id="admin_phone">Status</td>
-                            </tr>
-                        </thead>
-
-                        <tbody id="recentOrder"></tbody>
-                    </table>
-                </div>
-                <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2 id="adminProvider">Recent Customers</h2>
-                    </div>
-
-                    <table id="getRecentUser"></table>
-                </div>
+            <div class="iconBx">
+              <ion-icon name="cart-outline"></ion-icon>
             </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers" id="customers"></div>
+              <div class="cardName" id="adminCategory">Customers</div>
+            </div>
+
+            <div class="iconBx">
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers" id="total"></div>
+              <div class="cardName" id="adminService">Earning</div>
+            </div>
+
+            <div class="iconBx">
+              <ion-icon name="cash-outline"></ion-icon>
+            </div>
+          </div>
         </div>
+
+        <!-- ================ Order Details List ================= -->
+        <div class="details">
+          <div class="recentOrders">
+            <div class="cardHeader">
+              <h2 id="adminUserTitle">Recent Orders</h2>
+              <a id="link_in" class="btn">View All</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td class="text-start" id="admin_email">Total</td>
+                  <td class="text-start" id="admin_payment">Payment</td>
+                  <td id="admin_phone">Status</td>
+                </tr>
+              </thead>
+
+              <tbody id="recentOrder"></tbody>
+            </table>
+          </div>
+          <div class="recentCustomers">
+            <div class="cardHeader">
+              <h2 id="adminProvider">Recent Customers</h2>
+            </div>
+
+            <table id="getRecentUser"></table>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Add this before the Scripts section -->
-    <div class="modal fade global-profile-modal" id="profileModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalTitle">
-                        <!-- Dynamic Title -->
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Forms will be injected here -->
-                </div>
-            </div>
+    <div
+      class="modal fade global-profile-modal"
+      id="profileModal"
+      tabindex="-1"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="profileModalTitle">
+              <!-- Dynamic Title -->
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Forms will be injected here -->
+          </div>
         </div>
+      </div>
     </div>
     <!-- =========== Scripts =========  -->
     <script>
-        // Menu Toggle
-        let toggle = document.querySelector(".toggle");
-        let navigation = document.querySelector(".navigation");
-        let main = document.querySelector(".main");
+      // Menu Toggle
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
 
-        toggle.onclick = function () {
-            navigation.classList.toggle("active");
-            main.classList.toggle("active");
-        };
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
     </script>
     <script type="module" src="../../../assets/js/sidebar.js"></script>
     <script type="module" src="../../../assets/js/logout.js"></script>
     <script type="module" src="../../../assets/js/dashboard.js"></script>
     <script type="module" src="../../../assets/js/updateUserInfo.js"></script>
     <script src="../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-
+  </body>
 </html>
