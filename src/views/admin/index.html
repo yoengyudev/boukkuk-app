@@ -98,7 +98,7 @@
                 </div>
                 <div class="global-profile-menu">
                     <div class="img-box">
-                        <img src="../../../assets/image/service-provider/profile-service-provider.jpeg" alt="" />
+                        <img id="profileImage" src="" alt="" />
                     </div>
                     <div class="dropdown-menu">
                         <ul>
@@ -183,9 +183,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="recentOrder">
-
-                        </tbody>
+                        <tbody id="recentOrder"></tbody>
                     </table>
                 </div>
                 <div class="recentCustomers">
@@ -193,32 +191,30 @@
                         <h2 id="adminProvider">Recent Customers</h2>
                     </div>
 
-                    <table id="getRecentUser">
-                        
-                    </table>
+                    <table id="getRecentUser"></table>
                 </div>
             </div>
         </div>
     </div>
-   <!-- Add this before the Scripts section -->
-   <div class="modal fade global-profile-modal" id="profileModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="profileModalTitle">
-                    <!-- Dynamic Title -->
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Forms will be injected here -->
+    <!-- Add this before the Scripts section -->
+    <div class="modal fade global-profile-modal" id="profileModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalTitle">
+                        <!-- Dynamic Title -->
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Forms will be injected here -->
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- =========== Scripts =========  -->
     <script>
-          // Menu Toggle
+        // Menu Toggle
         let toggle = document.querySelector(".toggle");
         let navigation = document.querySelector(".navigation");
         let main = document.querySelector(".main");
@@ -227,7 +223,6 @@
             navigation.classList.toggle("active");
             main.classList.toggle("active");
         };
-
     </script>
     <script type="module" src="../../../assets/js/sidebar.js"></script>
     <script type="module" src="../../../assets/js/logout.js"></script>

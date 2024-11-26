@@ -1,201 +1,196 @@
-  <!-- views detail payment -->
-  <div class="modal fade" id="detailPayment" tabindex="-1" aria-labelledby="detailPaymentLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-xl modal-dialog-scrollable">
-      <div class="modal-content border-0 p-2 shadow-none">
-        <div class="modal-header bg-instead border-0">
-          <h5 class="modal-title" id="updateModal">Payment Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row g-5 mb-5 mt-3 px-4 pb-5">
-            <div class="col-12">
-              <div class="card h-100 border-0">
+<!-- views detail payment -->
+<div class="modal fade" id="detailPayment" tabindex="-1" aria-labelledby="detailPaymentLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-xl modal-dialog-scrollable">
+    <div class="modal-content border-0 p-2 shadow-none">
+      <div class="modal-header bg-instead border-0">
+        <h5 class="modal-title" id="updateModal">Payment Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-5 mb-5 mt-3 px-4 pb-5">
+          <div class="col-12">
+            <div class="card h-100 border-0">
+              <div>
+                <h5 class="mb-4">Payment Status</h5>
                 <div>
-                  <h5 class="mb-4">Payment Status</h5>
-                  <div>
-                    <form action="" method="get">
-                      <div class="d-flex gap-3">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="pedding">
-                          <label class="form-check-label" for="pedding">
-                            Pedding
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="approve">
-                          <label class="form-check-label" for="approve">
-                            Approve
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="reject">
-                          <label class="form-check-label" for="reject">
-                            Reject
-                          </label>
-                        </div>
+                  <form action="" method="get">
+                    <div class="d-flex gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="pedding">
+                        <label class="form-check-label" for="pedding">
+                          Pedding
+                        </label>
                       </div>
-                    </form>
-                    <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card h-100 border-0">
-                <div>
-                  <h5 class="mb-4">Service Status</h5>
-                  <div>
-                    <form action="" method="get">
-                      <div class="d-flex gap-3 flex-wrap">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="placedOrder" value="1">
-                          <label class="form-check-label" for="placedOrder">
-                            Placed Order
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="laundryPickUp"
-                            value="2">
-                          <label class="form-check-label" for="laundryPickUp">
-                            Laundry Pick Up
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="inProcess" value="3">
-                          <label class="form-check-label" for="inProcess">
-                            In Process
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="processToIron"
-                            value="4">
-                          <label class="form-check-label" for="processToIron">
-                            Process to Iron
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="ironing" value="5">
-                          <label class="form-check-label" for="ironing">
-                            Ironing
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="readyForDelivery"
-                            value="6">
-                          <label class="form-check-label" for="readyForDelivery">
-                            Ready for Delivery
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="outForDelivery"
-                            value="7">
-                          <label class="form-check-label" for="outForDelivery">
-                            Out for Delivery
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceStatus" id="delivered" value="8">
-                          <label class="form-check-label" for="delivered">
-                            Delivered
-                          </label>
-                        </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="approve">
+                        <label class="form-check-label" for="approve">
+                          Approve
+                        </label>
                       </div>
-                    </form>
-                    <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card h-100 border-0">
-                <h5 class="mb-4">Schedule Pickup</h5>
-                <form action="" method="post">
-                  <div>
-                    <label for="datetime" class="form-label">Select Date and Time</label>
-                    <input type="datetime-local" class="form-control" id="datetime" name="datetime"
-                      value="2024-11-10T23:00">
-                  </div>
-                </form>
-                <div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="reject">
+                        <label class="form-check-label" for="reject">
+                          Reject
+                        </label>
+                      </div>
+                    </div>
+                  </form>
                   <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-12">
+            <div class="card h-100 border-0">
+              <div>
+                <h5 class="mb-4">Service Status</h5>
+                <div>
+                  <form action="" method="get">
+                    <div class="d-flex gap-3 flex-wrap">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="placedOrder" value="1">
+                        <label class="form-check-label" for="placedOrder">
+                          Placed Order
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="laundryPickUp" value="2">
+                        <label class="form-check-label" for="laundryPickUp">
+                          Laundry Pick Up
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="inProcess" value="3">
+                        <label class="form-check-label" for="inProcess">
+                          In Process
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="processToIron" value="4">
+                        <label class="form-check-label" for="processToIron">
+                          Process to Iron
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="ironing" value="5">
+                        <label class="form-check-label" for="ironing">
+                          Ironing
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="readyForDelivery"
+                          value="6">
+                        <label class="form-check-label" for="readyForDelivery">
+                          Ready for Delivery
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="outForDelivery" value="7">
+                        <label class="form-check-label" for="outForDelivery">
+                          Out for Delivery
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="serviceStatus" id="delivered" value="8">
+                        <label class="form-check-label" for="delivered">
+                          Delivered
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                  <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
+                </div>
+              </div>
 
-          <div class="row g-5 mb-5 px-4 pb-5">
-            <div class="col-12 bg-instead p-2 rounded-2">
-              <h5 class="text-center mt-2">
-                Information Detail
-              </h5>
             </div>
-            <div class="col-12 col-xl-6">
-              <div class="card border-0">
-                <h5 class="card-title">Buyer Information</h5>
-                <hr style="color: #ddd;">
-                <div class="s_img d-flex align-items-center mb-3">
-                  <img src="http://mps10.chandalen.dev/storage/avatars/1u6wrnwqfBDP7IXUKW2wG5PthRbtVckQtJJUSBWy.png"
-                    alt="Buyer Avatar" class="avatar-img me-3">
-                  <div>
-                    <h6 class="mb-0">Laundryfy</h6>
-                    <small class="text-muted">chandalen1@gmail.com</small>
-                  </div>
-                </div>
+          </div>
+          <div class="col-6">
+            <div class="card h-100 border-0">
+              <h5 class="mb-4">Schedule Pickup</h5>
+              <form action="" method="post">
                 <div>
-                  <p class="mb-1">Phone: 0987654332</p>
-                  <p class="mb-1">Location: 11.283729, 104.38293</p>
-                  <a href="https://kimlong-portfolio.vercel.app/" target="_blank" class="btn btn-sm p-0 text-primary">
-                    <i class="bi bi-geo-alt"></i> View on Google Maps
-                  </a>
+                  <label for="datetime" class="form-label">Select Date and Time</label>
+                  <input type="datetime-local" class="form-control" id="datetime" name="datetime"
+                    value="2024-11-10T23:00">
                 </div>
+              </form>
+              <div>
+                <button type="button" class="btn btn-primary mt-3 px-5">Save</button>
               </div>
             </div>
-            <div class="col-12 col-xl-6">
-              <div class="card border-0">
-                <h5 class="card-title">Service Information</h5>
-                <hr style="color:#ddd;">
-                <div class="s_img d-flex align-items-center mb-3">
-                  <img src="http://mps10.chandalen.dev/storage/services/aL3orUUi7WrRjq4p4n02XZtVhM2xr1UGPqT8JBJb.png"
-                    alt="Service Image" class="card-img mb-3">
-                  <div>
-                    <h6 class="mb-0">TraBoakkuk</h6>
-                    <p class="text-muted small">Hello Everyone!</p>
-                  </div>
-                </div>
-                <p class="mb-1">Category: សម្អាត</p>
-                <p class="mb-1">Price: $100</p>
-                <p class="mb-1">Discount: 0%</p>
-              </div>
-            </div>
-            <div class="col-12 col-xl-6">
-              <div class="card h-100 border-0">
-                <h5 class="card-title">Order Details</h5>
-                <hr style="color: #ddd;">
-                <p class="mb-1">Order ID: 3</p>
-                <p class="mb-1">Quantity: 5</p>
-                <p class="mb-1">Total Price: $500</p>
-                <p class="mb-1">Order Date: 2024-11-13 09:03:38</p>
-                <div class="mt-3 d-flex gap-2">
-                  <div class="p-2 text-white fs-18 rounded-2 bg-success status-badge">Payment Approved</div>
-                  <div class="p-2 text-white fs-18 rounded-2 bg-info status-badge">Order Placed</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-xl-6">
-              <div class="card h-100 border-0">
-                <h5 class="card-title">Transaction</h5>
-                <hr style="color: #ddd;">
-                <div class="transaction bg-instead rounded-2">
-                  <img
-                    src="http://mps10.chandalen.dev/storage/transactions/clSoDg3W8AgCi9eGijzjRYrMr7Se2zr6h3pWUOtV.jpg"
-                    alt="Transaction File" class="img-fluid rounded mb-3">
-                </div>
+          </div>
+        </div>
+
+        <div class="row g-5 mb-5 px-4 pb-5">
+          <div class="col-12 bg-instead p-2 rounded-2">
+            <h5 class="text-center mt-2">
+              Information Detail
+            </h5>
+          </div>
+          <div class="col-12 col-xl-6">
+            <div class="card border-0">
+              <h5 class="card-title">Buyer Information</h5>
+              <hr style="color: #ddd;">
+              <div class="s_img d-flex align-items-center mb-3">
+                <img src="http://mps10.chandalen.dev/storage/avatars/1u6wrnwqfBDP7IXUKW2wG5PthRbtVckQtJJUSBWy.png"
+                  alt="Buyer Avatar" class="avatar-img me-3">
                 <div>
-                  <a href="http://mps10.chandalen.dev/storage/transactions/clSoDg3W8AgCi9eGijzjRYrMr7Se2zr6h3pWUOtV.jpg"
-                    target="_blank" class="btn btn-primary btn-sm">View Full Transaction File
-                  </a>
+                  <h6 class="mb-0">Laundryfy</h6>
+                  <small class="text-muted">chandalen1@gmail.com</small>
                 </div>
+              </div>
+              <div>
+                <p class="mb-1">Phone: 0987654332</p>
+                <p class="mb-1">Location: 11.283729, 104.38293</p>
+                <a href="https://kimlong-portfolio.vercel.app/" target="_blank" class="btn btn-sm p-0 text-primary">
+                  <i class="bi bi-geo-alt"></i> View on Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6">
+            <div class="card border-0">
+              <h5 class="card-title">Service Information</h5>
+              <hr style="color:#ddd;">
+              <div class="s_img d-flex align-items-center mb-3">
+                <img src="http://mps10.chandalen.dev/storage/services/aL3orUUi7WrRjq4p4n02XZtVhM2xr1UGPqT8JBJb.png"
+                  alt="Service Image" class="card-img mb-3">
+                <div>
+                  <h6 class="mb-0">TraBoakkuk</h6>
+                  <p class="text-muted small">Hello Everyone!</p>
+                </div>
+              </div>
+              <p class="mb-1">Category: សម្អាត</p>
+              <p class="mb-1">Price: $100</p>
+              <p class="mb-1">Discount: 0%</p>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6">
+            <div class="card h-100 border-0">
+              <h5 class="card-title">Order Details</h5>
+              <hr style="color: #ddd;">
+              <p class="mb-1">Order ID: 3</p>
+              <p class="mb-1">Quantity: 5</p>
+              <p class="mb-1">Total Price: $500</p>
+              <p class="mb-1">Order Date: 2024-11-13 09:03:38</p>
+              <div class="mt-3 d-flex gap-2">
+                <div class="p-2 text-white fs-18 rounded-2 bg-success status-badge">Payment Approved</div>
+                <div class="p-2 text-white fs-18 rounded-2 bg-info status-badge">Order Placed</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6">
+            <div class="card h-100 border-0">
+              <h5 class="card-title">Transaction</h5>
+              <hr style="color: #ddd;">
+              <div class="transaction bg-instead rounded-2">
+                <img src="http://mps10.chandalen.dev/storage/transactions/clSoDg3W8AgCi9eGijzjRYrMr7Se2zr6h3pWUOtV.jpg"
+                  alt="Transaction File" class="img-fluid rounded mb-3">
+              </div>
+              <div>
+                <a href="http://mps10.chandalen.dev/storage/transactions/clSoDg3W8AgCi9eGijzjRYrMr7Se2zr6h3pWUOtV.jpg"
+                  target="_blank" class="btn btn-primary btn-sm">View Full Transaction File
+                </a>
               </div>
             </div>
           </div>
@@ -203,3 +198,4 @@
       </div>
     </div>
   </div>
+</div>
