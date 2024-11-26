@@ -38,28 +38,28 @@ document
 
     // Validate current password
     if (!oldPassword) {
-      displayError("error-mess-cur", "Current password is required");
+      displayError("error-mess-cur", "សូមបញ្ជូលពាក្យសម្ងត់ចាស់");
       hasError = true;
     }
 
     // Validate new password
     if (!newPassword) {
-      displayError("error-mess-new", "New password is required");
+      displayError("error-mess-new", "សូមបញ្ជូលពាក្យសម្ងត់ថ្មី");
       hasError = true;
     } else if (newPassword.length < 6) {
       displayError(
         "error-mess-new",
-        "New password must be at least 6 characters long"
+        "ពាក្យសម្ងត់ថ្មី​ ត្រូវមានយ៉ាងហោចណាស់ 6 ខ្ទង់"
       );
       hasError = true;
     }
 
     // Validate confirm password
     if (!confirmPassword) {
-      displayError("error-mess-com", "Confirm password is required");
+      displayError("error-mess-com", "សូមបញ្ជាក់ពាក្យសម្ងត់ថ្មី");
       hasError = true;
     } else if (newPassword !== confirmPassword) {
-      displayError("error-mess-com", "Passwords do not match");
+      displayError("error-mess-com", "ពាក្យសម្ងត់ថ្មី មិនត្រូវគ្នា");
       hasError = true;
     }
 
