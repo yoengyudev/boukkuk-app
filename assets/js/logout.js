@@ -10,6 +10,7 @@ if (logoutAdmin) {
     logoutAdmin.addEventListener('click', () => {
         localStorage.removeItem('AdminToken');
         localStorage.removeItem('ProviderID');
+        localStorage.removeItem('AdminRole');
         fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {
@@ -30,6 +31,7 @@ if (logout) {
     logout.addEventListener('click', () => {
         localStorage.removeItem('UserToken');
         sessionStorage.removeItem('creator_id');
+        localStorage.removeItem('UserRole');
         fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {

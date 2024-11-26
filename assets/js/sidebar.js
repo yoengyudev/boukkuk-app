@@ -4,9 +4,9 @@ let service_item = document.querySelector(".service-item");
 let provider_item = document.querySelector(".provider-item");
 let order_item = document.querySelector(".order-item");
 let report_order = document.querySelector(".report-item");
-let roleid = localStorage.getItem("UserRole");
+let AdminRole = localStorage.getItem("AdminRole");
 import { AdminToken, UserToken } from "./tokens.js";
-console.log(roleid);
+console.log(AdminRole);
 console.log(AdminToken);
 
 if (!AdminToken) {
@@ -15,11 +15,11 @@ if (!AdminToken) {
   location.href = `${basePath}src/views/auth/login.html`;
 }
 
-if (roleid == 3) {
+if (AdminRole == 3) {
   user_item.style.display = "none";
   category_item.style.display = "none";
   provider_item.style.display = "none";
-} else if (roleid == 2) {
+} else if (AdminRole == 2) {
   service_item.style.display = "none";
   report_order.style.display = "none";
   order_item.style.display = "none";

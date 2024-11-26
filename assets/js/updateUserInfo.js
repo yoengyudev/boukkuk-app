@@ -382,12 +382,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const profileModal = new bootstrap.Modal(
     document.getElementById("profileModal")
   );
-  const roleId = localStorage.getItem("UserRole");
-  const isAdmin = roleId === "2";
+  const AdminRole = localStorage.getItem("AdminRole");
+  const isAdmin = AdminRole === "2";
 
-  console.log("Profile element:", profile); // Debug log
-  console.log("Menu element:", menu); // Debug log
-
+  console.log("Profile element:", profile); 
+  console.log("Menu element:", menu); 
   if (profile && menu) {
     // Toggle menu on profile click
     profile.addEventListener("click", function (e) {
