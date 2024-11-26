@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Report</title>
+    <link rel="stylesheet" href="../../../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../../../assets/css/style.css" />
+    <link href="../../../../vender/bootstrap-icon/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../../vender/datatable/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="../../../../vender/datatable/css/responsive.bootstrap5.css" />
+</head>
+
+<body>
+    <section class="service-provicer">
+        <div class="container-fluid p-0 position-relative w-100">
+            <!-- Navigation sidebar (reuse from getorder.html) -->
+            <div class="navigation">
+                <ul class="px-0">
+                    <li>
+                        <a href="../index.html">
+                            <span class="icon">
+                                <i class="bi bi-droplet"></i>
+                            </span>
+                            <span class="title">Boakuk</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../index.html">
+                            <span class="icon">
+                                <i class="bi bi-grid"></i>
+                            </span>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="user-item">
+                        <a href="../page/user.html">
+                            <span class="icon">
+                                <i class="bi bi-people"></i>
+                            </span>
+                            <span class="title">User</span>
+                        </a>
+                    </li>
+
+                    <li class="service-item">
+                        <a href="../page/service.html">
+                            <span class="icon">
+                                <i class="bi bi-bag"></i>
+                            </span>
+                            <span class="title">Services</span>
+                        </a>
+                    </li>
+
+                    <li class="order-item">
+                        <a href="../page/getorder.html">
+                            <span class="icon">
+                                <i class="bi bi-bag"></i>
+                            </span>
+                            <span class="title">Orders</span>
+                        </a>
+                    </li>
+
+                    <li class="report-item active">
+                        <a href="../page/report.html">
+                            <span class="icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </span>
+                            <span class="title">Order Report</span>
+                        </a>
+                    </li>
+
+                    <li class="category-item">
+                        <a href="../page/category.html">
+                            <span class="icon">
+                                <i class="bi bi-folder"></i>
+                            </span>
+                            <span class="title">Category</span>
+                        </a>
+                    </li>
+
+                    <li id="logout-admin">
+                        <a href="">
+                            <span class="icon">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </span>
+                            <span class="title">Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main px-4">
+                <!-- Topbar (reuse from getorder.html) -->
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="bi bi-list"></i>
+                    </div>
+
+                    <div class="global-profile-menu">
+                        <div class="img-box">
+                            <img id="profileImage" src="" alt="" />
+                        </div>
+
+                        <div class="dropdown-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="bi bi-person"></i>
+                                        Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bi bi-key"></i>
+                                        Password
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4">
+                    <h2 class="mb-4">Order Report</h2>
+
+                    <div>
+                        <div>
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="startYear">Start Date</label>
+                                        <input type="date" class="form-control" id="startYear" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="endYear">End Date</label>
+                                        <input type="date" class="form-control" id="endYear" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button id="filterBtn" class="btn btn-primary">
+                                        Filter
+                                    </button>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button id="exportCsvBtn" class="btn btn-success">
+                                        Export CSV
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4"></div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Orders</h5>
+                                    <h3 id="totalOrders" class="mb-0">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Revenue</h5>
+                                    <h3 id="totalRevenue" class="mb-0">0៛</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="reportTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">Service</th>
+                                <th class="align-middle">Customer</th>
+                                <th class="align-middle">Phone</th>
+                                <th class="align-middle">Quantity</th>
+                                <th class="align-middle">Total</th>
+                                <th class="align-middle">Date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include the same scripts as getorder.html -->
+    <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
+    <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
+    <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../../../assets/js/logout.js"></script>
+    <script type="module" src="../../../../assets/js/report.js"></script>
+    <script type="module" src="../../../../assets/js/sidebar.js"></script>
+</body>
+
+</html>
