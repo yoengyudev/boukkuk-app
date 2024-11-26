@@ -154,12 +154,31 @@ function exportToCsv(data) {
 }
 
 function filterByDate() {
-  const startDate = new Date(document.getElementById("startYear").value);
-  const endDate = new Date(document.getElementById("endYear").value);
+  const startDateValue = document.getElementById("startYear").value;
+  const endDateValue = document.getElementById("endYear").value;
+
+  // Check if both date fields are empty
+  if (!startDateValue && !endDateValue) {
+    initializeTable(orderData); // Show all data if no filters are applied
+    return;
+  }
+
+  const startDate = startDateValue ? new Date(startDateValue) : null;
+  const endDate = endDateValue ? new Date(endDateValue) : null;
+
+  // Set the end date to the end of the day if it exists
+  if (endDate) {
+    endDate.setHours(23, 59, 59, 999);
+  }
 
   const filteredData = orderData.filter((order) => {
     const orderDate = new Date(order.created_at);
-    return orderDate >= startDate && orderDate <= endDate;
+    
+    // Check conditions based on which dates are provided
+    const isAfterStartDate = startDate ? orderDate >= startDate : true;
+    const isBeforeEndDate = endDate ? orderDate <= endDate : true;
+
+    return isAfterStartDate && isBeforeEndDate;
   });
 
   initializeTable(filteredData);
