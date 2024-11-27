@@ -76,6 +76,10 @@
   height: 30px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .btn-hover:hover {
   background-color: #0d6efd;
   color: #fff;

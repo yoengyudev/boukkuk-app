@@ -1,7 +1,10 @@
 import { baseUrl } from "./baseUrl.js";
 import { UserToken } from "./tokens.js";
 let UserName = localStorage.getItem("UserName");
+let PhoneNumber = localStorage.getItem("PhoneNumber");
 console.log('Username is ', UserName);
+
+let cartData;
 
 document
   .getElementById("receiptUpload")
@@ -47,7 +50,8 @@ async function fetchAndDisplayCartData() {
       throw new Error("Failed to fetch cart data");
     }
 
-    const cartData = await response.json();
+    cartData = await response.json();
+
     let total = cartData.data.total;
 
     document.getElementById('total-checkout').innerText = total.toLocaleString() + "៛";
@@ -184,14 +188,22 @@ document
       };
 
       let totalAmount = document.getElementById('totalAmount').textContent;
+
+      // Extract items and quantities
+      const items = cartData.data.items.map(
+        (item) => `- ${item.service.name}: ${item.qty}`
+      ).join("\n");
+
       const message = `
-        ឈ្មោះអតិថិជន: ${summaryData.customerName}
-        ថ្ងៃខែ: ${currentDate}
-        ម៉ោង: ${currentTime}
-        ចំណាយសរុប: $${totalAmount}
+ឈ្មោះអតិថិជន: ${summaryData.customerName}
+លេខទួរស៏ព្ទ: ${PhoneNumber}
+ថ្ងៃខែ: ${currentDate}
+ម៉ោង: ${currentTime}
+ទំនិញ:\n${items}
+ចំណាយសរុប: ${totalAmount}
       `;
 
-      Send(message);
+      sendToTelegram(message, receiptFile);
 
       // Update modal content with summary data
       const summaryDetails = document.getElementById("summaryDetails");
@@ -235,48 +247,68 @@ document
   });
 
 
-document.getElementById("downloadBtn").addEventListener("click", async function () {
-  const modalContent = document.querySelector(".success-modal .modal-content");
-
-  try {
-    // Use html2canvas to capture the modal as an image
-    const canvas = await html2canvas(modalContent);
-    const imgData = canvas.toDataURL("image/png");
-
-    const link = document.createElement("a");
-    link.href = imgData;
-    link.download = "payment-summary.png";
-    link.click();
-
-    setTimeout(() => {
-      window.location.href = "../../../index.html";
-    }, 500);
-  } catch (error) {
-    console.error("Error generating PNG:", error);
-    alert("មានបញ្ហាក្នុងការទាញយករូបភាព");
-  }
-});
+  document.getElementById("downloadBtn").addEventListener("click", async function () {
+    const modalContent = document.querySelector(".success-modal .modal-content");
+    const downloadBtn = document.getElementById("downloadBtn");
+    let btn_ok = document.getElementById('btn-ok');
+  
+    try {
+      downloadBtn.style.display = "none";
+      btn_ok.style.display = "none";
+      
+  
+      const canvas = await html2canvas(modalContent);
+      const imgData = canvas.toDataURL("image/png");
+  
+      const link = document.createElement("a");
+      link.href = imgData;
+      link.download = "payment-summary.png";
+      link.click();
+  
+      downloadBtn.style.display = "";
+  
+      setTimeout(() => {
+        window.location.href = "../../../index.html";
+      }, 500);
+    } catch (error) {
+      console.error("Error generating PNG:", error);
+      alert("មានបញ្ហាក្នុងការទាញយករូបភាព");
+      downloadBtn.style.display = "";
+      btn_ok.style.display = "";
+    }
+  });
+  
 
 const BOT_TOKEN = '7296419820:AAGJANUD8o1S2aups0ub3YsY2JdDmEtb2jo';
 const CHAT_ID = '-4280979190';
 
 
-function Send(message) {
-  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message,
-    }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Message sent:', data);
-    })
-    .catch(error => {
-      console.error('Error sending message:', error);
-    });
+async function sendToTelegram(message, file = null) {
+
+  try {
+    if (file) {
+      const formData = new FormData();
+      formData.append("chat_id", CHAT_ID);
+      formData.append("caption", message);
+      formData.append("document", file);
+
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: "POST",
+        body: formData,
+      });
+    } else {
+      // Send message
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+        }),
+      });
+    }
+    console.log("Message sent to Telegram successfully");
+  } catch (error) {
+    console.error("Error sending to Telegram:", error);
+  }
 }

@@ -1,9 +1,10 @@
 import { baseUrl } from "./baseUrl.js";
 // ============================ logout ============================
+const currentPath = window.location.href;
+const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
 
 let logout = document.getElementById("logout-list");
 let logoutAdmin = document.getElementById("logout-admin");
-console.log(logout);
 
 
 if (logoutAdmin) {
@@ -21,7 +22,6 @@ if (logoutAdmin) {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            isAuthenticated = false;
             window.location.reload();
         })
     });
@@ -32,6 +32,7 @@ if (logout) {
         localStorage.removeItem('UserToken');
         sessionStorage.removeItem('creator_id');
         localStorage.removeItem('UserRole');
+        localStorage.removeItem('UserName');
         fetch(`${baseUrl}/api/logout`, {
             method: 'DELETE', 
             headers: {
@@ -41,9 +42,8 @@ if (logout) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            isAuthenticated = false;
-            window.location.reload();
+            console.log("Hello world ", data);
+            location.href = `${basePath}index.html`;
         })
     });
 }

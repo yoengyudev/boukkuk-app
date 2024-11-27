@@ -1,3 +1,6 @@
+const currentPath = window.location.href;
+const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+
 // ==========================> hidden and Open eye in input box ======================
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById("pass");
@@ -147,7 +150,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     .then(json => {
         if (json.data && json.data.token) {
             localStorage.setItem('UserToken', json.data.token);
-            location.href = '../../../index.html';
+            location.href = `${basePath}src/views/auth/login.html`;
         } else {
             throw new Error('Token not found in response');
         }
