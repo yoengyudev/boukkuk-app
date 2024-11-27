@@ -40,7 +40,7 @@ if(Provider){
                 // Update the DOM with calculated values
                 document.getElementById('customers').innerHTML = buyerCount;
                 document.getElementById('booking').innerHTML = bookingCount;
-                document.getElementById('total').innerHTML = `$${totalAmount.toLocaleString()}`;
+                document.getElementById('total').innerHTML = `៛${totalAmount.toLocaleString()}`;
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
@@ -114,14 +114,14 @@ if(Provider){
                         7: { text: 'Out for Delivery', class: 'text-info' },
                         8: { text: 'Delivered', class: 'text-success' },
                     };
-    
+                    
                     data.data.forEach((order) => {
                         const status = statusMapping[order.payment_status] || { text: 'Unknown', class: 'text-secondary' };
                         const statusSer = statusServiceMapping[order.service_status] || { text: 'Unknown', class: 'text-secondary' };
                         tr += `
                                 <tr>
                                     <td>${order.service.name}</td>
-                                    <td class="text-start">$${order.price * order.qty}</td>
+                                    <td class="text-start">៛${order.price * order.qty}</td>
                                     <td class="text-start">
                                         <span class="${status.class}">${status.text}</span>
                                     </td>
