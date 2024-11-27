@@ -496,9 +496,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .img-store {
-  padding: 30px;
-  height: 330px;
+  height: 220px;
   transition: 0.5s;
+}
+.search_img {
+  height: 330px;
+  padding: 35px;
 }
 .img-store:hover {
   transform: scale(1.05);

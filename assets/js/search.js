@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </button>
                       <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')" class="overflow-hidden d-block">
                         <img src="${element.image}" 
-                            class="card-img img-store w-100" 
+                            class="card-img search_img img-store w-100" 
                             alt="${element.name}">
                       </a>
                     </div>
