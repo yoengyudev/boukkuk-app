@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
 function store(event) {
   event.preventDefault();
   const currentPath = window.location.href;

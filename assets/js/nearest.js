@@ -98,8 +98,7 @@ function deg2rad(deg) {
 }
 
 function displayResult(message) {
-    const resultElement = document.getElementById('result');
-
+    const resultElement = document.getElementById('result');    
     if (resultElement) {
         resultElement.innerHTML = '';
 
@@ -112,10 +111,6 @@ function displayResult(message) {
                         <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                             <p class='id' style="display: none;">${provider.id}</p>
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
-                                <button type="submit" onclick="wishlistCard()" 
-                                        class="btn heart bg-instead heart-btn position-absolute end-0 mt-2 me-2 z-1">
-                                    <i class="bi bi-heart"></i>
-                                </button>
                                 <a href="" onclick='store(event)' class="overflow-hidden d-block">
                                     <img src="${provider.avatar}" 
                                         class="card-img img-store w-100" 

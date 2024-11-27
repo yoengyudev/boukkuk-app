@@ -14,6 +14,7 @@ window.changePage = function(page) {
   fetchWishlistItems(page);
 }
 
+
 function fetchWishlistItems(page = 1) {
   document.getElementById("wishlist-items").innerHTML = `
     <div class="col-12 text-center">
@@ -237,7 +238,7 @@ function updateWishlistCounter() {
 
 // Add this function to make it globally accessible
 window.getStore = function(creatorID) {
-  localStorage.setItem("creator_id", creatorID);
+  sessionStorage.setItem("creator_id", creatorID);
   const currentPath = window.location.href;
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
   location.href = `${basePath}src/views/page/store.html`;

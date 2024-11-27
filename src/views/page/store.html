@@ -9,287 +9,6 @@
   <link rel="stylesheet" href="../../../assets/css/style.css" />
   <link rel="stylesheet" href="../../../vender/bootstrap-icon/font/bootstrap-icons.css" />
 </head>
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-
-  .service-section-store h4 {
-    font-weight: bold;
-  }
-
-  .service-section {
-    padding-top: 100px;
-    margin-top: -50px;
-  }
-
-  .service-section-store .cardBox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-left: 0;
-    /* Space between cards */
-  }
-
-  .service-section-store .card {
-    background-color: #ffffff;
-    /* White background for the card */
-    border-radius: 10px;
-    /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Enhanced shadow */
-    overflow: hidden;
-    /* Prevent overflow */
-    /* width: 200px; */
-    height: 250px;
-    /* Fixed width for cards */
-    transition: transform 0.3s;
-    /* Smooth hover effect */
-    padding: 15px;
-    /* Padding inside the card */
-    text-align: center;
-    /* Center text */
-    position: relative;
-  }
-
-  .service-section-store .card:hover {
-    transform: scale(1.05);
-    background-color: rgb(239, 239, 239);
-    /* Slightly enlarge on hover */
-  }
-
-  .service-section-store .card-img-container {
-    height: 120px;
-    /* Fixed height for image container */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .service-section-store .card-img {
-    max-width: 60px;
-    /* Full width image */
-    height: auto;
-    /* Maintain aspect ratio */
-  }
-
-  .service-section-store .card-content {
-    padding: 10px;
-    /* Padding inside the card */
-  }
-
-  .service-section-store .card-title {
-    font-size: 20px;
-    /* Larger title size */
-    font-weight: bold;
-    /* Bold title */
-    margin: 0;
-    /* Remove default margin */
-  }
-
-  .service-section-store .card-price {
-    font-size: 1.1rem;
-    /* Price size */
-    color: #28a745;
-    /* Green color for price */
-    margin: 5px 0;
-    /* Margin for spacing */
-  }
-
-  .service-section-store .card-description {
-    font-size: 0.79rem;
-    /* Description size */
-    color: #555;
-    /* Darker gray for description */
-    margin-bottom: 10px;
-    /* Margin for spacing */
-  }
-
-  .service-section-store .add-to-cart-btn {
-    width: 84%;
-    margin: auto;
-    padding: 7px 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .service-section-store .add-to-cart-btn:hover {
-    background-color: #0056b3;
-    /* Darker blue on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .service-section-store .add-to-cart-btn i {
-    font-size: 1.1rem;
-  }
-
-  .check-out-store {
-    padding-right: 14px;
-  }
-
-  .cart {
-    background-color: #ffffff;
-    /* Light background for cart */
-    border-radius: 10px;
-    /* Rounded corners */
-    padding: 0 14px;
-    padding-top: 15px;
-    /* Padding inside the cart */
-    padding-bottom: 0;
-    padding-right: 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Space above the cart */
-    height: 538px;
-    position: sticky !important;
-    top: 190px;
-  }
-
-  #cart-items {
-    margin-bottom: 15px;
-    /* Space below cart items */
-  }
-
-  #cart-items div {
-    display: flex;
-    justify-content: space-between;
-    /* Space between item name and remove button */
-    align-items: center;
-    /* Center items vertically */
-    padding: 2px 0;
-    /* Padding for each item */
-    padding-right: 6px;
-  }
-
-  .trash-icon-store {
-    font-size: 1.2rem;
-  }
-
-  .btn-danger {
-    margin-left: 10px;
-    /* Space between item text and remove button */
-  }
-
-  .service-section-store-body .service-section-store {
-    width: 70% !important;
-  }
-
-  .nav-link {
-    padding: 10px 15px;
-    /* Padding for the tabs */
-    border: none;
-    /* Remove default border */
-    color: #555;
-    /* Default text color */
-    font-weight: normal;
-    /* Normal font weight */
-    transition: background-color 0.3s, color 0.3s;
-    /* Smooth transition */
-  }
-
-  .nav-link.active {
-    background-color: #f0f0f0;
-    /* Background color for active tab */
-    color: #000;
-    /* Text color for active tab */
-    font-weight: bold;
-    /* Bold font for active tab */
-    border-radius: 5px;
-    /* Rounded corners for active tab */
-  }
-
-  .nav-link:hover {
-    background-color: #e0e0e0;
-    /* Background color on hover */
-  }
-
-  .nav-item {
-    border: none;
-  }
-
-  .service-section-store .btn-circle.increase {
-    background-color: transparent !important;
-    border: 1.5px solid #007bff !important;
-    /* Increased border width */
-    color: #007bff !important;
-  }
-
-  .service-section-store .btn-circle.increase:hover {
-    background-color: #007bff !important;
-    color: white !important;
-    opacity: 1;
-  }
-
-  .cart-item {
-    padding: 10px 0;
-  }
-
-  .cart-item .btn-sm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cart-item .quantity {
-    font-weight: 500;
-  }
-
-  .cart-item .delete-btn {
-    color: #dc3545;
-  }
-
-  .cart-item .delete-btn:hover {
-    color: #bb2d3b;
-  }
-
-  .cart-item .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-  }
-
-  .cart-item .btn-outline-primary {
-    color: #0d6efd;
-    border-color: #0d6efd;
-  }
-
-  .cart-item .btn-outline-primary:hover {
-    background-color: #0d6efd;
-    color: white;
-  }
-
-  .increase-cart {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    min-width: 24px;
-  }
-
-  .cart-quantity {
-    min-width: 20px;
-    text-align: center;
-  }
-
-  .decrease-cart {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    min-width: 24px;
-  }
-
-  #cart-items::-webkit-scrollbar{
-    display: none!important;
-  }
-</style>
 
 <body>
   <div class="spinner-overlay" id="animation-overlay">
@@ -371,7 +90,8 @@
                   </li>
                   <li id="logout-list">
                     <hr style="color: #ddd" />
-                    <a class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18 cursor-pointer">
+                    <a
+                      class="dropdown-item hover-nav d-flex align-items-center p-0 gap-2 rounded-2 fs-18 cursor-pointer">
                       <div class="profile_header bg-instead rounded-circle">
                         <i class="bi bi-power"></i>
                       </div>
@@ -445,227 +165,224 @@
       </div>
     </nav>
   </header>
-  
-  
-
   <main>
-    <section class="bg-store d-none d-md-block">
-      <div class="bg-overlay"></div>
-    </section>
-    <section class="about-store">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-8 col-lg-3">
-            <div class="card logo-store border-5 box-shadow border-white overflow-hidden">
-              <img id="profile_img" class="card-img" alt="" />
-            </div>
-          </div>
-          <div class="col-12 col-lg-8">
-            <div class="pt-0 pt-lg-5 d-flex">
-              <div id="storeInfo"></div>
-              <div class="ms-auto d-flex flex-column justify-content-between">
-                <button type="submit"
-                  class="hover-nav btn profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
-                  <i class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
-                </button>
-                <span class="fs-5">
-                  4.5 <i class="bi bi-star-fill text-warning"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="position-relative mb-5 mb-lg-4 mt-4 mt-lg-0">
-      <div class="container">
-        <div class="d-flex align-items-center gap-4">
-          <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-            <div class="profile_header rounded-circle bg-success">
-              <i class="bi bi-telephone-fill text-white"></i>
-            </div>
-          </a>
-          <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-            <div class="profile_header rounded-circle" style="background-color: #4267b2">
-              <i class="bi bi-facebook text-white"></i>
-            </div>
-          </a>
-          <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-            <div class="profile_header rounded-circle" style="background-color: #0088cc">
-              <i class="bi bi-telegram text-white"></i>
-            </div>
-          </a>
-          <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-            <div class="profile_header rounded-circle" style="background-color: #3498db">
-              <i class="bi bi-envelope-fill text-white"></i>
-            </div>
-          </a>
-          <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
-            <div class="profile_header rounded-circle" style="
-                  background: linear-gradient(
-                    45deg,
-                    #feda75,
-                    #fa7e1e,
-                    #d62976,
-                    #962fbf,
-                    #4f5bd5
-                  );
-                ">
-              <i class="bi bi-instagram text-white"></i>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="mb-5">
-      <div>
+    <section class="store_section">
+      <section class="bg-store  d-none d-md-block">
+        <div class="bg-overlay"></div>
+      </section>
+      <section class="about-store">
         <div class="container">
           <div class="row">
-            <!-- Search Input -->
-            <div class="mb-3 col-12 col-md-3 ">
-              <input type="text" class="form-control h-100 py-3" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម" />
-            </div>
-
-            <!-- Tab Navigation -->
-            <div class="d-flex flex-row mb-3 ms-xl-3 ms-0 col-12 col-md-auto">
-              <ul class="nav nav-tabs flex-nowrap" id="categoryNav" role="tablist"></ul>
-            </div>
-            <!-- price range -->
-            <div class="col-12 col-xl-3 ms-auto mb-3 mt-3 mt-xl-0">
-              <div class="price-input">
-                <div class="field">
-                  <input type="number" class="input-min border-0 bg-transparent" value="0" disabled />
-                  <span class="ms-2">(៛)ទាប</span>
-                </div>
-                <div class="separator">-</div>
-                <div class="field">
-                  <span>ខ្ពស់(៛)</span>
-                  <input type="number" class="input-max border-0 bg-transparent ms-2" value="10000" disabled />
-                </div>
+            <div class="col-12 col-md-8 col-lg-3">
+              <div class="card logo-store border-5 box-shadow border-white overflow-hidden">
+                <img id="profile_img" class="card-img" alt="" />
               </div>
-              <div class="slider">
-                <div class="progress"></div>
-              </div>
-              <div class="range-input">
-                <input type="range" class="range-min" min="0" max="10000" value="0" step="1" />
-                <input type="range" class="range-max" min="0" max="10000" value="10000" step="1" />
+            </div>
+            <div class="col-12 col-lg-8">
+              <div class="pt-0 pt-lg-5 d-flex">
+                <div id="storeInfo"></div>
+                <div class="ms-auto d-flex flex-column justify-content-between">
+                  <button id="add_to_wish" type="button"
+                    class="hover-nav btn profile_header d-flex align-items-center justify-content-center bg-instead rounded-circle">
+                    <i id="heart-store" class="bi bi-heart fs-18 bi-2x" style="transform: translateY(2px)"></i>
+                  </button>
+                  <span class="fs-5">
+                    4.5 <i class="bi bi-star-fill text-warning"></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="container">
-        <h3 class="mt-5">សេវាកម្មរបស់ហាងយើងខ្ញុំ</h3>
-        <hr style="color: #ddd" />
-
-        <div class="row gy-5">
-          <div class="col-12 col-xl-8 service-section-store">
-            <!-- Service Sections -->
-            <div id="all" class="row g-4" data-category="បោក"></div>
+      </section>
+      <section class="position-relative mb-5 mb-lg-4 mt-4 mt-lg-0">
+        <div class="container">
+          <div class="d-flex align-items-center gap-4">
+            <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
+              <div class="profile_header rounded-circle bg-success">
+                <i class="bi bi-telephone-fill text-white"></i>
+              </div>
+            </a>
+            <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
+              <div class="profile_header rounded-circle" style="background-color: #4267b2">
+                <i class="bi bi-facebook text-white"></i>
+              </div>
+            </a>
+            <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
+              <div class="profile_header rounded-circle" style="background-color: #0088cc">
+                <i class="bi bi-telegram text-white"></i>
+              </div>
+            </a>
+            <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
+              <div class="profile_header rounded-circle" style="background-color: #3498db">
+                <i class="bi bi-envelope-fill text-white"></i>
+              </div>
+            </a>
+            <a href="tel:+1234567890" class="text-decoration-none fs-18 hover-nav d-flex align-items-center gap-2">
+              <div class="profile_header rounded-circle" style="
+                background: linear-gradient(
+                  45deg,
+                  #feda75,
+                  #fa7e1e,
+                  #d62976,
+                  #962fbf,
+                  #4f5bd5
+                );
+              ">
+                <i class="bi bi-instagram text-white"></i>
+              </div>
+            </a>
           </div>
-          <div class="col-12 col-xl-4">
-            <div class="card cart">
-              <h2>Cart</h2>
-              <div id="cart-items" class="overflow-auto" style="height: 538px"></div>
-              <div class="check-out-store py-3 bg-white z-3 bottom-0 w-100 text-end">
-                <span id="total-price" class="fs-4 mb-3 fw-semibold">0.00៛</span>
-                <div class="mt-2">
-                  <button class="btn btn-primary" id="updateCartButton">កែប្រែកន្ត្រាក់</button>
-                  <button id="checkout-button" class="btn btn-primary" disabled>
-                    បញ្ជាក់ការទូទាត់
+        </div>
+      </section>
+      <section class="mb-5">
+        <div>
+          <div class="container">
+            <div class="row">
+              <!-- Search Input -->
+              <div class="mb-3 col-12 col-md-3 ">
+                <input type="text" class="form-control h-100 py-3" id="searchInput" placeholder="ស្គែងរកសេវាកម្ម" />
+              </div>
+
+              <!-- Tab Navigation -->
+              <div class="d-flex flex-row mb-3 ms-xl-3 ms-0 col-12 col-md-auto">
+                <ul class="nav nav-tabs flex-nowrap" id="categoryNav" role="tablist"></ul>
+              </div>
+              <!-- price range -->
+              <div class="col-12 col-xl-3 ms-auto mb-3 mt-3 mt-xl-0">
+                <div class="price-input">
+                  <div class="field">
+                    <input type="number" class="input-min border-0 bg-transparent" value="0" disabled />
+                    <span class="ms-2">(៛)ទាប</span>
+                  </div>
+                  <div class="separator">-</div>
+                  <div class="field">
+                    <span>ខ្ពស់(៛)</span>
+                    <input type="number" class="input-max border-0 bg-transparent ms-2" value="10000" disabled />
+                  </div>
+                </div>
+                <div class="slider">
+                  <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                  <input type="range" class="range-min" min="0" max="10000" value="0" step="1" />
+                  <input type="range" class="range-max" min="0" max="10000" value="10000" step="1" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <h3 class="mt-5">សេវាកម្មរបស់ហាងយើងខ្ញុំ</h3>
+          <hr style="color: #ddd" />
+
+          <div class="row gy-5">
+            <div class="col-12 col-xl-8 service-section-store">
+              <!-- Service Sections -->
+              <div id="all" class="row g-4" data-category="បោក"></div>
+            </div>
+            <div class="col-12 col-xl-4">
+              <div class="card cart">
+                <h2>Cart</h2>
+                <div id="cart-items" class="overflow-auto" style="height: 538px"></div>
+                <div class="check-out-store py-3 bg-white z-3 bottom-0 w-100 text-end">
+                  <span id="total-price" class="fs-4 mb-3 fw-semibold">0.00៛</span>
+                  <div class="mt-2">
+                    <button class="btn btn-primary" id="updateCartButton">កែប្រែកន្ត្រាក់</button>
+                    <button id="checkout-button" class="btn btn-primary" disabled>
+                      បញ្ជាក់ការទូទាត់
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top: 100px">
+        <div class="container">
+          <h3>មតិគាំទ្ររបស់អតិថិជន</h3>
+          <hr style="color: #ddd" />
+          <div class="row mt-4">
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="profile_header rounded-circle overflow-hidden">
+                  <img src="/../../../assets/image/user_profile/user1.png" width="100%" height="100%"
+                    class="card-img object-fit-cover" alt="" />
+                </div>
+                <div style="line-height: 10px">
+                  <h6>សុវណ្ណ</h6>
+                  <span>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <span> . </span>
+                    <span>១សប្ដាហ៏មុន</span>
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span>
+                  "ខ្ញុំពិតជាចាប់អារម្មណ៍នឹងសេវាកម្មរបស់ហាងនេះណាស់!
+                  សំលៀកបំពាក់របស់ខ្ញុំបានសំអាតបានល្អ
+                  និងផ្តល់សេវាដែលមានគុណភាពខ្ពស់។
+                  អ្នកធ្វើការជួយផ្តល់នូវការគ្រប់គ្រងពេលវេលាត្រឹមត្រូវ ហើយបុគ្គលិករបស់ពួកគេមានសុជីវធម៌ នៅផ្នែកសេវាកម្ម។
+                  ខ្ញុំពិតជាសូមអរគុណ ហើយនឹងត្រឡប់មកប្រើសេវាម្តងទៀត! ខ្ញុំសូមផ្តល់ពិន្ទុ៥ដល់ហាងនេះ។
+                </span>
+                <div class="mt-3">
+                  <button class="btn p-2 like" onclick="toggleLike()">
+                    <i class="bi bi-hand-thumbs-up fs-18"></i>
+                  </button>
+                  <button class="btn p-2 unlike" onclick="toggleUnLike()">
+                    <i class="bi bi-hand-thumbs-down fs-18"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="profile_header bg-info rounded-circle overflow-hidden">
+                  <span class="fw-bold text-white">S</span>
+                </div>
+                <div style="line-height: 10px">
+                  <h6>Sopheaktra</h6>
+                  <span>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <i class="bi bi-star-fill star text-warning"></i>
+                    <span> . </span>
+                    <span>១សប្ដាហ៏មុន</span>
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span>
+                  "ខ្ញុំពិតជាចាប់អារម្មណ៍នឹងសេវាកម្មរបស់ហាងនេះណាស់!
+                  សំលៀកបំពាក់របស់ខ្ញុំបានសំអាតបានល្អ
+                  និងផ្តល់សេវាដែលមានគុណភាពខ្ពស់។
+                  អ្នកធ្វើការជួយផ្តល់នូវការគ្រប់គ្រងពេលវេលាត្រឹមត្រូវ
+                  ហើយបុគ្គលិករបស់ពួកគេមានសុជីវធម៌ និងទទួលខុសត្រូវ។
+                  ខ្ញុំពិតជាសូមអរគុណ ហើយនឹងត្រឡប់មកប្រើសេវា១លើកទៀត!
+                  ខ្ញុំសូមផ្តល់ពិន្ទុ ៥ ដើមមកហាងនេះ។"
+                </span>
+                <div class="mt-3">
+                  <button class="btn p-2 like" onclick="toggleLike()">
+                    <i class="bi bi-hand-thumbs-up fs-18"></i>
+                  </button>
+                  <button class="btn p-2 unlike" onclick="toggleUnLike()">
+                    <i class="bi bi-hand-thumbs-down fs-18"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section style="margin-top: 100px">
-      <div class="container">
-        <h3>មតិគាំទ្ររបស់អតិថិជន</h3>
-        <hr style="color: #ddd" />
-        <div class="row mt-4">
-          <div class="col-12 col-md-6">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="profile_header rounded-circle overflow-hidden">
-                <img src="/../../../assets/image/user_profile/user1.png" width="100%" height="100%"
-                  class="card-img object-fit-cover" alt="" />
-              </div>
-              <div style="line-height: 10px">
-                <h6>សុវណ្ណ</h6>
-                <span>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <span> . </span>
-                  <span>១សប្ដាហ៏មុន</span>
-                </span>
-              </div>
-            </div>
-            <div>
-              <span>
-                "ខ្ញុំពិតជាចាប់អារម្មណ៍នឹងសេវាកម្មរបស់ហាងនេះណាស់!
-                សំលៀកបំពាក់របស់ខ្ញុំបានសំអាតបានល្អ
-                និងផ្តល់សេវាដែលមានគុណភាពខ្ពស់។
-                អ្នកធ្���ើការជួយផ្តល់នូវការគ្រប់គ្រងពេលវេលាត្រឹមត្រូវ
-                ហើយបុគ្គលិករបស់ពួកគេមានសុជីវធម៌ និងទទួលខុសត្រូវ។
-                ខ្ញុំពិតជាសូមអរគុណ ហើយនឹងត្រឡប់មកប្រើសេវា១លើកទៀត!
-                ខ្ញុំសូមផ្តល់ពិន្ទុ ៥ ដើមមកហាងនេះ។"
-              </span>
-              <div class="mt-3">
-                <button class="btn p-2 like" onclick="toggleLike()">
-                  <i class="bi bi-hand-thumbs-up fs-18"></i>
-                </button>
-                <button class="btn p-2 unlike" onclick="toggleUnLike()">
-                  <i class="bi bi-hand-thumbs-down fs-18"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="profile_header bg-info rounded-circle overflow-hidden">
-                <span class="fw-bold text-white">S</span>
-              </div>
-              <div style="line-height: 10px">
-                <h6>Sopheaktra</h6>
-                <span>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <i class="bi bi-star-fill star text-warning"></i>
-                  <span> . </span>
-                  <span>១សប្ដាហ៏មុន</span>
-                </span>
-              </div>
-            </div>
-            <div>
-              <span>
-                "ខ្ញុំពិតជាចាប់អារម្មណ៍នឹងសេវាកម្មរបស់ហាងនេះណាស់!
-                សំលៀកបំពាក់របស់ខ្ញុំបានសំអាតបានល្អ
-                និងផ្តល់សេវាដែលមានគុណភាពខ្ពស់។
-                អ្នកធ្វើការជួយផ្តល់នូវការគ្រប់គ្រងពេលវេលាត្រឹមត្រូវ
-                ហើយបុគ្គលិករបស់ពួកគេមានសុជីវធម៌ និងទទួលខុសត្រូវ។
-                ខ្ញុំពិតជាសូមអរគុណ ហើយនឹងត្រឡប់មកប្រើសេវា១លើកទៀត!
-                ខ្ញុំសូមផ្តល់ពិន្ទុ ៥ ដើមមកហាងនេះ។"
-              </span>
-              <div class="mt-3">
-                <button class="btn p-2 like" onclick="toggleLike()">
-                  <i class="bi bi-hand-thumbs-up fs-18"></i>
-                </button>
-                <button class="btn p-2 unlike" onclick="toggleUnLike()">
-                  <i class="bi bi-hand-thumbs-down fs-18"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </section>
   </main>
 
@@ -702,9 +419,6 @@
               <a href="../../../index.html" class="fs-18"><i class="bi bi-house-door me-2"></i>ទំព័រដើម</a>
             </li>
             <li>
-              <a href="" class="fs-18"><i class="bi bi-gear me-2"></i>សេវាកម្ម</a>
-            </li>
-            <li>
               <a href="aboutUs.html" class="fs-18"><i class="bi bi-info-circle me-2"></i>អំពយើង</a>
             </li>
             <li id="order-history">
@@ -724,10 +438,9 @@
                 <i class="bi bi-envelope me-2"></i>boukuk168@gmail.com
               </a>
             </li>
-            <li id="contact"><a href="contactUs.html" type="button"
-              class="border-0 p-0 bg-transparent fs-18">
-              <i class="bi bi-mailbox me-2"></i>ទាក់ទងខ្ញុំ</a>
-      </li>
+            <li id="contact"><a href="contactUs.html" type="button" class="border-0 p-0 bg-transparent fs-18">
+                <i class="bi bi-mailbox me-2"></i>ទាក់ទងខ្ញុំ</a>
+            </li>
           </ul>
         </div>
       </div>

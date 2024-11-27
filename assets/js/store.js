@@ -617,3 +617,52 @@ checkoutButton.addEventListener("click", () => {
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
   location.href = `${basePath}src/views/page/payment.html`;
 });
+
+
+// add to wishlist
+document.getElementById('add_to_wish').addEventListener('click', () => {
+  console.log(firstId);
+  if (!UserToken) {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/auth/login.html`;
+    return;
+  }
+
+  fetch(`${baseUrl}/api/wishlists`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${UserToken}`,
+    },
+    body: JSON.stringify({
+      service_id: firstId,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update wishlist");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+
+      // Toggle heart icon
+      const heartIcon = document.getElementById("heart-store");
+      if (heartIcon.classList.contains("bi-heart")) {
+        heartIcon.classList.remove("bi-heart");
+        heartIcon.classList.add("bi-heart-fill");
+      } else {
+        heartIcon.classList.remove("bi-heart-fill");
+        heartIcon.classList.add("bi-heart");
+      }
+      // Update the wishlist counter
+      updateWishlistCounter();
+    })
+    .catch((error) => {
+      console.error("Error updating wishlist:", error);
+      alert("Failed to update wishlist. Please try again.");
+    });
+})
