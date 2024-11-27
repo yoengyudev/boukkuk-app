@@ -15,6 +15,7 @@ function getData() {
       document.getElementById("fullname").value = json.data.name;
       document.getElementById("email").value = json.data.email;
       document.getElementById("phone").value = json.data.phone;
+      document.getElementById("google_map_url").value = json.data.google_map_url;
       document.getElementById("userAvatar").src = json.data.avatar;
     });
 }
@@ -147,6 +148,7 @@ document
     let updateName = document.getElementById("fullname").value;
     let updateEmail = document.getElementById("email").value;
     let updatePhone = document.getElementById("phone").value;
+    let google_map_url = document.getElementById("google_map_url").value;
     let saveButton = document.getElementById("update_info");
     let spinner = document.getElementById("spinner");
     let buttonText = document.getElementById("buttonText");
@@ -165,6 +167,7 @@ document
       name: updateName,
       email: updateEmail,
       phone: updatePhone,
+      google_map_url: google_map_url,
     };
 
     fetch(`${baseUrl}/api/profile/info`, {
