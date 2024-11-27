@@ -144,10 +144,6 @@ rangeInput.forEach((input) => {
   });
 });
 
-// ================get profile_picture==============
-let getProfile = localStorage.getItem("store_profile");
-document.getElementById("profile_img").src = getProfile;
-
 // =================Get all service =================
 let firstId = " ";
 function getCategory(value = 0, search = "") {
@@ -170,6 +166,7 @@ function getCategory(value = 0, search = "") {
       if (data.data.length > 0) {
         firstId = data.data[0].id;
         console.log("First Service ID:", firstId);
+        
       }
 
       data.data.forEach((element) => {
@@ -242,18 +239,14 @@ function getCategory(value = 0, search = "") {
           </a>
         `;
         document.getElementById("storeInfo").innerHTML = storeInfo;
-        document.querySelector(
-          ".bg-store"
-        ).style.backgroundImage = `url('${localStorage.getItem(
-          "store_profile"
-        )}')`;
+    
 
         document.querySelector(
           ".bg-store"
-        ).style.backgroundImage = `url('${localStorage.getItem(
-          "store_profile"
-        )}')`;
+        ).style.backgroundImage = `url('${store.avatar}')`;
+        document.getElementById("profile_img").src = store.avatar;
       }
+
     })
     .catch((error) => {
       console.error("Error fetching data:", error);

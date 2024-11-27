@@ -114,12 +114,10 @@ function getCategory(value = 0) {
 
 function getStore(creatorID, creatorAvatar) {
   let creator_ID = sessionStorage.setItem("creator_id", creatorID);
-  console.log(localStorage.getItem("creator_id"));
-  let profile_img = localStorage.setItem("store_profile", creatorAvatar);
+  let profile_img = sessionStorage.setItem("store_profile", creatorAvatar);
   const currentPath = window.location.href;
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
   location.href = `${basePath}src/views/page/store.html`;
-  console.log("Hello world");
 }
 
 window.getStore = getStore;

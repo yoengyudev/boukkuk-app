@@ -5,15 +5,14 @@ const perPage = 12;
 let paginationData = {};
 
 // Make changePage function globally accessible
-window.changePage = function(page) {
+window.changePage = function (page) {
   console.log("Changing to page:", page); // Debug log
   if (page < 1 || page > paginationData.last_page) {
     return;
   }
   currentPage = page;
   fetchWishlistItems(page);
-}
-
+};
 
 function fetchWishlistItems(page = 1) {
   document.getElementById("wishlist-items").innerHTML = `
@@ -75,7 +74,7 @@ function renderWishlist(items) {
     itemElement.className = "col-lg-3 col-md-4 col-sm-6 mb-4";
     itemElement.setAttribute("data-wishlist-id", item.id);
     itemElement.innerHTML = `
-      <div class="wishlist-item h-100" onclick="getStore('${item.service.creator.id}')">
+      <div class="wishlist-item h-100" onclick="getStore('${item.service.creator.id}', '${item.service.creator.avatar}')">
         <div class="heart-icon" onclick="removeItem(${item.id}); event.stopPropagation();">
           <i class="bi bi-heart-fill" style="transform:translateY(3px);"></i>
         </div>
@@ -125,10 +124,12 @@ function renderPagination() {
 
   paginationControls.style.display = "block";
   const totalPages = paginationData.last_page;
-  
+
   let paginationHTML = `
-    <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-      <button type="button" class="page-link" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+    <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+      <button type="button" class="page-link" onclick="changePage(${
+        currentPage - 1
+      })" ${currentPage === 1 ? "disabled" : ""}>
         «
       </button>
     </li>
@@ -144,13 +145,17 @@ function renderPagination() {
       <li class="page-item">
         <button type="button" class="page-link" onclick="changePage(1)">1</button>
       </li>
-      ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+      ${
+        startPage > 2
+          ? '<li class="page-item disabled"><span class="page-link">...</span></li>'
+          : ""
+      }
     `;
   }
 
   for (let i = startPage; i <= endPage; i++) {
     paginationHTML += `
-      <li class="page-item ${currentPage === i ? 'active' : ''}">
+      <li class="page-item ${currentPage === i ? "active" : ""}">
         <button type="button" class="page-link" onclick="changePage(${i})">${i}</button>
       </li>
     `;
@@ -158,7 +163,11 @@ function renderPagination() {
 
   if (endPage < totalPages) {
     paginationHTML += `
-      ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+      ${
+        endPage < totalPages - 1
+          ? '<li class="page-item disabled"><span class="page-link">...</span></li>'
+          : ""
+      }
       <li class="page-item">
         <button type="button" class="page-link" onclick="changePage(${totalPages})">${totalPages}</button>
       </li>
@@ -166,8 +175,10 @@ function renderPagination() {
   }
 
   paginationHTML += `
-    <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-      <button type="button" class="page-link" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+    <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+      <button type="button" class="page-link" onclick="changePage(${
+        currentPage + 1
+      })" ${currentPage === totalPages ? "disabled" : ""}>
         »
       </button>
     </li>
@@ -237,13 +248,14 @@ function updateWishlistCounter() {
 }
 
 // Add this function to make it globally accessible
-window.getStore = function(creatorID) {
+function getStore(creatorID, creatorAvatar) {
   sessionStorage.setItem("creator_id", creatorID);
+  sessionStorage.setItem("store_profile", creatorAvatar);
   const currentPath = window.location.href;
   const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
   location.href = `${basePath}src/views/page/store.html`;
-};
-
+}
+window.getStore = getStore;
 // Initial load
 document.addEventListener("DOMContentLoaded", () => {
   fetchWishlistItems(1);
