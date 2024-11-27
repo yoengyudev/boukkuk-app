@@ -189,7 +189,22 @@
             </div>
         </div>
     </section>
-
+ <!-- Dynamic Profile Modal -->
+ <div class="modal fade global-profile-modal" id="profileModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileModalTitle">
+            <!-- Dynamic Title -->
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Forms will be injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Include the same scripts as getorder.html -->
     <script src="../../../../vender/datatable/js/jquery-3.7.1.js"></script>
     <script src="../../../../vender/datatable/js/dataTables.js"></script>
@@ -197,6 +212,7 @@
     <script src="../../../../vender/datatable/js/dataTables.responsive.js"></script>
     <script src="../../../../vender/datatable/js/responsive.bootstrap5.js"></script>
     <script src="../../../../vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../../../assets/js/updateUserInfo.js"></script>
     <script type="module" src="../../../../assets/js/logout.js"></script>
     <script type="module" src="../../../../assets/js/report.js"></script>
     <script type="module" src="../../../../assets/js/sidebar.js"></script>
