@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+window.searchAndRedirect = searchAndRedirect;
 
 function store(event) {
   event.preventDefault();
