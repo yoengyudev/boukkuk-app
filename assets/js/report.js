@@ -140,7 +140,7 @@ function exportToCsv(data) {
     ...rows.map((row) => row.join(",")),
   ].join("\n");
 
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const blob = new Blob([`\uFEFF${csvContent}`], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.setAttribute("href", url);
@@ -188,8 +188,28 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchOrderReports();
   document.getElementById("filterBtn").addEventListener("click", filterByDate);
   document.getElementById("exportCsvBtn").addEventListener("click", () => {
-    if (orderData.length > 0) {
-      exportToCsv(orderData);
+    const filteredData = orderData.filter((order) => {
+      const orderDate = new Date(order.created_at);
+      const startDateValue = document.getElementById("startYear").value;
+      const endDateValue = document.getElementById("endYear").value;
+
+      const startDate = startDateValue ? new Date(startDateValue) : null;
+      const endDate = endDateValue ? new Date(endDateValue) : null;
+
+      // Set the end date to the end of the day if it exists
+      if (endDate) {
+        endDate.setHours(23, 59, 59, 999);
+      }
+
+      // Check conditions based on which dates are provided
+      const isAfterStartDate = startDate ? orderDate >= startDate : true;
+      const isBeforeEndDate = endDate ? orderDate <= endDate : true;
+
+      return isAfterStartDate && isBeforeEndDate;
+    });
+
+    if (filteredData.length > 0) {
+      exportToCsv(filteredData); // Use filtered data for export
     } else {
       alert("No data available to export");
     }
