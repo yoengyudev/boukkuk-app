@@ -1,8 +1,6 @@
 import { baseUrl } from "./baseUrl.js";
 import { AdminToken, UserToken } from "./tokens.js";
 
-
-
 let isclick = false;
 
 function wishlistCard(serviceId, heartButton) {
@@ -85,7 +83,7 @@ function getCategory(value = 0) {
               </div>
               <div class="card-body p-0">
                 <div class="d-flex justify-content-between align-items-start mb-2">
-                  <a href="#" onclick='store(event)' 
+                  <a href="#" onclick="getStore(${element.creator.id}, '${element.creator.avatar}')"
                      class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                      ${element.name}
                   </a>
@@ -155,6 +153,4 @@ addCategoryId.addEventListener("change", () => {
 
 // Initialize categories and fetch all items initially
 fetchCategories();
-getCategory(); 
-
-
+getCategory();

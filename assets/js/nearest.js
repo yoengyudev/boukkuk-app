@@ -3,58 +3,71 @@ const maxDistance = 5;
 const apiUrl = `${baseUrl}/api/users/providers?page=1&per_page=20&search=`;
 
 function findNearbyLocations() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true });
-    } else {
-        displayResult("Geolocation is not supported by this browser.");
-        document.getElementById('animation-overlay').style.display = 'none';
-    }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error, {
+      enableHighAccuracy: true,
+    });
+  } else {
+    displayResult("Geolocation is not supported by this browser.");
+    document.getElementById("animation-overlay").style.display = "none";
+  }
 }
 
 window.findNearbyLocations = findNearbyLocations;
 
 async function success(position) {
-    const userLatitude = position.coords.latitude;
-    const userLongitude = position.coords.longitude;
+  const userLatitude = position.coords.latitude;
+  const userLongitude = position.coords.longitude;
 
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const providers = data.data.filter(provider => provider.latitude && provider.longitude);
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const providers = data.data.filter(
+      (provider) => provider.latitude && provider.longitude
+    );
 
-        const nearbyProviders = providers.filter(provider => {
-            const distance = calculateDistance(userLatitude, userLongitude, provider.latitude, provider.longitude);
-            if (distance < maxDistance) {
-                provider.distance = formatDistance(distance);
-                provider.estimatedTime = calculateDeliveryTime(distance);
-                return true;
-            }
-            return false;
-        });
+    const nearbyProviders = providers.filter((provider) => {
+      const distance = calculateDistance(
+        userLatitude,
+        userLongitude,
+        provider.latitude,
+        provider.longitude
+      );
+      if (distance < maxDistance) {
+        provider.distance = formatDistance(distance);
+        provider.estimatedTime = calculateDeliveryTime(distance);
+        return true;
+      }
+      return false;
+    });
 
-        displayResult(nearbyProviders.length ? nearbyProviders : "No locations found within 5km.");
-    } catch (error) {
-        console.error("Error fetching providers:", error);
-        displayResult("Failed to load laundry locations.");
-    } finally {
-        document.getElementById('animation-overlay').style.display = 'none';
-    }
+    displayResult(
+      nearbyProviders.length
+        ? nearbyProviders
+        : "No locations found within 5km."
+    );
+  } catch (error) {
+    console.error("Error fetching providers:", error);
+    displayResult("Failed to load laundry locations.");
+  } finally {
+    document.getElementById("animation-overlay").style.display = "none";
+  }
 }
 
 // Helper function to format distance in meters or kilometers
 function formatDistance(distanceInKm) {
-    if (distanceInKm < 1) {
-        const distanceInMeters = Math.round(distanceInKm * 1000); 
-        return `${distanceInMeters}m`; 
-    } else {
-        return `${distanceInKm.toFixed(2)}km`; 
-    }
+  if (distanceInKm < 1) {
+    const distanceInMeters = Math.round(distanceInKm * 1000);
+    return `${distanceInMeters}m`;
+  } else {
+    return `${distanceInKm.toFixed(2)}km`;
+  }
 }
 
 // Calculate estimated delivery time based on distance and an average speed of 40 km/h
 function calculateDeliveryTime(distanceInKm) {
-  const averageSpeed = 40; 
-  const timeInHours = distanceInKm / averageSpeed; 
+  const averageSpeed = 40;
+  const timeInHours = distanceInKm / averageSpeed;
   const totalSeconds = Math.round(timeInHours * 3600);
 
   const hours = Math.floor(totalSeconds / 3600);
@@ -63,50 +76,51 @@ function calculateDeliveryTime(distanceInKm) {
 
   // Format hours, minutes, and seconds into a string
   if (hours > 0) {
-      return `${hours}h ${minutes}m ${seconds}s`;
+    return `${hours}h ${minutes}m ${seconds}s`;
   } else if (minutes > 0) {
-      return `${minutes}m ${seconds}s`;
+    return `${minutes}m ${seconds}s`;
   } else {
-      return `${seconds}s`;
+    return `${seconds}s`;
   }
 }
 
-
 // On error retrieving user's location
 function error(err) {
-    console.error("Error occurred:", err.message);
-    displayResult("Unable to retrieve your location. " + err.message);
-    document.getElementById('animation-overlay').style.display = 'none';
+  console.error("Error occurred:", err.message);
+  displayResult("Unable to retrieve your location. " + err.message);
+  document.getElementById("animation-overlay").style.display = "none";
 }
 
 // Haversine formula to calculate the distance between two points
 function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in km
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
+  const R = 6371; // Radius of the Earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
 }
 
 // Convert degrees to radians
 function deg2rad(deg) {
-    return deg * (Math.PI / 180);
+  return deg * (Math.PI / 180);
 }
 
 function displayResult(message) {
-    const resultElement = document.getElementById('result');    
-    if (resultElement) {
-        resultElement.innerHTML = '';
+  const resultElement = document.getElementById("result");
+  if (resultElement) {
+    resultElement.innerHTML = "";
 
-        if (typeof message === 'string') {
-            resultElement.innerHTML = `<p>${message}</p>`;
-        } else {
-            message.forEach(provider => {
-                const cardHtml = `
+    if (typeof message === "string") {
+      resultElement.innerHTML = `<p>${message}</p>`;
+    } else {
+      message.forEach((provider) => {
+        const cardHtml = `
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                             <p class='id' style="display: none;">${provider.id}</p>
@@ -138,28 +152,38 @@ function displayResult(message) {
                         </div>
                     </div>
                 `;
-                resultElement.insertAdjacentHTML('beforeend', cardHtml);
-            });
-        }
-    } else {
-        const currentPath = window.location.href;
-        const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
-        const encodedResult = encodeURIComponent(JSON.stringify(message));
-        location.href = `${basePath}src/views/page/nearest.html?result=${encodedResult}`;
+        resultElement.insertAdjacentHTML("beforeend", cardHtml);
+      });
     }
+  } else {
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    const encodedResult = encodeURIComponent(JSON.stringify(message));
+    location.href = `${basePath}src/views/page/nearest.html?result=${encodedResult}`;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const result = params.get('result');
+  const params = new URLSearchParams(window.location.search);
+  const result = params.get("result");
 
-    if (result) {
-        try {
-            const parsedResult = JSON.parse(decodeURIComponent(result));
-            displayResult(parsedResult);
-        } catch (error) {
-            console.error("Error parsing result data:", error);
-            displayResult("Invalid data format.");
-        }
+  if (result) {
+    try {
+      const parsedResult = JSON.parse(decodeURIComponent(result));
+      displayResult(parsedResult);
+    } catch (error) {
+      console.error("Error parsing result data:", error);
+      displayResult("Invalid data format.");
     }
+  }
 });
+function getStore(creatorID, creatorAvatar) {
+    let creator_ID = sessionStorage.setItem("creator_id", creatorID);
+    let profile_img = sessionStorage.setItem("store_profile", creatorAvatar);
+    const currentPath = window.location.href;
+    const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
+    location.href = `${basePath}src/views/page/store.html`;
+  }
+  
+  window.getStore = getStore;
+  
