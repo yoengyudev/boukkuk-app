@@ -125,7 +125,7 @@ function displayResult(message) {
                         <div class="card bg-transparent overflow-hidden border-0 h-100 bg-black">
                             <p class='id' style="display: none;">${provider.id}</p>
                             <div class="mb-3 overflow-hidden position-relative card-img-wrapper border overflow-hidden">
-                                <a href="" onclick='store(event)' class="overflow-hidden d-block">
+                                <a href="#" onclick="getStore('${provider.id}', '${provider.avatar}')" class="overflow-hidden d-block">
                                     <img src="${provider.avatar}" 
                                         class="card-img img-store w-100" 
                                         alt="${provider.name}">
@@ -133,7 +133,7 @@ function displayResult(message) {
                             </div>
                             <div class="card-body p-0">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <a href="" onclick='store(event)' 
+                                    <a href="#" onclick="getStore('${provider.id}', '${provider.avatar}')" 
                                         class="text-decoration-none text-store h5 mb-0 text-truncate me-2">
                                         ${provider.name}
                                     </a>
@@ -178,12 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 function getStore(creatorID, creatorAvatar) {
-    let creator_ID = sessionStorage.setItem("creator_id", creatorID);
-    let profile_img = sessionStorage.setItem("store_profile", creatorAvatar);
+    sessionStorage.setItem("creator_id", creatorID);
+    sessionStorage.setItem("store_profile", creatorAvatar);
     const currentPath = window.location.href;
     const basePath = currentPath.substring(0, currentPath.indexOf("/src/") + 1);
     location.href = `${basePath}src/views/page/store.html`;
   }
-  
   window.getStore = getStore;
-  
