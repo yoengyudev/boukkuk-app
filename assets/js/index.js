@@ -176,10 +176,18 @@ function getStore(creatorID, creatorAvatar) {
 window.getStore = getStore;
 
 function fetchCategories() {
+  const categorySelectAdd = document.getElementById("addCategoryId");
+  categorySelectAdd.disabled = true;
+  categorySelectAdd.innerHTML = `<option value="">Loading...</option>`;
+
   fetch(`${baseUrl}/api/categories`)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to load categories");
+      }
+      return res.json();
+    })
     .then((data) => {
-      const categorySelectAdd = document.getElementById("addCategoryId");
       categorySelectAdd.innerHTML = "";
 
       // Add "All" option at the beginning
@@ -195,8 +203,12 @@ function fetchCategories() {
         optionAdd.textContent = category.name;
         categorySelectAdd.appendChild(optionAdd);
       });
+      categorySelectAdd.disabled = false;
     })
-    .catch((error) => console.error("Error fetching categories:", error));
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+      categorySelectAdd.innerHTML = `<option value="">Failed to load</option>`;
+    });
 }
 
 let addCategoryId = document.getElementById("addCategoryId");
