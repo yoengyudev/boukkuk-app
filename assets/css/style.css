@@ -542,6 +542,68 @@ input[type="range"]::-moz-range-thumb {
   animation: beat 0.3s linear alternate;
 }
 
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #eeeeee 25%, #f8f8f8 37%, #eeeeee 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+.skeleton-img {
+  height: 220px;
+  overflow: hidden;
+}
+
+.skeleton-heart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.skeleton-line {
+  display: inline-block;
+  height: 16px;
+  border-radius: 999px;
+}
+
+.skeleton-title {
+  width: 62%;
+}
+
+.skeleton-rating {
+  width: 42px;
+}
+
+.skeleton-meta {
+  width: 58px;
+}
+
+.skeleton-time {
+  width: 72px;
+}
+
+.skeleton-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
 .star {
   font-size: 10px;
 }

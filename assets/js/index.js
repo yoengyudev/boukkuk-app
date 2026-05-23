@@ -53,6 +53,36 @@ window.wishlistCard = wishlistCard;
 
 // ============ show store card ==========
 
+function getServiceSkeletonCards(count = 8) {
+  return Array.from({ length: count })
+    .map(
+      () => `
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card bg-transparent border-0 h-100 skeleton-card" aria-hidden="true">
+              <div class="mb-3 position-relative card-img-wrapper border rounded-2 skeleton-img skeleton-shimmer">
+                <span class="skeleton-heart skeleton-shimmer"></span>
+              </div>
+              <div class="card-body p-0">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <span class="skeleton-line skeleton-title skeleton-shimmer"></span>
+                  <span class="skeleton-line skeleton-rating skeleton-shimmer"></span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="skeleton-line skeleton-meta skeleton-shimmer"></span>
+                  <span class="skeleton-dot skeleton-shimmer"></span>
+                  <span class="skeleton-line skeleton-time skeleton-shimmer"></span>
+                </div>
+              </div>
+            </div>
+          </div>`
+    )
+    .join("");
+}
+
+function setStoreCards(html) {
+  document.querySelector("#store-card").innerHTML = html;
+}
+
 function getCategory(value = 0) {
   console.log("Selected Category:", value);
   console.log(typeof value);
@@ -62,11 +92,29 @@ function getCategory(value = 0) {
       ? `${baseUrl}/api/services?page=1&per_page=20&search=&price_start=0&price_end=99999&creator=`
       : `${baseUrl}/api/services?page=1&per_page=20&search=&category=${value}&price_start=0&price_end=99999&creator=`;
 
+  setStoreCards(getServiceSkeletonCards());
+
   fetch(url)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to load services");
+      }
+      return res.json();
+    })
     .then((json) => {
       let col_3 = "";
-      json.data.forEach((element) => {
+      const services = json.data || [];
+
+      if (services.length === 0) {
+        setStoreCards(`
+          <div class="col-12">
+            <div class="text-center text-muted py-5">No services found.</div>
+          </div>
+        `);
+        return;
+      }
+
+      services.forEach((element) => {
         col_3 += `
           <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card bg-transparent border-0 h-100">
@@ -102,11 +150,18 @@ function getCategory(value = 0) {
           </div>`;
       });
 
-      document.querySelector("#store-card").innerHTML = col_3;
-      document.getElementById("animation-overlay").style.display = "none";
+      setStoreCards(col_3);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
+      setStoreCards(`
+        <div class="col-12">
+          <div class="text-center text-danger py-5">Failed to load services. Please try again later.</div>
+        </div>
+      `);
+    })
+    .finally(() => {
+      document.getElementById("animation-overlay").style.display = "none";
     });
 }
 
