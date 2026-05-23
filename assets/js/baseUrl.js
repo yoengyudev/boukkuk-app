@@ -1,1 +1,1 @@
-export const baseUrl = 'https://mps10.chandalen.dev';
+export const baseUrl = 'https://boukkuk-api.onrender.com';

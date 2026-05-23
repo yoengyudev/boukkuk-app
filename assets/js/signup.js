@@ -133,7 +133,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     };
 
     // Send the request
-    fetch('https://mps10.chandalen.dev/api/register', {
+    fetch('https://boukkuk-api.onrender.com/api/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
