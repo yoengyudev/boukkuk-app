@@ -5,7 +5,6 @@ const cartItemsDiv = document.getElementById("cart_profile");
 const serviceCards = document.querySelectorAll(".service-card");
 const totalPriceDiv = document.getElementById("total-price");
 const checkoutButton = document.getElementById("checkout-button");
-const updateCartButton = document.getElementById("updateCartButton");
 const checkoutSummary = totalPriceDiv?.closest(".check-out-store");
 const tabs = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll(".service-section");
@@ -17,13 +16,76 @@ function setCartActionsVisible(hasItems) {
     checkoutSummary.hidden = !hasItems;
   }
 
-  if (updateCartButton) {
-    updateCartButton.disabled = !hasItems;
-  }
-
   if (checkoutButton) {
     checkoutButton.disabled = !hasItems;
   }
+}
+
+setCartActionsVisible(false);
+
+function groupCartItems(items) {
+  const groupedItems = new Map();
+
+  items.forEach((item) => {
+    const serviceId = item.service.id;
+    const existing = groupedItems.get(serviceId);
+
+    if (existing) {
+      existing.qty += Number(item.qty);
+      existing.ids.push(item.id);
+      return;
+    }
+
+    groupedItems.set(serviceId, {
+      id: item.id,
+      ids: [item.id],
+      serviceId,
+      name: item.service.name,
+      price: Number(item.price),
+      qty: Number(item.qty),
+      image: item.service.image,
+    });
+  });
+
+  return Array.from(groupedItems.values());
+}
+
+async function updateCartItemQuantity(item, qty) {
+  const response = await fetch(`${baseUrl}/api/carts/${item.id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${UserToken}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ qty }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update cart item.");
+  }
+
+  await summaryCart();
+}
+
+async function removeCartItem(item) {
+  const ids = item.ids || [item.id];
+
+  for (const id of ids) {
+    const response = await fetch(`${baseUrl}/api/carts/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${UserToken}`,
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to remove item from the server.");
+    }
+  }
+
+  await summaryCart();
 }
 
 async function summaryCart() {
@@ -41,14 +103,7 @@ async function summaryCart() {
       }
   
       const data = await response.json();
-      localCart = data.data.items.map((item) => ({
-        id: item.id,
-        serviceId: item.service.id,
-        name: item.service.name,
-        price: Number(item.price),
-        qty: Number(item.qty),
-        image: item.service.image,
-      }));
+      localCart = groupCartItems(data.data.items || []);
   
       renderCart();
     } catch (error) {
@@ -108,18 +163,28 @@ async function summaryCart() {
       const increaseBtn = itemDiv.querySelector(".increase-btn");
       const deleteBtn = itemDiv.querySelector(".delete-btn");
   
-      decreaseBtn.addEventListener("click", () => {
-        if (item.qty > 1) {
-          item.qty -= 1;
-        } else {
-          localCart.splice(index, 1);
+      decreaseBtn.addEventListener("click", async () => {
+        decreaseBtn.disabled = true;
+        increaseBtn.disabled = true;
+
+        try {
+          await updateCartItemQuantity(item, item.qty - 1);
+        } catch (error) {
+          console.error("Error updating cart item:", error);
+          await summaryCart();
         }
-        renderCart();
       });
   
-      increaseBtn.addEventListener("click", () => {
-        item.qty += 1;
-        renderCart();
+      increaseBtn.addEventListener("click", async () => {
+        decreaseBtn.disabled = true;
+        increaseBtn.disabled = true;
+
+        try {
+          await updateCartItemQuantity(item, item.qty + 1);
+        } catch (error) {
+          console.error("Error updating cart item:", error);
+          await summaryCart();
+        }
       });
   
       deleteBtn.addEventListener("click", async () => {
@@ -134,25 +199,10 @@ async function summaryCart() {
         deleteBtn.disabled = true;
   
         try {
-          // Send DELETE request to the server
-          console.log('whatishsdafhasdhf',item.id);
-          
-          const response = await fetch(`${baseUrl}/api/carts/${item.id}`, {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${UserToken}`,
-              Accept: "application/json",
-            },
-          });
-  
-          if (!response.ok) {
-            throw new Error("Failed to remove item from the server.");
-          }
-  
-          // Remove item from the localCart array
-          localCart.splice(index, 1);
-          renderCart();
+          await removeCartItem(item);
         } catch (error) {
+          console.error("Error removing item:", error);
+          alert("Failed to remove item. Please try again.");
         } finally {
           deleteBtn.innerHTML = originalIcon;
           deleteBtn.disabled = false;
@@ -166,53 +216,7 @@ async function summaryCart() {
     setCartActionsVisible(true);
   }
   
-  async function updateCartOnServer() {
-    const originalText = updateCartButton.textContent;
-  
-    updateCartButton.textContent = "កំពុងកែប្រែ...";
-    updateCartButton.disabled = true;
-  
-    try {
-      for (const item of localCart) {
-        await fetch(`${baseUrl}/api/carts/${item.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${UserToken}`,
-            Accept: "application/json",
-          },
-        });
-      }
-  
-      // Re-add items with updated quantities
-      for (const item of localCart) {
-        const formData = new FormData();
-        formData.append("service_id", item.serviceId);
-        formData.append("qty", item.qty);
-  
-        await fetch(`${baseUrl}/api/carts`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${UserToken}`,
-            Accept: "application/json",
-          },
-          body: formData,
-        });
-      }
-  
-      await summaryCart();
-    } catch (error) {
-      console.error("Failed to update cart:", error);
-    } finally {
-      // Restore original text and re-enable button
-      updateCartButton.textContent = originalText;
-      updateCartButton.disabled = false;
-    }
-  }
-  
   summaryCart();
-  
-  updateCartButton.addEventListener("click", updateCartOnServer);
-  
   
   checkoutButton.addEventListener("click", () => {
     const currentPath = window.location.href;
