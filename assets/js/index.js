@@ -178,7 +178,8 @@ window.getStore = getStore;
 function fetchCategories() {
   const categorySelectAdd = document.getElementById("addCategoryId");
   categorySelectAdd.disabled = true;
-  categorySelectAdd.innerHTML = `<option value="">Loading...</option>`;
+  categorySelectAdd.classList.add("select-skeleton");
+  categorySelectAdd.innerHTML = `<option value=""></option>`;
 
   fetch(`${baseUrl}/api/categories`)
     .then((res) => {
@@ -204,9 +205,11 @@ function fetchCategories() {
         categorySelectAdd.appendChild(optionAdd);
       });
       categorySelectAdd.disabled = false;
+      categorySelectAdd.classList.remove("select-skeleton");
     })
     .catch((error) => {
       console.error("Error fetching categories:", error);
+      categorySelectAdd.classList.remove("select-skeleton");
       categorySelectAdd.innerHTML = `<option value="">Failed to load</option>`;
     });
 }

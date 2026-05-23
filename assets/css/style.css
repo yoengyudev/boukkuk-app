@@ -552,6 +552,14 @@ input[type="range"]::-moz-range-thumb {
   animation: skeleton-loading 1.4s ease infinite;
 }
 
+.select-skeleton {
+  color: transparent !important;
+  background: linear-gradient(90deg, #eeeeee 25%, #f8f8f8 37%, #eeeeee 63%) !important;
+  background-size: 400% 100% !important;
+  animation: skeleton-loading 1.4s ease infinite;
+  cursor: wait;
+}
+
 .skeleton-img {
   height: 220px;
   overflow: hidden;
