@@ -4,11 +4,26 @@ const cartItemsDiv = document.getElementById("cart-items");
 const serviceCards = document.querySelectorAll(".service-card");
 const totalPriceDiv = document.getElementById("total-price");
 const checkoutButton = document.getElementById("checkout-button");
+const updateCartButton = document.getElementById("updateCartButton");
+const checkoutSummary = totalPriceDiv?.closest(".check-out-store");
 const tabs = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll(".service-section");
 let getCreatorId = sessionStorage.getItem("creator_id");
 let localCart = [];
 
+function setCartActionsVisible(hasItems) {
+  if (checkoutSummary) {
+    checkoutSummary.hidden = !hasItems;
+  }
+
+  if (updateCartButton) {
+    updateCartButton.disabled = !hasItems;
+  }
+
+  if (checkoutButton) {
+    checkoutButton.disabled = !hasItems;
+  }
+}
 
 // Improved Intersection Observer options
 const observerOptions = {
@@ -455,7 +470,7 @@ function renderCart() {
         </div>
       </div>`;
     totalPriceDiv.textContent = "Total: 0.00៛";
-    checkoutButton.disabled = true;
+    setCartActionsVisible(false);
     return;
   }
 
@@ -552,15 +567,14 @@ function renderCart() {
   });
 
   totalPriceDiv.textContent = `Total: ${total.toFixed(2)}៛`;
-  checkoutButton.disabled = false;
+  setCartActionsVisible(true);
 }
 
 async function updateCartOnServer() {
-  const updateButton = document.getElementById("updateCartButton");
-  const originalText = updateButton.textContent;
+  const originalText = updateCartButton.textContent;
 
-  updateButton.textContent = "កំពុងកែប្រែ...";
-  updateButton.disabled = true;
+  updateCartButton.textContent = "កំពុងកែប្រែ...";
+  updateCartButton.disabled = true;
 
   try {
     for (const item of localCart) {
@@ -595,8 +609,8 @@ async function updateCartOnServer() {
     alert("Failed to update cart. Please try again.");
   } finally {
     // Restore original text and re-enable button
-    updateButton.textContent = originalText;
-    updateButton.disabled = false;
+    updateCartButton.textContent = originalText;
+    updateCartButton.disabled = false;
   }
 }
 

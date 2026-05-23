@@ -80,7 +80,10 @@ function getServiceSkeletonCards(count = 8) {
 }
 
 function setStoreCards(html) {
-  document.querySelector("#store-card").innerHTML = html;
+  const storeCard = document.querySelector("#store-card");
+  if (storeCard) {
+    storeCard.innerHTML = html;
+  }
 }
 
 function getCategory(value = 0) {
@@ -177,6 +180,10 @@ window.getStore = getStore;
 
 function fetchCategories() {
   const categorySelectAdd = document.getElementById("addCategoryId");
+  if (!categorySelectAdd) {
+    return;
+  }
+
   categorySelectAdd.disabled = true;
   categorySelectAdd.classList.add("select-skeleton");
   categorySelectAdd.innerHTML = `<option value=""></option>`;
@@ -215,12 +222,15 @@ function fetchCategories() {
 }
 
 let addCategoryId = document.getElementById("addCategoryId");
+let storeCard = document.getElementById("store-card");
 
-addCategoryId.addEventListener("change", () => {
-  console.log(addCategoryId.value);
-  getCategory(Number(addCategoryId.value));
-});
+if (addCategoryId && storeCard) {
+  addCategoryId.addEventListener("change", () => {
+    console.log(addCategoryId.value);
+    getCategory(Number(addCategoryId.value));
+  });
 
-// Initialize categories and fetch all items initially
-fetchCategories();
-getCategory();
+  // Initialize categories and fetch all items initially
+  fetchCategories();
+  getCategory();
+}
